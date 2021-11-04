@@ -14,7 +14,8 @@ Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
 Description: The ospsuite.utils package provides the utility functions for
     R packages in the Open Systems Pharmacology ecosystem.
 License: GPL-2 | file LICENSE
-URL: https://github.com/open-systems-pharmacology/OSPSuite.RUtils
+URL: https://github.com/open-systems-pharmacology/OSPSuite.RUtils,
+ https://www.open-systems-pharmacology.org/OSPSuite.RUtils/
 BugReports: 
     https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues
 Depends: 
