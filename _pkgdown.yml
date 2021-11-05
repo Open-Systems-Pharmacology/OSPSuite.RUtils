@@ -1,2 +1,26 @@
 url: https://www.open-systems-pharmacology.org/OSPSuite.RUtils/
 
+reference:
+
+  - title: Enum helpers
+    desc: Utilities to work with enum objects
+    contents:
+      - contains("enum")
+      - getEnumKey
+
+  - title: Validation helpers
+    desc: Check if the provided object is of certain type
+    contents:
+      - matches("^validate")
+      - isOfType
+
+  - title: R6 helpers
+    desc: Utilities to work with R6 objects
+    contents:
+      - Printable
+
+  - title: Miscellaneous
+    contents:
+      - "`%||%`"
+      - ifNotNull
+      - matches("^to")

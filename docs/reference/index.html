@@ -47,8 +47,8 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="all-functions">All functions <a href="#all-functions" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p>
+          <h2 id="enum-helpers">Enum helpers <a href="#enum-helpers" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Utilities to work with enum objects</p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="enum.html">enum()</a></code> </p>
@@ -82,22 +82,42 @@
           <p><code><a href="getEnumKey.html">getEnumKey()</a></code> </p>
         </td>
         <td><p>Get the key mapped to the given value in an <code>enum</code></p></td>
-      </tr><tr><td>
-          <p><code><a href="ifNotNull.html">ifNotNull()</a></code> </p>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="validation-helpers">Validation helpers <a href="#validation-helpers" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Check if the provided object is of certain type</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="validateEnumValue.html">validateEnumValue()</a></code> </p>
         </td>
-        <td><p>ifnotnull</p></td>
+        <td><p>Check if <code>value</code> is in the given enum. If not, stops with an error.</p></td>
+      </tr><tr><td>
+          <p><code><a href="validateIsOfType.html">validateIsOfType()</a></code> <code><a href="validateIsOfType.html">validateIsString()</a></code> <code><a href="validateIsOfType.html">validateIsNumeric()</a></code> <code><a href="validateIsOfType.html">validateIsInteger()</a></code> <code><a href="validateIsOfType.html">validateIsLogical()</a></code> <code><a href="validateIsOfType.html">validateIsSameLength()</a></code> <code><a href="validateIsOfType.html">validatePathIsAbsolute()</a></code> </p>
+        </td>
+        <td><p>Check if the provided object is of certain type. If not, stop with an error.</p></td>
       </tr><tr><td>
           <p><code><a href="isOfType.html">isOfType()</a></code> </p>
         </td>
         <td><p>Check if the provided object is of certain type</p></td>
-      </tr><tr><td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="r-helpers">R6 helpers <a href="#r-helpers" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Utilities to work with R6 objects</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="Printable.html">Printable</a></code> </p>
+        </td>
+        <td><p>Printable</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="miscellaneous">Miscellaneous <a href="#miscellaneous" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
           <p><code><a href="op-null-default.html">`%||%`</a></code> </p>
         </td>
         <td><p>Default value for <code>NULL</code></p></td>
       </tr><tr><td>
-          <p><code><a href="Printable.html">Printable</a></code> </p>
+          <p><code><a href="ifNotNull.html">ifNotNull()</a></code> </p>
         </td>
-        <td><p>Printable</p></td>
+        <td><p>ifnotnull</p></td>
       </tr><tr><td>
           <p><code><a href="toList.html">toList()</a></code> </p>
         </td>
@@ -107,14 +127,6 @@
         </td>
         <td><p>Transforms a single .NET object  or a list of .NET Object to their corresponding wrapper class in R.
 Note that if the object is a single object, NULL will be returned if the .NET object is null. This allows semantic equivalence between .NET and R</p></td>
-      </tr><tr><td>
-          <p><code><a href="validateEnumValue.html">validateEnumValue()</a></code> </p>
-        </td>
-        <td><p>Check if <code>value</code> is in the given enum. If not, stops with an error.</p></td>
-      </tr><tr><td>
-          <p><code><a href="validateIsOfType.html">validateIsOfType()</a></code> <code><a href="validateIsOfType.html">validateIsString()</a></code> <code><a href="validateIsOfType.html">validateIsNumeric()</a></code> <code><a href="validateIsOfType.html">validateIsInteger()</a></code> <code><a href="validateIsOfType.html">validateIsLogical()</a></code> <code><a href="validateIsOfType.html">validateIsSameLength()</a></code> <code><a href="validateIsOfType.html">validatePathIsAbsolute()</a></code> </p>
-        </td>
-        <td><p>Check if the provided object is of certain type. If not, stop with an error.</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
