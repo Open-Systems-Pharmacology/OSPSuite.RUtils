@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# `{ospsuite.utils}`: Utility functions for R packages in OSP ecosystem
+# `{ospsuite.utils}`
 
 <!-- badges: start -->
 
@@ -13,7 +13,10 @@ coverage](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch
 
 <!-- badges: end -->
 
-Following R packages belong in this ecosystem:
+# Introduction
+
+This package contains utility functions for R packages in the Open
+Systems Pharmacology ecosystem:
 
 -   `{ospsuite}`:
     <https://www.open-systems-pharmacology.org/OSPSuite-R/>

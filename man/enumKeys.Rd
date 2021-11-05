@@ -10,7 +10,7 @@ enumKeys(enum)
 \item{enum}{\code{enum} containing the keys}
 }
 \value{
-List of key names
+List of \code{key} names
 }
 \description{
 Return all keys of an enum

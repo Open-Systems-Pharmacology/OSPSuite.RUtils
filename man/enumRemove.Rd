@@ -10,7 +10,7 @@ enumRemove(keys, enum)
 \item{keys}{Key(s) of entries to be removed from the enum}
 
 \item{enum}{Enum from which the entries to be removed
-WARNING: the original object is not modified!}
+\strong{WARNING}: the original object is not modified!}
 }
 \value{
 Enum without the removed entries

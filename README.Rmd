@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# `{ospsuite.utils}`: Utility functions for R packages in OSP ecosystem
+# `{ospsuite.utils}`
 
 <!-- badges: start -->
 
@@ -23,8 +23,9 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
+# Introduction
 
-Following R packages belong in this ecosystem:
+This package contains utility functions for R packages in the Open Systems Pharmacology ecosystem:
 
 - `{ospsuite}`: <https://www.open-systems-pharmacology.org/OSPSuite-R/>
 - `{tlf}`: <https://www.open-systems-pharmacology.org/TLF-Library/>

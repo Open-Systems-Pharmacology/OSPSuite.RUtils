@@ -7,9 +7,9 @@
 getEnumKey(enum, value)
 }
 \arguments{
-\item{enum}{The enum where the key-value pair is stored}
+\item{enum}{The \code{enum} where the key-value pair is stored}
 
-\item{value}{The value that is mapped to the key}
+\item{value}{The value that is mapped to the \code{key}}
 }
 \value{
 Key under which the value is stored. If the value is not in the enum, \code{NULL} is returned

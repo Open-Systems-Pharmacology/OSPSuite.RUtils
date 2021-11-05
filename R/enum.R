@@ -1,10 +1,8 @@
-
 #' Create an enumeration to be used instead of arbitrary values in code.
 #'
 #' @param enumValues Values to use for the enum
 #'
 #' @return the Enum created
-#' @export
 #' @examples
 #' # Without predefined values
 #' Color <- enum(c("Red", "Blue", "Green"))
@@ -13,21 +11,24 @@
 #' # With predefined values
 #' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 #' mySymbol <- Symbol$Diamond
+#' @export
 enum <- function(enumValues) {
   myEnum <- as.list(enumValues)
   enumNames <- names(myEnum)
+
   if (is.null(enumNames)) {
     names(myEnum) <- myEnum
   } else if (any(enumNames == "")) {
     stop(messages$errorEnumNotAllNames)
   }
+
   return(myEnum)
 }
 
 #' Get the key mapped to the given value in an `enum`
 #'
-#' @param enum The enum where the key-value pair is stored
-#' @param value The value that is mapped to the key
+#' @param enum The `enum` where the key-value pair is stored
+#' @param value The value that is mapped to the `key`
 #'
 #' @return Key under which the value is stored. If the value is not in the enum, `NULL` is returned
 #' @export
@@ -41,8 +42,8 @@ getEnumKey <- function(enum, value) {
 
 #' Return the value that is stored under the given key. If the key is not present, an error is thrown.
 #'
-#' @param enum enum that contains the key-value pair
-#' @param key key under which the value is stored
+#' @param enum The `enum` that contains the key-value pair
+#' @param key The `key` under which the value is stored
 #'
 #' @return Value that is assigned to `key`
 #' @export
@@ -58,7 +59,7 @@ enumGetValue <- function(enum, key) {
 #'
 #' @param enum `enum` containing the keys
 #'
-#' @return List of key names
+#' @return List of `key` names
 #' @export
 enumKeys <- function(enum) {
   names(enum)
@@ -67,7 +68,7 @@ enumKeys <- function(enum) {
 #' Check if an enum has a certain key.
 #'
 #' @param key Key to check for
-#' @param enum Enum where to look for the key
+#' @param enum Enum where to look for the `key`
 #'
 #' @return TRUE if a key-value pair for `key` exists, FALSE otherwise
 #' @export
@@ -75,16 +76,17 @@ enumHasKey <- function(key, enum) {
   return(any(enumKeys(enum) == key))
 }
 
-#' Add a new key-value pairs to an enum.
+#' Add a new key-value pairs to an `enum`
 #'
 #' @param keys Keys of the values to be added
 #' @param values Values to be added
-#' @param enum enum the key-value pairs should be added to.
-#' WARNING: the original object is not modified!
-#' @param overwrite if TRUE and a value with any of the given `keys` exists,
-#' it will be overwritten with the new value. Otherwise, an error is thrown. Default is FALSE.
+#' @param enum The key-value pairs should be added to.
+#' **WARNING**: the original object is **not** modified!
+#' @param overwrite if `TRUE` and a value with any of the given `keys` exists, it
+#'   will be overwritten with the new value. Otherwise, an error is thrown.
+#'   Default is `FALSE.`
 #'
-#' @return Enum with added key-value pair.
+#' @return `Enum` with added key-value pair.
 #' @export
 #'
 #' @examples
@@ -108,7 +110,7 @@ enumPut <- function(keys, values, enum, overwrite = FALSE) {
 #'
 #' @param keys Key(s) of entries to be removed from the enum
 #' @param enum Enum from which the entries to be removed
-#' WARNING: the original object is not modified!
+#' **WARNING**: the original object is not modified!
 #'
 #' @return Enum without the removed entries
 #' @export
@@ -124,7 +126,7 @@ enumRemove <- function(keys, enum) {
 #'
 #' @param enum `enum` containing the values
 #'
-#' @return List of values stored in the `enum`
+#' @return List of values stored in the `enum`.
 #' @export
 enumValues <- function(enum) {
   unlist(enum, use.names = FALSE)

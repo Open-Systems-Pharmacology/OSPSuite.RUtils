@@ -9,7 +9,7 @@ enumHasKey(key, enum)
 \arguments{
 \item{key}{Key to check for}
 
-\item{enum}{Enum where to look for the key}
+\item{enum}{Enum where to look for the \code{key}}
 }
 \value{
 TRUE if a key-value pair for \code{key} exists, FALSE otherwise

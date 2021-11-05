@@ -7,9 +7,9 @@
 enumGetValue(enum, key)
 }
 \arguments{
-\item{enum}{enum that contains the key-value pair}
+\item{enum}{The \code{enum} that contains the key-value pair}
 
-\item{key}{key under which the value is stored}
+\item{key}{The \code{key} under which the value is stored}
 }
 \value{
 Value that is assigned to \code{key}

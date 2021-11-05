@@ -10,7 +10,7 @@ enumValues(enum)
 \item{enum}{\code{enum} containing the values}
 }
 \value{
-List of values stored in the \code{enum}
+List of values stored in the \code{enum}.
 }
 \description{
 Return the values stored in an enum
