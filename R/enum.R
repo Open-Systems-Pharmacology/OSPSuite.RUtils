@@ -6,11 +6,15 @@
 #' @examples
 #' # Without predefined values
 #' Color <- enum(c("Red", "Blue", "Green"))
+#' Color
 #' myColor <- Color$Red
+#' myColor
 #'
 #' # With predefined values
 #' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+#' Symbol
 #' mySymbol <- Symbol$Diamond
+#' mySymbol
 #' @export
 enum <- function(enumValues) {
   myEnum <- as.list(enumValues)
@@ -30,7 +34,8 @@ enum <- function(enumValues) {
 #' @param enum The `enum` where the key-value pair is stored
 #' @param value The value that is mapped to the `key`
 #'
-#' @return Key under which the value is stored. If the value is not in the enum, `NULL` is returned
+#' @return Key under which the value is stored. If the value is not in the enum,
+#'   `NULL` is returned.
 #' @export
 getEnumKey <- function(enum, value) {
   output <- names(which(enum == value))
@@ -40,7 +45,8 @@ getEnumKey <- function(enum, value) {
   return(output)
 }
 
-#' Return the value that is stored under the given key. If the key is not present, an error is thrown.
+#' Return the value that is stored under the given key. If the key is not
+#' present, an error is thrown.
 #'
 #' @param enum The `enum` that contains the key-value pair
 #' @param key The `key` under which the value is stored

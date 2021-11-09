@@ -2,7 +2,8 @@
 % Please edit documentation in R/enum.R
 \name{enumGetValue}
 \alias{enumGetValue}
-\title{Return the value that is stored under the given key. If the key is not present, an error is thrown.}
+\title{Return the value that is stored under the given key. If the key is not
+present, an error is thrown.}
 \usage{
 enumGetValue(enum, key)
 }
@@ -15,5 +16,6 @@ enumGetValue(enum, key)
 Value that is assigned to \code{key}
 }
 \description{
-Return the value that is stored under the given key. If the key is not present, an error is thrown.
+Return the value that is stored under the given key. If the key is not
+present, an error is thrown.
 }
