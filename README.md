@@ -23,7 +23,6 @@ Systems Pharmacology ecosystem:
 -   `{tlf}`: <https://www.open-systems-pharmacology.org/TLF-Library/>
 -   `{ospsuite.reportingengine}`:
     <https://www.open-systems-pharmacology.org/OSPSuite.ReportingEngine/>
--   `{esqlabsR}`: <https://esqlabs.github.io/esqlabsR/>
 
 ## Code of Conduct
 
