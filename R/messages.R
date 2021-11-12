@@ -65,6 +65,20 @@ messages <- list(
       optionalMessage
     )
   },
+  errorWrongLength = function(object, nbElements, optionalMessage = NULL) {
+    # Name of the calling function
+    callingFunctions <- sys.calls()
+    callingFunction <- sys.call(-length(callingFunctions) + 1)[[1]]
+    paste0(
+      callingFunction,
+      ": Object should be of length '",
+      nbElements,
+      "', but is of length '",
+      length(object),
+      "' instead. ",
+      optionalMessage
+    )
+  },
   errorPropertyReadOnly = function(propertyName, optionalMessage = NULL) {
     paste0("Property '$", propertyName, "' is readonly")
   },
@@ -105,6 +119,15 @@ messages <- list(
       dimension,
       "' used by '",
       quantityName,
+      "'."
+    )
+  },
+  errorNotIncluded = function(values, parentValues) {
+    paste0(
+      "Values '",
+      paste0(values, collapse = ", "),
+      "' are not in included in parent values: '",
+      paste0(parentValues, collapse = ", "),
       "'."
     )
   },

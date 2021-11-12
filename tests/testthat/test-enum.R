@@ -1,5 +1,3 @@
-context("Enum")
-
 test_that("It creates an enum from keys only", {
   myEnum <- enum(c("Red", "Blue", "Green"))
   expect_equal(names(myEnum), c("Red", "Blue", "Green"))

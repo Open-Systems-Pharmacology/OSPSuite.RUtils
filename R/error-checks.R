@@ -1,12 +1,16 @@
+# is or has helpers ---------------------------------------------
+
 #' Check if the provided object is of certain type
 #'
-#' @param object An object or a list of objects
-#' @param type String representation or Class of the type that should be checked for
-#' @param nullAllowed Boolean flag if `NULL` is accepted for the `object`. If `TRUE`,
-#' `NULL` always returns `TRUE`, otherwise `NULL` returns `FALSE`. Default is `FALSE`
+#' @param object An object or a list of objects.
+#' @param type String representation or Class of the type that should be checked
+#'   for.
+#' @param nullAllowed Boolean flag if `NULL` is accepted for the `object`. If
+#'   `TRUE`, `NULL` always returns `TRUE`, otherwise `NULL` returns `FALSE`.
+#'   Default is `FALSE`.
 #'
-#' @return TRUE if the object or all objects inside the list are of the given type.
-#' Only the first level of the given list is considered.
+#' @return TRUE if the object or all objects inside the list are of the given
+#'   type. Only the first level of the given list is considered.
 #' @export
 isOfType <- function(object, type, nullAllowed = FALSE) {
   if (is.null(object)) {
@@ -27,6 +31,75 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
   object <- c(object)
   all(sapply(object, inheritType))
 }
+
+#' Check if input is included in a list
+#'
+#' @param values Vector of values
+#' @param parentValues Vector of values
+#'
+#' @return `TRUE` if the values are inside the parent values.
+#' @export
+isIncluded <- function(values, parentValues) {
+  if (is.null(values)) {
+    return(FALSE)
+  }
+  if (length(values) == 0) {
+    return(FALSE)
+  }
+  return(as.logical(min(values %in% parentValues)))
+}
+
+#' Check if two objects are of same length
+#' @param ... Objects to compare.
+#' @export
+isSameLength <- function(...) {
+  args <- list(...)
+  nrOfLengths <- length(unique(lengths(args)))
+
+  return(nrOfLengths == 1)
+}
+
+#' Check if the provided object has `nbElements` elements
+#'
+#' @param object An object or a list of objects
+#' @param nbElements number of elements that are supposed in object
+#'
+#' @return `TRUE` if the object or all objects inside the list have `nbElements.`
+#' Only the first level of the given list is considered.
+#' @export
+isOfLength <- function(object, nbElements) {
+  return(length(object) == nbElements)
+}
+
+#' Check if the provided path has required extension
+#'
+#' @param file file or path name to be checked
+#' @param extension extension of the file required after "."
+#'
+#' @return TRUE if the path includes the extension
+#' @export
+
+isFileExtension <- function(file, extension) {
+  extension <- c(extension)
+  file_ext <- fileExtension(file)
+  file_ext %in% extension
+}
+
+#' Remove duplicate values from data
+#' @param data A dataframe.
+#' @param na.rm Logical to decide if missing values should be removed.
+#' @export
+
+hasUniqueValues <- function(data, na.rm = TRUE) {
+  # na.rm is the usual tidyverse input to remove NA values
+  if (na.rm) {
+    data <- data[!is.na(data)]
+  }
+  return(!any(duplicated(data)))
+}
+
+
+# validation helpers ---------------------------------------------
 
 #' Check if the provided object is of certain type. If not, stop with an error.
 #'
@@ -150,6 +223,16 @@ validateIsSameLength <- function(...) {
 }
 
 #' @rdname validateIsOfType
+#' @inheritParams isOfLength
+#' @export
+validateIsOfLength <- function(object, nbElements) {
+  if (isOfLength(object, nbElements)) {
+    return()
+  }
+  stop(messages$errorWrongLength(object, nbElements))
+}
+
+#' @rdname validateIsOfType
 #' @param path A valid file path name.
 #' @export
 
@@ -160,15 +243,24 @@ validatePathIsAbsolute <- function(path) {
   }
 }
 
-# utilities ---------------------------------------------
+#' @rdname validateIsOfType
+#' @inheritParams isIncluded
+#'
+#' @export
+validateIsIncluded <- function(values, parentValues, nullAllowed = FALSE) {
+  if (nullAllowed && is.null(values)) {
+    return()
+  }
 
-isSameLength <- function(...) {
-  args <- list(...)
-  nrOfLengths <- length(unique(lengths(args)))
+  if (isIncluded(values, parentValues)) {
+    return()
+  }
 
-  return(nrOfLengths == 1)
+  stop(messages$errorNotIncluded(values, parentValues))
 }
 
+
+# utilities ---------------------------------------------
 
 typeNamesFrom <- function(type) {
   type <- c(type)
@@ -178,4 +270,9 @@ typeNamesFrom <- function(type) {
     }
     t$classname
   })
+}
+
+fileExtension <- function(file) {
+  ex <- strsplit(basename(file), split = "\\.")[[1]]
+  return(utils::tail(ex, 1))
 }

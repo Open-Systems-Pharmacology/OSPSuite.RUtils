@@ -22,7 +22,8 @@ reference:
     desc: Check if the provided object is of certain type
     contents:
       - matches("^validate")
-      - isOfType
+      - matches("^is")
+      - matches("^has")
 
   - title: R6 helpers
     desc: Utilities to work with R6 objects
