@@ -60,23 +60,35 @@
 
 <span class="fu">validateIsSameLength</span><span class="op">(</span><span class="va">...</span><span class="op">)</span>
 
-<span class="fu">validatePathIsAbsolute</span><span class="op">(</span><span class="va">path</span><span class="op">)</span></code></pre>
+<span class="fu">validateIsOfLength</span><span class="op">(</span><span class="va">object</span>, <span class="va">nbElements</span><span class="op">)</span>
+
+<span class="fu">validatePathIsAbsolute</span><span class="op">(</span><span class="va">path</span><span class="op">)</span>
+
+<span class="fu">validateIsIncluded</span><span class="op">(</span><span class="va">values</span>, <span class="va">parentValues</span>, nullAllowed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre>
     </div>
 
     <div id="ref-sections">
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>object</dt>
-<dd><p>An object or a list of objects</p></dd>
+<dd><p>An object or a list of objects.</p></dd>
 <dt>type</dt>
-<dd><p>String representation or Class of the type that should be checked for</p></dd>
+<dd><p>String representation or Class of the type that should be checked
+for.</p></dd>
 <dt>nullAllowed</dt>
-<dd><p>Boolean flag if <code>NULL</code> is accepted for the <code>object</code>. If <code>TRUE</code>,
-<code>NULL</code> always returns <code>TRUE</code>, otherwise <code>NULL</code> returns <code>FALSE</code>. Default is <code>FALSE</code></p></dd>
+<dd><p>Boolean flag if <code>NULL</code> is accepted for the <code>object</code>. If
+<code>TRUE</code>, <code>NULL</code> always returns <code>TRUE</code>, otherwise <code>NULL</code> returns <code>FALSE</code>.
+Default is <code>FALSE</code>.</p></dd>
 <dt>...</dt>
 <dd><p>Name of the variable in the calling function</p></dd>
+<dt>nbElements</dt>
+<dd><p>number of elements that are supposed in object</p></dd>
 <dt>path</dt>
 <dd><p>A valid file path name.</p></dd>
+<dt>values</dt>
+<dd><p>Vector of values</p></dd>
+<dt>parentValues</dt>
+<dd><p>Vector of values</p></dd>
 </dl></div>
     </div>
 

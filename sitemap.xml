@@ -49,13 +49,28 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/getEnumKey.html</loc>
   </url>
   <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/hasUniqueValues.html</loc>
+  </url>
+  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/ifNotNull.html</loc>
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isFileExtension.html</loc>
+  </url>
+  <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isIncluded.html</loc>
+  </url>
+  <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isOfLength.html</loc>
+  </url>
+  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isOfType.html</loc>
+  </url>
+  <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isSameLength.html</loc>
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/op-null-default.html</loc>
