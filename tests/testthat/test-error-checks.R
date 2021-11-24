@@ -23,12 +23,17 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_true(isOfLength(A, 3))
   expect_true(isOfType(A, "data.frame"))
   expect_true(isIncluded("col3", names(A)))
+  expect_true(isOfType(NULL, nullAllowed = TRUE))
 
   # Output is FALSE
   expect_false(isSameLength(A, B))
   expect_false(isOfLength(A, 5))
   expect_false(isOfType(A, "character"))
   expect_false(isIncluded("col4", names(A)))
+  expect_false(isIncluded(NULL))
+  expect_false(isIncluded(character()))
+
+  expect_equal(isOfType(NULL, nullAllowed = "a"), "a")
 
   expect_true(hasUniqueValues(c("x", NA, "y")))
   expect_false(hasUniqueValues(c("x", NA, "y", "x")))
