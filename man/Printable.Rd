@@ -8,6 +8,25 @@
 Base class that implements some basic properties for printing to
 console.
 }
+\examples{
+myPrintable <- R6::R6Class(
+  "myPrintable",
+  inherit = Printable,
+  public = list(
+    x = NULL,
+    y = NULL,
+    print = function() {
+      private$printClass()
+      private$printLine("x", self$x)
+      private$printLine("y", self$y)
+      invisible(self)
+    }
+  )
+)
+
+x <- myPrintable$new()
+x
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
