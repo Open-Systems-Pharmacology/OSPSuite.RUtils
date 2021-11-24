@@ -2,8 +2,10 @@
 % Please edit documentation in R/utilities.R
 \name{toObjectType}
 \alias{toObjectType}
-\title{Transforms a single .NET object  or a list of .NET Object to their corresponding wrapper class in R.
-Note that if the object is a single object, NULL will be returned if the .NET object is null. This allows semantic equivalence between .NET and R}
+\title{Transforms a single .NET object  or a list of .NET Object to their
+corresponding wrapper class in R. Note that if the object is a single object,
+NULL will be returned if the .NET object is null. This allows semantic
+equivalence between .NET and R}
 \usage{
 toObjectType(netObject, class)
 }
@@ -16,6 +18,8 @@ toObjectType(netObject, class)
 The wrapped object (single or list)
 }
 \description{
-Transforms a single .NET object  or a list of .NET Object to their corresponding wrapper class in R.
-Note that if the object is a single object, NULL will be returned if the .NET object is null. This allows semantic equivalence between .NET and R
+Transforms a single .NET object  or a list of .NET Object to their
+corresponding wrapper class in R. Note that if the object is a single object,
+NULL will be returned if the .NET object is null. This allows semantic
+equivalence between .NET and R
 }

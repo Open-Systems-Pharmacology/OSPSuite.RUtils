@@ -12,3 +12,7 @@ isSameLength(...)
 \description{
 Check if two objects are of same length
 }
+\examples{
+isSameLength(mtcars, ToothGrowth)
+isSameLength(mtcars, mtcars)
+}

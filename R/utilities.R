@@ -1,5 +1,7 @@
-#' Transforms a single .NET object  or a list of .NET Object to their corresponding wrapper class in R.
-#' Note that if the object is a single object, NULL will be returned if the .NET object is null. This allows semantic equivalence between .NET and R
+#' Transforms a single .NET object  or a list of .NET Object to their
+#' corresponding wrapper class in R. Note that if the object is a single object,
+#' NULL will be returned if the .NET object is null. This allows semantic
+#' equivalence between .NET and R
 #'
 #' @param netObject The .NET object instances (single or list) to wrap
 #' @param class The class definition that will be used to convert the parameter
@@ -18,10 +20,12 @@ toObjectType <- function(netObject, class) {
 
 #' Default value for `NULL`
 #'
-#'  Convenience function to avoid testing for null. It returns the first object
-#'  if it is not null otherwise the second object
+#'  Convenience function to avoid testing for `NULL`.
 #'
-#' @param x,y If `x` is NULL, will return `y`; otherwise returns `x`.
+#' @return
+#' The first object if it is not `NULL` otherwise the second object.
+#'
+#' @param x,y If `x` is `NULL`, will return `y`; otherwise returns `x`.
 #' @export
 #' @name op-null-default
 #' @examples
@@ -32,17 +36,23 @@ toObjectType <- function(netObject, class) {
 }
 
 
-#' Shortkey checking if argument 1 is not null,
-#' output the argument 2 if not null, or output argument 3 otherwise
+#' Shortkey checking if argument 1 is not `NULL`, output the argument 2 if not
+#' null, or output argument 3 otherwise
 #'
-#' @title ifnotnull
 #' @param condition argument 1
 #' @param outputIfNotNull argument 2
 #' @param outputIfNull argument 3
-#' @return outputIfNotNull if condition is not null, outputIfNull otherwise
+#'
+#' @return `outputIfNotNull` if condition is not `NULL`, outputIfNull otherwise.
+#'
 #' @description
-#' Check if condition is not null, if so output outputIfNotNull,
+#' Check if condition is not `NULL`, if so output outputIfNotNull,
 #' otherwise, output outputIfNull
+#'
+#' @examples
+#' ifNotNull(NULL, "x")
+#' ifNotNull(NULL, "x", "y")
+#' ifNotNull(1 < 2, "x", "y")
 #' @export
 ifNotNull <- function(condition, outputIfNotNull, outputIfNull = NULL) {
   if (!is.null(condition)) {
@@ -56,7 +66,12 @@ ifNotNull <- function(condition, outputIfNotNull, outputIfNull = NULL) {
 #'
 #' @param object To be converted to a list
 #'
-#' @return If `is.list(object) == TRUE`, returns the `object`, otherwise `list(object)`
+#' @return If `is.list(object) == TRUE`, returns the `object`, otherwise.
+#'   `list(object)`.
+#'
+#' @examples
+#' toList(list("a" = 1, "b" = 2))
+#' toList(c("a" = 1, "b" = 2))
 #' @export
 toList <- function(object) {
   if (is.list(object)) {

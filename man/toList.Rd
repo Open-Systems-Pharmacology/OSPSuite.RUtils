@@ -10,8 +10,13 @@ toList(object)
 \item{object}{To be converted to a list}
 }
 \value{
-If \code{is.list(object) == TRUE}, returns the \code{object}, otherwise \code{list(object)}
+If \code{is.list(object) == TRUE}, returns the \code{object}, otherwise.
+\code{list(object)}.
 }
 \description{
 Make sure the object is a list
+}
+\examples{
+toList(list("a" = 1, "b" = 2))
+toList(c("a" = 1, "b" = 2))
 }

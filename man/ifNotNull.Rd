@@ -2,7 +2,8 @@
 % Please edit documentation in R/utilities.R
 \name{ifNotNull}
 \alias{ifNotNull}
-\title{ifnotnull}
+\title{Shortkey checking if argument 1 is not \code{NULL}, output the argument 2 if not
+null, or output argument 3 otherwise}
 \usage{
 ifNotNull(condition, outputIfNotNull, outputIfNull = NULL)
 }
@@ -14,13 +15,14 @@ ifNotNull(condition, outputIfNotNull, outputIfNull = NULL)
 \item{outputIfNull}{argument 3}
 }
 \value{
-outputIfNotNull if condition is not null, outputIfNull otherwise
+\code{outputIfNotNull} if condition is not \code{NULL}, outputIfNull otherwise.
 }
 \description{
-Check if condition is not null, if so output outputIfNotNull,
+Check if condition is not \code{NULL}, if so output outputIfNotNull,
 otherwise, output outputIfNull
 }
-\details{
-Shortkey checking if argument 1 is not null,
-output the argument 2 if not null, or output argument 3 otherwise
+\examples{
+ifNotNull(NULL, "x")
+ifNotNull(NULL, "x", "y")
+ifNotNull(1 < 2, "x", "y")
 }

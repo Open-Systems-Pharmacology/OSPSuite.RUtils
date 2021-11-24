@@ -8,11 +8,13 @@
 x \%||\% y
 }
 \arguments{
-\item{x, y}{If \code{x} is NULL, will return \code{y}; otherwise returns \code{x}.}
+\item{x, y}{If \code{x} is \code{NULL}, will return \code{y}; otherwise returns \code{x}.}
+}
+\value{
+The first object if it is not \code{NULL} otherwise the second object.
 }
 \description{
-Convenience function to avoid testing for null. It returns the first object
-if it is not null otherwise the second object
+Convenience function to avoid testing for \code{NULL}.
 }
 \examples{
 1 \%||\% 2

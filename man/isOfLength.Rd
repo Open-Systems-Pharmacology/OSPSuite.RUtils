@@ -18,3 +18,8 @@ Only the first level of the given list is considered.
 \description{
 Check if the provided object has \code{nbElements} elements
 }
+\examples{
+df <- data.frame(x = c(1, 2, 3))
+isOfLength(df, 1)
+isOfLength(df, 3)
+}

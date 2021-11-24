@@ -11,6 +11,13 @@ hasUniqueValues(data, na.rm = TRUE)
 
 \item{na.rm}{Logical to decide if missing values should be removed.}
 }
+\value{
+Logical denoting if there are only unique values in data.
+}
 \description{
 Remove duplicate values from data
+}
+\examples{
+hasUniqueValues(c("x", NA, "y", "x"))
+hasUniqueValues(c("x", NA, "y"))
 }

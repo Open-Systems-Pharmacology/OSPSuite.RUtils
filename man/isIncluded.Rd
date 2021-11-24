@@ -17,3 +17,11 @@ isIncluded(values, parentValues)
 \description{
 Check if input is included in a list
 }
+\examples{
+A <- data.frame(
+  col1 = c(1, 2, 3),
+  col2 = c(4, 5, 6),
+  col3 = c(7, 8, 9)
+)
+isIncluded("col3", names(A))
+}

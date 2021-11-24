@@ -17,9 +17,13 @@ for.}
 Default is \code{FALSE}.}
 }
 \value{
-TRUE if the object or all objects inside the list are of the given
+\code{TRUE} if the object or all objects inside the list are of the given
 type. Only the first level of the given list is considered.
 }
 \description{
 Check if the provided object is of certain type
+}
+\examples{
+df <- data.frame(x = c(1, 2, 3))
+isOfType(df, "data.frame")
 }

@@ -12,8 +12,12 @@ isFileExtension(file, extension)
 \item{extension}{extension of the file required after "."}
 }
 \value{
-TRUE if the path includes the extension
+\code{TRUE} if the path includes the extension.
 }
 \description{
 Check if the provided path has required extension
+}
+\examples{
+isFileExtension("enum.R", "R")
+isFileExtension("enum.R", "pkml")
 }
