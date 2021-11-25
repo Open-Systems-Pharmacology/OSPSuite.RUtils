@@ -1,23 +1,3 @@
-#' Transforms a single .NET object  or a list of .NET Object to their
-#' corresponding wrapper class in R. Note that if the object is a single object,
-#' NULL will be returned if the .NET object is null. This allows semantic
-#' equivalence between .NET and R
-#'
-#' @param netObject The .NET object instances (single or list) to wrap
-#' @param class The class definition that will be used to convert the parameter
-#'
-#' @return The wrapped object (single or list)
-#' @export
-toObjectType <- function(netObject, class) {
-  if (!is.list(netObject)) {
-    return(ifNotNull(netObject, class$new(ref = netObject)))
-  }
-  sapply(c(netObject), function(x) {
-    class$new(ref = x)
-  })
-}
-
-
 #' Default value for `NULL`
 #'
 #'  Convenience function to avoid testing for `NULL`.
