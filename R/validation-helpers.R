@@ -2,9 +2,24 @@
 
 #' Check if the provided object is of certain type. If not, stop with an error.
 #'
+#' @return `NULL` if the entered object is of expected type, otherwise produces
+#'   error. Also accepts `NULL` as an input if `nullAllowed` argument is set to
+#'   `TRUE`.
+#'
 #' @inheritParams isOfType
+#'
 #' @examples
+#' A <- data.frame(
+#'   col1 = c(1, 2, 3),
+#'   col2 = c(4, 5, 6),
+#'   col3 = c(7, 8, 9)
+#' )
+#' validateIsSameLength(A, A)
+#' validateIsIncluded("col3", names(A))
 #' validateIsInteger(5)
+#' validateIsNumeric(1.2)
+#' validateIsString("x")
+#' validateIsLogical(TRUE)
 #' @export
 validateIsOfType <- function(object, type, nullAllowed = FALSE) {
   type <- c(type)
@@ -32,29 +47,6 @@ validateIsOfType <- function(object, type, nullAllowed = FALSE) {
   stop(messages$errorWrongType(objectName, class(object)[1], objectTypes))
 }
 
-#' Check if `value` is in the given {enum}. If not, stops with an error.
-#'
-#' @param enum `enum` where the `value` should be contained
-#' @param value `value` to search for in the `enum`
-#' @param nullAllowed If TRUE, `value` can be `NULL` and the test always passes.
-#' If `FALSE` (default), NULL is not accepted and the test fails.
-#' @export
-validateEnumValue <- function(value, enum, nullAllowed = FALSE) {
-  if (is.null(value)) {
-    if (nullAllowed) {
-      return()
-    }
-    stop(messages$errorEnumValueUndefined(enum))
-  }
-
-  enumKey <- getEnumKey(enum, value)
-  if (any(names(enum) == enumKey)) {
-    return()
-  }
-
-  stop(messages$errorValueNotInEnum(enum, enumKey))
-}
-
 #' @rdname validateIsOfType
 #' @inheritParams isOfType
 #' @export
@@ -62,6 +54,7 @@ validateEnumValue <- function(value, enum, nullAllowed = FALSE) {
 validateIsString <- function(object, nullAllowed = FALSE) {
   validateIsOfType(object, "character", nullAllowed)
 }
+
 #' @rdname validateIsOfType
 #' @inheritParams isOfType
 #' @export
@@ -159,4 +152,31 @@ validateIsIncluded <- function(values, parentValues, nullAllowed = FALSE) {
   }
 
   stop(messages$errorNotIncluded(values, parentValues))
+}
+
+#' Check if `value` is in the given `enum`. If not, stops with an error.
+#'
+#' @param enum `enum` where the `value` should be contained
+#' @param value `value` to search for in the `enum`
+#' @param nullAllowed If TRUE, `value` can be `NULL` and the test always passes.
+#' If `FALSE` (default), NULL is not accepted and the test fails.
+#'
+#' @examples
+#' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+#' validateEnumValue(1, Symbol)
+#' @export
+validateEnumValue <- function(value, enum, nullAllowed = FALSE) {
+  if (is.null(value)) {
+    if (nullAllowed) {
+      return()
+    }
+    stop(messages$errorEnumValueUndefined(enum))
+  }
+
+  enumKey <- getEnumKey(enum, value)
+  if (any(names(enum) == enumKey)) {
+    return()
+  }
+
+  stop(messages$errorValueNotInEnum(enum, enumKey))
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/validation-helpers.R
 \name{validateEnumValue}
 \alias{validateEnumValue}
-\title{Check if \code{value} is in the given {enum}. If not, stops with an error.}
+\title{Check if \code{value} is in the given \code{enum}. If not, stops with an error.}
 \usage{
 validateEnumValue(value, enum, nullAllowed = FALSE)
 }
@@ -15,5 +15,9 @@ validateEnumValue(value, enum, nullAllowed = FALSE)
 If \code{FALSE} (default), NULL is not accepted and the test fails.}
 }
 \description{
-Check if \code{value} is in the given {enum}. If not, stops with an error.
+Check if \code{value} is in the given \code{enum}. If not, stops with an error.
+}
+\examples{
+Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+validateEnumValue(1, Symbol)
 }

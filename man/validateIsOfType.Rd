@@ -50,9 +50,24 @@ Default is \code{FALSE}.}
 
 \item{parentValues}{Vector of values}
 }
+\value{
+\code{NULL} if the entered object is of expected type, otherwise produces
+error. Also accepts \code{NULL} as an input if \code{nullAllowed} argument is set to
+\code{TRUE}.
+}
 \description{
 Check if the provided object is of certain type. If not, stop with an error.
 }
 \examples{
+A <- data.frame(
+  col1 = c(1, 2, 3),
+  col2 = c(4, 5, 6),
+  col3 = c(7, 8, 9)
+)
+validateIsSameLength(A, A)
+validateIsIncluded("col3", names(A))
 validateIsInteger(5)
+validateIsNumeric(1.2)
+validateIsString("x")
+validateIsLogical(TRUE)
 }
