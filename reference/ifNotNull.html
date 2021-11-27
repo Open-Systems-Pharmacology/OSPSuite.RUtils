@@ -7,7 +7,7 @@ otherwise, output outputIfNull"><!-- mathjax --><script src="https://cdnjs.cloud
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body>
-    <a href="#container" class="visually-hidden-focusable">Skip to contents</a>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
     <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
@@ -37,10 +37,9 @@ otherwise, output outputIfNull"><!-- mathjax --><script src="https://cdnjs.cloud
 </li>
       </ul></div>
   </div>
-</nav><div class="container template-reference-topic" id="container">
+</nav><div class="container template-reference-topic">
 <div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Shortkey checking if argument 1 is not <code>NULL</code>, output the argument 2 if not
 null, or output argument 3 otherwise</h1>
       <small class="dont-index">Source: <a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/blob/HEAD/R/utilities.R" class="external-link"><code>R/utilities.R</code></a></small>
@@ -52,12 +51,11 @@ null, or output argument 3 otherwise</h1>
 otherwise, output outputIfNull</p>
     </div>
 
-    <div class="ref-usage section level2 sourceCode">
-    <h2>Usage</h2>
-    <pre class="sourceCode r"><code><span class="fu">ifNotNull</span><span class="op">(</span><span class="va">condition</span>, <span class="va">outputIfNotNull</span>, outputIfNull <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre>
+    <div class="section level2">
+    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ifNotNull</span><span class="op">(</span><span class="va">condition</span>, <span class="va">outputIfNotNull</span>, outputIfNull <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
     </div>
 
-    <div id="ref-sections">
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>condition</dt>
@@ -71,11 +69,10 @@ otherwise, output outputIfNull</p>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p><code>outputIfNotNull</code> if condition is not <code>NULL</code>, outputIfNull otherwise.</p>
     </div>
-    </div>
 
-    <div id="examples">
-    <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">ifNotNull</span><span class="op">(</span><span class="cn">NULL</span>, <span class="st">"x"</span><span class="op">)</span></span>
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">ifNotNull</span><span class="op">(</span><span class="cn">NULL</span>, <span class="st">"x"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span class="fu">ifNotNull</span><span class="op">(</span><span class="cn">NULL</span>, <span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "y"</span>
@@ -83,11 +80,8 @@ otherwise, output outputIfNull</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "x"</span>
 </code></pre></div>
     </div>
-  </div>
-  <div class="col-md-3" id="pkgdown-sidebar">
-    <nav id="toc"><h2>On this page</h2>
-    </nav></div>
-</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

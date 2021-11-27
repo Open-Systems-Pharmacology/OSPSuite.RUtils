@@ -1,8 +1,8 @@
 pandoc: 2.16.2
 pkgdown: 1.9000.9000.9000
-pkgdown_sha: fed40303a7e825fbfcf74d1b46931b16d2b43c52
+pkgdown_sha: 677b3069b6d53a250adaf02ad4eb150201229031
 articles: {}
-last_built: 2021-11-25T13:47Z
+last_built: 2021-11-27T19:08Z
 urls:
   reference: https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference
   article: https://www.open-systems-pharmacology.org/OSPSuite.RUtils/articles
