@@ -33,10 +33,10 @@ formatNumerics <- function(object, digits = 2, scientific = FALSE) {
   if (is.numeric(object)) {
     # Scientific writing: using isTRUE because logical NA can provoke crash in `if` loop
     if (isTRUE(scientific)) {
-      return(sprintf(paste0("%.", object, "e"), object))
+      return(sprintf(paste0("%.", digits, "e"), object))
     }
     # Decimal writing
-    return(sprintf(paste0("%.", object, "f"), object))
+    return(sprintf(paste0("%.", digits, "f"), object))
   }
 
   # Method for data.frame or list: update each of its fields
