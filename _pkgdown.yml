@@ -5,10 +5,6 @@ template:
   bootstrap: 5
   # bootswatch: cyborg
   # theme: arrow-dark
-  # bslib:
-  #   primary: "#0054AD"
-  #   border-radius: 0.5rem
-  #   btn-border-radius: 0.25rem
 
 reference:
 
@@ -24,6 +20,11 @@ reference:
       - matches("^validate")
       - matches("^is")
       - matches("^has")
+
+  - title: Formatting helpers
+    desc: ~
+    contents:
+      - matches("^format")
 
   - title: R6 helpers
     desc: Utilities to work with R6 objects
