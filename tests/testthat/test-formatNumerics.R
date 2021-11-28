@@ -3,6 +3,9 @@ test_that("formatNumerics work as expected", {
   x <- formatNumerics(log(c(12, 15, 0.3)), digits = 1, scientific = TRUE)
   expect_equal(x, c("2.5e+00", "2.7e+00", "-1.2e+00"))
 
+  y <- formatNumerics(c(12L, 15L, 3L))
+  expect_equal(y, c(12L, 15L, 3L))
+
   # dataframe
   df <- data.frame(
     parameter = c("a", "b", "c"),
