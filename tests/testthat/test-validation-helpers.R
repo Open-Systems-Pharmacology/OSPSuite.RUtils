@@ -1,19 +1,18 @@
-test_that("it can validate that an integer type is an integer", {
-  validateIsInteger(5)
-  # This is just ot have an expectation. Validation throws if not ok
-  expect_true(TRUE)
-})
 
+test_that("validateIsInteger works as expected", {
+  # should return NULL
+  expect_null(validateIsInteger(5))
+  expect_null(validateIsInteger(5L))
+  expect_null(validateIsInteger(c(1L, 5)))
+  expect_null(validateIsInteger(c(1L, 5L)))
+  expect_null(validateIsInteger(NA_integer_))
 
-test_that("it can validate that an integer array type is an integer", {
-  validateIsInteger(c(1, 5))
-  # This is just to have an expectation. Validation throws if not ok
-  expect_true(TRUE)
-})
-
-test_that("it throws a validation error when an object is not an integer", {
+  # not integers, so should error
   expect_error(validateIsInteger(c(1.5, 5)))
   expect_error(validateIsInteger(2.4))
+  expect_error(validateIsInteger("2"))
+  expect_error(validateIsInteger(TRUE))
+  expect_error(validateIsInteger(NA_character_))
 })
 
 test_that("It accepts an empty string", {
