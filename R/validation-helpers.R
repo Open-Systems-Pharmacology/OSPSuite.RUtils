@@ -170,7 +170,7 @@ validateEnumValue <- function(value, enum, nullAllowed = FALSE) {
     if (nullAllowed) {
       return()
     }
-    stop(messages$errorEnumValueUndefined(enum))
+    stop(messages$errorEnumValueUndefined(value))
   }
 
   enumKey <- getEnumKey(enum, value)
@@ -178,5 +178,5 @@ validateEnumValue <- function(value, enum, nullAllowed = FALSE) {
     return()
   }
 
-  stop(messages$errorValueNotInEnum(enum, enumKey))
+  stop(messages$errorValueNotInEnum(enum, value))
 }
