@@ -18,11 +18,9 @@ coverage](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch
 This package contains utility functions for R packages in the Open
 Systems Pharmacology ecosystem:
 
--   `{ospsuite}`:
-    <https://www.open-systems-pharmacology.org/OSPSuite-R/>
--   `{tlf}`: <https://www.open-systems-pharmacology.org/TLF-Library/>
--   `{ospsuite.reportingengine}`:
-    <https://www.open-systems-pharmacology.org/OSPSuite.ReportingEngine/>
+-   [`{ospsuite}`](https://www.open-systems-pharmacology.org/OSPSuite-R/)
+-   [`{tlf}`](https://www.open-systems-pharmacology.org/TLF-Library/)
+-   [`{ospsuite.reportingengine}`](https://www.open-systems-pharmacology.org/OSPSuite.ReportingEngine/)
 
 ## Code of Conduct
 
