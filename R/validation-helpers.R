@@ -78,8 +78,14 @@ validateIsInteger <- function(object, nullAllowed = FALSE) {
     return()
   }
 
-  # Making sure we check for numeric values before calling floor
-  if (inherits(object, "numeric") && all(floor(object) == object, na.rm = TRUE)) {
+  # if it's an actual integer (e.g. 5L)
+  if (is.integer(object)) {
+    return()
+  }
+
+  # making sure we check for numeric values before calling floor
+  # 5 is numeric but can be considered integer for our purposes
+  if (is.numeric(object) && all(floor(object) == object, na.rm = TRUE)) {
     return()
   }
 
