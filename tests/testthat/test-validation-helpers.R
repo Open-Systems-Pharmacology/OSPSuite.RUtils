@@ -5,12 +5,14 @@ test_that("validateIsInteger works as expected", {
   expect_null(validateIsInteger(5L))
   expect_null(validateIsInteger(c(1L, 5)))
   expect_null(validateIsInteger(c(1L, 5L)))
+  expect_null(validateIsInteger(NA_integer_))
 
   # not integers, so should error
   expect_error(validateIsInteger(c(1.5, 5)))
   expect_error(validateIsInteger(2.4))
   expect_error(validateIsInteger("2"))
   expect_error(validateIsInteger(TRUE))
+  expect_error(validateIsInteger(NA_character_))
 })
 
 test_that("It accepts an empty string", {
