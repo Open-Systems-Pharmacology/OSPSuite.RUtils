@@ -36,6 +36,11 @@ enum <- function(enumValues) {
 #'
 #' @return Key under which the value is stored. If the value is not in the enum,
 #'   `NULL` is returned.
+#'
+#' @examples
+#'
+#' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+#' getEnumKey(Symbol, 1)
 #' @export
 getEnumKey <- function(enum, value) {
   output <- names(which(enum == value))
@@ -51,7 +56,11 @@ getEnumKey <- function(enum, value) {
 #' @param enum The `enum` that contains the key-value pair
 #' @param key The `key` under which the value is stored
 #'
-#' @return Value that is assigned to `key`
+#' @return Value that is assigned to `key`.
+#'
+#' @examples
+#' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+#' enumGetValue(Symbol, "Diamond")
 #' @export
 enumGetValue <- function(enum, key) {
   if (!enumHasKey(key, enum)) {
@@ -66,6 +75,10 @@ enumGetValue <- function(enum, key) {
 #' @param enum `enum` containing the keys
 #'
 #' @return List of `key` names
+#'
+#' @examples
+#' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+#' enumKeys(Symbol)
 #' @export
 enumKeys <- function(enum) {
   names(enum)
@@ -76,7 +89,12 @@ enumKeys <- function(enum) {
 #' @param key Key to check for
 #' @param enum Enum where to look for the `key`
 #'
-#' @return TRUE if a key-value pair for `key` exists, FALSE otherwise
+#' @return TRUE if a key-value pair for `key` exists, `FALSE` otherwise.
+#'
+#' @examples
+#' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+#' enumHasKey("Diamond", Symbol)
+#' enumHasKey("Square", Symbol)
 #' @export
 enumHasKey <- function(key, enum) {
   return(any(enumKeys(enum) == key))
@@ -93,12 +111,12 @@ enumHasKey <- function(key, enum) {
 #'   Default is `FALSE.`
 #'
 #' @return `Enum` with added key-value pair.
-#' @export
 #'
 #' @examples
 #' myEnum <- enum(c(a = "b"))
 #' myEnum <- enumPut("c", "d", myEnum)
 #' myEnum <- enumPut(c("c", "d", "g"), c(12, 2, "a"), myEnum, overwrite = TRUE)
+#' @export
 enumPut <- function(keys, values, enum, overwrite = FALSE) {
   validateIsSameLength(keys, values)
 
@@ -118,7 +136,14 @@ enumPut <- function(keys, values, enum, overwrite = FALSE) {
 #' @param enum Enum from which the entries to be removed
 #' **WARNING**: the original object is not modified!
 #'
-#' @return Enum without the removed entries
+#' @return Enum without the removed entries.
+#'
+#' @examples
+#' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+#' # either by key
+#' enumRemove("Diamond", Symbol)
+#' # or by positions
+#' enumRemove(2L, Symbol)
 #' @export
 enumRemove <- function(keys, enum) {
   for (key in keys) {
@@ -133,6 +158,10 @@ enumRemove <- function(keys, enum) {
 #' @param enum `enum` containing the values
 #'
 #' @return List of values stored in the `enum`.
+#'
+#' @examples
+#' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+#' enumValues(Symbol)
 #' @export
 enumValues <- function(enum) {
   unlist(enum, use.names = FALSE)

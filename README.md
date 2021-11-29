@@ -8,8 +8,7 @@
 [![R build
 status](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/R-CMD-check/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils)
 [![pkgdown](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/pkgdown/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/main/graph/badge.svg)](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=main)
+<!-- [![Codecov test coverage](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/main/graph/badge.svg)](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=main) -->
 
 <!-- badges: end -->
 

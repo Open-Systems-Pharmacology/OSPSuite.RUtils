@@ -13,8 +13,15 @@ enumRemove(keys, enum)
 \strong{WARNING}: the original object is not modified!}
 }
 \value{
-Enum without the removed entries
+Enum without the removed entries.
 }
 \description{
 Remove an entry from the enum.
+}
+\examples{
+Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+# either by key
+enumRemove("Diamond", Symbol)
+# or by positions
+enumRemove(2L, Symbol)
 }

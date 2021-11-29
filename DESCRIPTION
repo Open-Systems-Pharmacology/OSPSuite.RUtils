@@ -1,6 +1,6 @@
 Type: Package
 Package: ospsuite.utils
-Title: Utility functions for Open Systems Pharmacology R packages
+Title: Utility Functions for Open Systems Pharmacology R Packages
 Version: 10.0.72
 Authors@R: c(
     person("Open-Systems-Pharmacology Community", role = "cph"),
@@ -11,8 +11,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0003-1995-6531", Twitter = "@patilindrajeets"))
   )
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
-Description: The ospsuite.utils package provides the utility functions for
-    R packages in the Open Systems Pharmacology ecosystem.
+Description: A collection of utility functions for R packages in the Open Systems Pharmacology ecosystem.
 License: GPL-2 | file LICENSE
 URL: https://github.com/open-systems-pharmacology/OSPSuite.RUtils,
  https://www.open-systems-pharmacology.org/OSPSuite.RUtils/

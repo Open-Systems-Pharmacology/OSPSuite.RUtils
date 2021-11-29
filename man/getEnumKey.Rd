@@ -18,3 +18,8 @@ Key under which the value is stored. If the value is not in the enum,
 \description{
 Get the key mapped to the given value in an \code{enum}
 }
+\examples{
+
+Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+getEnumKey(Symbol, 1)
+}

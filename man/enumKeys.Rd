@@ -15,3 +15,7 @@ List of \code{key} names
 \description{
 Return all keys of an enum
 }
+\examples{
+Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+enumKeys(Symbol)
+}

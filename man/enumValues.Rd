@@ -15,3 +15,7 @@ List of values stored in the \code{enum}.
 \description{
 Return the values stored in an enum
 }
+\examples{
+Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+enumValues(Symbol)
+}

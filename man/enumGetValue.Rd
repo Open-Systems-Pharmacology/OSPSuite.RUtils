@@ -13,9 +13,13 @@ enumGetValue(enum, key)
 \item{key}{The \code{key} under which the value is stored}
 }
 \value{
-Value that is assigned to \code{key}
+Value that is assigned to \code{key}.
 }
 \description{
 Return the value that is stored under the given key. If the key is not
 present, an error is thrown.
+}
+\examples{
+Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+enumGetValue(Symbol, "Diamond")
 }
