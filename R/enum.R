@@ -1,3 +1,7 @@
+#' Define an enumerated list
+#'
+#' @description
+#'
 #' Create an enumeration to be used instead of arbitrary values in code.
 #'
 #' @param enumValues Values to use for the enum
@@ -50,6 +54,9 @@ getEnumKey <- function(enum, value) {
   return(output)
 }
 
+#' Get enum values
+#'
+#' @description
 #' Return the value that is stored under the given key. If the key is not
 #' present, an error is thrown.
 #'
@@ -70,7 +77,7 @@ enumGetValue <- function(enum, key) {
   return(enum[[key]])
 }
 
-#' Return all keys of an enum
+#' Get all keys of an enum
 #'
 #' @param enum `enum` containing the keys
 #'
@@ -89,7 +96,7 @@ enumKeys <- function(enum) {
 #' @param key Key to check for
 #' @param enum Enum where to look for the `key`
 #'
-#' @return TRUE if a key-value pair for `key` exists, `FALSE` otherwise.
+#' @return `TRUE` if a key-value pair for `key` exists, `FALSE` otherwise.
 #'
 #' @examples
 #' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
@@ -153,7 +160,7 @@ enumRemove <- function(keys, enum) {
   return(enum)
 }
 
-#' Return the values stored in an enum
+#' Get the values stored in an enum
 #'
 #' @param enum `enum` containing the values
 #'

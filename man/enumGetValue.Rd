@@ -2,8 +2,7 @@
 % Please edit documentation in R/enum.R
 \name{enumGetValue}
 \alias{enumGetValue}
-\title{Return the value that is stored under the given key. If the key is not
-present, an error is thrown.}
+\title{Get enum values}
 \usage{
 enumGetValue(enum, key)
 }

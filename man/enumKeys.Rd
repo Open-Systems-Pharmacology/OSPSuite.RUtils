@@ -2,7 +2,7 @@
 % Please edit documentation in R/enum.R
 \name{enumKeys}
 \alias{enumKeys}
-\title{Return all keys of an enum}
+\title{Get all keys of an enum}
 \usage{
 enumKeys(enum)
 }
@@ -13,7 +13,7 @@ enumKeys(enum)
 List of \code{key} names
 }
 \description{
-Return all keys of an enum
+Get all keys of an enum
 }
 \examples{
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))

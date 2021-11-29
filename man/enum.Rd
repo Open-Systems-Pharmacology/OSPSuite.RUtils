@@ -2,7 +2,7 @@
 % Please edit documentation in R/enum.R
 \name{enum}
 \alias{enum}
-\title{Create an enumeration to be used instead of arbitrary values in code.}
+\title{Define an enumerated list}
 \usage{
 enum(enumValues)
 }

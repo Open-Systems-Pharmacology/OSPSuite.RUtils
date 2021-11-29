@@ -2,7 +2,7 @@
 % Please edit documentation in R/enum.R
 \name{enumValues}
 \alias{enumValues}
-\title{Return the values stored in an enum}
+\title{Get the values stored in an enum}
 \usage{
 enumValues(enum)
 }
@@ -13,7 +13,7 @@ enumValues(enum)
 List of values stored in the \code{enum}.
 }
 \description{
-Return the values stored in an enum
+Get the values stored in an enum
 }
 \examples{
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))

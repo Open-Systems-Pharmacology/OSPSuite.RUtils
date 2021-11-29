@@ -12,7 +12,7 @@ enumHasKey(key, enum)
 \item{enum}{Enum where to look for the \code{key}}
 }
 \value{
-TRUE if a key-value pair for \code{key} exists, \code{FALSE} otherwise.
+\code{TRUE} if a key-value pair for \code{key} exists, \code{FALSE} otherwise.
 }
 \description{
 Check if an enum has a certain key.
