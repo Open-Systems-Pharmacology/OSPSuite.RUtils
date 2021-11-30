@@ -1,3 +1,3 @@
-# ospsuite.utils 10.0.72
+# ospsuite.utils 1.0.0
 
-* Initial version.
+* Initial release.

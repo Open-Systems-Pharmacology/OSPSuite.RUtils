@@ -1,7 +1,7 @@
 Type: Package
 Package: ospsuite.utils
 Title: Utility Functions for Open Systems Pharmacology R Packages
-Version: 10.0.72
+Version: 1.0.0
 Authors@R: c(
     person("Open-Systems-Pharmacology Community", role = "cph"),
     person("Michael", "Sevestre", , "michael@design2code.ca", role = "aut"),
@@ -11,10 +11,13 @@ Authors@R: c(
            comment = c(ORCID = "0000-0003-1995-6531", Twitter = "@patilindrajeets"))
   )
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
-Description: A collection of utility functions for R packages in the Open Systems Pharmacology ecosystem.
-License: GPL-2 | file LICENSE
+Description: A collection of utility functions for R packages in the Open
+    Systems Pharmacology ecosystem. Contains helper functions for working
+    with R6 objects, enumerated lists, and text formatting. Additionally,
+    it provides functions to validate argument inputs.
+License: GPL-2
 URL: https://github.com/open-systems-pharmacology/OSPSuite.RUtils,
- https://www.open-systems-pharmacology.org/OSPSuite.RUtils/
+    https://www.open-systems-pharmacology.org/OSPSuite.RUtils/
 BugReports: 
     https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues
 Depends: 
@@ -28,5 +31,5 @@ Suggests:
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
-RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
