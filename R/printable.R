@@ -3,6 +3,8 @@
 #' @description Base class that implements some basic properties for printing to
 #'   console.
 #'
+#' @importFrom R6 R6Class
+#'
 #' @examples
 #' myPrintable <- R6::R6Class(
 #'   "myPrintable",

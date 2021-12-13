@@ -1,7 +1,7 @@
 Type: Package
 Package: ospsuite.utils
 Title: Utility Functions for Open Systems Pharmacology R Packages
-Version: 1.0.0
+Version: 1.0.0.9000
 Authors@R: c(
     person("Open-Systems-Pharmacology Community", role = "cph"),
     person("Michael", "Sevestre", , "michael@design2code.ca", role = "aut"),
