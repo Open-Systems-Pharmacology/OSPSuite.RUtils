@@ -1,10 +1,14 @@
 url: https://www.open-systems-pharmacology.org/OSPSuite.RUtils/
 
-# uncomment to turn on dark mode
+authors:
+  Open-Systems-Pharmacology Community:
+    href: "https://github.com/Open-Systems-Pharmacology"
+    html: "<img src='reference/figures/osps.png' height=24>"
+  Indrajeet Patil:
+    href: https://sites.google.com/site/indrajeetspatilmorality/
+
 template:
   bootstrap: 5
-  # bootswatch: cyborg
-  # theme: arrow-dark
 
 reference:
 
