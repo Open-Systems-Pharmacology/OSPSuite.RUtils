@@ -246,9 +246,6 @@ validateIsSameLength <- function(...) {
     return()
   }
 
-  # Name of the variable in the calling function
-  objectName <- deparse(substitute(list(...)))
-
   # Name of the arguments
   argnames <- sys.call()
   arguments <- paste(lapply(argnames[-1], as.character), collapse = ", ")
