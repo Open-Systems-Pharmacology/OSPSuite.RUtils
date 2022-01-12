@@ -1,3 +1,17 @@
+# dataframes useful for all tests in this file
+A <- data.frame(
+  col1 = c(1, 2, 3),
+  col2 = c(4, 5, 6),
+  col3 = c(7, 8, 9)
+)
+
+B <- data.frame(
+  col1 = c(1, 2, 3),
+  col2 = c(4, 5, 6),
+  col3 = c(7, 8, 9),
+  col4 = c(7, 8, 9)
+)
+
 
 test_that("validateIsInteger works as expected", {
   # should return NULL
@@ -16,7 +30,8 @@ test_that("validateIsInteger works as expected", {
 })
 
 test_that("It accepts an empty string", {
-  expect_error(validatePathIsAbsolute(""), NA)
+  expect_invisible(validatePathIsAbsolute(""))
+  expect_error(validatePathIsAbsolute("*"))
 })
 
 test_that("It accepts a path without wildcard", {
@@ -43,27 +58,13 @@ test_that("It does not throw an error when a validating that a string in an inte
   expect_error(validateIsInteger("s"), messages$errorWrongType(objectName = "\"s\"", expectedType = "integer", type = "character"))
 })
 
-A <- data.frame(
-  col1 = c(1, 2, 3),
-  col2 = c(4, 5, 6),
-  col3 = c(7, 8, 9)
-)
-
-B <- data.frame(
-  col1 = c(1, 2, 3),
-  col2 = c(4, 5, 6),
-  col3 = c(7, 8, 9),
-  col4 = c(7, 8, 9)
-)
-
-
 test_that("Checks method of type 'validate' work properly", {
   # NULL when checks succeed
   expect_null(validateIsSameLength(A, A))
   expect_null(validateIsOfLength(A, 3))
   expect_null(validateIsOfType(A, "data.frame"))
   expect_null(validateIsIncluded("col3", names(A)))
-  expect_null(validateIsIncluded(NULL, nullAllowed = TRUE))
+  expect_null(validateIsIncluded(NULL, NULL, nullAllowed = TRUE))
   expect_null(validateIsString("x"))
   expect_null(validateIsNumeric(1.2))
   expect_null(validateIsNumeric(NULL, nullAllowed = TRUE))

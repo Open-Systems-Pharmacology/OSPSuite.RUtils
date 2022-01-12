@@ -7,12 +7,12 @@
 validateEnumValue(value, enum, nullAllowed = FALSE)
 }
 \arguments{
-\item{value}{\code{value} to search for in the \code{enum}}
+\item{value}{A value to search for in the \code{enum}.}
 
-\item{enum}{\code{enum} where the \code{value} should be contained}
+\item{enum}{\code{enum} where the \code{value} should be contained.}
 
-\item{nullAllowed}{If TRUE, \code{value} can be \code{NULL} and the test always passes.
-If \code{FALSE} (default), NULL is not accepted and the test fails.}
+\item{nullAllowed}{If \code{TRUE}, \code{value} can be \code{NULL} and the test always
+passes. If \code{FALSE} (default), \code{NULL} is not accepted and the test fails.}
 }
 \description{
 Check if \code{value} is in the given \code{enum}. If not, stops with an error.
