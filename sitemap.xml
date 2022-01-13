@@ -82,6 +82,15 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateEnumValue.html</loc>
   </url>
   <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsIncluded.html</loc>
+  </url>
+  <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsOfLength.html</loc>
+  </url>
+  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsOfType.html</loc>
+  </url>
+  <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validatePathIsAbsolute.html</loc>
   </url>
 </urlset>

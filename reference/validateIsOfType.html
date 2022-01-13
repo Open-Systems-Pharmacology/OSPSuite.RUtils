@@ -17,7 +17,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
@@ -59,15 +59,7 @@
 
 <span class="fu">validateIsInteger</span><span class="op">(</span><span class="va">object</span>, nullAllowed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">validateIsLogical</span><span class="op">(</span><span class="va">object</span>, nullAllowed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">validateIsSameLength</span><span class="op">(</span><span class="va">...</span><span class="op">)</span>
-
-<span class="fu">validateIsOfLength</span><span class="op">(</span><span class="va">object</span>, <span class="va">nbElements</span><span class="op">)</span>
-
-<span class="fu">validatePathIsAbsolute</span><span class="op">(</span><span class="va">path</span><span class="op">)</span>
-
-<span class="fu">validateIsIncluded</span><span class="op">(</span><span class="va">values</span>, <span class="va">parentValues</span>, nullAllowed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu">validateIsLogical</span><span class="op">(</span><span class="va">object</span>, nullAllowed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -81,16 +73,6 @@ for.</p></dd>
 <dd><p>Boolean flag if <code>NULL</code> is accepted for the <code>object</code>. If
 <code>TRUE</code>, <code>NULL</code> always returns <code>TRUE</code>, otherwise <code>NULL</code> returns <code>FALSE</code>.
 Default is <code>FALSE</code>.</p></dd>
-<dt>...</dt>
-<dd><p>Name of the variable in the calling function</p></dd>
-<dt>nbElements</dt>
-<dd><p>number of elements that are supposed in object</p></dd>
-<dt>path</dt>
-<dd><p>A valid file path name.</p></dd>
-<dt>values</dt>
-<dd><p>Vector of values</p></dd>
-<dt>parentValues</dt>
-<dd><p>Vector of values</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -106,9 +88,8 @@ error. Also accepts <code>NULL</code> as an input if <code>nullAllowed</code> ar
 <span class="r-in">  col2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>,</span>
 <span class="r-in">  col3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="fu">validateIsSameLength</span><span class="op">(</span><span class="va">A</span>, <span class="va">A</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-in"><span class="fu">validateIsIncluded</span><span class="op">(</span><span class="st">"col3"</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">validateIsOfType</span><span class="op">(</span><span class="va">A</span>, <span class="st">"data.frame"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span class="fu">validateIsInteger</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
