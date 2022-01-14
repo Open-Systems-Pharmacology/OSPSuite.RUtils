@@ -3,6 +3,7 @@
 \name{validateIsOfType}
 \alias{validateIsOfType}
 \alias{validateIsString}
+\alias{validateIsCharacter}
 \alias{validateIsNumeric}
 \alias{validateIsInteger}
 \alias{validateIsLogical}
@@ -11,6 +12,8 @@
 validateIsOfType(object, type, nullAllowed = FALSE)
 
 validateIsString(object, nullAllowed = FALSE)
+
+validateIsCharacter(object, nullAllowed = FALSE)
 
 validateIsNumeric(object, nullAllowed = FALSE)
 
