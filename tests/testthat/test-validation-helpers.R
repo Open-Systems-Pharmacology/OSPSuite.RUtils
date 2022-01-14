@@ -45,9 +45,8 @@ test_that("It throws an error for a path with a wildcard", {
 })
 
 test_that("It does not throw an error when a number is indeed an integer", {
-  validateIsOfType(object = 2, type = "integer")
-  # This is just to have an expectation. Validation throws if not ok
-  expect_true(TRUE)
+  expect_null(validateIsOfType(object = 2, type = "integer"))
+  expect_null(validateIsOfType(object = 2L, type = "integer"))
 })
 
 test_that("It does throw an error when a number is not an integer", {
@@ -63,9 +62,11 @@ test_that("Checks method of type 'validate' work properly", {
   expect_null(validateIsSameLength(A, A))
   expect_null(validateIsOfLength(A, 3))
   expect_null(validateIsOfType(A, "data.frame"))
+  expect_error(validateIsOfType(A, data.frame))
   expect_null(validateIsIncluded("col3", names(A)))
   expect_null(validateIsIncluded(NULL, NULL, nullAllowed = TRUE))
   expect_null(validateIsString("x"))
+  expect_null(validateIsCharacter("x"))
   expect_null(validateIsNumeric(1.2))
   expect_null(validateIsNumeric(NULL, nullAllowed = TRUE))
   expect_null(validateIsInteger(5))

@@ -56,6 +56,10 @@ validateIsString <- function(object, nullAllowed = FALSE) {
 }
 
 #' @rdname validateIsOfType
+#' @export
+validateIsCharacter <- validateIsString
+
+#' @rdname validateIsOfType
 #' @inheritParams isOfType
 #' @export
 
