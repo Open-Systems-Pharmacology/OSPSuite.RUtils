@@ -2,9 +2,9 @@
 
 #' Check if the provided object is of certain type
 #'
-#' @param object An object or a list of objects.
-#' @param type String representation or Class of the type that should be checked
-#'   for.
+#' @param object An object or a vector or list of objects.
+#' @param type A scalar or a vector of string representation or class of the
+#'   type that should be checked for.
 #' @param nullAllowed Boolean flag if `NULL` is accepted for the `object`. If
 #'   `TRUE`, `NULL` always returns `TRUE`, otherwise `NULL` returns `FALSE`.
 #'   Default is `FALSE`.
@@ -13,9 +13,14 @@
 #'   type. Only the first level of the given list is considered.
 #'
 #' @examples
+#' # checking type of a single object
 #' df <- data.frame(x = c(1, 2, 3))
 #' isOfType(df, "data.frame")
+#'
+#' # the function is vectorized
+#' isOfType(c(1, "x"), c("numeric", "character"))
 #' @export
+
 isOfType <- function(object, type, nullAllowed = FALSE) {
   if (is.null(object)) {
     return(nullAllowed)
@@ -56,9 +61,11 @@ isIncluded <- function(values, parentValues) {
   if (is.null(values)) {
     return(FALSE)
   }
+
   if (length(values) == 0) {
     return(FALSE)
   }
+
   return(as.logical(min(values %in% parentValues)))
 }
 
@@ -69,6 +76,7 @@ isIncluded <- function(values, parentValues) {
 #' isSameLength(mtcars, ToothGrowth)
 #' isSameLength(mtcars, mtcars)
 #' @export
+
 isSameLength <- function(...) {
   args <- list(...)
   nrOfLengths <- length(unique(lengths(args)))
@@ -89,6 +97,7 @@ isSameLength <- function(...) {
 #' isOfLength(df, 1)
 #' isOfLength(df, 3)
 #' @export
+
 isOfLength <- function(object, nbElements) {
   return(length(object) == nbElements)
 }
@@ -101,7 +110,10 @@ isOfLength <- function(object, nbElements) {
 #' @return `TRUE` if the path includes the extension.
 #'
 #' @examples
+#' # TRUE
 #' isFileExtension("enum.R", "R")
+#'
+#' # FALSE
 #' isFileExtension("enum.R", "pkml")
 #' @export
 
@@ -136,11 +148,13 @@ hasUniqueValues <- function(data, na.rm = TRUE) {
 
 typeNamesFrom <- function(type) {
   type <- c(type)
+
   sapply(type, function(t) {
     if (is.character(t)) {
       return(t)
+    } else {
+      return(t$classname)
     }
-    t$classname
   })
 }
 

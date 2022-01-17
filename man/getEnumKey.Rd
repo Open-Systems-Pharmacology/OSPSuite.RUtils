@@ -23,3 +23,14 @@ Get the key mapped to the given value in an \code{enum}
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 getEnumKey(Symbol, 1)
 }
+\seealso{
+Other enumeration-helpers: 
+\code{\link{enumGetValue}()},
+\code{\link{enumHasKey}()},
+\code{\link{enumKeys}()},
+\code{\link{enumPut}()},
+\code{\link{enumRemove}()},
+\code{\link{enumValues}()},
+\code{\link{enum}()}
+}
+\concept{enumeration-helpers}

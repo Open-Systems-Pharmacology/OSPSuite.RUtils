@@ -7,9 +7,9 @@
 enumGetValue(enum, key)
 }
 \arguments{
-\item{enum}{The \code{enum} that contains the key-value pair}
+\item{enum}{The \code{enum} that contains the key-value pair.}
 
-\item{key}{The \code{key} under which the value is stored}
+\item{key}{The \code{key} under which the value is stored.}
 }
 \value{
 Value that is assigned to \code{key}.
@@ -22,3 +22,14 @@ present, an error is thrown.
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 enumGetValue(Symbol, "Diamond")
 }
+\seealso{
+Other enumeration-helpers: 
+\code{\link{enumHasKey}()},
+\code{\link{enumKeys}()},
+\code{\link{enumPut}()},
+\code{\link{enumRemove}()},
+\code{\link{enumValues}()},
+\code{\link{enum}()},
+\code{\link{getEnumKey}()}
+}
+\concept{enumeration-helpers}

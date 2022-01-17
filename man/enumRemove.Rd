@@ -20,8 +20,21 @@ Remove an entry from the enum.
 }
 \examples{
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+
 # either by key
 enumRemove("Diamond", Symbol)
-# or by positions
+
+# or by position
 enumRemove(2L, Symbol)
 }
+\seealso{
+Other enumeration-helpers: 
+\code{\link{enumGetValue}()},
+\code{\link{enumHasKey}()},
+\code{\link{enumKeys}()},
+\code{\link{enumPut}()},
+\code{\link{enumValues}()},
+\code{\link{enum}()},
+\code{\link{getEnumKey}()}
+}
+\concept{enumeration-helpers}

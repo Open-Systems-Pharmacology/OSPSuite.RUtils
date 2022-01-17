@@ -21,6 +21,7 @@
 #' validateIsString("x")
 #' validateIsLogical(TRUE)
 #' @export
+
 validateIsOfType <- function(object, type, nullAllowed = FALSE) {
   type <- c(type)
 
@@ -39,6 +40,7 @@ validateIsOfType <- function(object, type, nullAllowed = FALSE) {
 
   # There might be no call stack available if called from terminal
   callStack <- as.character(sys.call(-1)[[1]])
+
   # Object name is one frame further for functions such as ValidateIsNumeric
   if ((length(callStack) > 0) && grepl(pattern = "validateIs", x = callStack)) {
     objectName <- deparse(substitute(object, sys.frame(-1)))
@@ -57,6 +59,7 @@ validateIsString <- function(object, nullAllowed = FALSE) {
 
 #' @rdname validateIsOfType
 #' @export
+
 validateIsCharacter <- validateIsString
 
 #' @rdname validateIsOfType

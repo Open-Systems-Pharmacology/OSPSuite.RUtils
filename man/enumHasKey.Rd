@@ -7,9 +7,9 @@
 enumHasKey(key, enum)
 }
 \arguments{
-\item{key}{Key to check for}
+\item{key}{Key to check for.}
 
-\item{enum}{Enum where to look for the \code{key}}
+\item{enum}{Enum where to look for the \code{key}.}
 }
 \value{
 \code{TRUE} if a key-value pair for \code{key} exists, \code{FALSE} otherwise.
@@ -21,4 +21,16 @@ Check if an enum has a certain key.
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 enumHasKey("Diamond", Symbol)
 enumHasKey("Square", Symbol)
+
 }
+\seealso{
+Other enumeration-helpers: 
+\code{\link{enumGetValue}()},
+\code{\link{enumKeys}()},
+\code{\link{enumPut}()},
+\code{\link{enumRemove}()},
+\code{\link{enumValues}()},
+\code{\link{enum}()},
+\code{\link{getEnumKey}()}
+}
+\concept{enumeration-helpers}

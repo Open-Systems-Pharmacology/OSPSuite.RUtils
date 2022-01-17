@@ -17,44 +17,6 @@ messages <- list(
       optionalMessage
     )
   },
-  errorGetEntityMultipleOutputs = function(path, container, optionalMessage = NULL) {
-    callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": the path '",
-      toString(path),
-      "' located under container '",
-      container$path,
-      "' leads to more than one entity! Use 'getAllXXXMatching'",
-      "to get the list of all entities matching the path, where XXX stands for the entity type",
-      optionalMessage
-    )
-  },
-  errorEntityNotFound = function(path, container, optionalMessage = NULL) {
-    callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": No entity exists for path '",
-      toString(path),
-      "' located under container '",
-      container$path,
-      "'!",
-      optionalMessage
-    )
-  },
-  errorResultNotFound = function(path, individualId, optionalMessage = NULL) {
-    callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": No results exists for path '",
-      toString(path),
-      "' for individual IDs ",
-      "'",
-      individualId,
-      "'!",
-      optionalMessage
-    )
-  },
   errorDifferentLength = function(objectNames, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
     paste0(
@@ -131,30 +93,6 @@ messages <- list(
       "'."
     )
   },
-  errorDimensionNotSupported = function(dimension, optionalMessage = NULL) {
-    paste0(
-      "Dimension '",
-      dimension,
-      "' is not supported! See enum Dimensions for the list of supported dimensions."
-    )
-  },
-  errorUnitNotSupported = function(unit, dimension, optionalMessage = NULL) {
-    paste0(
-      "Unit '",
-      unit,
-      "' is not supported by the dimension '",
-      dimension,
-      "'!"
-    )
-  },
-  errorPKParameterNotFound = function(pkParameterName, allPKParameterNames) {
-    paste0(
-      "PK-Parameter '",
-      pkParameterName,
-      "' not found.\nAvailable PK-Parameters are:\n",
-      paste0(allPKParameterNames, collapse = ", ")
-    )
-  },
   errorEntityPathNotAbsolute = function(path) {
     callingFunction <- .getCallingFunctionName()
     paste0(
@@ -162,34 +100,10 @@ messages <- list(
       ": Only absolute paths (i.e. without the wildcard(s) `*`) are allowed, but the given path is: ",
       path
     )
-  },
-  pkSimRPathInvalid = function(pksimPath) {
-    paste0("Path to PKSim.R.dll '", pksimPath, "' is invalid.")
-  },
-  pkSimInstallPathNotFound = "Could not find an installation of PK-Sim on the machine. Please install the OSPSuite or use 'initPKSim()' to specify the installation path",
-  # errorOSPSuiteSettingNotFound = function(settingName) {
-  # paste0("No global setting with the name '", settingName, "' exists. Available global settings are:\n", paste0(names(ospsuiteEnv), collapse = ", "))
-  # },
-  errorSimulationBatchNothingToVary = "You need to vary at least one parameter or one molecule in order to use the SimulationBatch",
-  errorOnlyOneValuesSetAllowed = function(argumentName) {
-    callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": argument '",
-      argumentName,
-      "' is a list with multiple values sets, but only one value set is allowed!"
-    )
-  },
-  errorMultipleMetaDataEntries = function(optionalMessage = NULL) {
-    paste("Can only add a single meta data entry at once", optionalMessage)
-  },
-  errorMultipleSimulationsCannotBeUsedWithPopulation = "Multiple simulations cannot be run concurrently with a population."
+  }
 )
 
-# formatNumerics <- function(numerics, digits = ospsuiteEnv$formatNumericsDigits,
-#                            nsmall = ospsuiteEnv$formatNumericsSmall) {
-#   format(numerics, digits = digits, nsmall = nsmall)
-# }
+# utilities ----------------------
 
 .getCallingFunctionName <- function() {
   callingFunctions <- sys.calls()

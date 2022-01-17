@@ -11,11 +11,11 @@ enumPut(keys, values, enum, overwrite = FALSE)
 
 \item{values}{Values to be added}
 
-\item{enum}{The key-value pairs should be added to.
+\item{enum}{The enum to which the specified key-value pairs should be added.
 \strong{WARNING}: the original object is \strong{not} modified!}
 
-\item{overwrite}{if \code{TRUE} and a value with any of the given \code{keys} exists, it
-will be overwritten with the new value. Otherwise, an error is thrown.
+\item{overwrite}{If \code{TRUE} and a value with any of the given \code{keys} exists,
+it will be overwritten with the new value. Otherwise, an error is thrown.
 Default is \code{FALSE.}}
 }
 \value{
@@ -29,3 +29,14 @@ myEnum <- enum(c(a = "b"))
 myEnum <- enumPut("c", "d", myEnum)
 myEnum <- enumPut(c("c", "d", "g"), c(12, 2, "a"), myEnum, overwrite = TRUE)
 }
+\seealso{
+Other enumeration-helpers: 
+\code{\link{enumGetValue}()},
+\code{\link{enumHasKey}()},
+\code{\link{enumKeys}()},
+\code{\link{enumRemove}()},
+\code{\link{enumValues}()},
+\code{\link{enum}()},
+\code{\link{getEnumKey}()}
+}
+\concept{enumeration-helpers}
