@@ -4,7 +4,7 @@
 #'
 #' Create an enumeration to be used instead of arbitrary values in code. In some
 #' languages (C, C++, Python, etc.), enum (or enumeration) is a data type that
-#' consists of integral constants and is ideal in contexts where a variable can
+#' consists of integer constants and is ideal in contexts where a variable can
 #' take on only one of a limited set of possible values (e.g. day of the week).
 #' Since R programming language natively doesn't support enumeration, the
 #' current function provides a way to create them using lists.

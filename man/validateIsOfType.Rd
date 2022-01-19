@@ -22,10 +22,10 @@ validateIsInteger(object, nullAllowed = FALSE)
 validateIsLogical(object, nullAllowed = FALSE)
 }
 \arguments{
-\item{object}{An object or a vector or list of objects.}
+\item{object}{An object or an atomic vector or a list of objects.}
 
-\item{type}{A scalar or a vector of string representation or class of the
-type that should be checked for.}
+\item{type}{A single string or a vector of string representation or class of
+the type that should be checked for.}
 
 \item{nullAllowed}{Boolean flag if \code{NULL} is accepted for the \code{object}. If
 \code{TRUE}, \code{NULL} always returns \code{TRUE}, otherwise \code{NULL} returns \code{FALSE}.

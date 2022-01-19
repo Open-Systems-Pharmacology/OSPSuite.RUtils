@@ -7,10 +7,10 @@
 isOfType(object, type, nullAllowed = FALSE)
 }
 \arguments{
-\item{object}{An object or a vector or list of objects.}
+\item{object}{An object or an atomic vector or a list of objects.}
 
-\item{type}{A scalar or a vector of string representation or class of the
-type that should be checked for.}
+\item{type}{A single string or a vector of string representation or class of
+the type that should be checked for.}
 
 \item{nullAllowed}{Boolean flag if \code{NULL} is accepted for the \code{object}. If
 \code{TRUE}, \code{NULL} always returns \code{TRUE}, otherwise \code{NULL} returns \code{FALSE}.
@@ -27,7 +27,4 @@ Check if the provided object is of certain type
 # checking type of a single object
 df <- data.frame(x = c(1, 2, 3))
 isOfType(df, "data.frame")
-
-# the function is vectorized
-isOfType(c(1, "x"), c("numeric", "character"))
 }

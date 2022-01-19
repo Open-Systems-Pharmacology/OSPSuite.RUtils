@@ -36,7 +36,7 @@ validateIsOfType <- function(object, type, nullAllowed = FALSE) {
 
   # Name of the variable in the calling function
   objectName <- deparse(substitute(object))
-  objectTypes <- typeNamesFrom(type)
+  objectTypes <- .typeNamesFrom(type)
 
   # There might be no call stack available if called from terminal
   callStack <- as.character(sys.call(-1)[[1]])

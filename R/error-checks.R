@@ -2,9 +2,9 @@
 
 #' Check if the provided object is of certain type
 #'
-#' @param object An object or a vector or list of objects.
-#' @param type A scalar or a vector of string representation or class of the
-#'   type that should be checked for.
+#' @param object An object or an atomic vector or a list of objects.
+#' @param type A single string or a vector of string representation or class of
+#'   the type that should be checked for.
 #' @param nullAllowed Boolean flag if `NULL` is accepted for the `object`. If
 #'   `TRUE`, `NULL` always returns `TRUE`, otherwise `NULL` returns `FALSE`.
 #'   Default is `FALSE`.
@@ -16,9 +16,6 @@
 #' # checking type of a single object
 #' df <- data.frame(x = c(1, 2, 3))
 #' isOfType(df, "data.frame")
-#'
-#' # the function is vectorized
-#' isOfType(c(1, "x"), c("numeric", "character"))
 #' @export
 
 isOfType <- function(object, type, nullAllowed = FALSE) {
@@ -26,7 +23,7 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
     return(nullAllowed)
   }
 
-  type <- typeNamesFrom(type)
+  type <- .typeNamesFrom(type)
 
   inheritType <- function(x) {
     if (is.null(x) && nullAllowed) {
@@ -119,7 +116,7 @@ isOfLength <- function(object, nbElements) {
 
 isFileExtension <- function(file, extension) {
   extension <- c(extension)
-  file_ext <- fileExtension(file)
+  file_ext <- .fileExtension(file)
   file_ext %in% extension
 }
 
@@ -146,7 +143,9 @@ hasUniqueValues <- function(data, na.rm = TRUE) {
 
 # utilities ---------------------------------------------
 
-typeNamesFrom <- function(type) {
+#' @keywords internal
+
+.typeNamesFrom <- function(type) {
   type <- c(type)
 
   sapply(type, function(t) {
@@ -158,7 +157,9 @@ typeNamesFrom <- function(type) {
   })
 }
 
-fileExtension <- function(file) {
+#' @keywords internal
+
+.fileExtension <- function(file) {
   ex <- strsplit(basename(file), split = "\\.")[[1]]
   return(utils::tail(ex, 1))
 }
