@@ -69,6 +69,7 @@ test_that("Checks method of type 'validate' work properly", {
   expect_null(validateIsCharacter("x"))
   expect_null(validateIsNumeric(1.2))
   expect_null(validateIsNumeric(NULL, nullAllowed = TRUE))
+  expect_null(validateIsNumeric(c(NA, NULL)))
   expect_null(validateIsInteger(5))
   expect_null(validateIsInteger(NULL, nullAllowed = TRUE))
   expect_null(validateIsLogical(TRUE))
