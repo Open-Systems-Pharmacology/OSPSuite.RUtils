@@ -30,7 +30,7 @@ test_that("validateIsInteger works as expected", {
 })
 
 test_that("It accepts an empty string", {
-  expect_invisible(validatePathIsAbsolute(""))
+  expect_null(validatePathIsAbsolute(""))
   expect_error(validatePathIsAbsolute("*"))
 })
 

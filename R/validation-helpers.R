@@ -137,9 +137,12 @@ validateIsLogical <- function(object, nullAllowed = FALSE) {
 
 validatePathIsAbsolute <- function(path) {
   wildcardChar <- "*"
-  if (any(unlist(strsplit(path, ""), use.names = FALSE) == wildcardChar)) {
-    stop(messages$errorEntityPathNotAbsolute(path))
+
+  if (!any(unlist(strsplit(path, ""), use.names = FALSE) == wildcardChar)) {
+    return()
   }
+
+  stop(messages$errorEntityPathNotAbsolute(path))
 }
 
 # Inclusion validation helpers ---------------------------------------------
