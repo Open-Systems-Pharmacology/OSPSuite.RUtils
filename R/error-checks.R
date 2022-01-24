@@ -151,9 +151,9 @@ hasUniqueValues <- function(data, na.rm = TRUE) {
   sapply(type, function(t) {
     if (is.character(t)) {
       return(t)
-    } else {
-      return(t$classname)
     }
+
+    return(t$classname)
   })
 }
 

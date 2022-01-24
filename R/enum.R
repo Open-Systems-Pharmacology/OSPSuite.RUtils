@@ -47,7 +47,6 @@ enum <- function(enumValues) {
   # if no keys were specified, then use the values as keys themselves
   names(myEnum) <- enumNames %||% myEnum
 
-  # return enumerated list
   return(myEnum)
 }
 
