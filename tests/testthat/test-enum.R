@@ -1,6 +1,14 @@
 test_that("It creates an enum from keys only", {
+  # both vectors and lists are fine
   myEnum <- enum(c("Red", "Blue", "Green"))
+  myEnum2 <- enum(list("Red", "Blue", "Green"))
+
+  # empty strings are not an issue
+  myEnum3 <- enum(c("Diamond", "", "Circle"))
+
   expect_equal(names(myEnum), c("Red", "Blue", "Green"))
+  expect_equal(myEnum, myEnum2)
+  expect_equal(names(myEnum3), c("Diamond", "", "Circle"))
 })
 
 test_that("It creates an enum from keys and values", {

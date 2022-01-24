@@ -2,9 +2,9 @@
 
 #' Check if the provided object is of certain type
 #'
-#' @param object An object or a list of objects.
-#' @param type String representation or Class of the type that should be checked
-#'   for.
+#' @param object An object or an atomic vector or a list of objects.
+#' @param type A single string or a vector of string representation or class of
+#'   the type that should be checked for.
 #' @param nullAllowed Boolean flag if `NULL` is accepted for the `object`. If
 #'   `TRUE`, `NULL` always returns `TRUE`, otherwise `NULL` returns `FALSE`.
 #'   Default is `FALSE`.
@@ -13,15 +13,17 @@
 #'   type. Only the first level of the given list is considered.
 #'
 #' @examples
+#' # checking type of a single object
 #' df <- data.frame(x = c(1, 2, 3))
 #' isOfType(df, "data.frame")
 #' @export
+
 isOfType <- function(object, type, nullAllowed = FALSE) {
   if (is.null(object)) {
     return(nullAllowed)
   }
 
-  type <- typeNamesFrom(type)
+  type <- .typeNamesFrom(type)
 
   inheritType <- function(x) {
     if (is.null(x) && nullAllowed) {
@@ -56,9 +58,11 @@ isIncluded <- function(values, parentValues) {
   if (is.null(values)) {
     return(FALSE)
   }
+
   if (length(values) == 0) {
     return(FALSE)
   }
+
   return(as.logical(min(values %in% parentValues)))
 }
 
@@ -69,6 +73,7 @@ isIncluded <- function(values, parentValues) {
 #' isSameLength(mtcars, ToothGrowth)
 #' isSameLength(mtcars, mtcars)
 #' @export
+
 isSameLength <- function(...) {
   args <- list(...)
   nrOfLengths <- length(unique(lengths(args)))
@@ -89,6 +94,7 @@ isSameLength <- function(...) {
 #' isOfLength(df, 1)
 #' isOfLength(df, 3)
 #' @export
+
 isOfLength <- function(object, nbElements) {
   return(length(object) == nbElements)
 }
@@ -101,13 +107,16 @@ isOfLength <- function(object, nbElements) {
 #' @return `TRUE` if the path includes the extension.
 #'
 #' @examples
+#' # TRUE
 #' isFileExtension("enum.R", "R")
+#'
+#' # FALSE
 #' isFileExtension("enum.R", "pkml")
 #' @export
 
 isFileExtension <- function(file, extension) {
   extension <- c(extension)
-  file_ext <- fileExtension(file)
+  file_ext <- .fileExtension(file)
   file_ext %in% extension
 }
 
@@ -134,17 +143,23 @@ hasUniqueValues <- function(data, na.rm = TRUE) {
 
 # utilities ---------------------------------------------
 
-typeNamesFrom <- function(type) {
+#' @keywords internal
+
+.typeNamesFrom <- function(type) {
   type <- c(type)
+
   sapply(type, function(t) {
     if (is.character(t)) {
       return(t)
     }
-    t$classname
+
+    return(t$classname)
   })
 }
 
-fileExtension <- function(file) {
+#' @keywords internal
+
+.fileExtension <- function(file) {
   ex <- strsplit(basename(file), split = "\\.")[[1]]
   return(utils::tail(ex, 1))
 }

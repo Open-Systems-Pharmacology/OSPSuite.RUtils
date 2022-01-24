@@ -7,10 +7,10 @@
 enumKeys(enum)
 }
 \arguments{
-\item{enum}{\code{enum} containing the keys}
+\item{enum}{\code{enum} containing the keys.}
 }
 \value{
-List of \code{key} names
+List of \code{key} names.
 }
 \description{
 Get all keys of an enum
@@ -18,4 +18,16 @@ Get all keys of an enum
 \examples{
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 enumKeys(Symbol)
+
 }
+\seealso{
+Other enumeration-helpers: 
+\code{\link{enumGetValue}()},
+\code{\link{enumHasKey}()},
+\code{\link{enumPut}()},
+\code{\link{enumRemove}()},
+\code{\link{enumValues}()},
+\code{\link{enum}()},
+\code{\link{getEnumKey}()}
+}
+\concept{enumeration-helpers}

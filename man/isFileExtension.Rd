@@ -18,6 +18,9 @@ isFileExtension(file, extension)
 Check if the provided path has required extension
 }
 \examples{
+# TRUE
 isFileExtension("enum.R", "R")
+
+# FALSE
 isFileExtension("enum.R", "pkml")
 }

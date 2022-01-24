@@ -7,13 +7,19 @@
 enum(enumValues)
 }
 \arguments{
-\item{enumValues}{Values to use for the enum}
+\item{enumValues}{A vector or a list of comma-separated constants to use for
+creating the enum. Optionally, these can be named constants.}
 }
 \value{
-the Enum created
+An enumerated list.
 }
 \description{
-Create an enumeration to be used instead of arbitrary values in code.
+Create an enumeration to be used instead of arbitrary values in code. In some
+languages (C, C++, Python, etc.), enum (or enumeration) is a data type that
+consists of integer constants and is ideal in contexts where a variable can
+take on only one of a limited set of possible values (e.g. day of the week).
+Since R programming language natively doesn't support enumeration, the
+current function provides a way to create them using lists.
 }
 \examples{
 # Without predefined values
@@ -25,6 +31,19 @@ myColor
 # With predefined values
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 Symbol
+
 mySymbol <- Symbol$Diamond
 mySymbol
+
 }
+\seealso{
+Other enumeration-helpers: 
+\code{\link{enumGetValue}()},
+\code{\link{enumHasKey}()},
+\code{\link{enumKeys}()},
+\code{\link{enumPut}()},
+\code{\link{enumRemove}()},
+\code{\link{enumValues}()},
+\code{\link{getEnumKey}()}
+}
+\concept{enumeration-helpers}

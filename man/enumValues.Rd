@@ -19,3 +19,14 @@ Get the values stored in an enum
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 enumValues(Symbol)
 }
+\seealso{
+Other enumeration-helpers: 
+\code{\link{enumGetValue}()},
+\code{\link{enumHasKey}()},
+\code{\link{enumKeys}()},
+\code{\link{enumPut}()},
+\code{\link{enumRemove}()},
+\code{\link{enum}()},
+\code{\link{getEnumKey}()}
+}
+\concept{enumeration-helpers}
