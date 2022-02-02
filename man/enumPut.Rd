@@ -31,12 +31,12 @@ myEnum <- enumPut(c("c", "d", "g"), c(12, 2, "a"), myEnum, overwrite = TRUE)
 }
 \seealso{
 Other enumeration-helpers: 
+\code{\link{enumGetKey}()},
 \code{\link{enumGetValue}()},
 \code{\link{enumHasKey}()},
 \code{\link{enumKeys}()},
 \code{\link{enumRemove}()},
 \code{\link{enumValues}()},
-\code{\link{enum}()},
-\code{\link{getEnumKey}()}
+\code{\link{enum}()}
 }
 \concept{enumeration-helpers}

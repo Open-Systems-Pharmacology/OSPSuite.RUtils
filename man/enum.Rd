@@ -38,12 +38,12 @@ mySymbol
 }
 \seealso{
 Other enumeration-helpers: 
+\code{\link{enumGetKey}()},
 \code{\link{enumGetValue}()},
 \code{\link{enumHasKey}()},
 \code{\link{enumKeys}()},
 \code{\link{enumPut}()},
 \code{\link{enumRemove}()},
-\code{\link{enumValues}()},
-\code{\link{getEnumKey}()}
+\code{\link{enumValues}()}
 }
 \concept{enumeration-helpers}

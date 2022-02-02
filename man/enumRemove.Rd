@@ -29,12 +29,12 @@ enumRemove(2L, Symbol)
 }
 \seealso{
 Other enumeration-helpers: 
+\code{\link{enumGetKey}()},
 \code{\link{enumGetValue}()},
 \code{\link{enumHasKey}()},
 \code{\link{enumKeys}()},
 \code{\link{enumPut}()},
 \code{\link{enumValues}()},
-\code{\link{enum}()},
-\code{\link{getEnumKey}()}
+\code{\link{enum}()}
 }
 \concept{enumeration-helpers}

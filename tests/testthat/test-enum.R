@@ -20,15 +20,15 @@ test_that("It throws an error when not all values are provided", {
   expect_error(myEnum <- enum(c(Diamond = 1, 2, Circle = 2)), regexp = messages$errorEnumNotAllNames)
 })
 
-test_that("getEnumKey returns the correct key", {
+test_that("enumGetKey returns the correct key", {
   myEnum <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
-  expect_equal(getEnumKey(enum = myEnum, value = 2), c("Triangle", "Circle"))
-  expect_equal(getEnumKey(enum = myEnum, value = 1), c("Diamond"))
+  expect_equal(enumGetKey(enum = myEnum, value = 2), c("Triangle", "Circle"))
+  expect_equal(enumGetKey(enum = myEnum, value = 1), c("Diamond"))
 })
 
-test_that("getEnumKey returns NULL if the value is not present", {
+test_that("enumGetKey returns NULL if the value is not present", {
   myEnum <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
-  expect_null(getEnumKey(enum = myEnum, value = 3), c("Triangle", "Circle"))
+  expect_null(enumGetKey(enum = myEnum, value = 3), c("Triangle", "Circle"))
 })
 
 test_that("enumGetValue returns the correct value", {

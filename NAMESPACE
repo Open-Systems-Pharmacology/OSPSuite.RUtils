@@ -3,6 +3,7 @@
 export("%||%")
 export(Printable)
 export(enum)
+export(enumGetKey)
 export(enumGetValue)
 export(enumHasKey)
 export(enumKeys)
