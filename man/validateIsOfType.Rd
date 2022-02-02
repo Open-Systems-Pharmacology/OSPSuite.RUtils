@@ -2,8 +2,8 @@
 % Please edit documentation in R/validation-helpers.R
 \name{validateIsOfType}
 \alias{validateIsOfType}
-\alias{validateIsString}
 \alias{validateIsCharacter}
+\alias{validateIsString}
 \alias{validateIsNumeric}
 \alias{validateIsInteger}
 \alias{validateIsLogical}
@@ -11,9 +11,9 @@
 \usage{
 validateIsOfType(object, type, nullAllowed = FALSE)
 
-validateIsString(object, nullAllowed = FALSE)
-
 validateIsCharacter(object, nullAllowed = FALSE)
+
+validateIsString(object, nullAllowed = FALSE)
 
 validateIsNumeric(object, nullAllowed = FALSE)
 

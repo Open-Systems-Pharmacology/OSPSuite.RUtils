@@ -18,7 +18,7 @@
 #' validateIsOfType(A, "data.frame")
 #' validateIsInteger(5)
 #' validateIsNumeric(1.2)
-#' validateIsString("x")
+#' validateIsCharacter("x")
 #' validateIsLogical(TRUE)
 #' @export
 
@@ -53,14 +53,14 @@ validateIsOfType <- function(object, type, nullAllowed = FALSE) {
 #' @inheritParams isOfType
 #' @export
 
-validateIsString <- function(object, nullAllowed = FALSE) {
+validateIsCharacter <- function(object, nullAllowed = FALSE) {
   validateIsOfType(object, "character", nullAllowed)
 }
 
 #' @rdname validateIsOfType
 #' @export
 
-validateIsCharacter <- validateIsString
+validateIsString <- validateIsCharacter
 
 #' @rdname validateIsOfType
 #' @inheritParams isOfType
