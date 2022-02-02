@@ -25,6 +25,9 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/enum.html</loc>
   </url>
   <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/enumGetKey.html</loc>
+  </url>
+  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/enumGetValue.html</loc>
   </url>
   <url>
@@ -44,9 +47,6 @@
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/formatNumerics.html</loc>
-  </url>
-  <url>
-    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/getEnumKey.html</loc>
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/hasUniqueValues.html</loc>
