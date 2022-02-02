@@ -204,7 +204,7 @@ validateEnumValue <- function(value, enum, nullAllowed = FALSE) {
     stop(messages$errorEnumValueUndefined(value))
   }
 
-  enumKey <- getEnumKey(enum, value)
+  enumKey <- enumGetKey(enum, value)
 
   if (any(names(enum) == enumKey)) {
     return()

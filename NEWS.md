@@ -6,6 +6,8 @@ MINOR CHANGES
 
 * `validateIsCharacter()` is added as an alias for `validateIsString()` function.
 
+* `getEnumKey()` is added as an alias for `enumGetKey()` function.
+
 # ospsuite.utils 1.0.0
 
 * Initial release.

@@ -63,10 +63,10 @@ enum <- function(enumValues) {
 #' @examples
 #'
 #' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
-#' getEnumKey(Symbol, 1)
+#' enumGetKey(Symbol, 1)
 #' @export
 
-getEnumKey <- function(enum, value) {
+enumGetKey <- function(enum, value) {
   output <- names(which(enum == value))
 
   if (length(output) == 0) {
@@ -75,6 +75,11 @@ getEnumKey <- function(enum, value) {
 
   return(output)
 }
+
+#' @rdname enumGetKey
+#' @export
+
+getEnumKey <- enumGetKey
 
 #' Get enum values
 #'
