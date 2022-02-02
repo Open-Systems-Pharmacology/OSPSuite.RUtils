@@ -120,24 +120,27 @@ isFileExtension <- function(file, extension) {
   file_ext %in% extension
 }
 
-#' Remove duplicate values from data
+#' Check that an a array of values does not include any duplicate
 #'
-#' @param data A dataframe.
-#' @param na.rm Logical to decide if missing values should be removed.
+#' @param values An array of values
+#' @param na.rm Logical to decide if missing values should be removed from the duplicate checking.
+#' Note that duplicate `NA` values are flagged if `na.rm=FALSE`.
 #'
-#' @return Logical denoting if there are only unique values in data.
+#' @return Logical assessing if all values are unique
 #'
 #' @examples
-#' hasUniqueValues(c("x", NA, "y", "x"))
-#' hasUniqueValues(c("x", NA, "y"))
+#' hasUniqueValues(c("x", "y"))
+#' hasUniqueValues(c("x", "y", "x"))
+#' hasUniqueValues(c("x", NA, "y", NA), na.rm = FALSE)
+#' hasUniqueValues(c("x", NA, "y", NA), na.rm = TRUE)
 #' @export
 
-hasUniqueValues <- function(data, na.rm = TRUE) {
+hasUniqueValues <- function(values, na.rm = TRUE) {
   if (na.rm) {
-    data <- data[!is.na(data)]
+    values <- values[!is.na(values)]
   }
 
-  return(!any(duplicated(data)))
+  return(!any(duplicated(values)))
 }
 
 
