@@ -18,19 +18,27 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_type(isOfType(A, "data.frame"), "logical")
   expect_type(isIncluded("col3", names(A)), "logical")
 
-  # Output is TRUE
+  # Output is `TRUE`
   expect_true(isSameLength(A, A))
   expect_true(isOfLength(A, 3))
   expect_true(isIncluded("col3", names(A)))
+  expect_true(isIncluded(2, 2))
+  expect_true(isIncluded("x", list("w", "x", 1, 2)))
+  expect_true(isIncluded(c("x", "y"), c("a", "y", "b", "x")))
+  expect_true(isIncluded(list("x", "y"), list("a", "b", "x", "y")))
   expect_true(isOfType(A, "data.frame"))
   expect_true(isOfType(c(1, "x"), c("numeric", "character")))
   expect_true(isOfType(NULL, nullAllowed = TRUE))
 
-  # Output is FALSE
+  # Output is `FALSE`
   expect_false(isSameLength(A, B))
   expect_false(isOfLength(A, 5))
   expect_false(isOfType(A, "character"))
   expect_false(isIncluded("col4", names(A)))
+  expect_false(isIncluded(1, 2))
+  expect_false(isIncluded("x", c("w", "a", "y")))
+  expect_false(isIncluded(c("x", "y"), c("a", "b", "x")))
+  expect_false(isIncluded(list("x", "y"), list("a", "b", "x")))
   expect_false(isIncluded(NULL))
   expect_false(isIncluded(character()))
 
