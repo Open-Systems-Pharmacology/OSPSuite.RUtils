@@ -49,6 +49,6 @@ A <- data.frame(
 validateIsOfType(A, "data.frame")
 validateIsInteger(5)
 validateIsNumeric(1.2)
-validateIsString("x")
+validateIsCharacter("x")
 validateIsLogical(TRUE)
 }

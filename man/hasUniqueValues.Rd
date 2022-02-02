@@ -2,7 +2,7 @@
 % Please edit documentation in R/error-checks.R
 \name{hasUniqueValues}
 \alias{hasUniqueValues}
-\title{Check that an a array of values does not include any duplicate}
+\title{Check that an array of values does not include any duplicate}
 \usage{
 hasUniqueValues(values, na.rm = TRUE)
 }
@@ -16,7 +16,7 @@ Note that duplicate \code{NA} values are flagged if \code{na.rm=FALSE}.}
 Logical assessing if all values are unique
 }
 \description{
-Check that an a array of values does not include any duplicate
+Check that an array of values does not include any duplicate
 }
 \examples{
 hasUniqueValues(c("x", "y"))
