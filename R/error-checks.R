@@ -40,30 +40,41 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
   all(sapply(object, inheritType))
 }
 
-#' Check if input is included in a list
+#' Check if a vector of values is included in another vector of values
 #'
-#' @param values Vector of values
-#' @param parentValues Vector of values
+#' @param values A single value or a vector of values.
+#' @param parentValues A single value or a vector of values.
 #'
-#' @return `TRUE` if the values are inside the parent values.
+#' @return
+#'
+#' Returns `TRUE` if the value or **all** `values` (if it's a vector) are
+#' present in the `parentValues`; `FALSE` otherwise.
+#'
 #' @examples
+#' # check if a column is present in dataframe
 #' A <- data.frame(
 #'   col1 = c(1, 2, 3),
 #'   col2 = c(4, 5, 6),
 #'   col3 = c(7, 8, 9)
 #' )
-#' isIncluded("col3", names(A))
+#' isIncluded("col3", names(A)) # TRUE
+#'
+#' # check if single element is present in a vector (atomic or non-atomic)
+#' isIncluded("x", list("w", "x", 1, 2)) # TRUE
+#' isIncluded("x", c("w", "a", "y")) # FALSE
+#'
+#' # check if **all** values (if it's a vector) are contained in parent values
+#' isIncluded(c("x", "y"), c("a", "y", "b", "x")) # TRUE
+#' isIncluded(list("x", 1), list("a", "b", "x", 1)) # TRUE
+#' isIncluded(c("x", "y"), c("a", "b", "x")) # FALSE
+#' isIncluded(list("x", 1), list("a", "b", "x")) # FALSE
 #' @export
 isIncluded <- function(values, parentValues) {
-  if (is.null(values)) {
+  if (is.null(values) || length(values) == 0) {
     return(FALSE)
   }
 
-  if (length(values) == 0) {
-    return(FALSE)
-  }
-
-  return(as.logical(min(values %in% parentValues)))
+  as.logical(min(values %in% parentValues))
 }
 
 #' Check if two objects are of same length
