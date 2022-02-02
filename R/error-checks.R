@@ -120,7 +120,7 @@ isFileExtension <- function(file, extension) {
   file_ext %in% extension
 }
 
-#' Check that an a array of values does not include any duplicate
+#' Check that an array of values does not include any duplicate
 #'
 #' @param values An array of values
 #' @param na.rm Logical to decide if missing values should be removed from the duplicate checking.
@@ -139,7 +139,7 @@ hasUniqueValues <- function(values, na.rm = TRUE) {
   if (na.rm) {
     values <- values[!is.na(values)]
   }
-  
+
   return(!any(duplicated(values)))
 }
 
