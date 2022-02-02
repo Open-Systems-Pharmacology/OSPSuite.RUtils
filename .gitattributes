@@ -13,5 +13,3 @@
 *.R text eol=crlf
 *.Rproj text
 *.[Rr]md   linguist-detectable
-
-R text eol=crlf
