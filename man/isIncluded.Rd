@@ -17,19 +17,7 @@ Returns \code{TRUE} if the value or \strong{all} \code{values} (if it's a vector
 present in the \code{parentValues}; \code{FALSE} otherwise.
 }
 \description{
-A helper function to check if a vector of values is included in another
-vector of values.
-
-Note that arguments can also be of length \code{1} (e.g. \code{values = "x"}). But
-whether this constitutes a vector, and thus a valid function argument,
-depends on the \strong{class} of the object. For all built-in classes in R
-(numeric, character, logical, etc.), a single value is a valid vector (e.g.
-\code{"x"} is a vector of character type, as shown by \code{is.vector("x")}).
-
-But, for other classes (like \code{R6}), you will first need to convert a single
-value to a vector. For example, if \code{myClass} object is an instance of \code{R6}
-class, you can't enter \code{values = myClass}, since a single \code{R6} object is not
-a vector. You will instead need to use \code{values = c(myClass)} or \code{values = list(myClass)}.
+Check if a vector of values is included in another vector of values
 }
 \examples{
 # check if a column is present in dataframe
