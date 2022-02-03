@@ -42,8 +42,9 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
 
 #' Check if a vector of values is included in another vector of values
 #'
-#' @param values A single value or a vector of values.
-#' @param parentValues A single value or a vector of values.
+#' @param values A vector of values.
+#' @param parentValues A vector of values where `values` are checked for
+#'   inclusion.
 #'
 #' @return
 #'
@@ -73,6 +74,10 @@ isIncluded <- function(values, parentValues) {
   if (is.null(values) || length(values) == 0) {
     return(FALSE)
   }
+
+  # make sure they are vectors
+  values <- .toVector(values)
+  parentValues <- .toVector(parentValues)
 
   as.logical(min(values %in% parentValues))
 }
@@ -158,7 +163,15 @@ hasUniqueValues <- function(values, na.rm = TRUE) {
 # utilities ---------------------------------------------
 
 #' @keywords internal
+.toVector <- function(x) {
+  if (!is.vector(x)) {
+    x <- c(x)
+  }
 
+  return(x)
+}
+
+#' @keywords internal
 .typeNamesFrom <- function(type) {
   type <- c(type)
 
@@ -172,7 +185,6 @@ hasUniqueValues <- function(values, na.rm = TRUE) {
 }
 
 #' @keywords internal
-
 .fileExtension <- function(file) {
   ex <- strsplit(basename(file), split = "\\.")[[1]]
   return(utils::tail(ex, 1))

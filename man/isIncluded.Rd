@@ -7,9 +7,10 @@
 isIncluded(values, parentValues)
 }
 \arguments{
-\item{values}{A single value or a vector of values.}
+\item{values}{A vector of values.}
 
-\item{parentValues}{A single value or a vector of values.}
+\item{parentValues}{A vector of values where \code{values} are checked for
+inclusion.}
 }
 \value{
 Returns \code{TRUE} if the value or \strong{all} \code{values} (if it's a vector) are
