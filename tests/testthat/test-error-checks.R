@@ -11,6 +11,12 @@ B <- data.frame(
   col4 = c(7, 8, 9)
 )
 
+x <- 1
+y <- 2
+z <- 3
+
+a <- 1
+
 test_that("Checks if type 'is' and 'has' work properly", {
   # Output is logical
   expect_type(isSameLength(A, A), "logical")
@@ -26,6 +32,8 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_true(isIncluded("x", list("w", "x", 1, 2)))
   expect_true(isIncluded(c("x", "y"), c("a", "y", "b", "x")))
   expect_true(isIncluded(list("x", "y"), list("a", "b", "x", "y")))
+  expect_true(isIncluded(a, list(x, y, z)))
+  expect_true(isIncluded(a, c(x, y, z)))
   expect_true(isOfType(A, "data.frame"))
   expect_true(isOfType(c(1, "x"), c("numeric", "character")))
   expect_true(isOfType(NULL, nullAllowed = TRUE))
@@ -39,6 +47,8 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_false(isIncluded("x", c("w", "a", "y")))
   expect_false(isIncluded(c("x", "y"), c("a", "b", "x")))
   expect_false(isIncluded(list("x", "y"), list("a", "b", "x")))
+  expect_false(isIncluded(a, list(y, z)))
+  expect_false(isIncluded(a, c(y, z)))
   expect_false(isIncluded(NULL))
   expect_false(isIncluded(character()))
 

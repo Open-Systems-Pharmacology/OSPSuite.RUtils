@@ -42,8 +42,27 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
 
 #' Check if a vector of values is included in another vector of values
 #'
-#' @param values A single value or a vector of values.
-#' @param parentValues A single value or a vector of values.
+#' @param values A vector of values.
+#' @param parentValues A vector of values where `values` are checked for
+#'   inclusion.
+#'
+#' @description
+#'
+#' A helper function to check if a vector of values is included in another
+#' vector of values.
+#'
+#' Note that arguments can also be of length `1` (e.g. `values = "x"`). But
+#' whether this constitutes a vector, and thus a valid function argument,
+#' depends on the **class** of the object. For all built-in classes in R
+#' (numeric, character, logical, etc.), a single value is a valid vector (e.g.
+#' `"x"` is a vector of character type, as shown by `is.vector("x")`).
+#'
+#' But, for other classes (like `R6`), you will first need to convert a single
+#' value to a vector. For example, if `myClass` object is an instance of `R6`
+#' class, you can't enter `values = myClass`, since a single `R6` object is not
+#' a vector. You will instead need to use `values = c(myClass)` or `values =
+#' list(myClass)`.
+#'
 #'
 #' @return
 #'
