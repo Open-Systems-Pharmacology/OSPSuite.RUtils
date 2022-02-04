@@ -71,13 +71,19 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
 #' isIncluded(list("x", 1), list("a", "b", "x")) # FALSE
 #' @export
 isIncluded <- function(values, parentValues) {
+  if (is.vector(values)) {
+    objCount <- length(purrr::keep(values, is.object))
+  } else {
+    objCount <- length(purrr::keep(c(values), is.object))
+  }
+
+  if (objCount > 0L) {
+    stop("Only vectors of base object types are allowed.", call. = FALSE)
+  }
+
   if (is.null(values) || length(values) == 0) {
     return(FALSE)
   }
-
-  # make sure they are vectors
-  values <- .toVector(values)
-  parentValues <- .toVector(parentValues)
 
   as.logical(min(values %in% parentValues))
 }
@@ -157,18 +163,6 @@ hasUniqueValues <- function(values, na.rm = TRUE) {
   }
 
   return(!any(duplicated(values)))
-}
-
-
-# utilities ---------------------------------------------
-
-#' @keywords internal
-.toVector <- function(x) {
-  if (!is.vector(x)) {
-    x <- c(x)
-  }
-
-  return(x)
 }
 
 #' @keywords internal
