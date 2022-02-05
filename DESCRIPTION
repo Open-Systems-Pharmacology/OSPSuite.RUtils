@@ -23,7 +23,6 @@ BugReports:
 Depends: 
     R (>= 3.6)
 Imports: 
-    purrr,
     R6
 Suggests: 
     knitr,

@@ -71,13 +71,12 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
 #' isIncluded(list("x", 1), list("a", "b", "x")) # FALSE
 #' @export
 isIncluded <- function(values, parentValues) {
-  if (is.vector(values)) {
-    objCount <- length(purrr::keep(values, is.object))
-  } else {
-    objCount <- length(purrr::keep(c(values), is.object))
-  }
+  values <- c(values)
+  hasObject <- any(mapply(function(x) {
+    is.object(x)
+  }, values))
 
-  if (objCount > 0L) {
+  if (hasObject) {
     stop("Only vectors of base object types are allowed.", call. = FALSE)
   }
 

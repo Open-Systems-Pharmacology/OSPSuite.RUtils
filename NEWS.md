@@ -12,8 +12,6 @@ MINOR CHANGES
 
 * `getEnumKey()` is added as an alias for `enumGetKey()` function.
 
-* Package gains `{purrr}` as a new dependency.
-
 # ospsuite.utils 1.0.0
 
 * Initial release.
