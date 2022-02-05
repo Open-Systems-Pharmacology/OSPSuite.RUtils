@@ -95,3 +95,17 @@ test_that("enum validation works as expected", {
   expect_null(validateEnumValue(1, Symbol))
   expect_error(validateEnumValue(4, Symbol))
 })
+
+
+test_that("isInclude doesn't accept objects as arguments", {
+  Person <- R6::R6Class("Person", list(
+    name = NULL,
+    initialize = function(name) self$name <- name
+  ))
+
+  Jack <- Person$new(name = "Jack")
+  Jill <- Person$new(name = "Jill")
+
+  expect_error(isIncluded(Jack, Jill))
+  expect_error(isIncluded(c(Jack), list(Jack, Jill)))
+})
