@@ -72,8 +72,9 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
 #' @export
 isIncluded <- function(values, parentValues) {
   values <- c(values)
+
   hasObject <- any(mapply(function(x) {
-    is.object(x)
+    is.object(x) | is.environment(x)
   }, values))
 
   if (hasObject) {
