@@ -109,3 +109,12 @@ test_that("isInclude doesn't accept objects as arguments", {
   expect_error(isIncluded(Jack, Jill))
   expect_error(isIncluded(c(Jack), list(Jack, Jill)))
 })
+
+test_that("isInclude doesn't accept environments as arguments", {
+  e1 <- new.env()
+  e2 <- new.env()
+
+  expect_error(isIncluded(e1, e2))
+  expect_error(isIncluded(c(e1), c(e2)))
+  expect_error(isIncluded(c(e1), list(e2)))
+})
