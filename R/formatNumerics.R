@@ -1,14 +1,14 @@
 #' @title formatNumerics
-#' @description Render numeric values of an `object` using the specified format:
+#' @description Render numeric values of an `object` as character using the specified format:
 #' - If `object` is a data.frame or a list, `formatNumerics` applies on each of its fields
-#' - If `object` is of type character or integer, `formatNumerics` leaves the values as is
+#' - If `object` is of type character or integer, `formatNumerics` renders the values as is
 #' - If `object` is of type numeric, `formatNumerics` applies the defined format
 #'
 #' @param object An R object such as a list, a data.frame, character or numeric values.
 #' @param digits Number of decimal digits to render
 #' @param scientific Logical value defining if scientific writing is rendered
 #'
-#' @return Numeric values are rendered as character values. If `object` was a
+#' @return Numeric values are rendered as character values. If `object` is a
 #'   data.frame or a list, a data.frame or list is returned with numeric values
 #'   rendered as character values.
 #'
@@ -26,7 +26,7 @@ formatNumerics <- function(object, digits = 2, scientific = FALSE) {
 
   # Return integer as is before they are assumed as numeric
   if (is.integer(object)) {
-    return(object)
+    return(as.character(object))
   }
 
   # Method for numeric values
