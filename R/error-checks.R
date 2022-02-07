@@ -88,12 +88,17 @@ isIncluded <- function(values, parentValues) {
   as.logical(min(values %in% parentValues))
 }
 
-#' Check if two objects are of same length
+#' Check if objects are of same length
 #' @param ... Objects to compare.
 #'
 #' @examples
-#' isSameLength(mtcars, ToothGrowth)
-#' isSameLength(mtcars, mtcars)
+#' # compare length of only 2 objects
+#' isSameLength(mtcars, ToothGrowth) # FALSE
+#' isSameLength(cars, BOD) # TRUE
+#'
+#' # or more number of objects
+#' isSameLength(c(1, 2), c(TRUE, FALSE), c("x", "y")) # TRUE
+#' isSameLength(list(1, 2), list(TRUE, FALSE), list("x")) # FALSE
 #' @export
 
 isSameLength <- function(...) {

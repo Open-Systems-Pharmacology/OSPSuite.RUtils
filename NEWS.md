@@ -4,6 +4,8 @@ MAJOR CHANGES
 
 * `isIncluded()` now only accepts base types as valid inputs.
 
+* `formatNumerics()` now consistently returns output of type `"character"`.
+
 MINOR CHANGES
 
 * Improvements to documentation.
