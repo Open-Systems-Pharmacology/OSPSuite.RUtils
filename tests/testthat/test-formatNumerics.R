@@ -14,7 +14,7 @@ test_that("formatNumerics works as expected", {
   expect_equal(formatNumerics("2", digits = 1, scientific = TRUE), "2")
   # numeric is formated
   expect_equal(formatNumerics(2, digits = 1, scientific = TRUE), "2.0e+00")
-  
+
   # vector
   x <- formatNumerics(log(c(12, 15, 0.3)), digits = 1, scientific = TRUE)
   expect_equal(x, c("2.5e+00", "2.7e+00", "-1.2e+00"))

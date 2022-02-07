@@ -26,6 +26,8 @@ test_that("Checks if type 'is' and 'has' work properly", {
 
   # Output is `TRUE`
   expect_true(isSameLength(A, A))
+  expect_true(isSameLength(c(1, 2), c("x", "y"), c(TRUE, FALSE)))
+  expect_true(isSameLength(list(1, 2), list("x", "y"), list(TRUE, FALSE)))
   expect_true(isOfLength(A, 3))
   expect_true(isIncluded("col3", names(A)))
   expect_true(isIncluded(2, 2))
@@ -41,6 +43,8 @@ test_that("Checks if type 'is' and 'has' work properly", {
   # Output is `FALSE`
   expect_false(isSameLength(A, B))
   expect_false(isOfLength(A, 5))
+  expect_false(isSameLength(c(1, 2), c("x"), c(TRUE, FALSE)))
+  expect_false(isSameLength(list(1, 2), list("x", "y"), list(FALSE)))
   expect_false(isOfType(A, "character"))
   expect_false(isIncluded("col4", names(A)))
   expect_false(isIncluded(1, 2))
