@@ -58,8 +58,8 @@ test_that("Checks if type 'is' and 'has' work properly", {
 
   expect_equal(isOfType(NULL, nullAllowed = "a"), "a")
 
-  expect_true(hasUniqueValues(c("x", NA, "y")))
-  expect_false(hasUniqueValues(c("x", NA, "y", "x")))
+  expect_true(hasOnlyDistinctValues(c("x", NA, "y")))
+  expect_false(hasOnlyDistinctValues(c("x", NA, "y", "x")))
 
   expect_true(isFileExtension("enum.R", "R"))
   expect_false(isFileExtension("enum.R", "pkml"))

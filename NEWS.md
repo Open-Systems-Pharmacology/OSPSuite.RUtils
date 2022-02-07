@@ -14,6 +14,8 @@ MINOR CHANGES
 
 * `getEnumKey()` is added as an alias for `enumGetKey()` function.
 
+* `hasOnlyDistinctValues()` is added as an alias for `hasUniqueValues()` function.
+
 # ospsuite.utils 1.0.0
 
 * Initial release.
