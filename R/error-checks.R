@@ -156,19 +156,24 @@ isFileExtension <- function(file, extension) {
 #' @return Logical assessing if all values are unique
 #'
 #' @examples
-#' hasUniqueValues(c("x", "y"))
-#' hasUniqueValues(c("x", "y", "x"))
-#' hasUniqueValues(c("x", NA, "y", NA), na.rm = FALSE)
-#' hasUniqueValues(c("x", NA, "y", NA), na.rm = TRUE)
+#' hasOnlyDistinctValues(c("x", "y"))
+#' hasOnlyDistinctValues(c("x", "y", "x"))
+#' hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = FALSE)
+#' hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = TRUE)
 #' @export
 
-hasUniqueValues <- function(values, na.rm = TRUE) {
+hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
   if (na.rm) {
     values <- values[!is.na(values)]
   }
 
   return(!any(duplicated(values)))
 }
+
+#' @rdname hasOnlyDistinctValues
+#' @export
+
+hasUniqueValues <- hasOnlyDistinctValues
 
 #' @keywords internal
 .typeNamesFrom <- function(type) {
