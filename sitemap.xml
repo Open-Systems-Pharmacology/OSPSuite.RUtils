@@ -91,6 +91,9 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsOfType.html</loc>
   </url>
   <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsSameLength.html</loc>
+  </url>
+  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validatePathIsAbsolute.html</loc>
   </url>
 </urlset>
