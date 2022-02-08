@@ -49,7 +49,7 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/formatNumerics.html</loc>
   </url>
   <url>
-    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/hasUniqueValues.html</loc>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/hasOnlyDistinctValues.html</loc>
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/ifNotNull.html</loc>
