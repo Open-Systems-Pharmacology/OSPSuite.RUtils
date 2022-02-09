@@ -19,6 +19,8 @@ test_that("validateIsInteger works as expected", {
   expect_null(validateIsInteger(5L))
   expect_null(validateIsInteger(c(1L, 5)))
   expect_null(validateIsInteger(c(1L, 5L)))
+  expect_null(validateIsInteger(list(1L, 5)))
+  expect_null(validateIsInteger(list(1L, 5L)))
   expect_null(validateIsInteger(NA_integer_))
 
   # not integers, so should error

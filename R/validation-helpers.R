@@ -85,6 +85,10 @@ validateIsInteger <- function(object, nullAllowed = FALSE) {
     return()
   }
 
+  if (is.list(object)) {
+    object <- unlist(object)
+  }
+
   # if it's an actual integer (e.g. 5L)
   if (is.integer(object)) {
     return()
