@@ -1,4 +1,4 @@
-# ospsuite.utils 1.0.0.9000
+# ospsuite.utils 1.1.0
 
 MAJOR CHANGES
 
@@ -15,6 +15,10 @@ MINOR CHANGES
 * `getEnumKey()` is added as an alias for `enumGetKey()` function.
 
 * `hasOnlyDistinctValues()` is added as an alias for `hasUniqueValues()` function.
+
+BUG FIXES
+
+* `validateIsInteger()` now works with lists (#21).
 
 # ospsuite.utils 1.0.0
 
