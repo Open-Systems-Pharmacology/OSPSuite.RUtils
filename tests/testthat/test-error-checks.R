@@ -23,6 +23,7 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_type(isOfLength(A, 3), "logical")
   expect_type(isOfType(A, "data.frame"), "logical")
   expect_type(isIncluded("col3", names(A)), "logical")
+  expect_type(isEmpty(a), "logical")
 
   # Output is `TRUE`
   expect_true(isSameLength(A, A))
@@ -39,6 +40,12 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_true(isOfType(A, "data.frame"))
   expect_true(isOfType(c(1, "x"), c("numeric", "character")))
   expect_true(isOfType(NULL, nullAllowed = TRUE))
+  expect_true(isEmpty(NULL))
+  expect_true(isEmpty(data.frame()))
+  expect_true(isEmpty(list()))
+  expect_true(isEmpty(character()))
+  expect_true(isEmpty(numeric()))
+  expect_true(isEmpty(A[FALSE, ]))
 
   # Output is `FALSE`
   expect_false(isSameLength(A, B))
@@ -55,6 +62,10 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_false(isIncluded(a, c(y, z)))
   expect_false(isIncluded(NULL))
   expect_false(isIncluded(character()))
+  expect_false(isEmpty(a))
+  expect_false(isEmpty(A))
+  expect_false(isEmpty(list("x", "y")))
+  expect_false(isEmpty(""))
 
   expect_equal(isOfType(NULL, nullAllowed = "a"), "a")
 

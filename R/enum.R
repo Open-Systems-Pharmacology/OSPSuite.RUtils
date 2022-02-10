@@ -29,7 +29,6 @@
 #'
 #' mySymbol <- Symbol$Diamond
 #' mySymbol
-#'
 #' @export
 
 enum <- function(enumValues) {
@@ -119,7 +118,6 @@ enumGetValue <- function(enum, key) {
 #' @examples
 #' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 #' enumKeys(Symbol)
-#'
 #' @export
 
 enumKeys <- function(enum) {
@@ -139,7 +137,6 @@ enumKeys <- function(enum) {
 #' Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 #' enumHasKey("Diamond", Symbol)
 #' enumHasKey("Square", Symbol)
-#'
 #' @export
 
 enumHasKey <- function(key, enum) {

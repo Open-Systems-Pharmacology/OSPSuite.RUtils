@@ -21,7 +21,6 @@ Check if an enum has a certain key.
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 enumHasKey("Diamond", Symbol)
 enumHasKey("Square", Symbol)
-
 }
 \seealso{
 Other enumeration-helpers: 
