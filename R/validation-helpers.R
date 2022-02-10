@@ -85,10 +85,6 @@ validateIsInteger <- function(object, nullAllowed = FALSE) {
     return()
   }
 
-  if (is.list(object)) {
-    object <- unlist(object)
-  }
-
   # if it's an actual integer (e.g. 5L)
   if (is.integer(object)) {
     return()
@@ -225,15 +221,21 @@ validateEnumValue <- function(value, enum, nullAllowed = FALSE) {
 #' @inheritParams isOfLength
 #'
 #' @return
-#' If validations are successful, `NULL` is returned. Otherwise, error is
-#' signaled.
+#'
+#' If validations are successful, `NULL` is returned. Otherwise, the functions
+#' will error.
 #'
 #' @examples
-#' # returns `NULL` if of objects are of specified length
-#' validateIsOfLength(list(1, 2), 2L)
+#' A <- data.frame(
+#'   col1 = c(1, 2, 3),
+#'   col2 = c(4, 5, 6),
+#'   col3 = c(7, 8, 9)
+#' )
+#' validateIsSameLength(A, A)
 #'
-#' # error otherwise
-#' # validateIsOfLength(c("3", "4"), 3L)
+#' # returns NULL if of two objects are of same length
+#' validateIsSameLength(list(1, 2), c(3, 4))
+#'
 #' @export
 
 validateIsOfLength <- function(object, nbElements) {
@@ -245,18 +247,8 @@ validateIsOfLength <- function(object, nbElements) {
 }
 
 
-#' Check if all objects are of same length
-#'
-#' @inheritParams isSameLength
-#'
-#' @inherit validateIsOfLength return return
-#'
-#' @examples
-#' # returns `NULL` if of objects are of same length
-#' validateIsSameLength(list(1, 2), c("3", "4"))
-#'
-#' # error otherwise
-#' # validateIsSameLength(list(1, 2), c("3", "4"), c(FALSE))
+#' @rdname validateIsOfLength
+#' @param  ... Name of the variable in the calling function
 #' @export
 
 validateIsSameLength <- function(...) {

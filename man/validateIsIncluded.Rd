@@ -7,10 +7,9 @@
 validateIsIncluded(values, parentValues, nullAllowed = FALSE)
 }
 \arguments{
-\item{values}{A vector of values.}
+\item{values}{Vector of values}
 
-\item{parentValues}{A vector of values where \code{values} are checked for
-inclusion.}
+\item{parentValues}{Vector of values}
 
 \item{nullAllowed}{If \code{TRUE}, \code{value} can be \code{NULL} and the test always
 passes. If \code{FALSE} (default), \code{NULL} is not accepted and the test fails.}

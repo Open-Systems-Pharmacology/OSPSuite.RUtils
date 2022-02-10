@@ -2,7 +2,7 @@
 % Please edit documentation in R/error-checks.R
 \name{isSameLength}
 \alias{isSameLength}
-\title{Check if objects are of same length}
+\title{Check if two objects are of same length}
 \usage{
 isSameLength(...)
 }
@@ -10,14 +10,9 @@ isSameLength(...)
 \item{...}{Objects to compare.}
 }
 \description{
-Check if objects are of same length
+Check if two objects are of same length
 }
 \examples{
-# compare length of only 2 objects
-isSameLength(mtcars, ToothGrowth) # FALSE
-isSameLength(cars, BOD) # TRUE
-
-# or more number of objects
-isSameLength(c(1, 2), c(TRUE, FALSE), c("x", "y")) # TRUE
-isSameLength(list(1, 2), list(TRUE, FALSE), list("x")) # FALSE
+isSameLength(mtcars, ToothGrowth)
+isSameLength(mtcars, mtcars)
 }

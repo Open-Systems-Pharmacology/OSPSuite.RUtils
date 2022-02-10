@@ -40,65 +40,38 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
   all(sapply(object, inheritType))
 }
 
-#' Check if a vector of values is included in another vector of values
+#' Check if input is included in a list
 #'
-#' @param values A vector of values.
-#' @param parentValues A vector of values where `values` are checked for
-#'   inclusion.
+#' @param values Vector of values
+#' @param parentValues Vector of values
 #'
-#' @return
-#'
-#' Returns `TRUE` if the value or **all** `values` (if it's a vector) are
-#' present in the `parentValues`; `FALSE` otherwise.
-#'
+#' @return `TRUE` if the values are inside the parent values.
 #' @examples
-#' # check if a column is present in dataframe
 #' A <- data.frame(
 #'   col1 = c(1, 2, 3),
 #'   col2 = c(4, 5, 6),
 #'   col3 = c(7, 8, 9)
 #' )
-#' isIncluded("col3", names(A)) # TRUE
-#'
-#' # check if single element is present in a vector (atomic or non-atomic)
-#' isIncluded("x", list("w", "x", 1, 2)) # TRUE
-#' isIncluded("x", c("w", "a", "y")) # FALSE
-#'
-#' # check if **all** values (if it's a vector) are contained in parent values
-#' isIncluded(c("x", "y"), c("a", "y", "b", "x")) # TRUE
-#' isIncluded(list("x", 1), list("a", "b", "x", 1)) # TRUE
-#' isIncluded(c("x", "y"), c("a", "b", "x")) # FALSE
-#' isIncluded(list("x", 1), list("a", "b", "x")) # FALSE
+#' isIncluded("col3", names(A))
 #' @export
 isIncluded <- function(values, parentValues) {
-  values <- c(values)
-
-  hasObject <- any(mapply(function(x) {
-    is.object(x) | is.environment(x)
-  }, values))
-
-  if (hasObject) {
-    stop("Only vectors of base object types are allowed.", call. = FALSE)
-  }
-
-  if (is.null(values) || length(values) == 0) {
+  if (is.null(values)) {
     return(FALSE)
   }
 
-  as.logical(min(values %in% parentValues))
+  if (length(values) == 0) {
+    return(FALSE)
+  }
+
+  return(as.logical(min(values %in% parentValues)))
 }
 
-#' Check if objects are of same length
+#' Check if two objects are of same length
 #' @param ... Objects to compare.
 #'
 #' @examples
-#' # compare length of only 2 objects
-#' isSameLength(mtcars, ToothGrowth) # FALSE
-#' isSameLength(cars, BOD) # TRUE
-#'
-#' # or more number of objects
-#' isSameLength(c(1, 2), c(TRUE, FALSE), c("x", "y")) # TRUE
-#' isSameLength(list(1, 2), list(TRUE, FALSE), list("x")) # FALSE
+#' isSameLength(mtcars, ToothGrowth)
+#' isSameLength(mtcars, mtcars)
 #' @export
 
 isSameLength <- function(...) {
@@ -156,13 +129,13 @@ isFileExtension <- function(file, extension) {
 #' @return Logical assessing if all values are unique
 #'
 #' @examples
-#' hasOnlyDistinctValues(c("x", "y"))
-#' hasOnlyDistinctValues(c("x", "y", "x"))
-#' hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = FALSE)
-#' hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = TRUE)
+#' hasUniqueValues(c("x", "y"))
+#' hasUniqueValues(c("x", "y", "x"))
+#' hasUniqueValues(c("x", NA, "y", NA), na.rm = FALSE)
+#' hasUniqueValues(c("x", NA, "y", NA), na.rm = TRUE)
 #' @export
 
-hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
+hasUniqueValues <- function(values, na.rm = TRUE) {
   if (na.rm) {
     values <- values[!is.na(values)]
   }
@@ -170,12 +143,11 @@ hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
   return(!any(duplicated(values)))
 }
 
-#' @rdname hasOnlyDistinctValues
-#' @export
 
-hasUniqueValues <- hasOnlyDistinctValues
+# utilities ---------------------------------------------
 
 #' @keywords internal
+
 .typeNamesFrom <- function(type) {
   type <- c(type)
 
@@ -189,6 +161,7 @@ hasUniqueValues <- hasOnlyDistinctValues
 }
 
 #' @keywords internal
+
 .fileExtension <- function(file) {
   ex <- strsplit(basename(file), split = "\\.")[[1]]
   return(utils::tail(ex, 1))
