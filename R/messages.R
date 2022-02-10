@@ -1,8 +1,8 @@
 messages <- list(
   errorWrongType = function(objectName,
-                            type,
-                            expectedType,
-                            optionalMessage = NULL) {
+                              type,
+                              expectedType,
+                              optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
     expectedTypeMsg <- paste0(expectedType, collapse = ", or ")
     paste0(
@@ -41,7 +41,7 @@ messages <- list(
       optionalMessage
     )
   },
-  errorEmpty = function(objectName, optionalMessage = NULL){
+  errorEmpty = function(objectName, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
     paste0(
       callingFunction,

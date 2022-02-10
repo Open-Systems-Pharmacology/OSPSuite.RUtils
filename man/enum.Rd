@@ -34,7 +34,6 @@ Symbol
 
 mySymbol <- Symbol$Diamond
 mySymbol
-
 }
 \seealso{
 Other enumeration-helpers: 

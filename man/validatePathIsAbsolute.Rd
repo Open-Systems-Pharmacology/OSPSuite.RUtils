@@ -22,5 +22,4 @@ validatePathIsAbsolute("Organism|path")
 
 # error otherwise
 # validatePathIsAbsolute("Organism|*path")
-
 }
