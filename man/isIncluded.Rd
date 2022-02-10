@@ -2,26 +2,39 @@
 % Please edit documentation in R/error-checks.R
 \name{isIncluded}
 \alias{isIncluded}
-\title{Check if input is included in a list}
+\title{Check if a vector of values is included in another vector of values}
 \usage{
 isIncluded(values, parentValues)
 }
 \arguments{
-\item{values}{Vector of values}
+\item{values}{A vector of values.}
 
-\item{parentValues}{Vector of values}
+\item{parentValues}{A vector of values where \code{values} are checked for
+inclusion.}
 }
 \value{
-\code{TRUE} if the values are inside the parent values.
+Returns \code{TRUE} if the value or \strong{all} \code{values} (if it's a vector) are
+present in the \code{parentValues}; \code{FALSE} otherwise.
 }
 \description{
-Check if input is included in a list
+Check if a vector of values is included in another vector of values
 }
 \examples{
+# check if a column is present in dataframe
 A <- data.frame(
   col1 = c(1, 2, 3),
   col2 = c(4, 5, 6),
   col3 = c(7, 8, 9)
 )
-isIncluded("col3", names(A))
+isIncluded("col3", names(A)) # TRUE
+
+# check if single element is present in a vector (atomic or non-atomic)
+isIncluded("x", list("w", "x", 1, 2)) # TRUE
+isIncluded("x", c("w", "a", "y")) # FALSE
+
+# check if **all** values (if it's a vector) are contained in parent values
+isIncluded(c("x", "y"), c("a", "y", "b", "x")) # TRUE
+isIncluded(list("x", 1), list("a", "b", "x", 1)) # TRUE
+isIncluded(c("x", "y"), c("a", "b", "x")) # FALSE
+isIncluded(list("x", 1), list("a", "b", "x")) # FALSE
 }

@@ -14,15 +14,15 @@ formatNumerics(object, digits = 2, scientific = FALSE)
 \item{scientific}{Logical value defining if scientific writing is rendered}
 }
 \value{
-Numeric values are rendered as character values. If \code{object} was a
+Numeric values are rendered as character values. If \code{object} is a
 data.frame or a list, a data.frame or list is returned with numeric values
 rendered as character values.
 }
 \description{
-Render numeric values of an \code{object} using the specified format:
+Render numeric values of an \code{object} as character using the specified format:
 \itemize{
 \item If \code{object} is a data.frame or a list, \code{formatNumerics} applies on each of its fields
-\item If \code{object} is of type character or integer, \code{formatNumerics} leaves the values as is
+\item If \code{object} is of type character or integer, \code{formatNumerics} renders the values as is
 \item If \code{object} is of type numeric, \code{formatNumerics} applies the defined format
 }
 }

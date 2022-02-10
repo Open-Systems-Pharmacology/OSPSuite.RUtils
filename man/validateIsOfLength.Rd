@@ -2,36 +2,26 @@
 % Please edit documentation in R/validation-helpers.R
 \name{validateIsOfLength}
 \alias{validateIsOfLength}
-\alias{validateIsSameLength}
 \title{Check if objects have expected length}
 \usage{
 validateIsOfLength(object, nbElements)
-
-validateIsSameLength(...)
 }
 \arguments{
 \item{object}{An object or a list of objects}
 
 \item{nbElements}{number of elements that are supposed in object}
-
-\item{...}{Name of the variable in the calling function}
 }
 \value{
-If validations are successful, \code{NULL} is returned. Otherwise, the functions
-will error.
+If validations are successful, \code{NULL} is returned. Otherwise, error is
+signaled.
 }
 \description{
 Check if objects have expected length
 }
 \examples{
-A <- data.frame(
-  col1 = c(1, 2, 3),
-  col2 = c(4, 5, 6),
-  col3 = c(7, 8, 9)
-)
-validateIsSameLength(A, A)
+# returns `NULL` if of objects are of specified length
+validateIsOfLength(list(1, 2), 2L)
 
-# returns NULL if of two objects are of same length
-validateIsSameLength(list(1, 2), c(3, 4))
-
+# error otherwise
+# validateIsOfLength(c("3", "4"), 3L)
 }

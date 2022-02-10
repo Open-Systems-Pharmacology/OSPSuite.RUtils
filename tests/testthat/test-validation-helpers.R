@@ -19,10 +19,13 @@ test_that("validateIsInteger works as expected", {
   expect_null(validateIsInteger(5L))
   expect_null(validateIsInteger(c(1L, 5)))
   expect_null(validateIsInteger(c(1L, 5L)))
+  expect_null(validateIsInteger(list(1L, 5)))
+  expect_null(validateIsInteger(list(1L, 5L)))
   expect_null(validateIsInteger(NA_integer_))
 
   # not integers, so should error
   expect_error(validateIsInteger(c(1.5, 5)))
+  expect_error(validateIsInteger(list(1.5, 5)))
   expect_error(validateIsInteger(2.4))
   expect_error(validateIsInteger("2"))
   expect_error(validateIsInteger(TRUE))
@@ -65,14 +68,17 @@ test_that("Checks method of type 'validate' work properly", {
   expect_error(validateIsOfType(A, data.frame))
   expect_null(validateIsIncluded("col3", names(A)))
   expect_null(validateIsIncluded(NULL, NULL, nullAllowed = TRUE))
-  expect_null(validateIsString("x"))
-  expect_null(validateIsCharacter("x"))
-  expect_null(validateIsNumeric(1.2))
+  expect_null(validateIsCharacter(c("x", "y")))
+  expect_null(validateIsCharacter(list("x", "y")))
+  expect_null(validateIsNumeric(c(1.2, 2.3)))
+  expect_null(validateIsNumeric(list(1.2, 2.3)))
   expect_null(validateIsNumeric(NULL, nullAllowed = TRUE))
   expect_null(validateIsNumeric(c(NA, NULL)))
   expect_null(validateIsInteger(5))
   expect_null(validateIsInteger(NULL, nullAllowed = TRUE))
   expect_null(validateIsLogical(TRUE))
+  expect_null(validateIsLogical(c(TRUE, FALSE)))
+  expect_null(validateIsLogical(list(TRUE, FALSE)))
 
   errorMessageIsSameLength <- "Arguments 'A, B' must have the same length, but they don't!"
   errorMessageIsOfLength <- "Object should be of length '5', but is of length '3' instead."
@@ -94,4 +100,27 @@ test_that("enum validation works as expected", {
   Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
   expect_null(validateEnumValue(1, Symbol))
   expect_error(validateEnumValue(4, Symbol))
+})
+
+
+test_that("isInclude doesn't accept objects as arguments", {
+  Person <- R6::R6Class("Person", list(
+    name = NULL,
+    initialize = function(name) self$name <- name
+  ))
+
+  Jack <- Person$new(name = "Jack")
+  Jill <- Person$new(name = "Jill")
+
+  expect_error(isIncluded(Jack, Jill))
+  expect_error(isIncluded(c(Jack), list(Jack, Jill)))
+})
+
+test_that("isInclude doesn't accept environments as arguments", {
+  e1 <- new.env()
+  e2 <- new.env()
+
+  expect_error(isIncluded(e1, e2))
+  expect_error(isIncluded(c(e1), c(e2)))
+  expect_error(isIncluded(c(e1), list(e2)))
 })
