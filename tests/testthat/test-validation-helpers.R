@@ -94,7 +94,6 @@ test_that("Checks method of type 'validate' work properly", {
   expect_error(validateIsOfType(A, "character"), errorMessageIsOfType)
   expect_error(validateIsIncluded("col4", names(A)), errorMessageIsIncluded)
   expect_error(validateIsNotEmpty(NULL), errorMessageIsEmpty)
-  
 })
 
 

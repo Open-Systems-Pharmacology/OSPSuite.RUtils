@@ -1,5 +1,10 @@
 # ospsuite.utils 1.1.0.9000
 
+NEW FUNCTIONS
+
+* Adds `isEmpty()` and `validateIsNotEmpty()` functions to validate that objects
+  aren't empty (#58; thanks to @pchelle).
+
 # ospsuite.utils 1.1.0
 
 MAJOR CHANGES
@@ -12,11 +17,13 @@ MINOR CHANGES
 
 * Improvements to documentation.
 
-* `validateIsCharacter()` is added as an alias for `validateIsString()` function.
+* `validateIsCharacter()` is added as an alias for `validateIsString()`
+  function.
 
 * `getEnumKey()` is added as an alias for `enumGetKey()` function.
 
-* `hasOnlyDistinctValues()` is added as an alias for `hasUniqueValues()` function.
+* `hasOnlyDistinctValues()` is added as an alias for `hasUniqueValues()`
+  function.
 
 BUG FIXES
 
@@ -25,3 +32,4 @@ BUG FIXES
 # ospsuite.utils 1.0.0
 
 * Initial release.
+
