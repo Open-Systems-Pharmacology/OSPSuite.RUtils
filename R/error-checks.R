@@ -169,8 +169,8 @@ isFileExtension <- function(file, extension) {
 #' @export
 
 isEmpty <- function(object) {
-  if(class(object)[1] %in% "data.frame") {
-    return(nrow(object)==0)
+  if (is.data.frame(object)) {
+    return(nrow(object) == 0)
   }
   return(isOfLength(object, 0))
 }
