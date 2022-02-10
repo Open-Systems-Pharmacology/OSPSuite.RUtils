@@ -270,3 +270,27 @@ validateIsSameLength <- function(...) {
 
   stop(messages$errorDifferentLength(arguments))
 }
+
+#' Check if objects is not empty
+#'
+#' @inheritParams isOfLength
+#'
+#' @return
+#' If validations are successful, `NULL` is returned. Otherwise, error is
+#' signaled.
+#'
+#' @examples
+#' # returns `NULL` if of objects are of specified length
+#' validateIsNotEmpty(list(1, 2))
+#'
+#' # error otherwise
+#' # validateIsNotEmpty(NULL)
+#' @export
+
+validateIsNotEmpty <- function(object) {
+  if (!isEmpty(object)) {
+    return()
+  }
+  objectName <- deparse(substitute(object))
+  stop(messages$errorEmpty(objectName))
+}

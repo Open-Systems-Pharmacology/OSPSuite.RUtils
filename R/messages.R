@@ -41,6 +41,16 @@ messages <- list(
       optionalMessage
     )
   },
+  errorEmpty = function(objectName, optionalMessage = NULL){
+    callingFunction <- .getCallingFunctionName()
+    paste0(
+      callingFunction,
+      ": argument '",
+      objectName,
+      "' is empty!",
+      optionalMessage
+    )
+  },
   errorPropertyReadOnly = function(propertyName, optionalMessage = NULL) {
     paste0("Property '$", propertyName, "' is readonly")
   },

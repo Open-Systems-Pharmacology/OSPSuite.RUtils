@@ -147,6 +147,34 @@ isFileExtension <- function(file, extension) {
   file_ext %in% extension
 }
 
+#' Check if the provided object is empty
+#'
+#' @param object An object or an atomic vector or a list of objects.
+#'
+#' @return `TRUE` if the object is empty.
+#'
+#' @examples
+#' # Empty list or data.frame
+#' isEmpty(NULL)
+#' isEmpty(numeric())
+#' isEmpty(list())
+#' isEmpty(data.frame())
+#' 
+#' # Accounts for filtering of arrays and data.frame
+#' df <- data.frame(x = c(1, 2, 3), y = c(4, 5, 6))
+#' isEmpty(df)
+#' isEmpty(df$x[FALSE])
+#' isEmpty(df[FALSE,])
+#' 
+#' @export
+
+isEmpty <- function(object) {
+  if(class(object)[1] %in% "data.frame") {
+    return(nrow(object)==0)
+  }
+  return(isOfLength(object, 0))
+}
+
 #' Check that an array of values does not include any duplicate
 #'
 #' @param values An array of values
