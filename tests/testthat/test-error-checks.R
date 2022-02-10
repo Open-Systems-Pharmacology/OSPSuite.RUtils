@@ -29,7 +29,9 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_true(isSameLength(A, A))
   expect_true(isSameLength(c(1, 2), c("x", "y"), c(TRUE, FALSE)))
   expect_true(isSameLength(list(1, 2), list("x", "y"), list(TRUE, FALSE)))
+
   expect_true(isOfLength(A, 3))
+
   expect_true(isIncluded("col3", names(A)))
   expect_true(isIncluded(2, 2))
   expect_true(isIncluded("x", list("w", "x", 1, 2)))
@@ -37,9 +39,18 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_true(isIncluded(list("x", "y"), list("a", "b", "x", "y")))
   expect_true(isIncluded(a, list(x, y, z)))
   expect_true(isIncluded(a, c(x, y, z)))
+  expect_true(isIncluded(as.factor("a"), c("a", "b")))
+  expect_true(isIncluded(c("a", "b"), as.factor(c("a", "b"))))
+  expect_true(isIncluded(as.factor("a"), list("a", "b")))
+  expect_true(isIncluded(list("a", "b"), as.factor(c("a", "b"))))
+  expect_true(isIncluded(as.Date("1970-02-01"), c(as.Date("1970-02-01"), as.Date("1980-12-21"))))
+  expect_true(isIncluded(as.Date("1970-02-01"), list(as.Date("1970-02-01"), as.Date("1980-12-21"))))
+
+
   expect_true(isOfType(A, "data.frame"))
   expect_true(isOfType(c(1, "x"), c("numeric", "character")))
   expect_true(isOfType(NULL, nullAllowed = TRUE))
+
   expect_true(isEmpty(NULL))
   expect_true(isEmpty(data.frame()))
   expect_true(isEmpty(list()))
@@ -48,11 +59,16 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_true(isEmpty(A[FALSE, ]))
 
   # Output is `FALSE`
+
   expect_false(isSameLength(A, B))
+
   expect_false(isOfLength(A, 5))
+
   expect_false(isSameLength(c(1, 2), c("x"), c(TRUE, FALSE)))
   expect_false(isSameLength(list(1, 2), list("x", "y"), list(FALSE)))
+
   expect_false(isOfType(A, "character"))
+
   expect_false(isIncluded("col4", names(A)))
   expect_false(isIncluded(1, 2))
   expect_false(isIncluded("x", c("w", "a", "y")))
@@ -62,6 +78,13 @@ test_that("Checks if type 'is' and 'has' work properly", {
   expect_false(isIncluded(a, c(y, z)))
   expect_false(isIncluded(NULL))
   expect_false(isIncluded(character()))
+  expect_false(isIncluded(as.factor("a"), c("d", "b")))
+  expect_false(isIncluded(c("a", "b"), as.factor(c("d", "b"))))
+  expect_false(isIncluded(as.factor("a"), list("c", "b")))
+  expect_false(isIncluded(list("a", "b"), as.factor(c("c", "b"))))
+  expect_false(isIncluded(as.Date("1970-02-01"), c(as.Date("1972-02-01"), as.Date("1980-12-21"))))
+  expect_false(isIncluded(as.Date("1970-02-01"), list(as.Date("1980-02-01"), as.Date("1980-12-21"))))
+
   expect_false(isEmpty(a))
   expect_false(isEmpty(A))
   expect_false(isEmpty(list("x", "y")))
