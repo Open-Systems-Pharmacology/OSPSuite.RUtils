@@ -74,7 +74,7 @@ isIncluded <- function(values, parentValues) {
   values <- c(values)
 
   hasObject <- any(mapply(function(x) {
-    is.object(x) | is.environment(x)
+    !.isBaseType(x) | is.environment(x)
   }, values))
 
   if (hasObject) {
@@ -86,6 +86,16 @@ isIncluded <- function(values, parentValues) {
   }
 
   as.logical(min(values %in% parentValues))
+}
+
+.isBaseType <- function(x) {
+  baseTypes <- c("character", "logical", "integer", "double")
+
+  if (typeof(x) %in% baseTypes) {
+    return(TRUE)
+  }
+
+  return(FALSE)
 }
 
 #' Check if objects are of same length

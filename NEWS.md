@@ -1,5 +1,10 @@
 # ospsuite.utils 1.1.0.9000
 
+BUG FIXES
+
+* Fixes a regression in `isIncluded()` in previous release that inadvertently
+  removed support for compound types (#63).
+
 NEW FUNCTIONS
 
 * Adds `isEmpty()` and `validateIsNotEmpty()` functions to validate that objects
