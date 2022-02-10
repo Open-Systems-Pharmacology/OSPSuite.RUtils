@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# `{ospsuite.utils}`
+## `{ospsuite.utils}`: Utility Functions for Open Systems Pharmacology R Packages
 
 <!-- badges: start -->
 
@@ -9,10 +9,12 @@
 status](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/R-CMD-check/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils)
 [![pkgdown](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/pkgdown/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/actions)
 [![codecov](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=main)
+[![Total downloads
+badge](https://cranlogs.r-pkg.org/badges/grand-total/ospsuite.utils?color=blue)](https://CRAN.R-project.org/package=ospsuite.utils)
 
 <!-- badges: end -->
 
-# Introduction
+## Introduction
 
 This package contains utility functions for R packages in the Open
 Systems Pharmacology ecosystem:
