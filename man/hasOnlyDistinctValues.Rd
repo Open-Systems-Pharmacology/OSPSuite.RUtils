@@ -12,8 +12,9 @@ hasUniqueValues(values, na.rm = TRUE)
 \arguments{
 \item{values}{An array of values}
 
-\item{na.rm}{Logical to decide if missing values should be removed from the duplicate checking.
-Note that duplicate \code{NA} values are flagged if \code{na.rm=FALSE}.}
+\item{na.rm}{Logical to decide if missing values should be removed from the
+duplicate checking. Note that duplicate \code{NA} values are flagged if
+\code{na.rm=FALSE}.}
 }
 \value{
 Logical assessing if all values are unique

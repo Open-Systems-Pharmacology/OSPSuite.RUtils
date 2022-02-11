@@ -7,9 +7,9 @@
 isFileExtension(file, extension)
 }
 \arguments{
-\item{file}{file or path name to be checked}
+\item{file}{A single file or path name to be checked.}
 
-\item{extension}{extension of the file required after "."}
+\item{extension}{extension of the file required after \code{"."}.}
 }
 \value{
 \code{TRUE} if the path includes the extension.
@@ -18,9 +18,7 @@ isFileExtension(file, extension)
 Check if the provided path has required extension
 }
 \examples{
-# TRUE
-isFileExtension("enum.R", "R")
+isFileExtension("enum.R", "R") # TRUE
+isFileExtension("enum.R", "pkml") # FALSE
 
-# FALSE
-isFileExtension("enum.R", "pkml")
 }

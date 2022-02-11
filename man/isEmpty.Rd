@@ -16,13 +16,13 @@ isEmpty(object)
 Check if the provided object is empty
 }
 \examples{
-# Empty list or data.frame
+# empty list or data.frame
 isEmpty(NULL)
 isEmpty(numeric())
 isEmpty(list())
 isEmpty(data.frame())
 
-# Accounts for filtering of arrays and data.frame
+# accounts for filtering of arrays and data.frame
 df <- data.frame(x = c(1, 2, 3), y = c(4, 5, 6))
 isEmpty(df)
 isEmpty(df$x[FALSE])

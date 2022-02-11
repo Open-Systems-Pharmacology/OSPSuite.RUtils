@@ -120,10 +120,16 @@ test_that("isEmpty returns FALSE when objects are not empty", {
 
 test_that("hasOnlyDistinctValues correctly detects if extension is as expected", {
   expect_true(hasOnlyDistinctValues(c("x", NA, "y")))
+  expect_true(hasOnlyDistinctValues(list("x", NA, "y")))
+
   expect_false(hasOnlyDistinctValues(c("x", NA, "y", "x")))
+  expect_false(hasOnlyDistinctValues(list("x", NA, "y", "x")))
 })
 
 test_that("isFileExtension correctly detects if extension is as expected", {
   expect_true(isFileExtension("enum.R", "R"))
+  expect_true(isFileExtension("DESCRIPTION", ""))
+  expect_true(isFileExtension("C:/Users/.gitignore", "gitignore"))
+
   expect_false(isFileExtension("enum.R", "pkml"))
 })

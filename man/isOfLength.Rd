@@ -13,10 +13,12 @@ isOfLength(object, nbElements)
 }
 \value{
 \code{TRUE} if the object or all objects inside the list have \code{nbElements.}
-Only the first level of the given list is considered.
 }
 \description{
 Check if the provided object has \code{nbElements} elements
+}
+\note{
+Only the first level of the given list is considered.
 }
 \examples{
 df <- data.frame(x = c(1, 2, 3))
