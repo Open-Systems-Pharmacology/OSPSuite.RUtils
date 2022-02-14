@@ -89,17 +89,35 @@ test_that("isIncluded returns FALSE when compound type values are not included",
   expect_false(isIncluded(as.Date("1970-02-01"), list(as.Date("1980-02-01"), as.Date("1980-12-21"))))
 })
 
+test_that("isOfType doesn't work when `nullAllowed` argument is not logical", {
+  expect_error(isOfType(NULL, nullAllowed = "a"))
+  expect_error(isOfType(NULL, nullAllowed = 1))
+  expect_error(isOfType(NULL, nullAllowed = 0))
+})
+
 test_that("isOfType returns TRUE when values are of expected type", {
   expect_true(isOfType(A, "data.frame"))
   expect_true(isOfType(list(A, B), "data.frame"))
   expect_true(isOfType(c(1, "x"), c("numeric", "character")))
   expect_true(isOfType(logical(), "logical"))
   expect_true(isOfType(NULL, nullAllowed = TRUE))
+
+  Person <- R6::R6Class("Person", list(
+    name = NULL,
+    initialize = function(name) self$name <- name
+  ))
+
+  Jack <- Person$new(name = "Jack")
+  Jill <- Person$new(name = "Jill")
+  tmp <- list(Jack, NULL, Jill)
+
+  isOfType(tmp, Person, nullAllowed = TRUE)
 })
 
 test_that("isOfType returns FALSE when values are not of expected type", {
   expect_false(isOfType(A, "character"))
-  expect_equal(isOfType(NULL, nullAllowed = "a"), "a")
+
+
 })
 
 test_that("isEmpty returns TRUE when objects are empty", {
@@ -118,10 +136,12 @@ test_that("isEmpty returns FALSE when objects are not empty", {
   expect_false(isEmpty(""))
 })
 
-test_that("hasOnlyDistinctValues correctly detects if extension is as expected", {
+test_that("hasOnlyDistinctValues returns TRUE if values are distinct", {
   expect_true(hasOnlyDistinctValues(c("x", NA, "y")))
   expect_true(hasOnlyDistinctValues(list("x", NA, "y")))
+})
 
+test_that("hasOnlyDistinctValues returns FALSE if values are repeated", {
   expect_false(hasOnlyDistinctValues(c("x", NA, "y", "x")))
   expect_false(hasOnlyDistinctValues(list("x", NA, "y", "x")))
 })
@@ -129,6 +149,7 @@ test_that("hasOnlyDistinctValues correctly detects if extension is as expected",
 test_that("isFileExtension correctly detects if extension is as expected", {
   expect_true(isFileExtension("enum.R", "R"))
   expect_true(isFileExtension("DESCRIPTION", ""))
+  expect_true(isFileExtension("foo.", ""))
   expect_true(isFileExtension("C:/Users/.gitignore", "gitignore"))
 
   expect_false(isFileExtension("enum.R", "pkml"))

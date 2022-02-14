@@ -21,21 +21,22 @@
 #' @export
 
 isOfType <- function(object, type, nullAllowed = FALSE) {
+  stopifnot(is.logical(nullAllowed))
+
   if (is.null(object)) {
     return(nullAllowed)
   }
 
   type <- .typeNamesFrom(type)
 
-  if (inherits(object, type)) {
+  if (.inheritType(object, type, nullAllowed)) {
     return(TRUE)
   }
 
   object <- c(object)
 
-  all(sapply(object, inherits, type))
+  all(sapply(object, .inheritType, type, nullAllowed))
 }
-
 
 
 #' Check if a vector of values is included in another vector of values
@@ -127,8 +128,8 @@ isOfLength <- function(object, nbElements) {
 
 #' Check if the provided path has required extension
 #'
-#' @param file A single file or path name to be checked.
-#' @param extension extension of the file required after `"."`.
+#' @param file A single character of file path.
+#' @param extension A single character of the required extension of the file.
 #'
 #' @return `TRUE` if the path includes the extension.
 #'
@@ -202,6 +203,15 @@ hasUniqueValues <- hasOnlyDistinctValues
 
 # utilities -------------------------------------
 
+.inheritType <- function(x, type, nullAllowed = FALSE) {
+  if (is.null(x) && nullAllowed) {
+    return(TRUE)
+  }
+
+  inherits(x, type)
+}
+
+
 .isBaseType <- function(x) {
   baseTypes <- c("character", "logical", "integer", "double")
 
@@ -221,7 +231,7 @@ hasUniqueValues <- hasOnlyDistinctValues
 #' @keywords internal
 .fileExtension <- function(file) {
   # if file has no extension, return empty string
-  if (!grepl("\\.", basename(file))) {
+  if (!grepl("\\.", basename(file)) || grepl("\\.$", basename(file))) {
     return("")
   }
 

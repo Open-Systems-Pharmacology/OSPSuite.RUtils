@@ -7,9 +7,9 @@
 isFileExtension(file, extension)
 }
 \arguments{
-\item{file}{A single file or path name to be checked.}
+\item{file}{A single character of file path.}
 
-\item{extension}{extension of the file required after \code{"."}.}
+\item{extension}{A single character of the required extension of the file.}
 }
 \value{
 \code{TRUE} if the path includes the extension.
