@@ -133,10 +133,10 @@ isOfLength <- function(object, nbElements) {
 
 #' Check if the provided path has required extension
 #'
-#' @param file A filename.
+#' @param file A name of the file or full path.
 #' @param extension A required extension of the file.
 #'
-#' @return `TRUE` if the path includes the extension.
+#' @return `TRUE` if the file name (or full path) includes the extension.
 #'
 #' @examples
 #' isFileExtension("enum.R", "R") # TRUE

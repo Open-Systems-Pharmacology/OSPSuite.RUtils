@@ -7,12 +7,12 @@
 isFileExtension(file, extension)
 }
 \arguments{
-\item{file}{A filename.}
+\item{file}{A name of the file or full path.}
 
 \item{extension}{A required extension of the file.}
 }
 \value{
-\code{TRUE} if the path includes the extension.
+\code{TRUE} if the file name (or full path) includes the extension.
 }
 \description{
 Check if the provided path has required extension
