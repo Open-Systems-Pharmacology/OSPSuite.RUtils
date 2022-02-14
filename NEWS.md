@@ -1,5 +1,9 @@
 # ospsuite.utils 1.1.0.9000
 
+MAJOR CHANGES
+
+* Removes alias `hasUniqueValues()`.
+
 BUG FIXES
 
 * Fixes a regression in `isIncluded()` in previous release that inadvertently

@@ -95,7 +95,7 @@ validateIsInteger <- function(object, nullAllowed = FALSE) {
   }
 
   # making sure we check for numeric values before calling floor
-  # 5 is numeric but can be considered integer for our purposes
+  # e.g. `5` is numeric but can be considered integer for our purposes
   if (is.numeric(object) && all(floor(object) == object, na.rm = TRUE)) {
     return()
   }
@@ -140,8 +140,9 @@ validateIsLogical <- function(object, nullAllowed = FALSE) {
 
 validatePathIsAbsolute <- function(path) {
   wildcardChar <- "*"
+  path <- unlist(strsplit(path, ""), use.names = FALSE)
 
-  if (!any(unlist(strsplit(path, ""), use.names = FALSE) == wildcardChar)) {
+  if (!any(path == wildcardChar)) {
     return()
   }
 
@@ -165,6 +166,7 @@ validatePathIsAbsolute <- function(path) {
 #'
 #' # will return NULL if child value is included in parent value set
 #' validateIsIncluded("col3", names(A))
+#'
 #' @return
 #'
 #' Returns `NULL` if child value is included in parent value set, otherwise
@@ -289,6 +291,8 @@ validateIsNotEmpty <- function(object) {
   if (!isEmpty(object)) {
     return()
   }
+
   objectName <- deparse(substitute(object))
+
   stop(messages$errorEmpty(objectName))
 }

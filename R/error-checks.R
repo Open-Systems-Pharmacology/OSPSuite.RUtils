@@ -1,5 +1,3 @@
-# is or has helpers ---------------------------------------------
-
 #' Check if the provided object is of certain type
 #'
 #' @param object An object or an atomic vector or a list of objects.
@@ -9,8 +7,12 @@
 #'   `TRUE`, `NULL` always returns `TRUE`, otherwise `NULL` returns `FALSE`.
 #'   Default is `FALSE`.
 #'
-#' @return `TRUE` if the object or all objects inside the list are of the given
-#'   type. Only the first level of the given list is considered.
+#' @return
+#' `TRUE` if the object or all objects inside the list are of the given
+#'   type.
+#'
+#' @note
+#' Only the first level of the given list is considered.
 #'
 #' @examples
 #' # checking type of a single object
@@ -19,26 +21,28 @@
 #' @export
 
 isOfType <- function(object, type, nullAllowed = FALSE) {
+  if (!is.logical(nullAllowed)) {
+    stop(
+      messages$errorWrongType("nullAllowed", typeof(nullAllowed), "logical"),
+      call. = FALSE
+    )
+  }
+
   if (is.null(object)) {
     return(nullAllowed)
   }
 
   type <- .typeNamesFrom(type)
 
-  inheritType <- function(x) {
-    if (is.null(x) && nullAllowed) {
-      return(TRUE)
-    }
-    inherits(x, type)
-  }
-
-  if (inheritType(object)) {
+  if (.inheritType(object, type, nullAllowed)) {
     return(TRUE)
   }
 
   object <- c(object)
-  all(sapply(object, inheritType))
+
+  all(sapply(object, .inheritType, type, nullAllowed))
 }
+
 
 #' Check if a vector of values is included in another vector of values
 #'
@@ -73,9 +77,7 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
 isIncluded <- function(values, parentValues) {
   values <- c(values)
 
-  hasObject <- any(mapply(function(x) {
-    !.isBaseType(x) | is.environment(x)
-  }, values))
+  hasObject <- any(mapply(function(x) !.isBaseType(x), values))
 
   if (hasObject) {
     stop("Only vectors of base object types are allowed.", call. = FALSE)
@@ -86,16 +88,6 @@ isIncluded <- function(values, parentValues) {
   }
 
   as.logical(min(values %in% parentValues))
-}
-
-.isBaseType <- function(x) {
-  baseTypes <- c("character", "logical", "integer", "double")
-
-  if (typeof(x) %in% baseTypes) {
-    return(TRUE)
-  }
-
-  return(FALSE)
 }
 
 #' Check if objects are of same length
@@ -123,7 +115,10 @@ isSameLength <- function(...) {
 #' @param object An object or a list of objects
 #' @param nbElements number of elements that are supposed in object
 #'
-#' @return `TRUE` if the object or all objects inside the list have `nbElements.`
+#' @return
+#' `TRUE` if the object or all objects inside the list have `nbElements.`
+#'
+#' @note
 #' Only the first level of the given list is considered.
 #'
 #' @examples
@@ -138,17 +133,15 @@ isOfLength <- function(object, nbElements) {
 
 #' Check if the provided path has required extension
 #'
-#' @param file file or path name to be checked
-#' @param extension extension of the file required after "."
+#' @param file A name of the file or full path.
+#' @param extension A required extension of the file.
 #'
-#' @return `TRUE` if the path includes the extension.
+#' @return `TRUE` if the file name (or full path) includes the extension.
 #'
 #' @examples
-#' # TRUE
-#' isFileExtension("enum.R", "R")
+#' isFileExtension("enum.R", "R") # TRUE
+#' isFileExtension("enum.R", "pkml") # FALSE
 #'
-#' # FALSE
-#' isFileExtension("enum.R", "pkml")
 #' @export
 
 isFileExtension <- function(file, extension) {
@@ -164,13 +157,13 @@ isFileExtension <- function(file, extension) {
 #' @return `TRUE` if the object is empty.
 #'
 #' @examples
-#' # Empty list or data.frame
+#' # empty list or data.frame
 #' isEmpty(NULL)
 #' isEmpty(numeric())
 #' isEmpty(list())
 #' isEmpty(data.frame())
 #'
-#' # Accounts for filtering of arrays and data.frame
+#' # accounts for filtering of arrays and data.frame
 #' df <- data.frame(x = c(1, 2, 3), y = c(4, 5, 6))
 #' isEmpty(df)
 #' isEmpty(df$x[FALSE])
@@ -187,8 +180,9 @@ isEmpty <- function(object) {
 #' Check that an array of values does not include any duplicate
 #'
 #' @param values An array of values
-#' @param na.rm Logical to decide if missing values should be removed from the duplicate checking.
-#' Note that duplicate `NA` values are flagged if `na.rm=FALSE`.
+#' @param na.rm Logical to decide if missing values should be removed from the
+#'   duplicate checking. Note that duplicate `NA` values are flagged if
+#'   `na.rm=FALSE`.
 #'
 #' @return Logical assessing if all values are unique
 #'
@@ -207,26 +201,40 @@ hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
   return(!any(duplicated(values)))
 }
 
-#' @rdname hasOnlyDistinctValues
-#' @export
+# utilities -------------------------------------
 
-hasUniqueValues <- hasOnlyDistinctValues
+.inheritType <- function(x, type, nullAllowed = FALSE) {
+  if (is.null(x) && nullAllowed) {
+    return(TRUE)
+  }
+
+  inherits(x, type)
+}
+
+
+.isBaseType <- function(x) {
+  baseTypes <- c("character", "logical", "integer", "double")
+
+  if (typeof(x) %in% baseTypes) {
+    return(TRUE)
+  }
+
+  return(FALSE)
+}
 
 #' @keywords internal
 .typeNamesFrom <- function(type) {
   type <- c(type)
-
-  sapply(type, function(t) {
-    if (is.character(t)) {
-      return(t)
-    }
-
-    return(t$classname)
-  })
+  sapply(type, function(t) ifelse(is.character(t), t, t$classname))
 }
 
 #' @keywords internal
 .fileExtension <- function(file) {
+  # if file has no extension, return empty string
+  if (!grepl("\\.", basename(file)) || grepl("\\.$", basename(file))) {
+    return("")
+  }
+
   ex <- strsplit(basename(file), split = "\\.")[[1]]
   return(utils::tail(ex, 1))
 }
