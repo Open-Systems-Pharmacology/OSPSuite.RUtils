@@ -116,8 +116,6 @@ test_that("isOfType returns TRUE when values are of expected type", {
 
 test_that("isOfType returns FALSE when values are not of expected type", {
   expect_false(isOfType(A, "character"))
-
-
 })
 
 test_that("isEmpty returns TRUE when objects are empty", {
