@@ -90,9 +90,20 @@ test_that("isIncluded returns FALSE when compound type values are not included",
 })
 
 test_that("isOfType doesn't work when `nullAllowed` argument is not logical", {
-  expect_error(isOfType(NULL, nullAllowed = "a"))
-  expect_error(isOfType(NULL, nullAllowed = 1))
-  expect_error(isOfType(NULL, nullAllowed = 0))
+  expect_error(
+    isOfType(NULL, nullAllowed = "a"),
+    "argument 'nullAllowed' is of type 'character', but expected 'logical'"
+  )
+
+  expect_error(
+    isOfType(NULL, nullAllowed = 1),
+    "argument 'nullAllowed' is of type 'double', but expected 'logical'"
+  )
+
+  expect_error(
+    isOfType(NULL, nullAllowed = 0L),
+    "argument 'nullAllowed' is of type 'integer', but expected 'logical'"
+  )
 })
 
 test_that("isOfType returns TRUE when values are of expected type", {

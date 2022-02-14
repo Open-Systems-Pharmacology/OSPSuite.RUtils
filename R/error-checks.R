@@ -21,7 +21,12 @@
 #' @export
 
 isOfType <- function(object, type, nullAllowed = FALSE) {
-  stopifnot(is.logical(nullAllowed))
+  if (!is.logical(nullAllowed)) {
+    stop(
+      messages$errorWrongType("nullAllowed", typeof(nullAllowed), "logical"),
+      call. = FALSE
+    )
+  }
 
   if (is.null(object)) {
     return(nullAllowed)
@@ -128,8 +133,8 @@ isOfLength <- function(object, nbElements) {
 
 #' Check if the provided path has required extension
 #'
-#' @param file A single character of file path.
-#' @param extension A single character of the required extension of the file.
+#' @param file A filename.
+#' @param extension A required extension of the file.
 #'
 #' @return `TRUE` if the path includes the extension.
 #'
