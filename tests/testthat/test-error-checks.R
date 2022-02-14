@@ -111,7 +111,7 @@ test_that("isOfType returns TRUE when values are of expected type", {
   Jill <- Person$new(name = "Jill")
   tmp <- list(Jack, NULL, Jill)
 
-  isOfType(tmp, Person, nullAllowed = TRUE)
+  expect_true(isOfType(tmp, Person, nullAllowed = TRUE))
 })
 
 test_that("isOfType returns FALSE when values are not of expected type", {
