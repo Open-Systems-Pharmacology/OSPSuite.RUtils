@@ -201,11 +201,6 @@ hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
   return(!any(duplicated(values)))
 }
 
-#' @rdname hasOnlyDistinctValues
-#' @export
-
-hasUniqueValues <- hasOnlyDistinctValues
-
 # utilities -------------------------------------
 
 .inheritType <- function(x, type, nullAllowed = FALSE) {

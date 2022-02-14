@@ -2,12 +2,9 @@
 % Please edit documentation in R/error-checks.R
 \name{hasOnlyDistinctValues}
 \alias{hasOnlyDistinctValues}
-\alias{hasUniqueValues}
 \title{Check that an array of values does not include any duplicate}
 \usage{
 hasOnlyDistinctValues(values, na.rm = TRUE)
-
-hasUniqueValues(values, na.rm = TRUE)
 }
 \arguments{
 \item{values}{An array of values}
