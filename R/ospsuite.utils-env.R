@@ -28,7 +28,7 @@ ospsuiteUtilsSettingNames <- enum(names(ospsuiteUtilsEnv))
 #' @export
 #'
 #' @examples
-#' getOSPSuiteUtilsSetting("suiteVersion")
+#' getOSPSuiteUtilsSetting("suiteName")
 #' getOSPSuiteUtilsSetting("muSymbol")
 getOSPSuiteUtilsSetting <- function(settingName) {
   if (!(any(names(ospsuiteUtilsEnv) == settingName))) {

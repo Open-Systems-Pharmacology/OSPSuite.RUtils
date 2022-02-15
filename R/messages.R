@@ -40,7 +40,6 @@ messages <- list(
   errorMultipleSimulationsCannotBeUsedWithPopulation = "Multiple simulations cannot be run concurrently with a population.",
   errorDataSetNameMissing = "Argument `name` is missing, must be provided when
   creating an empty `DataSet`!",
-
   errorWrongType = function(objectName,
                             type,
                             expectedType,
@@ -136,14 +135,12 @@ messages <- list(
       "'."
     )
   },
-
   errorDimensionNotSupported = function(dimension, optionalMessage = NULL) {
     paste0("Dimension '", dimension, "' is not supported! See enum `ospsuite::Dimensions` for the list of supported dimensions.")
   },
   errorUnitNotSupported = function(unit, dimension, optionalMessage = NULL) {
     paste0("Unit '", unit, "' is not supported by the dimension '", dimension, "'!")
   },
-
   errorNotIncluded = function(values, parentValues) {
     paste0(
       "Values '",
@@ -161,7 +158,6 @@ messages <- list(
       path
     )
   },
-
   errorOnlyOneValuesSetAllowed = function(argumentName) {
     callingFunction <- .getCallingFunctionName()
     paste0(
@@ -172,7 +168,6 @@ messages <- list(
   errorOnlyOneSupported = function(optionalMessage = NULL) {
     paste("Can only add a single instance of this object", optionalMessage)
   },
-
   errorPackageSettingNotFound = function(settingName, globalEnv) {
     paste0("No global setting with the name '", settingName, "' exists. Available global settings are:\n", paste0(names(globalEnv), collapse = ", "))
   }

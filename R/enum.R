@@ -44,9 +44,9 @@ enum <- function(enumValues) {
   }
 
   # if no keys were specified, then use the values as keys themselves
-  if(!is.null(enumNames)){
-    names(myEnum) <- enumNames}
-  else{
+  if (!is.null(enumNames)) {
+    names(myEnum) <- enumNames
+  } else {
     names(myEnum) <- myEnum
   }
 

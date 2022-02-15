@@ -141,7 +141,6 @@ isOfLength <- function(object, nbElements) {
 #' @examples
 #' isFileExtension("enum.R", "R") # TRUE
 #' isFileExtension("enum.R", "pkml") # FALSE
-#'
 #' @export
 
 isFileExtension <- function(file, extension) {
