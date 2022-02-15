@@ -296,3 +296,23 @@ validateIsNotEmpty <- function(object) {
 
   stop(messages$errorEmpty(objectName))
 }
+
+# Dimension validation helpers ---------------------------------------------
+
+#' Check if quantity can be represented in the unit
+#'
+#' @param quantity `Quantity` object
+#' @param unit Unit name to check for
+#'
+#' @return
+#' If validations are successful, `NULL` is returned. Otherwise, error is
+#' signaled.
+#' @export
+validateHasUnit <- function(quantity, unit) {
+  validateIsOfType(quantity, Quantity)
+  validateIsString(unit)
+  if (quantity$hasUnit(unit)) {
+    return()
+  }
+  stop(messages$errorUnitNotDefined(quantity$name, quantity$dimension, unit))
+}
