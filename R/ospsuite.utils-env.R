@@ -17,6 +17,7 @@ ospsuiteUtilsEnv$formatNumericsDigits <- 2
 ospsuiteUtilsEnv$muSymbol <- "µ"
 
 #' Names of the settings stored in ospsuiteEnv. Can be used with `getOSPSuiteUtilsSetting()`
+#' @include utilities.R
 #' @export
 ospsuiteUtilsSettingNames <- enum(names(ospsuiteUtilsEnv))
 
