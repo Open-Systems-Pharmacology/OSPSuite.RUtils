@@ -1,3 +1,4 @@
+#' Functions to concat strings to messages used e.g. in errors
 #' @export
 messages <- list(
   errorGetEntityMultipleOutputs = function(path, container, optionalMessage = NULL) {

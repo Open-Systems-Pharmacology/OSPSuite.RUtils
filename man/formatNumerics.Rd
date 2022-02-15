@@ -4,7 +4,11 @@
 \alias{formatNumerics}
 \title{formatNumerics}
 \usage{
-formatNumerics(object, digits = 2, scientific = FALSE)
+formatNumerics(
+  object,
+  digits = ospsuiteUtilsEnv$formatNumericsDigits,
+  scientific = FALSE
+)
 }
 \arguments{
 \item{object}{An R object such as a list, a data.frame, character or numeric values.}
