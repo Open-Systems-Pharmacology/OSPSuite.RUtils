@@ -11,7 +11,7 @@ ospsuiteUtilsEnv$suiteName <- "Open Systems Pharmacology"
 ospsuiteUtilsEnv$pathSeparator <- "|"
 
 # Default values for the formatNumerics() helper function
-ospsuiteUtilsEnv$formatNumericsDigits <- 5
+ospsuiteUtilsEnv$formatNumericsDigits <- 2
 
 # Specifies the symbol used for µ. This will be set by the .NET layer
 ospsuiteUtilsEnv$muSymbol <- "µ"
