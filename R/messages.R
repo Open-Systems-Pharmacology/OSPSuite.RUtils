@@ -175,6 +175,7 @@ messages <- list(
 
 # utilities ----------------------
 
+#' @keywords internal
 .getCallingFunctionName <- function() {
   callingFunctions <- sys.calls()
   callingFunction <- sys.call(-length(callingFunctions) + 1)[[1]]

@@ -7,14 +7,8 @@ ospsuiteUtilsEnv$packageName <- "ospsuite.utils"
 
 ospsuiteUtilsEnv$suiteName <- "Open Systems Pharmacology"
 
-# Separator defined in OSPSuite.Core.
-ospsuiteUtilsEnv$pathSeparator <- "|"
-
 # Default values for the formatNumerics() helper function
 ospsuiteUtilsEnv$formatNumericsDigits <- 2
-
-# Specifies the symbol used for µ. This will be set by the .NET layer
-ospsuiteUtilsEnv$muSymbol <- "µ"
 
 #' Names of the settings stored in ospsuiteEnv. Can be used with `getOSPSuiteUtilsSetting()`
 #' @include utilities.R
@@ -30,7 +24,6 @@ ospsuiteUtilsSettingNames <- enum(names(ospsuiteUtilsEnv))
 #'
 #' @examples
 #' getOSPSuiteUtilsSetting("suiteName")
-#' getOSPSuiteUtilsSetting("muSymbol")
 getOSPSuiteUtilsSetting <- function(settingName) {
   if (!(any(names(ospsuiteUtilsEnv) == settingName))) {
     stop(ospsuite.utils::messages$errorPackageSettingNotFound(settingName, ospsuiteUtilsEnv))

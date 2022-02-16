@@ -202,6 +202,7 @@ hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
 
 # utilities -------------------------------------
 
+#' @keywords internal
 .inheritType <- function(x, type, nullAllowed = FALSE) {
   if (is.null(x) && nullAllowed) {
     return(TRUE)
@@ -210,7 +211,7 @@ hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
   inherits(x, type)
 }
 
-
+#' @keywords internal
 .isBaseType <- function(x) {
   baseTypes <- c("character", "logical", "integer", "double")
 

@@ -17,5 +17,4 @@ Get the value of a global ospsuite-R setting.
 }
 \examples{
 getOSPSuiteUtilsSetting("suiteName")
-getOSPSuiteUtilsSetting("muSymbol")
 }
