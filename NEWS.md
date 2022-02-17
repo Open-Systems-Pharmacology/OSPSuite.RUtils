@@ -4,7 +4,7 @@ MAJOR CHANGES
 
 * Removes alias `hasUniqueValues()`.
 
-* All messages used in `ospsuite` package are now in `ospsuit.utils`.
+* All messages used in `ospsuite` package are now in `ospsuit.utils` (exported list `messages`).
 
 BUG FIXES
 
