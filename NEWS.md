@@ -4,6 +4,8 @@ MAJOR CHANGES
 
 * Removes alias `hasUniqueValues()`.
 
+* All messages used in `ospsuite` package are now in `ospsuit.utils`.
+
 BUG FIXES
 
 * Fixes a regression in `isIncluded()` in previous release that inadvertently
@@ -13,6 +15,8 @@ NEW FUNCTIONS
 
 * Adds `isEmpty()` and `validateIsNotEmpty()` functions to validate that objects
   aren't empty (#58; thanks to @pchelle).
+
+* Adds `getOSPSuiteUtilsSetting(settingName)` function to get global settings (see enum `ospsuiteUtilsSettingNames` for supported settings).
 
 # ospsuite.utils 1.1.0
 
