@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ospsuite.utils</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,20 +57,23 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>file</dt>
-<dd><p>A name of the file or full path.</p></dd>
+<dd><p>file or path name to be checked</p></dd>
 <dt>extension</dt>
-<dd><p>A required extension of the file.</p></dd>
+<dd><p>extension of the file required after "."</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>TRUE</code> if the file name (or full path) includes the extension.</p>
+    <p><code>TRUE</code> if the path includes the extension.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">isFileExtension</span><span class="op">(</span><span class="st">"enum.R"</span>, <span class="st">"R"</span><span class="op">)</span> <span class="co"># TRUE</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># TRUE</span></span>
+<span class="r-in"><span class="fu">isFileExtension</span><span class="op">(</span><span class="st">"enum.R"</span>, <span class="st">"R"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"><span class="fu">isFileExtension</span><span class="op">(</span><span class="st">"enum.R"</span>, <span class="st">"pkml"</span><span class="op">)</span> <span class="co"># FALSE</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># FALSE</span></span>
+<span class="r-in"><span class="fu">isFileExtension</span><span class="op">(</span><span class="st">"enum.R"</span>, <span class="st">"pkml"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 </code></pre></div>
     </div>

@@ -49,9 +49,6 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/formatNumerics.html</loc>
   </url>
   <url>
-    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/getOSPSuiteUtilsSetting.html</loc>
-  </url>
-  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/hasOnlyDistinctValues.html</loc>
   </url>
   <url>
@@ -59,9 +56,6 @@
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isEmpty.html</loc>
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isFileExtension.html</loc>
@@ -79,13 +73,7 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isSameLength.html</loc>
   </url>
   <url>
-    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/messages.html</loc>
-  </url>
-  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/op-null-default.html</loc>
-  </url>
-  <url>
-    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/ospsuiteUtilsSettingNames.html</loc>
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/toList.html</loc>
@@ -95,9 +83,6 @@
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsIncluded.html</loc>
-  </url>
-  <url>
-    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsNotEmpty.html</loc>
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsOfLength.html</loc>
