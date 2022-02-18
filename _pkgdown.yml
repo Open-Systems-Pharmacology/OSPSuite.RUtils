@@ -39,3 +39,9 @@ reference:
       - "`%||%`"
       - ifNotNull
       - matches("^to")
+      - messages
+
+  - title: Package settings
+    contents:
+      - getOSPSuiteUtilsSetting
+      - ospsuiteUtilsSettingNames
