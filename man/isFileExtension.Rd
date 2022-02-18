@@ -20,5 +20,4 @@ Check if the provided path has required extension
 \examples{
 isFileExtension("enum.R", "R") # TRUE
 isFileExtension("enum.R", "pkml") # FALSE
-
 }

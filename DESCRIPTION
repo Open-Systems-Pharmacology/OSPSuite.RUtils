@@ -33,3 +33,12 @@ Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+Collate: 
+    'enum.R'
+    'error-checks.R'
+    'formatNumerics.R'
+    'messages.R'
+    'utilities.R'
+    'ospsuite.utils-env.R'
+    'printable.R'
+    'validation-helpers.R'

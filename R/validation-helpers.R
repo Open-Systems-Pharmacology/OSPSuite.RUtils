@@ -166,7 +166,6 @@ validatePathIsAbsolute <- function(path) {
 #'
 #' # will return NULL if child value is included in parent value set
 #' validateIsIncluded("col3", names(A))
-#'
 #' @return
 #'
 #' Returns `NULL` if child value is included in parent value set, otherwise
