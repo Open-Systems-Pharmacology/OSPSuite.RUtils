@@ -19,7 +19,6 @@
 #' df <- data.frame(x = c(1, 2, 3))
 #' isOfType(df, "data.frame")
 #' @export
-
 isOfType <- function(object, type, nullAllowed = FALSE) {
   if (!is.logical(nullAllowed)) {
     stop(
@@ -102,7 +101,6 @@ isIncluded <- function(values, parentValues) {
 #' isSameLength(c(1, 2), c(TRUE, FALSE), c("x", "y")) # TRUE
 #' isSameLength(list(1, 2), list(TRUE, FALSE), list("x")) # FALSE
 #' @export
-
 isSameLength <- function(...) {
   args <- list(...)
   nrOfLengths <- length(unique(lengths(args)))
@@ -126,7 +124,6 @@ isSameLength <- function(...) {
 #' isOfLength(df, 1)
 #' isOfLength(df, 3)
 #' @export
-
 isOfLength <- function(object, nbElements) {
   return(length(object) == nbElements)
 }
@@ -142,7 +139,6 @@ isOfLength <- function(object, nbElements) {
 #' isFileExtension("enum.R", "R") # TRUE
 #' isFileExtension("enum.R", "pkml") # FALSE
 #' @export
-
 isFileExtension <- function(file, extension) {
   extension <- c(extension)
   file_ext <- .fileExtension(file)
@@ -168,7 +164,6 @@ isFileExtension <- function(file, extension) {
 #' isEmpty(df$x[FALSE])
 #' isEmpty(df[FALSE, ])
 #' @export
-
 isEmpty <- function(object) {
   if (is.data.frame(object)) {
     return(nrow(object) == 0)
@@ -191,7 +186,6 @@ isEmpty <- function(object) {
 #' hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = FALSE)
 #' hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = TRUE)
 #' @export
-
 hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
   if (na.rm) {
     values <- values[!is.na(values)]
