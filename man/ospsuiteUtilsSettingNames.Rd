@@ -3,7 +3,8 @@
 \docType{data}
 \name{ospsuiteUtilsSettingNames}
 \alias{ospsuiteUtilsSettingNames}
-\title{Names of the settings stored in ospsuiteEnv. Can be used with \code{getOSPSuiteUtilsSetting()}}
+\title{Names of the settings stored in \code{ospsuiteEnv}. Can be used with
+\code{getOSPSuiteUtilsSetting()}}
 \format{
 An object of class \code{list} of length 3.
 }
@@ -11,6 +12,11 @@ An object of class \code{list} of length 3.
 ospsuiteUtilsSettingNames
 }
 \description{
-Names of the settings stored in ospsuiteEnv. Can be used with \code{getOSPSuiteUtilsSetting()}
+Names of the settings stored in \code{ospsuiteEnv}. Can be used with
+\code{getOSPSuiteUtilsSetting()}
+}
+\examples{
+ospsuiteUtilsSettingNames
+
 }
 \keyword{datasets}

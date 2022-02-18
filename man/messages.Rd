@@ -3,14 +3,26 @@
 \docType{data}
 \name{messages}
 \alias{messages}
-\title{Functions to concat strings to messages used e.g. in errors}
+\title{List of functions and strings used to signal error messages}
 \format{
 An object of class \code{list} of length 30.
 }
 \usage{
 messages
 }
+\value{
+A string with error message.
+}
 \description{
-Functions to concat strings to messages used e.g. in errors
+Most of these messages will be relevant only in the context of OSP R package
+ecosystem.
+}
+\examples{
+# example with string
+messages$errorEnumNotAllNames
+
+# example with function
+messages$errorPropertyReadOnly("age")
+
 }
 \keyword{datasets}

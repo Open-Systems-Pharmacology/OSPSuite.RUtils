@@ -2,7 +2,7 @@
 % Please edit documentation in R/ospsuite.utils-env.R
 \name{getOSPSuiteUtilsSetting}
 \alias{getOSPSuiteUtilsSetting}
-\title{Get the value of a global ospsuite-R setting.}
+\title{Get the value of a global \code{{ospsuite.utils}} package setting.}
 \usage{
 getOSPSuiteUtilsSetting(settingName)
 }
@@ -10,11 +10,14 @@ getOSPSuiteUtilsSetting(settingName)
 \item{settingName}{String name of the setting}
 }
 \value{
-Value of the setting stored in ospsuiteEnv. If the setting does not exist, an error is thrown.
+Value of the setting stored in \code{ospsuiteEnv}. If the setting does not exist,
+an error is thrown.
 }
 \description{
-Get the value of a global ospsuite-R setting.
+Get the value of a global \code{{ospsuite.utils}} package setting.
 }
 \examples{
+getOSPSuiteUtilsSetting("packageName")
 getOSPSuiteUtilsSetting("suiteName")
+getOSPSuiteUtilsSetting("formatNumericsDigits")
 }
