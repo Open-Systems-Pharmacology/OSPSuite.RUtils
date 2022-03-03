@@ -1,9 +1,3 @@
-# ospsuite.utils 1.2.0.9000
-
-MINOR CHANGES
-
-* Cloning method is now disabled for `Printable` R6 class.
-
 # ospsuite.utils 1.2.0
 
 MAJOR CHANGES
