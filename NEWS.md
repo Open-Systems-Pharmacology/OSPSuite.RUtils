@@ -1,5 +1,3 @@
-# ospsuite.utils 1.2.0.9000
-
 # ospsuite.utils 1.2.0
 
 MAJOR CHANGES
@@ -49,4 +47,3 @@ BUG FIXES
 # ospsuite.utils 1.0.0
 
 * Initial release.
-
