@@ -10,6 +10,9 @@ authors:
 template:
   bootstrap: 5
 
+development:
+  mode: auto
+
 reference:
 
   - title: Enum helpers
