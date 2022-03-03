@@ -19,4 +19,5 @@ Convenience function to avoid testing for \code{NULL}.
 \examples{
 1 \%||\% 2
 NULL \%||\% 2
+
 }

@@ -57,7 +57,10 @@ test_that("It does throw an error when a number is not an integer", {
 })
 
 test_that("It does not throw an error when a validating that a string in an integer", {
-  expect_error(validateIsInteger("s"), messages$errorWrongType(objectName = "\"s\"", expectedType = "integer", type = "character"))
+  expect_error(
+    validateIsInteger("s"),
+    messages$errorWrongType(objectName = "\"s\"", expectedType = "integer", type = "character")
+  )
 })
 
 test_that("Checks method of type 'validate' work properly", {
@@ -79,17 +82,24 @@ test_that("Checks method of type 'validate' work properly", {
   expect_null(validateIsLogical(TRUE))
   expect_null(validateIsLogical(c(TRUE, FALSE)))
   expect_null(validateIsLogical(list(TRUE, FALSE)))
+  expect_null(validateIsNotEmpty(A))
+  expect_null(validateIsNotEmpty(""))
 
   errorMessageIsSameLength <- "Arguments 'A, B' must have the same length, but they don't!"
   errorMessageIsOfLength <- "Object should be of length '5', but is of length '3' instead."
   errorMessageIsOfType <- "argument 'A' is of type 'data.frame', but expected 'character'!"
   errorMessageIsIncluded <- "Values 'col4' are not in included in parent values: 'col1, col2, col3'."
+  errorMessageIsEmpty <- "argument 'NULL' is empty!"
 
   # Error when checks fail
   expect_error(validateIsSameLength(A, B), errorMessageIsSameLength)
   expect_error(validateIsOfLength(A, 5), errorMessageIsOfLength)
   expect_error(validateIsOfType(A, "character"), errorMessageIsOfType)
   expect_error(validateIsIncluded("col4", names(A)), errorMessageIsIncluded)
+  expect_error(validateIsNotEmpty(NULL), errorMessageIsEmpty)
+
+  a <- 4L
+  expect_error(validateIsCharacter(a))
 })
 
 

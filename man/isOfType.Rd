@@ -18,10 +18,13 @@ Default is \code{FALSE}.}
 }
 \value{
 \code{TRUE} if the object or all objects inside the list are of the given
-type. Only the first level of the given list is considered.
+type.
 }
 \description{
 Check if the provided object is of certain type
+}
+\note{
+Only the first level of the given list is considered.
 }
 \examples{
 # checking type of a single object

@@ -95,7 +95,7 @@ validateIsInteger <- function(object, nullAllowed = FALSE) {
   }
 
   # making sure we check for numeric values before calling floor
-  # 5 is numeric but can be considered integer for our purposes
+  # e.g. `5` is numeric but can be considered integer for our purposes
   if (is.numeric(object) && all(floor(object) == object, na.rm = TRUE)) {
     return()
   }
@@ -136,13 +136,13 @@ validateIsLogical <- function(object, nullAllowed = FALSE) {
 #'
 #' # error otherwise
 #' # validatePathIsAbsolute("Organism|*path")
-#'
 #' @export
 
 validatePathIsAbsolute <- function(path) {
   wildcardChar <- "*"
+  path <- unlist(strsplit(path, ""), use.names = FALSE)
 
-  if (!any(unlist(strsplit(path, ""), use.names = FALSE) == wildcardChar)) {
+  if (!any(path == wildcardChar)) {
     return()
   }
 
@@ -166,7 +166,6 @@ validatePathIsAbsolute <- function(path) {
 #'
 #' # will return NULL if child value is included in parent value set
 #' validateIsIncluded("col3", names(A))
-#'
 #' @return
 #'
 #' Returns `NULL` if child value is included in parent value set, otherwise
@@ -269,4 +268,30 @@ validateIsSameLength <- function(...) {
   arguments <- paste(lapply(argnames[-1], as.character), collapse = ", ")
 
   stop(messages$errorDifferentLength(arguments))
+}
+
+#' Check if objects is not empty
+#'
+#' @inheritParams isOfLength
+#'
+#' @return
+#' If validations are successful, `NULL` is returned. Otherwise, error is
+#' signaled.
+#'
+#' @examples
+#' # returns `NULL` if of objects are of specified length
+#' validateIsNotEmpty(list(1, 2))
+#'
+#' # error otherwise
+#' # validateIsNotEmpty(NULL)
+#' @export
+
+validateIsNotEmpty <- function(object) {
+  if (!isEmpty(object)) {
+    return()
+  }
+
+  objectName <- deparse(substitute(object))
+
+  stop(messages$errorEmpty(objectName))
 }

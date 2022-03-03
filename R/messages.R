@@ -1,4 +1,79 @@
+#' List of functions and strings used to signal error messages
+#'
+#' @description
+#' Most of these messages will be relevant only in the context of OSP R package
+#' ecosystem.
+#'
+#' @return
+#' A string with error message.
+#'
+#' @examples
+#' # example with string
+#' messages$errorEnumNotAllNames
+#'
+#' # example with function
+#' messages$errorPropertyReadOnly("age")
+#'
+#' @export
 messages <- list(
+  errorGetEntityMultipleOutputs = function(path, container, optionalMessage = NULL) {
+    callingFunction <- .getCallingFunctionName()
+    paste0(
+      callingFunction,
+      ": the path '",
+      toString(path),
+      "' located under container '",
+      container$path,
+      "' leads to more than one entity! Use 'getAllXXXMatching'",
+      "to get the list of all entities matching the path, where XXX stands for the entity type",
+      optionalMessage
+    )
+  },
+  errorEntityNotFound = function(path, container, optionalMessage = NULL) {
+    callingFunction <- .getCallingFunctionName()
+    paste0(
+      callingFunction,
+      ": No entity exists for path '",
+      toString(path),
+      "' located under container '",
+      container$path,
+      "'!",
+      optionalMessage
+    )
+  },
+  errorResultNotFound = function(path, individualId, optionalMessage = NULL) {
+    callingFunction <- .getCallingFunctionName()
+    paste0(
+      callingFunction,
+      ": No results exists for path '",
+      toString(path),
+      "' for individual IDs ",
+      "'",
+      individualId,
+      "'!",
+      optionalMessage
+    )
+  },
+  errorCannotSetRHSFormula = "Creating a RHS Formula is not supported at the moment. This should be done in MoBi.",
+  errorPKParameterNotFound = function(pkParameterName, allPKParameterNames) {
+    paste0(
+      "PK-Parameter '",
+      pkParameterName,
+      "' not found.\nAvailable PK-Parameters are:\n",
+      paste0(allPKParameterNames, collapse = ", ")
+    )
+  },
+  pkSimRPathInvalid = function(pksimPath) {
+    paste0("Path to PKSim.R.dll '", pksimPath, "' is invalid.")
+  },
+  pkSimInstallPathNotFound = "Could not find an installation of PK-Sim on the machine. Please install the OSPSuite or use 'initPKSim()' to specify the installation path",
+  errorSimulationBatchNothingToVary = "You need to vary at least one parameter or one molecule in order to use the SimulationBatch",
+  errorMultipleMetaDataEntries = function(optionalMessage = NULL) {
+    paste("Can only add a single meta data entry at once", optionalMessage)
+  },
+  errorMultipleSimulationsCannotBeUsedWithPopulation = "Multiple simulations cannot be run concurrently with a population.",
+  errorDataSetNameMissing = "Argument `name` is missing, must be provided when
+  creating an empty `DataSet`!",
   errorWrongType = function(objectName,
                             type,
                             expectedType,
@@ -38,6 +113,16 @@ messages <- list(
       "', but is of length '",
       length(object),
       "' instead. ",
+      optionalMessage
+    )
+  },
+  errorEmpty = function(objectName, optionalMessage = NULL) {
+    callingFunction <- .getCallingFunctionName()
+    paste0(
+      callingFunction,
+      ": argument '",
+      objectName,
+      "' is empty!",
       optionalMessage
     )
   },
@@ -84,6 +169,22 @@ messages <- list(
       "'."
     )
   },
+  errorDimensionNotSupported = function(dimension, optionalMessage = NULL) {
+    paste0(
+      "Dimension '",
+      dimension,
+      "' is not supported! See enum `ospsuite::Dimensions` for the list of supported dimensions."
+    )
+  },
+  errorUnitNotSupported = function(unit, dimension, optionalMessage = NULL) {
+    paste0(
+      "Unit '",
+      unit,
+      "' is not supported by the dimension '",
+      dimension,
+      "'!"
+    )
+  },
   errorNotIncluded = function(values, parentValues) {
     paste0(
       "Values '",
@@ -100,11 +201,32 @@ messages <- list(
       ": Only absolute paths (i.e. without the wildcard(s) `*`) are allowed, but the given path is: ",
       path
     )
+  },
+  errorOnlyOneValuesSetAllowed = function(argumentName) {
+    callingFunction <- .getCallingFunctionName()
+    paste0(
+      callingFunction,
+      ": argument '",
+      argumentName,
+      "' is a list with multiple values sets, but only one value set is allowed!"
+    )
+  },
+  errorOnlyOneSupported = function(optionalMessage = NULL) {
+    paste("Can only add a single instance of this object", optionalMessage)
+  },
+  errorPackageSettingNotFound = function(settingName, globalEnv) {
+    paste0(
+      "No global setting with the name '",
+      settingName,
+      "' exists. Available global settings are:\n",
+      paste0(names(globalEnv), collapse = ", ")
+    )
   }
 )
 
 # utilities ----------------------
 
+#' @keywords internal
 .getCallingFunctionName <- function() {
   callingFunctions <- sys.calls()
   callingFunction <- sys.call(-length(callingFunctions) + 1)[[1]]

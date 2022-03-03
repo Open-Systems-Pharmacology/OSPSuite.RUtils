@@ -10,6 +10,9 @@ authors:
 template:
   bootstrap: 5
 
+development:
+  mode: auto
+
 reference:
 
   - title: Enum helpers
@@ -39,3 +42,9 @@ reference:
       - "`%||%`"
       - ifNotNull
       - matches("^to")
+      - messages
+
+  - title: Package settings
+    contents:
+      - getOSPSuiteUtilsSetting
+      - ospsuiteUtilsSettingNames

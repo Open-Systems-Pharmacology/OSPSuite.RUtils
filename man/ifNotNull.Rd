@@ -15,14 +15,15 @@ ifNotNull(condition, outputIfNotNull, outputIfNull = NULL)
 \item{outputIfNull}{argument 3}
 }
 \value{
-\code{outputIfNotNull} if condition is not \code{NULL}, outputIfNull otherwise.
+\code{outputIfNotNull} if condition is not \code{NULL}, \code{outputIfNull} otherwise.
 }
 \description{
-Check if condition is not \code{NULL}, if so output outputIfNotNull,
-otherwise, output outputIfNull
+Check if condition is not \code{NULL}, if so output \code{outputIfNotNull},
+otherwise, output \code{outputIfNull}.
 }
 \examples{
 ifNotNull(NULL, "x")
 ifNotNull(NULL, "x", "y")
 ifNotNull(1 < 2, "x", "y")
+
 }
