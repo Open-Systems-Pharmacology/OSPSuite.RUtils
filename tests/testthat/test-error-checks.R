@@ -152,14 +152,14 @@ test_that("hasEmptyString returns TRUE when strings are empty", {
   expect_true(hasEmptyString(c("", NA)))
   expect_true(hasEmptyString(list("", NA)))
   expect_true(hasEmptyString(NA))
+  expect_true(hasEmptyString(c(NA, "x", "y")))
+  expect_true(hasEmptyString(list(NA, "x", "y")))
 })
 
 test_that("hasEmptyString returns FALSE when string are not empty", {
   expect_false(hasEmptyString("   abc   "))
   expect_false(hasEmptyString(c("x", "y")))
   expect_false(hasEmptyString(list("x", "y")))
-  expect_false(hasEmptyString(c(NA, "x", "y")))
-  expect_false(hasEmptyString(list(NA, "x", "y")))
 })
 
 test_that("hasOnlyDistinctValues returns TRUE if values are distinct", {

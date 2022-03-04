@@ -175,7 +175,7 @@ isEmpty <- function(object) {
 #'
 #' @param x A string or a vector of strings.
 #'
-#' @details If any `NA`s are present, they will be removed.
+#' @details If any `NA`s are present, they will be considered as empty strings.
 #'
 #' @return `TRUE` if any of strings are empty.
 #'
@@ -188,14 +188,11 @@ isEmpty <- function(object) {
 #' hasEmptyString(list("", "y")) # TRUE
 #' hasEmptyString(NA) # TRUE
 #' hasEmptyString(character(0)) # TRUE
+#' hasEmptyString(c(NA, "x", "y")) # TRUE
 #'
 #' @export
 hasEmptyString <- function(x) {
-  # this shouldn't be optional because `nchar(NA)` is itself `NA`,
-  # which is not useful
-  x <- x[!is.na(x)]
-
-  length(x) == 0L || any(nchar(x) == 0L)
+  length(x) == 0L || any(is.na(x)) || any(nchar(x) == 0L)
 }
 
 #' Check that an array of values does not include any duplicate
