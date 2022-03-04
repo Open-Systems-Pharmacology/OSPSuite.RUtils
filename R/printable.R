@@ -1,7 +1,8 @@
 #' @title Printable
 #' @docType class
-#' @description Base class that implements some basic properties for printing to
-#'   console.
+#'
+#' @description
+#' Base class that implements some basic properties for printing to console.
 #'
 #' @importFrom R6 R6Class
 #'
@@ -24,9 +25,9 @@
 #' x <- myPrintable$new()
 #' x
 #' @export
-
 Printable <- R6::R6Class(
   "Printable",
+  cloneable = FALSE,
   private = list(
     printLine = function(entry, value = NULL, addTab = TRUE) {
       entries <- paste0(entry, ":", sep = "")
