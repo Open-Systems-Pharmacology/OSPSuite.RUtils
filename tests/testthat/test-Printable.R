@@ -17,3 +17,21 @@ test_that("Checks if Printable prints properly", {
   x <- myPrintable$new()
   expect_snapshot(x, cran = TRUE)
 })
+
+test_that("Checks if Printable subclass cloning works as expected", {
+  newPrintable1 <- R6Class(
+    "newPrintable1",
+    inherit = Printable,
+    cloneable = TRUE
+  )
+
+  expect_snapshot(newPrintable1$new()$clone())
+
+  newPrintable2 <- R6Class(
+    "newPrintable2",
+    inherit = Printable,
+    cloneable = FALSE
+  )
+
+  expect_error(newPrintable2$new()$clone())
+})
