@@ -171,6 +171,33 @@ isEmpty <- function(object) {
   return(isOfLength(object, 0))
 }
 
+#' Check if a string or any of the vector of strings is empty
+#'
+#' @param x A string or a vector of strings.
+#'
+#' @details If any `NA`s are present, they will be removed.
+#'
+#' @return `TRUE` if any of strings are empty.
+#'
+#' @examples
+#'
+#' hasEmptyString(c("x", "y")) # FALSE
+#' hasEmptyString(list("x", "y")) # FALSE
+#' hasEmptyString("   abc   ") # FALSE
+#' hasEmptyString(c("", "y")) # TRUE
+#' hasEmptyString(list("", "y")) # TRUE
+#' hasEmptyString(NA) # TRUE
+#' hasEmptyString(character(0)) # TRUE
+#'
+#' @export
+hasEmptyString <- function(x) {
+  # this shouldn't be optional because `nchar(NA)` is itself `NA`,
+  # which is not useful
+  x <- x[!is.na(x)]
+
+  length(x) == 0L || any(nchar(x) == 0L)
+}
+
 #' Check that an array of values does not include any duplicate
 #'
 #' @param values An array of values
