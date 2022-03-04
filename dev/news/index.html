@@ -47,7 +47,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.0.9000" id="ospsuiteutils-1209000">ospsuite.utils 1.2.0.9000<a class="anchor" aria-label="anchor" href="#ospsuiteutils-1209000"></a></h2>
 <p>MAJOR CHANGES</p>
-<ul><li>Cloning method is now disabled for <code>Printable</code> R6 class. This entails that all subclasses that inherit from this class will not be able to use cloning, <strong>even if</strong> they explicitly set <code>cloneable = TRUE</code>.</li>
+<ul><li>Cloning method is now disabled for <code>Printable</code> R6 class. This entails that <code>cloneable</code> property set by <code>Printable</code>’s subclasses will be respected. Previously, this was not the case; the cloning method was available <strong>even if</strong> the subclass had explicitly set <code>cloneable = FALSE</code>.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.0" id="ospsuiteutils-120">ospsuite.utils 1.2.0<a class="anchor" aria-label="anchor" href="#ospsuiteutils-120"></a></h2><p class="text-muted">CRAN release: 2022-02-18</p>
