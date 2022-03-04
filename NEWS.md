@@ -6,9 +6,10 @@ NEW FUNCTIONS
 
 MAJOR CHANGES
 
-* Cloning method is now disabled for `Printable` R6 class. This entails that all
-  subclasses that inherit from this class will not be able to use cloning,
-  **even if** they explicitly set `cloneable = TRUE`.
+* Cloning method is now disabled for `Printable` R6 class. This entails that
+  `cloneable` property set by `Printable`'s subclasses will be respected.
+  Previously, this was not the case; the cloning method was available **even
+  if** the subclass had explicitly set `cloneable = FALSE`.
 
 # ospsuite.utils 1.2.0
 
