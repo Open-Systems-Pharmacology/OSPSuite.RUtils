@@ -49,6 +49,9 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/getOSPSuiteUtilsSetting.html</loc>
   </url>
   <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/hasEmptyString.html</loc>
+  </url>
+  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/hasOnlyDistinctValues.html</loc>
   </url>
   <url>
