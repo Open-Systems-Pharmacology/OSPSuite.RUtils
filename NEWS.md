@@ -1,5 +1,9 @@
 # ospsuite.utils 1.2.0.9000
 
+NEW FUNCTIONS
+
+* `hasEmptyString()` to check for empty strings.
+
 MAJOR CHANGES
 
 * Cloning method is now disabled for `Printable` R6 class. This entails that
