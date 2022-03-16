@@ -4,6 +4,8 @@ NEW FUNCTIONS
 
 * `hasEmptyString()` to check for empty strings.
 
+* `objCount` to count number of objects.
+
 MAJOR CHANGES
 
 * Cloning method is now disabled for `Printable` R6 class. This entails that
