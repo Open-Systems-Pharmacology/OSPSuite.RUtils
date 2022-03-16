@@ -4,7 +4,7 @@ NEW FUNCTIONS
 
 * `hasEmptyString()` to check for empty strings.
 
-* `objCount` to count number of objects.
+* `objectCount` to count number of objects.
 
 MAJOR CHANGES
 
