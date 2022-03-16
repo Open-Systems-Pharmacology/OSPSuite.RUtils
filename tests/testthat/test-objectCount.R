@@ -1,10 +1,26 @@
 test_that("objectCount returns correct count for atomic vectors", {
-  expect_equal(objectCount(c(1, 2, 3)), 3)
+  x <- c(1, 2, 3)
+  expect_equal(objectCount(x), 3L)
+
+  names(x) <- c("a", "b", "c")
+  expect_equal(objectCount(x), 3L)
+
+  attr(x, "rando") <- "random"
+  expect_equal(objectCount(x), 3L)
+
   expect_equal(objectCount(character()), 0L)
 })
 
 test_that("objectCount returns correct count for lists", {
-  expect_equal(objectCount(list("a", "b")), 2L)
+  x <- list("a", "b")
+  expect_equal(objectCount(x), 2L)
+
+  names(x) <- c("a", "b")
+  expect_equal(objectCount(x), 2L)
+
+  attr(x, "rando") <- "random"
+  expect_equal(objectCount(x), 2L)
+
   expect_equal(objectCount(list()), 0L)
 })
 

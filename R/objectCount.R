@@ -21,11 +21,12 @@
 #'
 #' @export
 objectCount <- function(x) {
-  # `is.vector()` can handle both atomic vectors and lists, i.e.
-  # both `is.vector(c(1, 2))` and `is.vector(list(1, 2))` will be `TRUE`.
+  # *WARNING*: Do not use `is.vector()` to check for a vector.
+  #
+  # It returns `FALSE` if `x` is a vector but has attributes other than names.
   #
   # For anything other than a vector, the object count should be 1.
-  if (!is.vector(x)) {
+  if (!is.null(dim(x))) {
     return(1L)
   }
 

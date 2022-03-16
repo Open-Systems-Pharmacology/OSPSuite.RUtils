@@ -38,7 +38,7 @@ Collate:
     'error-checks.R'
     'formatNumerics.R'
     'messages.R'
-    'objCount.R'
+    'objectCount.R'
     'utilities.R'
     'ospsuite.utils-env.R'
     'printable.R'
