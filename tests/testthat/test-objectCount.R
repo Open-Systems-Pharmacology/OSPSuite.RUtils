@@ -24,11 +24,39 @@ test_that("objectCount returns correct count for lists", {
   expect_equal(objectCount(list()), 0L)
 })
 
-test_that("objectCount returns correct count for other objects", {
+test_that("objectCount returns correct count for data frames", {
   expect_equal(objectCount(mtcars), 1L)
+  expect_equal(objectCount(data.frame()), 1L)
+})
 
-  myPrintable <- Printable$new()
-  expect_equal(objectCount(myPrintable), 1L)
+test_that("objectCount returns correct count for R6 objects", {
+  myPrintable <- R6::R6Class(
+    "myPrintable",
+    inherit = Printable,
+    public = list(
+      x = NULL,
+      y = NULL,
+      print = function() {
+        private$printClass()
+        private$printLine("x", self$x)
+        private$printLine("y", self$y)
+        invisible(self)
+      }
+    )
+  )
 
-  expect_equal(objectCount(list(myPrintable, myPrintable)), 2L)
+  x <- myPrintable$new()
+
+  expect_equal(objectCount(x), 1L)
+  expect_equal(objectCount(list(x, x)), 2L)
+})
+
+test_that("objectCount returns correct count for environments", {
+  e1 <- new.env(parent = baseenv())
+  e2 <- new.env(parent = e1)
+  assign("a", 3, envir = e1)
+  assign("b", 4, envir = e1)
+
+  expect_equal(objectCount(e1), 1L)
+  expect_equal(objectCount(list(e1, e2)), 2L)
 })

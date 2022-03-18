@@ -22,11 +22,10 @@
 #' @export
 objectCount <- function(x) {
   # *WARNING*: Do not use `is.vector()` to check for a vector.
-  #
   # It returns `FALSE` if `x` is a vector but has attributes other than names.
   #
   # For anything other than a vector, the object count should be 1.
-  if (!is.null(dim(x))) {
+  if (!is.null(dim(x)) || R6::is.R6(x) || is.environment(x)) {
     return(1L)
   }
 
