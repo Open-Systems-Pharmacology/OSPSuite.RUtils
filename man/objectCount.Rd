@@ -28,5 +28,6 @@ return 1.
 objectCount(c(1, 2, 3)) # 3
 objectCount(list("a", "b")) # 2
 objectCount(mtcars) # 1
+objectCount(list(iris, mtcars)) # 2
 
 }
