@@ -41,7 +41,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Check that an array of values does not include any duplicate</h1>
-      <small class="dont-index">Source: <a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/blob/HEAD/R/error-checks.R" class="external-link"><code>R/error-checks.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/blob/HEAD/R/validation-uniqueness.R" class="external-link"><code>R/validation-uniqueness.R</code></a></small>
       <div class="d-none name"><code>hasOnlyDistinctValues.Rd</code></div>
     </div>
 
@@ -65,7 +65,7 @@ duplicate checking. Note that duplicate <code>NA</code> values are flagged if
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Logical assessing if all values are unique</p>
+    <p>Logical assessing if all values are unique.</p>
     </div>
 
     <div class="section level2">
@@ -78,6 +78,7 @@ duplicate checking. Note that duplicate <code>NA</code> values are flagged if
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-in"><span class="fu">hasOnlyDistinctValues</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="cn">NA</span>, <span class="st">"y"</span>, <span class="cn">NA</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-in"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -41,7 +41,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Check if a string or any of the vector of strings is empty</h1>
-      <small class="dont-index">Source: <a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/blob/HEAD/R/error-checks.R" class="external-link"><code>R/error-checks.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/blob/HEAD/R/validation-emptiness.R" class="external-link"><code>R/validation-emptiness.R</code></a></small>
       <div class="d-none name"><code>hasEmptyString.Rd</code></div>
     </div>
 
@@ -65,7 +65,7 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>If any <code>NA</code>s are present, they will be removed.</p>
+    <p>If any <code>NA</code>s are present, they will be considered as empty strings.</p>
     </div>
 
     <div class="section level2">
@@ -84,6 +84,8 @@
 <span class="r-in"><span class="fu">hasEmptyString</span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span> <span class="co"># TRUE</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span class="fu">hasEmptyString</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="co"># TRUE</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-in"><span class="fu">hasEmptyString</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span> <span class="co"># TRUE</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"></span>
 </code></pre></div>
