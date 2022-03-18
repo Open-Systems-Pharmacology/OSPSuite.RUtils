@@ -37,6 +37,7 @@ Collate:
     'enum.R'
     'formatNumerics.R'
     'messages.R'
+    'objectCount.R'
     'utilities.R'
     'ospsuite.utils-env.R'
     'printable.R'
