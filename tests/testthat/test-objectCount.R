@@ -64,5 +64,5 @@ test_that("objectCount returns correct count for environments, model objects, et
   expect_equal(objectCount(mod), 1L)
 
   x <- as.POSIXlt(ISOdatetime(2020, 1, 1, 0, 0, 1:3))
-  objectCount(x)
+  expect_equal(objectCount(x), 1L)
 })
