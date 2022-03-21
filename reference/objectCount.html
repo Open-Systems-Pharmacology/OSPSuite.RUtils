@@ -65,24 +65,38 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>If the argument is not a vector, unlike <code><a href="https://rdrr.io/r/base/length.html" class="external-link">length()</a></code>, this function will not
-count the number of named bindings in an environment, but only the number of
-instances of a class.</p>
-<p>For example, <code>length(mtcars)</code> will return 11, but <code>objectCount(mtcars)</code> will
-return 1.</p>
-    </div>
+    <p>Classes in R can roughly be distinguished as following:</p><ul><li><p>Vector-style classes have the property that <code><a href="https://rdrr.io/r/base/length.html" class="external-link">length()</a></code> represents number of
+elements (e.g., <code>factor</code>, <code>list</code>, etc.).</p></li>
+<li><p>Record-style (or dataframe or scalar) classes, on the other hand, have
+complex structures to represent a single thing (e.g., <code>data.frame</code>, <code>R6</code>,
+<code>lm</code>, etc.).</p></li>
+</ul><p>This function counts objects differently depending on the entered class:</p>
+<p>If the argument is a vector or a vector-style class, it will return the
+output from <code><a href="https://rdrr.io/r/base/length.html" class="external-link">length()</a></code> function. Otherwise, it will returns <code>1</code>.</p>
+<p>For example,</p><ul><li><p><code>length(mtcars)</code> returns <code>11</code>, but <code>objectCount(mtcars)</code> will
+return <code>1</code>, while</p></li>
+<li><p><code>length(list(1, 2))</code> returns <code>2</code>, and <code>objectCount(list(1, 2))</code> will return
+<code>2</code> as well.</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
+<span class="r-in"><span class="co"># vectors or vector-style classes</span></span>
 <span class="r-in"><span class="fu">objectCount</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="co"># 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
 <span class="r-in"><span class="fu">objectCount</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span><span class="op">)</span> <span class="co"># 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
-<span class="r-in"><span class="fu">objectCount</span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span> <span class="co"># 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
 <span class="r-in"><span class="fu">objectCount</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">iris</span>, <span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="co"># 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># everything else</span></span>
+<span class="r-in"><span class="fu">objectCount</span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span> <span class="co"># 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-in"><span class="fu">objectCount</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">mpg</span>, <span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="co"># 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-in"><span class="fu">objectCount</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">new.env</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
