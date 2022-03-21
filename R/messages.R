@@ -214,6 +214,9 @@ messages <- list(
   errorOnlyOneSupported = function(optionalMessage = NULL) {
     paste("Can only add a single instance of this object", optionalMessage)
   },
+  errorDuplicatedValues = function(optionalMessage = NULL) {
+    paste("Object has duplicated values; only unique values are allowed.", optionalMessage)
+  },
   errorPackageSettingNotFound = function(settingName, globalEnv) {
     paste0(
       "No global setting with the name '",

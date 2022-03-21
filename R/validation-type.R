@@ -44,9 +44,10 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
 
 #' Check if the provided object is of certain type. If not, stop with an error.
 #'
-#' @return `NULL` if the entered object is of expected type, otherwise produces
-#'   error. Also accepts `NULL` as an input if `nullAllowed` argument is set to
-#'   `TRUE`.
+#' @return
+#'
+#' `NULL` if the entered object is of expected type, otherwise produces error.
+#' Also accepts `NULL` as an input if `nullAllowed` argument is set to `TRUE`.
 #'
 #' @inheritParams isOfType
 #'
@@ -104,7 +105,6 @@ validateIsString <- validateIsCharacter
 #' @rdname validateIsOfType
 #' @inheritParams isOfType
 #' @export
-
 validateIsNumeric <- function(object, nullAllowed = FALSE) {
   # Only NA values. It is numeric
   if (all(is.na(object)) && !any(is.null(object))) {

@@ -32,9 +32,8 @@ the type that should be checked for.}
 Default is \code{FALSE}.}
 }
 \value{
-\code{NULL} if the entered object is of expected type, otherwise produces
-error. Also accepts \code{NULL} as an input if \code{nullAllowed} argument is set to
-\code{TRUE}.
+\code{NULL} if the entered object is of expected type, otherwise produces error.
+Also accepts \code{NULL} as an input if \code{nullAllowed} argument is set to \code{TRUE}.
 }
 \description{
 Check if the provided object is of certain type. If not, stop with an error.
