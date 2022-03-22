@@ -72,8 +72,8 @@ artifacts:
   - path: '*.Rcheck\**\*.Rout'
     name: Logs
 
-  - path: "ospsuite_*ubuntu18.tar.gz"
-    name: Ubuntu18
+  - path: '\*_*.tar.gz'
+    name: Bits
 
-  - path: '\ospsuite*.zip'
-    name: Win
+  - path: '\*_*.zip'
+    name: Bits
