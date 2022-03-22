@@ -28,13 +28,13 @@ hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
 #' @inheritParams hasOnlyDistinctValues
 #'
 #' @examples
-#' validateHasDistinctValues(c("x", "y")) # NULL
-#' # validateHasDistinctValues(c("x", "y", "x")) # error
+#' validateHasOnlyDistinctValues(c("x", "y")) # NULL
+#' # validateHasOnlyDistinctValues(c("x", "y", "x")) # error
 #'
 #' @return `NULL` if only unique values present, otherwise produces error.
 #'
 #' @export
-validateHasDistinctValues <- function(values, na.rm = TRUE) {
+validateHasOnlyDistinctValues <- function(values, na.rm = TRUE) {
   if (hasOnlyDistinctValues(values)) {
     return()
   }

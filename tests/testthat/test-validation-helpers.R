@@ -136,19 +136,19 @@ test_that("isInclude doesn't accept environments as arguments", {
 })
 
 
-test_that("validateHasDistinctValues returns NULL with distinct values", {
-  expect_null(validateHasDistinctValues(c("x", "y")))
-  expect_null(validateHasDistinctValues(list("x", "y")))
+test_that("validateHasOnlyDistinctValues returns NULL with distinct values", {
+  expect_null(validateHasOnlyDistinctValues(c("x", "y")))
+  expect_null(validateHasOnlyDistinctValues(list("x", "y")))
 })
 
-test_that("validateHasDistinctValues errors with duplicated values", {
+test_that("validateHasOnlyDistinctValues errors with duplicated values", {
   expect_error(
-    validateHasDistinctValues(c("x", "y", "x")),
+    validateHasOnlyDistinctValues(c("x", "y", "x")),
     messages$errorDuplicatedValues()
   )
 
   expect_error(
-    validateHasDistinctValues(list("x", "y", "x")),
+    validateHasOnlyDistinctValues(list("x", "y", "x")),
     messages$errorDuplicatedValues()
   )
 })

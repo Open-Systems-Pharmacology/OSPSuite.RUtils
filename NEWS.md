@@ -6,7 +6,7 @@ NEW FUNCTIONS
 
 * `objectCount` to count number of objects.
 
-* `validateHasDistinctValues()` to validate only unique values are present.
+* `validateHasOnlyDistinctValues()` to validate only unique values are present.
 
 MAJOR CHANGES
 
