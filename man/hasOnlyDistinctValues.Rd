@@ -2,7 +2,7 @@
 % Please edit documentation in R/validation-uniqueness.R
 \name{hasOnlyDistinctValues}
 \alias{hasOnlyDistinctValues}
-\title{Check that an array of values does not include any duplicate}
+\title{Check that a vector has only unique values}
 \usage{
 hasOnlyDistinctValues(values, na.rm = TRUE)
 }
@@ -17,9 +17,10 @@ duplicate checking. Note that duplicate \code{NA} values are flagged if
 Logical assessing if all values are unique.
 }
 \description{
-Check that an array of values does not include any duplicate
+Check that a vector has only unique values
 }
 \examples{
+
 hasOnlyDistinctValues(c("x", "y"))
 hasOnlyDistinctValues(c("x", "y", "x"))
 hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = FALSE)
