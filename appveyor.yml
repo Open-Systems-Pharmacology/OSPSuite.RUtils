@@ -14,6 +14,7 @@ install:
         Bootstrap
 
 environment:
+  app_version: "1.2.0"
   USE_RTOOLS: true
   R_VERSION: "4.1.0"
   R_ARCH: x64
@@ -24,9 +25,6 @@ version: "$(app_version).{build}"
 
 before_build:
   - rake "prepare_for_build[%APPVEYOR_BUILD_VERSION%]"
-
-cache:
-  - C:\RLibrary
 
 platform: x64
 
@@ -78,8 +76,11 @@ artifacts:
   - path: '*.Rcheck\**\*.Rout'
     name: Logs
 
-  - path: '\*_*.tar.gz'
-    name: Bits
+  - path: "ospsuite_*ubuntu18.tar.gz"
+    name: Ubuntu18
 
-  - path: '\*_*.zip'
-    name: Bits
+  - path: "ospsuite_*centOS7.tar.gz"
+    name: CentOS7
+
+  - path: '\ospsuite*.zip'
+    name: Win
