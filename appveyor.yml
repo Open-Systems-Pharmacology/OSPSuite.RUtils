@@ -75,8 +75,5 @@ artifacts:
   - path: "ospsuite_*ubuntu18.tar.gz"
     name: Ubuntu18
 
-  - path: "ospsuite_*centOS7.tar.gz"
-    name: CentOS7
-
   - path: '\ospsuite*.zip'
     name: Win
