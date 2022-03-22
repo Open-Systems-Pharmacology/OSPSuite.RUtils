@@ -51,7 +51,7 @@ test_that("objectCount returns correct count for R6 objects", {
   expect_equal(objectCount(list(x, x)), 2L)
 })
 
-test_that("objectCount returns correct count for environments", {
+test_that("objectCount returns correct count for environments, model objects, etc.", {
   e1 <- new.env(parent = baseenv())
   e2 <- new.env(parent = e1)
   assign("a", 3, envir = e1)
@@ -59,4 +59,10 @@ test_that("objectCount returns correct count for environments", {
 
   expect_equal(objectCount(e1), 1L)
   expect_equal(objectCount(list(e1, e2)), 2L)
+
+  mod <- lm(wt ~ mpg, mtcars)
+  expect_equal(objectCount(mod), 1L)
+
+  x <- as.POSIXlt(ISOdatetime(2020, 1, 1, 0, 0, 1:3))
+  expect_equal(objectCount(x), 1L)
 })
