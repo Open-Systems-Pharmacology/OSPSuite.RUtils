@@ -55,6 +55,9 @@ test_script:
 on_success:
   - Rscript -e "covr::codecov()"
 
+after_test:
+  - ps: copy ospsuite.utils_*.zip ospsuite.utils.zip
+
 on_failure:
   - 7z a failure.zip *.Rcheck\*
   - appveyor PushArtifact failure.zip

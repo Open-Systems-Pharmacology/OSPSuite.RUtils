@@ -8,6 +8,8 @@ NEW FUNCTIONS
 
 * `validateHasOnlyDistinctValues()` to validate only unique values are present.
 
+* `isVectorDepth()` and `validateVectorDepth()` to validate vector depth.
+
 MAJOR CHANGES
 
 * Cloning method is now disabled for `Printable` R6 class. This entails that

@@ -116,6 +116,18 @@ messages <- list(
       optionalMessage
     )
   },
+  errorWrongVectorDepth = function(actualDepth, expectedDepth, objectName, optionalMessage = NULL) {
+    paste0(
+      "Vector provided in `",
+      objectName,
+      "` should be of depth '",
+      expectedDepth,
+      "', but is of depth '",
+      actualDepth,
+      "' instead. ",
+      optionalMessage
+    )
+  },
   errorEmpty = function(objectName, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
     paste0(
