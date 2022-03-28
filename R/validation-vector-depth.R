@@ -8,7 +8,7 @@
 #' Function parameters that accept a vector argument, the vector with depth
 #' greater than 2, which corresponds to a nested list, is rarely desirable.
 #'
-#' The `isVectorDepth()` checks if the vector is of desirable depth, while
+#' The `hasVectorDepth()` checks if the vector is of desirable depth, while
 #' `validateVectorDepth()` validates the same.
 #'
 #' @details
@@ -21,7 +21,7 @@
 #'
 #' @return
 #'
-#' `isVectorDepth()` returns a logical from comparison of actual versus
+#' `hasVectorDepth()` returns a logical from comparison of actual versus
 #' expected depth.
 #'
 #' `validateVectorDepth()` produces error if the validation is unsuccessful;
@@ -29,9 +29,9 @@
 #'
 #' @examples
 #'
-#' isVectorDepth(c(1), 1L) # TRUE
-#' isVectorDepth(list(), 1L) # TRUE
-#' isVectorDepth(list(1), 1L) # FALSE
+#' hasVectorDepth(c(1), 1L) # TRUE
+#' hasVectorDepth(list(), 1L) # TRUE
+#' hasVectorDepth(list(1), 1L) # FALSE
 #'
 #' validateVectorDepth(c(1), 1L) # NULL
 #' validateVectorDepth(list(), 1L) # NULL
@@ -41,11 +41,11 @@
 #' # validateVectorDepth(list(list(1))) # depth is 3
 #'
 #' @export
-isVectorDepth <- function(x, expectedDepth = 2L) {
+hasVectorDepth <- function(x, expectedDepth = 2L) {
   return(purrr::vec_depth(x) == expectedDepth)
 }
 
-#' @rdname isVectorDepth
+#' @rdname hasVectorDepth
 #' @export
 validateVectorDepth <- function(x, expectedDepth = 2L) {
   actualDepth <- purrr::vec_depth(x)

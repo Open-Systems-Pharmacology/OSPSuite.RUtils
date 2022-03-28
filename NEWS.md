@@ -8,7 +8,7 @@ NEW FUNCTIONS
 
 * `validateHasOnlyDistinctValues()` to validate only unique values are present.
 
-* `isVectorDepth()` and `validateVectorDepth()` to validate vector depth.
+* `hasVectorDepth()` and `validateVectorDepth()` to validate vector depth.
 
 MAJOR CHANGES
 

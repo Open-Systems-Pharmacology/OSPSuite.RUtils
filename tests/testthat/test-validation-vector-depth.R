@@ -1,11 +1,11 @@
-test_that("isVectorDepth returns TRUE when vector depth of expected length", {
-  expect_true(isVectorDepth(c(1), 1L))
-  expect_true(isVectorDepth(list(), 1L))
+test_that("hasVectorDepth returns TRUE when vector depth of expected length", {
+  expect_true(hasVectorDepth(c(1), 1L))
+  expect_true(hasVectorDepth(list(), 1L))
 })
 
-test_that("isVectorDepth returns FALSE when vector depth is not of expected length", {
-  expect_false(isVectorDepth(list(1), 1L))
-  expect_false(isVectorDepth(character(), 2L))
+test_that("hasVectorDepth returns FALSE when vector depth is not of expected length", {
+  expect_false(hasVectorDepth(list(1), 1L))
+  expect_false(hasVectorDepth(character(), 2L))
 })
 
 test_that("validateVectorDepth returns NULL when vector depth of expected length", {
