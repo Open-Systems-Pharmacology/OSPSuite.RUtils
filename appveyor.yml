@@ -13,7 +13,7 @@ install:
   - git submodule update --init --recursive
 
 environment:
-  app_version: "1.2.0"
+  app_version: "1.2"
   USE_RTOOLS: true
   R_VERSION: "4.1.0"
   R_ARCH: x64
