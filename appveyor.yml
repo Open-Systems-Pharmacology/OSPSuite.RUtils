@@ -78,5 +78,5 @@ artifacts:
   - path: '\*_*.tar.gz'
     name: Bits
 
-  - path: '\*_*.zip'
+  - path: 'ospsuite.utils*.zip'
     name: Bits
