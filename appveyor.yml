@@ -44,6 +44,9 @@ before_test:
   - ps: $env:Path += ";C:\Program Files (x86)\Pandoc\"
   - pandoc -v
 
+before_build:
+  - rake "prepare_for_build[%APPVEYOR_BUILD_VERSION%]"
+  
 build_script:
   - travis-tool.sh install_deps
   - travis-tool.sh r_binary_install curl
