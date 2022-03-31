@@ -1,4 +1,4 @@
-#' Check if the provided object is empty
+#' Validate if the provided object is empty
 #'
 #' @param object An object or an atomic vector or a list of objects.
 #'
@@ -50,26 +50,60 @@ validateIsNotEmpty <- function(object) {
 }
 
 
-#' Check if a string or any of the vector of strings is empty
+#' Validate that no empty string is present
 #'
-#' @param x A string or a vector of strings.
+#' @param x A character string or a vector of character strings.
 #'
-#' @details If any `NA`s are present, they will be considered as empty strings.
+#' @details
 #'
-#' @return `TRUE` if any of strings are empty.
+#' If any of the following conditions are met, the input string is considered
+#' empty:
+#'
+#' - if any `NA`s are present (e.g. `x = c("a", "abc", NA)`)
+#' - if string is empty (e.g. `x = list("a", "abc", "")`)
+#' - if length is 0 (e.g. `x = character()`)
+#'
+#' @return
+#'
+#' - `hasEmptyStrings()` returns `TRUE` if any of the strings are empty; `FALSE`
+#' otherwise.
+#'
+#' - `validateHasOnlyNonEmptyStrings()` produces an error if empty string are
+#' present. It returns `NULL` otherwise.
 #'
 #' @examples
 #'
-#' hasEmptyString(c("x", "y")) # FALSE
-#' hasEmptyString(list("x", "y")) # FALSE
-#' hasEmptyString("   abc   ") # FALSE
-#' hasEmptyString(c("", "y")) # TRUE
-#' hasEmptyString(list("", "y")) # TRUE
-#' hasEmptyString(NA) # TRUE
-#' hasEmptyString(character(0)) # TRUE
-#' hasEmptyString(c(NA, "x", "y")) # TRUE
+#' hasEmptyStrings(c("x", "y")) # FALSE
+#' hasEmptyStrings(list("x", "y")) # FALSE
+#' hasEmptyStrings("   abc   ") # FALSE
+#' hasEmptyStrings(c("", "y")) # TRUE
+#' hasEmptyStrings(list("", "y")) # TRUE
+#' hasEmptyStrings(NA) # TRUE
+#' hasEmptyStrings(character(0)) # TRUE
+#' hasEmptyStrings(c(NA, "x", "y")) # TRUE
+#'
+#' validateHasOnlyNonEmptyStrings(c("x", "y")) # NULL
+#' validateHasOnlyNonEmptyStrings(list("x", "y")) # NULL
+#' validateHasOnlyNonEmptyStrings("   abc   ") # NULL
+#' validateHasOnlyNonEmptyStrings(c("", "y")) # error
+#' validateHasOnlyNonEmptyStrings(list("", "y")) # error
+#' validateHasOnlyNonEmptyStrings(NA) # error
+#' validateHasOnlyNonEmptyStrings(character(0)) # error
+#' validateHasOnlyNonEmptyStrings(c(NA, "x", "y")) # error
 #'
 #' @export
-hasEmptyString <- function(x) {
+hasEmptyStrings <- function(x) {
   length(x) == 0L || any(is.na(x)) || any(nchar(x) == 0L)
+}
+
+#' @rdname hasEmptyStrings
+#' @export
+validateHasOnlyNonEmptyStrings <- function(x) {
+  argName <- deparse(substitute(x))
+
+  if (hasEmptyStrings(x)) {
+    stop(messages$errorEmptyString(argName))
+  }
+
+  return()
 }
