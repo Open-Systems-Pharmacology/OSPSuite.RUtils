@@ -46,10 +46,10 @@ hasEmptyStrings(c(NA, "x", "y")) # TRUE
 validateHasOnlyNonEmptyStrings(c("x", "y")) # NULL
 validateHasOnlyNonEmptyStrings(list("x", "y")) # NULL
 validateHasOnlyNonEmptyStrings("   abc   ") # NULL
-validateHasOnlyNonEmptyStrings(c("", "y")) # error
-validateHasOnlyNonEmptyStrings(list("", "y")) # error
-validateHasOnlyNonEmptyStrings(NA) # error
-validateHasOnlyNonEmptyStrings(character(0)) # error
-validateHasOnlyNonEmptyStrings(c(NA, "x", "y")) # error
+# validateHasOnlyNonEmptyStrings(c("", "y")) # error
+# validateHasOnlyNonEmptyStrings(list("", "y")) # error
+# validateHasOnlyNonEmptyStrings(NA) # error
+# validateHasOnlyNonEmptyStrings(character(0)) # error
+# validateHasOnlyNonEmptyStrings(c(NA, "x", "y")) # error
 
 }
