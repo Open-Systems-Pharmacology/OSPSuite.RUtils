@@ -65,8 +65,6 @@ isOfType <- function(object, type, nullAllowed = FALSE) {
 #' validateIsLogical(TRUE)
 #' @export
 validateIsOfType <- function(object, type, nullAllowed = FALSE) {
-  type <- c(type)
-
   # special case for integer to ensure that we call the special method
   if (length(type) == 1 && type[1] == "integer") {
     return(validateIsInteger(object, nullAllowed = nullAllowed))

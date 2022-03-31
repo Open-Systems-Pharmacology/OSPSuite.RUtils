@@ -31,8 +31,6 @@ test_that("isIncluded returns `TRUE` when base type values are included", {
 })
 
 test_that("isIncluded returns `TRUE` when compound type values are included", {
-  skip_if_not(getRversion() > "4.1")
-
   expect_true(isIncluded(as.factor("a"), c("a", "b")))
   expect_true(isIncluded(c("a", "b"), as.factor(c("a", "b"))))
   expect_true(isIncluded(as.factor("a"), list("a", "b")))
@@ -54,8 +52,6 @@ test_that("isIncluded returns `FALSE` when base type values are not included", {
 })
 
 test_that("isIncluded returns `FALSE` when compound type values are not included", {
-  skip_if_not(getRversion() > "4.1")
-
   expect_false(isIncluded(as.factor("a"), c("d", "b")))
   expect_false(isIncluded(c("a", "b"), as.factor(c("d", "b"))))
   expect_false(isIncluded(as.factor("a"), list("c", "b")))

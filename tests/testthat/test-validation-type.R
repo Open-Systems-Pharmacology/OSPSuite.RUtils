@@ -143,8 +143,6 @@ test_that("validateIsNumeric produces errors if not numeric", {
 })
 
 test_that("validateIsNumeric produces errors if a factor is provided", {
-  skip_if_not(getRversion() > "4.1")
-
   df <- data.frame(numCol = c(1, 2, 3))
   df$numCol <- as.factor(df$numCol)
 
