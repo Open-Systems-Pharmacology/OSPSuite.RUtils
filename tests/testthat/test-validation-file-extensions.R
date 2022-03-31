@@ -10,7 +10,6 @@ test_that("isFileExtension returns `FALSE` if extension is unexpected", {
   expect_false(isFileExtension("DESCRIPTION", "R"))
 })
 
-
 test_that("validateIsFileExtension returns NULL if extension is as expected", {
   expect_null(validateIsFileExtension("enum.R", "R"))
   expect_null(validateIsFileExtension("DESCRIPTION", ""))
@@ -31,3 +30,4 @@ test_that("validateIsFileExtension produces error if extension is unexpected", {
     fixed = TRUE
   )
 })
+
