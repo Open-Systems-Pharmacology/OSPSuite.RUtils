@@ -105,6 +105,17 @@ test_that("validateIsInteger produces expected error message when validating tha
   )
 })
 
+test_that("validateIsInteger produces errors if a factor is provided", {
+  df <- data.frame(numCol = c(1, 2, 3))
+  df$numCol <- as.factor(df$numCol)
+
+  expect_error(
+    validateIsInteger(df$numCol),
+    "argument 'df$numCol' is of type 'factor', but expected 'integer'!",
+    fixed = TRUE
+  )
+})
+
 # validateIsCharacter ------------------------------
 
 test_that("validateIsCharacter returns `NULL` for characters", {
@@ -129,6 +140,17 @@ test_that("validateIsNumeric returns `NULL` for numeric", {
 test_that("validateIsNumeric produces errors if not numeric", {
   expect_error(validateIsNumeric(c("1.2", "2.3")))
   expect_error(validateIsNumeric(list("1.2", "2.3")))
+})
+
+test_that("validateIsNumeric produces errors if a factor is provided", {
+  df <- data.frame(numCol = c(1, 2, 3))
+  df$numCol <- as.factor(df$numCol)
+
+  expect_error(
+    validateIsNumeric(df$numCol),
+    "argument 'df$numCol' is of type 'factor', but expected 'numeric, or integer'!",
+    fixed = TRUE
+  )
 })
 
 # validateIsLogical ------------------------------
