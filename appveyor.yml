@@ -13,7 +13,7 @@ install:
   - git submodule update --init --recursive
 
 environment:
-  app_version: "1.2"
+  app_version: "1.3"
   USE_RTOOLS: true
   R_VERSION: "4.1.0"
   R_ARCH: x64
@@ -46,7 +46,7 @@ before_test:
 
 before_build:
   - rake "prepare_for_build[%APPVEYOR_BUILD_VERSION%]"
-  
+
 build_script:
   - travis-tool.sh install_deps
   - travis-tool.sh r_binary_install curl
