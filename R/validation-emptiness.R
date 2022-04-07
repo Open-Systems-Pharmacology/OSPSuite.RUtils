@@ -104,6 +104,4 @@ validateHasOnlyNonEmptyStrings <- function(x) {
   if (hasEmptyStrings(x)) {
     stop(messages$errorEmptyString(argName))
   }
-
-  return()
 }
