@@ -116,6 +116,16 @@ messages <- list(
       optionalMessage
     )
   },
+  errorWrongFileExtension = function(actualExtension, expectedExtension, optionalMessage = NULL) {
+    paste0(
+      "Provided file has extension '",
+      actualExtension,
+      "', while '",
+      expectedExtension,
+      "' was expected instead. ",
+      optionalMessage
+    )
+  },
   errorEmpty = function(objectName, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
     paste0(

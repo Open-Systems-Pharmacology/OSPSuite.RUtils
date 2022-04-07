@@ -2,9 +2,12 @@
 % Please edit documentation in R/validation-file-extensions.R
 \name{isFileExtension}
 \alias{isFileExtension}
-\title{Check if the provided path has required extension}
+\alias{validateIsFileExtension}
+\title{Validate if the provided path has required extension}
 \usage{
 isFileExtension(file, extension)
+
+validateIsFileExtension(file, extension)
 }
 \arguments{
 \item{file}{A name of the file or full path.}
@@ -12,13 +15,21 @@ isFileExtension(file, extension)
 \item{extension}{A required extension of the file.}
 }
 \value{
-\code{TRUE} if the file name (or full path) includes the extension.
+\code{isFileExtension()} returns \code{TRUE} if the file name (or full path) includes the
+extension.
+
+If validations are successful, \code{validateIsFileExtension()} returns \code{NULL}.
+Otherwise, error is signaled.
 }
 \description{
-Check if the provided path has required extension
+Validate if the provided path has required extension
 }
 \examples{
+
 isFileExtension("enum.R", "R") # TRUE
 isFileExtension("enum.R", "pkml") # FALSE
+
+validateIsFileExtension("enum.R", "R") # NULL
+# validateIsFileExtension("enum.R", "pkml") # error
 
 }
