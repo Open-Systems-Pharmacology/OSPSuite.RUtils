@@ -52,7 +52,7 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/getOSPSuiteUtilsSetting.html</loc>
   </url>
   <url>
-    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/hasEmptyString.html</loc>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/hasEmptyStrings.html</loc>
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/hasOnlyDistinctValues.html</loc>
