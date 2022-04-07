@@ -47,21 +47,48 @@ test_that("validateIsNotEmpty produces error when objects are empty", {
   expect_error(validateIsNotEmpty(NULL), errorMessageIsEmpty)
 })
 
-# hasEmptyString ------------------------------
+# hasEmptyStrings ------------------------------
 
-test_that("hasEmptyString returns `TRUE` when strings are empty", {
-  expect_true(hasEmptyString(character(0)))
-  expect_true(hasEmptyString(c("", "y")))
-  expect_true(hasEmptyString(list("", "y")))
-  expect_true(hasEmptyString(c("", NA)))
-  expect_true(hasEmptyString(list("", NA)))
-  expect_true(hasEmptyString(NA))
-  expect_true(hasEmptyString(c(NA, "x", "y")))
-  expect_true(hasEmptyString(list(NA, "x", "y")))
+test_that("hasEmptyStrings returns `TRUE` when strings are empty", {
+  expect_true(hasEmptyStrings(character(0)))
+  expect_true(hasEmptyStrings(c("", "y")))
+  expect_true(hasEmptyStrings(list("", "y")))
+  expect_true(hasEmptyStrings(c("", NA)))
+  expect_true(hasEmptyStrings(list("", NA)))
+  expect_true(hasEmptyStrings(NA))
+  expect_true(hasEmptyStrings(c(NA, "x", "y")))
+  expect_true(hasEmptyStrings(list(NA, "x", "y")))
 })
 
-test_that("hasEmptyString returns `FALSE` when string are not empty", {
-  expect_false(hasEmptyString("   abc   "))
-  expect_false(hasEmptyString(c("x", "y")))
-  expect_false(hasEmptyString(list("x", "y")))
+test_that("hasEmptyStrings returns `FALSE` when string are not empty", {
+  expect_false(hasEmptyStrings("   abc   "))
+  expect_false(hasEmptyStrings(c("x", "y")))
+  expect_false(hasEmptyStrings(list("x", "y")))
+})
+
+test_that("validateHasOnlyNonEmptyStrings returns `NULL` when string are not empty", {
+  expect_null(validateHasOnlyNonEmptyStrings("   abc   "))
+  expect_null(validateHasOnlyNonEmptyStrings(c("x", "y")))
+  expect_null(validateHasOnlyNonEmptyStrings(list("x", "y")))
+})
+
+
+test_that("validateHasOnlyNonEmptyStrings produces error when strings are empty", {
+  expect_error(validateHasOnlyNonEmptyStrings(character(0)))
+  expect_error(validateHasOnlyNonEmptyStrings(c("", "y")))
+  expect_error(validateHasOnlyNonEmptyStrings(list("", "y")))
+  expect_error(validateHasOnlyNonEmptyStrings(c("", NA)))
+  expect_error(validateHasOnlyNonEmptyStrings(list("", NA)))
+  expect_error(validateHasOnlyNonEmptyStrings(NA))
+  expect_error(validateHasOnlyNonEmptyStrings(c(NA, "x", "y")))
+  expect_error(validateHasOnlyNonEmptyStrings(list(NA, "x", "y")))
+})
+
+test_that("validateHasOnlyNonEmptyStrings produces expected error message", {
+  myArgument <- list("", "y")
+  expect_error(
+    validateHasOnlyNonEmptyStrings(myArgument),
+    "argument 'myArgument' has empty strings!",
+    fixed = TRUE
+  )
 })

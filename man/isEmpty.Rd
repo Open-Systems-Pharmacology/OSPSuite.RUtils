@@ -2,7 +2,7 @@
 % Please edit documentation in R/validation-emptiness.R
 \name{isEmpty}
 \alias{isEmpty}
-\title{Check if the provided object is empty}
+\title{Validate if the provided object is empty}
 \usage{
 isEmpty(object)
 }
@@ -13,7 +13,7 @@ isEmpty(object)
 \code{TRUE} if the object is empty.
 }
 \description{
-Check if the provided object is empty
+Validate if the provided object is empty
 }
 \examples{
 # empty list or data.frame

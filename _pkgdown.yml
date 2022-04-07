@@ -10,9 +10,8 @@ authors:
 template:
   bootstrap: 5
 
-# TODO: uncomment after the next release
-# development:
-#   mode: auto
+development:
+  mode: auto
 
 reference:
 

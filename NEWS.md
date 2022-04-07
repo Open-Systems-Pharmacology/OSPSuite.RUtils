@@ -2,7 +2,7 @@
 
 NEW FUNCTIONS
 
-* `hasEmptyString()` to check for empty strings.
+* `hasEmptyStrings()` and `validateHasOnlyNonEmptyStrings()` to check for empty strings.
 
 * `objectCount` to count number of objects.
 
