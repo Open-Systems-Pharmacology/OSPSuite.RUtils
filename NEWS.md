@@ -1,4 +1,4 @@
-# ospsuite.utils 1.2.0.9000
+# ospsuite.utils 1.3.0
 
 NEW FUNCTIONS
 
@@ -7,6 +7,8 @@ NEW FUNCTIONS
 * `objectCount` to count number of objects.
 
 * `validateHasOnlyDistinctValues()` to validate only unique values are present.
+
+* `validateIsFileExtension()` to validate file extensions.
 
 MAJOR CHANGES
 

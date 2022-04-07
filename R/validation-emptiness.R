@@ -29,6 +29,7 @@ isEmpty <- function(object) {
 #' @inheritParams isEmpty
 #'
 #' @return
+#'
 #' If validations are successful, `NULL` is returned. Otherwise, error is
 #' signaled.
 #'

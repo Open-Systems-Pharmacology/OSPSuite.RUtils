@@ -31,11 +31,11 @@ test_that("isIncluded returns `TRUE` when base type values are included", {
 })
 
 test_that("isIncluded returns `TRUE` when compound type values are included", {
-  skip_if_not(getRversion() > "4.1")
+  skip_if_not(getRversion() > "4.1") # for factors
 
   expect_true(isIncluded(as.factor("a"), c("a", "b")))
-  expect_true(isIncluded(c("a", "b"), as.factor(c("a", "b"))))
   expect_true(isIncluded(as.factor("a"), list("a", "b")))
+  expect_true(isIncluded(c("a", "b"), as.factor(c("a", "b"))))
   expect_true(isIncluded(list("a", "b"), as.factor(c("a", "b"))))
   expect_true(isIncluded(as.Date("1970-02-01"), c(as.Date("1970-02-01"), as.Date("1980-12-21"))))
   expect_true(isIncluded(as.Date("1970-02-01"), list(as.Date("1970-02-01"), as.Date("1980-12-21"))))
@@ -54,11 +54,11 @@ test_that("isIncluded returns `FALSE` when base type values are not included", {
 })
 
 test_that("isIncluded returns `FALSE` when compound type values are not included", {
-  skip_if_not(getRversion() > "4.1")
+  skip_if_not(getRversion() > "4.1") # for factors
 
   expect_false(isIncluded(as.factor("a"), c("d", "b")))
-  expect_false(isIncluded(c("a", "b"), as.factor(c("d", "b"))))
   expect_false(isIncluded(as.factor("a"), list("c", "b")))
+  expect_false(isIncluded(c("a", "b"), as.factor(c("d", "b"))))
   expect_false(isIncluded(list("a", "b"), as.factor(c("c", "b"))))
   expect_false(isIncluded(as.Date("1970-02-01"), c(as.Date("1972-02-01"), as.Date("1980-12-21"))))
   expect_false(isIncluded(as.Date("1970-02-01"), list(as.Date("1980-02-01"), as.Date("1980-12-21"))))
