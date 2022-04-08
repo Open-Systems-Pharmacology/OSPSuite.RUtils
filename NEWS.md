@@ -17,6 +17,12 @@ MAJOR CHANGES
   Previously, this was not the case; the cloning method was available **even
   if** the subclass had explicitly set `cloneable = FALSE`.
 
+MINOR CHANGES
+
+* Michael Sevestre is the new maintainer.
+
+* The package has been archived on CRAN.
+
 # ospsuite.utils 1.2.0
 
 MAJOR CHANGES

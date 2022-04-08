@@ -11,17 +11,20 @@ status](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/R
 status](https://ci.appveyor.com/api/projects/status/github/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=develop&svg=true)](https://ci.appveyor.com/project/open-systems-pharmacology-ci/ospsuite-rutils)
 [![pkgdown](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/pkgdown/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/actions)
 [![codecov](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=main)
-[![Total downloads
-badge](https://cranlogs.r-pkg.org/badges/grand-total/ospsuite.utils?color=blue)](https://CRAN.R-project.org/package=ospsuite.utils)
 
 <!-- badges: end -->
 
 ## Installation
 
-| Type        | Source                                                                                                                   | Command                                                                |
-|-------------|--------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| Release     | [![CRAN Status](https://www.r-pkg.org/badges/version/ospsuite.utils)](https://cran.r-project.org/package=ospsuite.utils) | `install.packages("ospsuite.utils")`                                   |
-| Development | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active)            | `remotes::install_github("Open-Systems-Pharmacology/OSPSuite.RUtils")` |
+You can install the latest version of the package from GitHub:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("Open-Systems-Pharmacology/OSPSuite.RUtils")
+```
+
+Alternatively, you can download built binaries from
+[here](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/releases).
 
 ## Introduction
 
