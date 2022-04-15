@@ -3,7 +3,7 @@
 #' @param values A vector of values.
 #' @param parentValues A vector of values where `values` are checked for
 #'   inclusion.
-#' @inheritParams isIncluded
+#' @inheritParams isOfType
 #'
 #' @return
 #'

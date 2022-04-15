@@ -14,6 +14,10 @@ validateIsIncluded(values, parentValues, nullAllowed = FALSE)
 
 \item{parentValues}{A vector of values where \code{values} are checked for
 inclusion.}
+
+\item{nullAllowed}{Boolean flag if \code{NULL} is accepted for the \code{object}. If
+\code{TRUE}, \code{NULL} always returns \code{TRUE}, otherwise \code{NULL} returns \code{FALSE}.
+Default is \code{FALSE}.}
 }
 \value{
 \itemize{
