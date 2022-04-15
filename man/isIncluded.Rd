@@ -2,9 +2,12 @@
 % Please edit documentation in R/validation-inclusion.R
 \name{isIncluded}
 \alias{isIncluded}
+\alias{validateIsIncluded}
 \title{Check if a vector of values is included in another vector of values}
 \usage{
 isIncluded(values, parentValues)
+
+validateIsIncluded(values, parentValues, nullAllowed = FALSE)
 }
 \arguments{
 \item{values}{A vector of values.}
@@ -13,8 +16,12 @@ isIncluded(values, parentValues)
 inclusion.}
 }
 \value{
-Returns \code{TRUE} if the value or \strong{all} \code{values} (if it's a vector) are
-present in the \code{parentValues}; \code{FALSE} otherwise.
+\itemize{
+\item \code{isIncluded()} returns \code{TRUE} if the value or \strong{all} \code{values} (if it's a
+vector) are present in the \code{parentValues}; \code{FALSE} otherwise.
+\item \code{validateIsIncluded()} returns \code{NULL} if child value is included in parent
+value set, otherwise error is signaled.
+}
 }
 \description{
 Check if a vector of values is included in another vector of values
@@ -37,4 +44,8 @@ isIncluded(c("x", "y"), c("a", "y", "b", "x")) # TRUE
 isIncluded(list("x", 1), list("a", "b", "x", 1)) # TRUE
 isIncluded(c("x", "y"), c("a", "b", "x")) # FALSE
 isIncluded(list("x", 1), list("a", "b", "x")) # FALSE
+
+# corresponding validation
+validateIsIncluded("col3", names(A)) # NULL
+# validateIsIncluded("col6", names(A)) # error
 }

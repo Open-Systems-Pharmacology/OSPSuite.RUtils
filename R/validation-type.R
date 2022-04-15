@@ -8,8 +8,7 @@
 #'   Default is `FALSE`.
 #'
 #' @return
-#' `TRUE` if the object or all objects inside the list are of the given
-#'   type.
+#' `TRUE` if the object or all objects inside the list are of the given type.
 #'
 #' @note
 #' Only the first level of the given list is considered.
@@ -90,7 +89,6 @@ validateIsOfType <- function(object, type, nullAllowed = FALSE) {
 }
 
 #' @rdname validateIsOfType
-#' @inheritParams isOfType
 #' @export
 validateIsCharacter <- function(object, nullAllowed = FALSE) {
   validateIsOfType(object, "character", nullAllowed)
@@ -101,7 +99,6 @@ validateIsCharacter <- function(object, nullAllowed = FALSE) {
 validateIsString <- validateIsCharacter
 
 #' @rdname validateIsOfType
-#' @inheritParams isOfType
 #' @export
 validateIsNumeric <- function(object, nullAllowed = FALSE) {
   # Only NA values. It is numeric
@@ -113,8 +110,6 @@ validateIsNumeric <- function(object, nullAllowed = FALSE) {
 }
 
 #' @rdname validateIsOfType
-#' @inheritParams isOfType
-#'
 #' @export
 validateIsInteger <- function(object, nullAllowed = FALSE) {
   if (nullAllowed && is.null(object)) {
@@ -144,7 +139,6 @@ validateIsInteger <- function(object, nullAllowed = FALSE) {
 }
 
 #' @rdname validateIsOfType
-#' @inheritParams isOfType
 #' @export
 validateIsLogical <- function(object, nullAllowed = FALSE) {
   validateIsOfType(object, "logical", nullAllowed)

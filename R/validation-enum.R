@@ -14,6 +14,7 @@ validateEnumValue <- function(value, enum, nullAllowed = FALSE) {
     if (nullAllowed) {
       return()
     }
+
     stop(messages$errorEnumValueUndefined(value))
   }
 

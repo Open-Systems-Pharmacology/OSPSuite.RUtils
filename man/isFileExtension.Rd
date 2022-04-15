@@ -15,8 +15,8 @@ validateIsFileExtension(file, extension)
 \item{extension}{A required extension of the file.}
 }
 \value{
-\code{isFileExtension()} returns \code{TRUE} if the file name (or full path) includes the
-extension.
+\code{isFileExtension()} returns \code{TRUE} if the file name (or full path) includes
+the extension.
 
 If validations are successful, \code{validateIsFileExtension()} returns \code{NULL}.
 Otherwise, error is signaled.

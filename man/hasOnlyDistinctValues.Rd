@@ -2,9 +2,12 @@
 % Please edit documentation in R/validation-uniqueness.R
 \name{hasOnlyDistinctValues}
 \alias{hasOnlyDistinctValues}
-\title{Check that a vector has only unique values}
+\alias{validateHasOnlyDistinctValues}
+\title{Validate that a vector has only unique values}
 \usage{
 hasOnlyDistinctValues(values, na.rm = TRUE)
+
+validateHasOnlyDistinctValues(values, na.rm = TRUE)
 }
 \arguments{
 \item{values}{An array of values}
@@ -14,10 +17,14 @@ duplicate checking. Note that duplicate \code{NA} values are flagged if
 \code{na.rm=FALSE}.}
 }
 \value{
-Logical assessing if all values are unique.
+\itemize{
+\item \code{hasOnlyDistinctValues} returns \code{TRUE} if all values are unique.
+\item \code{validateHasOnlyDistinctValues()} returns \code{NULL} if only unique values
+present, otherwise produces error.
+}
 }
 \description{
-Check that a vector has only unique values
+Validate that a vector has only unique values
 }
 \examples{
 
@@ -25,5 +32,8 @@ hasOnlyDistinctValues(c("x", "y"))
 hasOnlyDistinctValues(c("x", "y", "x"))
 hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = FALSE)
 hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = TRUE)
+
+validateHasOnlyDistinctValues(c("x", "y")) # NULL
+# validateHasOnlyDistinctValues(c("x", "y", "x")) # error
 
 }

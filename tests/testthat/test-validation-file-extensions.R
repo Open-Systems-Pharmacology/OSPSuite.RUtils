@@ -30,4 +30,3 @@ test_that("validateIsFileExtension produces error if extension is unexpected", {
     fixed = TRUE
   )
 })
-
