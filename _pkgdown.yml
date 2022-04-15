@@ -23,7 +23,8 @@ reference:
   - title: Validation helpers
     desc: Check or validate a given assertion
     contents:
-      - matches("^validate")
+      - matches("^is")
+      - matches("^has")
 
   - title: Formatting helpers
     desc: ~
