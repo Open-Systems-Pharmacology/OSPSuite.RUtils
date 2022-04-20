@@ -2,7 +2,12 @@
 #'
 #' @param object An object or an atomic vector or a list of objects.
 #'
-#' @return `TRUE` if the object is empty.
+#' @return
+#'
+#' - `isEmpty()` returns `TRUE` if the object is empty; `FALSE` otherwise.
+#'
+#' - `validateIsNotEmpty()` returns `NULL` if validation is successful.
+#' Otherwise, error is signaled.
 #'
 #' @examples
 #' # empty list or data.frame
@@ -16,29 +21,21 @@
 #' isEmpty(df)
 #' isEmpty(df$x[FALSE])
 #' isEmpty(df[FALSE, ])
+#'
+#' # validation helper
+#' validateIsNotEmpty(list(1, 2)) # NULL
+#' # validateIsNotEmpty(NULL) # error
 #' @export
 isEmpty <- function(object) {
   if (is.data.frame(object)) {
     return(nrow(object) == 0)
   }
+
   return(isOfLength(object, 0))
 }
 
-#' Check that the object is not empty
-#'
-#' @inheritParams isEmpty
-#'
-#' @return
-#'
-#' If validations are successful, `NULL` is returned. Otherwise, error is
-#' signaled.
-#'
-#' @examples
-#' # returns `NULL` if of objects are of specified length
-#' validateIsNotEmpty(list(1, 2))
-#'
-#' # error otherwise
-#' # validateIsNotEmpty(NULL)
+
+#' @rdname isEmpty
 #' @export
 validateIsNotEmpty <- function(object) {
   if (!isEmpty(object)) {

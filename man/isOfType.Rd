@@ -17,8 +17,7 @@ the type that should be checked for.}
 Default is \code{FALSE}.}
 }
 \value{
-\code{TRUE} if the object or all objects inside the list are of the given
-type.
+\code{TRUE} if the object or all objects inside the list are of the given type.
 }
 \description{
 Check if the provided object is of certain type

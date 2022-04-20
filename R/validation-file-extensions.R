@@ -5,8 +5,8 @@
 #'
 #' @return
 #'
-#' `isFileExtension()` returns `TRUE` if the file name (or full path) includes the
-#' extension.
+#' `isFileExtension()` returns `TRUE` if the file name (or full path) includes
+#' the extension.
 #'
 #' If validations are successful, `validateIsFileExtension()` returns `NULL`.
 #' Otherwise, error is signaled.

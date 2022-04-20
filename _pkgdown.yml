@@ -21,11 +21,9 @@ reference:
       - contains("enum")
 
   - title: Validation helpers
-    desc: Check if the provided object is of certain type
+    desc: Check or validate a given assertion
     contents:
-      - matches("^validate")
-      - matches("^is")
-      - matches("^has")
+      - matches("^is|^has|^validate")
 
   - title: Formatting helpers
     desc: ~

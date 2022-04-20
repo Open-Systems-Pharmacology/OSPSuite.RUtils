@@ -2,15 +2,22 @@
 % Please edit documentation in R/validation-emptiness.R
 \name{isEmpty}
 \alias{isEmpty}
+\alias{validateIsNotEmpty}
 \title{Validate if the provided object is empty}
 \usage{
 isEmpty(object)
+
+validateIsNotEmpty(object)
 }
 \arguments{
 \item{object}{An object or an atomic vector or a list of objects.}
 }
 \value{
-\code{TRUE} if the object is empty.
+\itemize{
+\item \code{isEmpty()} returns \code{TRUE} if the object is empty; \code{FALSE} otherwise.
+\item \code{validateIsNotEmpty()} returns \code{NULL} if validation is successful.
+Otherwise, error is signaled.
+}
 }
 \description{
 Validate if the provided object is empty
@@ -27,4 +34,8 @@ df <- data.frame(x = c(1, 2, 3), y = c(4, 5, 6))
 isEmpty(df)
 isEmpty(df$x[FALSE])
 isEmpty(df[FALSE, ])
+
+# validation helper
+validateIsNotEmpty(list(1, 2)) # NULL
+# validateIsNotEmpty(NULL) # error
 }

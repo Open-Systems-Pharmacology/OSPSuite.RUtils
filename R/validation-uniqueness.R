@@ -1,11 +1,16 @@
-#' Check that a vector has only unique values
+#' Validate that a vector has only unique values
 #'
 #' @param values An array of values
 #' @param na.rm Logical to decide if missing values should be removed from the
 #'   duplicate checking. Note that duplicate `NA` values are flagged if
 #'   `na.rm=FALSE`.
 #'
-#' @return Logical assessing if all values are unique.
+#' @return
+#'
+#' - `hasOnlyDistinctValues` returns `TRUE` if all values are unique.
+#'
+#' - `validateHasOnlyDistinctValues()` returns `NULL` if only unique values
+#' present, otherwise produces error.
 #'
 #' @examples
 #'
@@ -13,6 +18,9 @@
 #' hasOnlyDistinctValues(c("x", "y", "x"))
 #' hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = FALSE)
 #' hasOnlyDistinctValues(c("x", NA, "y", NA), na.rm = TRUE)
+#'
+#' validateHasOnlyDistinctValues(c("x", "y")) # NULL
+#' # validateHasOnlyDistinctValues(c("x", "y", "x")) # error
 #'
 #' @export
 hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
@@ -23,16 +31,8 @@ hasOnlyDistinctValues <- function(values, na.rm = TRUE) {
   return(!any(duplicated(values)))
 }
 
-#' Validate that vector has unique values
-#'
-#' @inheritParams hasOnlyDistinctValues
-#'
-#' @examples
-#' validateHasOnlyDistinctValues(c("x", "y")) # NULL
-#' # validateHasOnlyDistinctValues(c("x", "y", "x")) # error
-#'
-#' @return `NULL` if only unique values present, otherwise produces error.
-#'
+
+#' @rdname hasOnlyDistinctValues
 #' @export
 validateHasOnlyDistinctValues <- function(values, na.rm = TRUE) {
   if (hasOnlyDistinctValues(values)) {
