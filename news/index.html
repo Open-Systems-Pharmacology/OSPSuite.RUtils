@@ -49,7 +49,7 @@
 <p>NEW FUNCTIONS</p>
 <ul><li><p><code><a href="../reference/hasEmptyStrings.html">hasEmptyStrings()</a></code> and <code><a href="../reference/hasEmptyStrings.html">validateHasOnlyNonEmptyStrings()</a></code> to check for empty strings.</p></li>
 <li><p><code>objectCount</code> to count number of objects.</p></li>
-<li><p><code><a href="../reference/validateHasOnlyDistinctValues.html">validateHasOnlyDistinctValues()</a></code> to validate only unique values are present.</p></li>
+<li><p><code><a href="../reference/hasOnlyDistinctValues.html">validateHasOnlyDistinctValues()</a></code> to validate only unique values are present.</p></li>
 <li><p><code><a href="../reference/isFileExtension.html">validateIsFileExtension()</a></code> to validate file extensions.</p></li>
 </ul><p>MAJOR CHANGES</p>
 <ul><li>Cloning method is now disabled for <code>Printable</code> R6 class. This entails that <code>cloneable</code> property set by <code>Printable</code>’s subclasses will be respected. Previously, this was not the case; the cloning method was available <strong>even if</strong> the subclass had explicitly set <code>cloneable = FALSE</code>.</li>
@@ -65,7 +65,7 @@
 </ul><p>BUG FIXES</p>
 <ul><li>Fixes a regression in <code><a href="../reference/isIncluded.html">isIncluded()</a></code> in previous release that inadvertently removed support for compound types (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/63" class="external-link">#63</a>).</li>
 </ul><p>NEW FUNCTIONS</p>
-<ul><li><p>Adds <code><a href="../reference/isEmpty.html">isEmpty()</a></code> and <code><a href="../reference/validateIsNotEmpty.html">validateIsNotEmpty()</a></code> functions to validate that objects aren’t empty (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/58" class="external-link">#58</a>; thanks to <a href="https://github.com/pchelle" class="external-link">@pchelle</a>).</p></li>
+<ul><li><p>Adds <code><a href="../reference/isEmpty.html">isEmpty()</a></code> and <code><a href="../reference/isEmpty.html">validateIsNotEmpty()</a></code> functions to validate that objects aren’t empty (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/58" class="external-link">#58</a>; thanks to <a href="https://github.com/pchelle" class="external-link">@pchelle</a>).</p></li>
 <li><p>Adds <code><a href="../reference/getOSPSuiteUtilsSetting.html">getOSPSuiteUtilsSetting()</a></code> function to get global settings (see enum <code>ospsuiteUtilsSettingNames</code> for supported settings).</p></li>
 </ul></div>
     <div class="section level2">
