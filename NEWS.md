@@ -1,3 +1,28 @@
+# ospsuite.utils 1.3.0
+
+NEW FUNCTIONS
+
+* `hasEmptyStrings()` and `validateHasOnlyNonEmptyStrings()` to check for empty strings.
+
+* `objectCount` to count number of objects.
+
+* `validateHasOnlyDistinctValues()` to validate only unique values are present.
+
+* `validateIsFileExtension()` to validate file extensions.
+
+MAJOR CHANGES
+
+* Cloning method is now disabled for `Printable` R6 class. This entails that
+  `cloneable` property set by `Printable`'s subclasses will be respected.
+  Previously, this was not the case; the cloning method was available **even
+  if** the subclass had explicitly set `cloneable = FALSE`.
+
+MINOR CHANGES
+
+* Michael Sevestre is the new maintainer.
+
+* The package has been archived on CRAN.
+
 # ospsuite.utils 1.2.0
 
 MAJOR CHANGES

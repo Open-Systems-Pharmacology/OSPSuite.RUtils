@@ -7,12 +7,24 @@
 
 [![R build
 status](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/R-CMD-check/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=develop&svg=true)](https://ci.appveyor.com/project/open-systems-pharmacology-ci/ospsuite-rutils)
 [![pkgdown](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/pkgdown/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/actions)
 [![codecov](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=main)
-[![Total downloads
-badge](https://cranlogs.r-pkg.org/badges/grand-total/ospsuite.utils?color=blue)](https://CRAN.R-project.org/package=ospsuite.utils)
 
 <!-- badges: end -->
+
+## Installation
+
+You can install the latest version of the package from GitHub:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("Open-Systems-Pharmacology/OSPSuite.RUtils")
+```
+
+Alternatively, you can download built binaries from
+[here](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/releases).
 
 ## Introduction
 
@@ -27,5 +39,5 @@ Systems Pharmacology ecosystem:
 
 Please note that the ospsuite.utils project is released with a
 [Contributor Code of
-Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+Conduct](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.

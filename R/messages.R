@@ -116,6 +116,16 @@ messages <- list(
       optionalMessage
     )
   },
+  errorWrongFileExtension = function(actualExtension, expectedExtension, optionalMessage = NULL) {
+    paste0(
+      "Provided file has extension '",
+      actualExtension,
+      "', while '",
+      expectedExtension,
+      "' was expected instead. ",
+      optionalMessage
+    )
+  },
   errorEmpty = function(objectName, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
     paste0(
@@ -123,6 +133,16 @@ messages <- list(
       ": argument '",
       objectName,
       "' is empty!",
+      optionalMessage
+    )
+  },
+  errorEmptyString = function(objectName, optionalMessage = NULL) {
+    callingFunction <- .getCallingFunctionName()
+    paste0(
+      callingFunction,
+      ": argument '",
+      objectName,
+      "' has empty strings!",
       optionalMessage
     )
   },
@@ -213,6 +233,9 @@ messages <- list(
   },
   errorOnlyOneSupported = function(optionalMessage = NULL) {
     paste("Can only add a single instance of this object", optionalMessage)
+  },
+  errorDuplicatedValues = function(optionalMessage = NULL) {
+    paste("Object has duplicated values; only unique values are allowed.", optionalMessage)
   },
   errorPackageSettingNotFound = function(settingName, globalEnv) {
     paste0(

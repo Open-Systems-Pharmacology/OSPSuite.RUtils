@@ -5,7 +5,7 @@
 \alias{messages}
 \title{List of functions and strings used to signal error messages}
 \format{
-An object of class \code{list} of length 30.
+An object of class \code{list} of length 33.
 }
 \usage{
 messages

@@ -5,8 +5,7 @@
 \alias{Printable}
 \title{Printable}
 \description{
-Base class that implements some basic properties for printing to
-console.
+Base class that implements some basic properties for printing to console.
 }
 \examples{
 myPrintable <- R6::R6Class(
@@ -27,27 +26,4 @@ myPrintable <- R6::R6Class(
 x <- myPrintable$new()
 x
 }
-\section{Methods}{
-\subsection{Public methods}{
-\itemize{
-\item \href{#method-clone}{\code{Printable$clone()}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Printable$clone(deep = FALSE)}\if{html}{\out{</div>}}
-}
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
-}
