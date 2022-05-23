@@ -1,4 +1,4 @@
-# ospsuite.utils 1.3.0
+# ospsuite.utils 1.3.17
 
 NEW FUNCTIONS
 
