@@ -25,6 +25,11 @@ reference:
     contents:
       - matches("^is|^has|^validate")
 
+  - title: Conditional value assignment helpers
+    desc: Compute and assign value conditionally
+    contents:
+      - starts_with("^if")
+
   - title: Formatting helpers
     desc: ~
     contents:
@@ -38,7 +43,6 @@ reference:
   - title: Miscellaneous
     contents:
       - "`%||%`"
-      - ifNotNull
       - matches("^to")
       - messages
       - objectCount
