@@ -18,34 +18,6 @@
   if (is.null(x)) y else x
 }
 
-#' Shortkey checking if argument 1 is not `NULL`, output the argument 2 if not
-#' null, or output argument 3 otherwise
-#'
-#' @param condition argument 1
-#' @param outputIfNotNull argument 2
-#' @param outputIfNull argument 3
-#'
-#' @return
-#' `outputIfNotNull` if condition is not `NULL`, `outputIfNull` otherwise.
-#'
-#' @description
-#' Check if condition is not `NULL`, if so output `outputIfNotNull`,
-#' otherwise, output `outputIfNull`.
-#'
-#' @examples
-#' ifNotNull(NULL, "x")
-#' ifNotNull(NULL, "x", "y")
-#' ifNotNull(1 < 2, "x", "y")
-#'
-#' @export
-ifNotNull <- function(condition, outputIfNotNull, outputIfNull = NULL) {
-  if (!is.null(condition)) {
-    return(outputIfNotNull)
-  }
-
-  return(outputIfNull)
-}
-
 #' Make sure the object is a list
 #'
 #' @param object Object to be converted to a list.
