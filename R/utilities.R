@@ -36,40 +36,6 @@ toList <- function(object) {
   return(list(object))
 }
 
-#' Convert special constants to `NA` of desired type
-#'
-#' @details
-#'
-#' Special constants (`NULL`, `Inf`, `-Inf`, `NaN`,  `NA`) will be converted to
-#' `NA` of desired type.
-#'
-#' @param x A single element.
-#' @inheritParams flattenList
-#'
-#' @examples
-#'
-#' toMissingOfType(NA, type = "real")
-#' toMissingOfType(NULL, type = "integer")
-#'
-#' @export
-toMissingOfType <- function(x, type) {
-  # all unexpected values will be converted to `NA` of a desired type
-  if (is.null(x) || is.na(x) || is.nan(x) || is.infinite(x)) {
-    x <- switch(type,
-      "character" = NA_character_,
-      "numeric" = ,
-      "real" = ,
-      "double" = NA_real_,
-      "integer" = NA_integer_,
-      "complex" = NA_complex_,
-      "logical" = NA,
-      stop("Incorrect type entered.")
-    )
-  }
-
-  return(x)
-}
-
 #' Flatten a list to an atomic vector of desired type
 #'
 #' @param x A list or an atomic vector. If the latter, no change will be made.
@@ -102,6 +68,44 @@ flattenList <- function(x, type) {
       "integer" = purrr::flatten_int(x),
       "logical" = purrr::flatten_lgl(x),
       purrr::flatten(x)
+    )
+  }
+
+  return(x)
+}
+
+
+#' Convert special constants to `NA` of desired type
+#'
+#' @details
+#'
+#' Special constants (`NULL`, `Inf`, `-Inf`, `NaN`,  `NA`) will be converted to
+#' `NA` of desired type.
+#'
+#' This function is **not** vectorized, and therefore only scalar values should
+#' be entered.
+#'
+#' @param x A single element.
+#' @inheritParams flattenList
+#'
+#' @examples
+#'
+#' toMissingOfType(NA, type = "real")
+#' toMissingOfType(NULL, type = "integer")
+#'
+#' @export
+toMissingOfType <- function(x, type) {
+  # all unexpected values will be converted to `NA` of a desired type
+  if (is.null(x) || is.na(x) || is.nan(x) || is.infinite(x)) {
+    x <- switch(type,
+      "character" = NA_character_,
+      "numeric" = ,
+      "real" = ,
+      "double" = NA_real_,
+      "integer" = NA_integer_,
+      "complex" = NA_complex_,
+      "logical" = NA,
+      stop("Incorrect type entered.")
     )
   }
 

@@ -17,6 +17,9 @@ Convert special constants to \code{NA} of desired type
 \details{
 Special constants (\code{NULL}, \code{Inf}, \code{-Inf}, \code{NaN},  \code{NA}) will be converted to
 \code{NA} of desired type.
+
+This function is \strong{not} vectorized, and therefore only scalar values should
+be entered.
 }
 \examples{
 
