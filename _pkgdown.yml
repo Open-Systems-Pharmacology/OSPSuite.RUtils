@@ -46,6 +46,7 @@ reference:
       - matches("^to")
       - messages
       - objectCount
+      - flattenList
 
   - title: Package settings
     contents:
