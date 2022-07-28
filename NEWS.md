@@ -6,7 +6,7 @@ NEW FUNCTIONS
 
 * `flattenList()` to flatten a list to an atomic vector of desired type.
 
-* `toMissingOfType()` to convert special constants (`NULL`, `Inf`, `NA`s, etc.)
+* `toMissingOfType()` to convert special constants (`NULL`, `Inf`, `NA`, etc.)
   to `NA` of desired type.
 
 # ospsuite.utils 1.3.0
