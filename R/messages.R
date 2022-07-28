@@ -237,6 +237,9 @@ messages <- list(
   errorDuplicatedValues = function(optionalMessage = NULL) {
     paste("Object has duplicated values; only unique values are allowed.", optionalMessage)
   },
+  errorOnlyVectorAllowed = function() {
+    paste("Argument to parameter `x` can only be a vector.")
+  },
   errorPackageSettingNotFound = function(settingName, globalEnv) {
     paste0(
       "No global setting with the name '",

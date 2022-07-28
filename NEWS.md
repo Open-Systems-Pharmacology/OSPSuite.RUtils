@@ -4,11 +4,17 @@ NEW FUNCTIONS
 
 * `ifEqual()` and `ifIncluded()` for conditional values.
 
+* `flattenList()` to flatten a list to an atomic vector of desired type.
+
+* `toMissingOfType()` to convert special constants (`NULL`, `Inf`, `NA`s, etc.)
+  to `NA` of desired type.
+
 # ospsuite.utils 1.3.0
 
 NEW FUNCTIONS
 
-* `hasEmptyStrings()` and `validateHasOnlyNonEmptyStrings()` to check for empty strings.
+* `hasEmptyStrings()` and `validateHasOnlyNonEmptyStrings()` to check for empty
+  strings.
 
 * `objectCount` to count number of objects.
 
@@ -48,8 +54,8 @@ NEW FUNCTIONS
 * Adds `isEmpty()` and `validateIsNotEmpty()` functions to validate that objects
   aren't empty (#58; thanks to @pchelle).
 
-* Adds `getOSPSuiteUtilsSetting()` function to get global settings
-  (see enum `ospsuiteUtilsSettingNames` for supported settings).
+* Adds `getOSPSuiteUtilsSetting()` function to get global settings (see enum
+  `ospsuiteUtilsSettingNames` for supported settings).
 
 # ospsuite.utils 1.1.0
 
@@ -78,3 +84,4 @@ BUG FIXES
 # ospsuite.utils 1.0.0
 
 * Initial release.
+
