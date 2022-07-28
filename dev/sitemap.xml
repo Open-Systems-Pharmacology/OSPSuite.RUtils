@@ -43,6 +43,9 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enumValues.html</loc>
   </url>
   <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/flattenList.html</loc>
+  </url>
+  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/formatNumerics.html</loc>
   </url>
   <url>
@@ -98,6 +101,9 @@
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/toList.html</loc>
+  </url>
+  <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/toMissingOfType.html</loc>
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/validateEnumValue.html</loc>
