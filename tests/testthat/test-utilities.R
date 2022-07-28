@@ -1,4 +1,4 @@
-test_that("Checks if `toList()` work properly", {
+test_that("Checks if `toList()` works properly", {
   expect_type(toList(list("a" = 1, "b" = 2)), "list")
   expect_type(toList(c("a" = 1, "b" = 2)), "list")
   expect_type(toList(c("a" = 1, "b" = 2, c("c" = 3))), "list")
@@ -9,7 +9,7 @@ test_that("Checks if `%||%` works properly", {
   expect_equal(3 %||% 2, 3)
 })
 
-test_that("Checks if `flattenList()` work properly", {
+test_that("Checks if `flattenList()` works properly", {
   expect_error(
     flattenList(array(1:3, c(2, 4)), type = "character"),
     messages$errorOnlyVectorAllowed()
