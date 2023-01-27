@@ -81,7 +81,7 @@ validateIsOfType <- function(object, type, nullAllowed = FALSE) {
   callStack <- as.character(sys.call(-1)[[1]])
 
   # Object name is one frame further for functions such as ValidateIsNumeric
-  if ((length(callStack) > 0) && grepl(pattern = "validateIs", x = callStack)) {
+  if ((length(callStack) > 0) && any(grepl(pattern = "validateIs", x = callStack))) {
     objectName <- deparse(substitute(object, sys.frame(-1)))
   }
 

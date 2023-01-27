@@ -14,37 +14,7 @@
 #' NULL %||% 2
 #'
 #' @export
-`%||%` <- function(x, y) {
-  if (is.null(x)) y else x
-}
-
-#' Shortkey checking if argument 1 is not `NULL`, output the argument 2 if not
-#' null, or output argument 3 otherwise
-#'
-#' @param condition argument 1
-#' @param outputIfNotNull argument 2
-#' @param outputIfNull argument 3
-#'
-#' @return
-#' `outputIfNotNull` if condition is not `NULL`, `outputIfNull` otherwise.
-#'
-#' @description
-#' Check if condition is not `NULL`, if so output `outputIfNotNull`,
-#' otherwise, output `outputIfNull`.
-#'
-#' @examples
-#' ifNotNull(NULL, "x")
-#' ifNotNull(NULL, "x", "y")
-#' ifNotNull(1 < 2, "x", "y")
-#'
-#' @export
-ifNotNull <- function(condition, outputIfNotNull, outputIfNull = NULL) {
-  if (!is.null(condition)) {
-    return(outputIfNotNull)
-  }
-
-  return(outputIfNull)
-}
+`%||%` <- purrr::`%||%`
 
 #' Make sure the object is a list
 #'
@@ -64,4 +34,80 @@ toList <- function(object) {
   }
 
   return(list(object))
+}
+
+#' Flatten a list to an atomic vector of desired type
+#'
+#' @param x A list or an atomic vector. If the latter, no change will be made.
+#' @param type Type of atomic vector to be returned.
+#'
+#' @details
+#'
+#' The `type` argument will decide which variant from `purrr::flatten()` family
+#' is used to flatten the list.
+#'
+#' @examples
+#'
+#' flattenList(list(1, 2, 3, NA), type = "numeric")
+#' flattenList(list(TRUE, FALSE, NA), type = "integer")
+#'
+#' @return An atomic vector of desired type.
+#'
+#' @export
+flattenList <- function(x, type) {
+  if (!is.null(dim(x))) {
+    stop(messages$errorOnlyVectorAllowed())
+  }
+
+  if (is.list(x)) {
+    x <- switch(type,
+      "character" = purrr::flatten_chr(x),
+      "numeric" = ,
+      "real" = ,
+      "double" = purrr::flatten_dbl(x),
+      "integer" = purrr::flatten_int(x),
+      "logical" = purrr::flatten_lgl(x),
+      purrr::flatten(x)
+    )
+  }
+
+  return(x)
+}
+
+
+#' Convert special constants to `NA` of desired type
+#'
+#' @details
+#'
+#' Special constants (`NULL`, `Inf`, `-Inf`, `NaN`,  `NA`) will be converted to
+#' `NA` of desired type.
+#'
+#' This function is **not** vectorized, and therefore only scalar values should
+#' be entered.
+#'
+#' @param x A single element.
+#' @inheritParams flattenList
+#'
+#' @examples
+#'
+#' toMissingOfType(NA, type = "real")
+#' toMissingOfType(NULL, type = "integer")
+#'
+#' @export
+toMissingOfType <- function(x, type) {
+  # all unexpected values will be converted to `NA` of a desired type
+  if (is.null(x) || is.na(x) || is.nan(x) || is.infinite(x)) {
+    x <- switch(type,
+      "character" = NA_character_,
+      "numeric" = ,
+      "real" = ,
+      "double" = NA_real_,
+      "integer" = NA_integer_,
+      "complex" = NA_complex_,
+      "logical" = NA,
+      stop("Incorrect type entered.")
+    )
+  }
+
+  return(x)
 }

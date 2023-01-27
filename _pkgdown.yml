@@ -11,7 +11,7 @@ template:
   bootstrap: 5
 
 development:
-  mode: auto
+  mode: devel
 
 reference:
 
@@ -24,6 +24,11 @@ reference:
     desc: Check or validate a given assertion
     contents:
       - matches("^is|^has|^validate")
+
+  - title: Conditional value assignment helpers
+    desc: Compute and assign value conditionally
+    contents:
+      - starts_with("^if")
 
   - title: Formatting helpers
     desc: ~
@@ -38,10 +43,10 @@ reference:
   - title: Miscellaneous
     contents:
       - "`%||%`"
-      - ifNotNull
       - matches("^to")
       - messages
       - objectCount
+      - flattenList
 
   - title: Package settings
     contents:
