@@ -25,6 +25,6 @@ Computes logarithm of a number or of a vector of numbers and handles zeros while
 substituting all values below \code{epsilon} by \code{epsilon}.
 }
 \examples{
-inputVector <- c(NA, 1, 5, 0, -1, defEpsilon)
+inputVector <- c(NA, 1, 5, 0, -1)
 log_safe(inputVector)
 }
