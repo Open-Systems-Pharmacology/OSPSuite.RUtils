@@ -131,7 +131,7 @@ toMissingOfType <- function(x, type) {
 #' @export
 #'
 #' @examples
-#' inputVector <- c(NA, 1, 5, 0, -1, defEpsilon)
+#' inputVector <- c(NA, 1, 5, 0, -1)
 #' log_safe(inputVector)
 log_safe <- function(x, base = exp(1), epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILON) {
   x <- sapply(X = x, function(element) {
