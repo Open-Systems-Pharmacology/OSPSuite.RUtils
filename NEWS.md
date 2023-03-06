@@ -2,7 +2,7 @@
 
 NEW FUNCTIONS
 
-* `log_safe()` to compute logarithm of values that could be close to 0 or slightly 
+* `logSafe()` to compute logarithm of values that could be close to 0 or slightly 
 negative.
 
 # ospsuite.utils 1.4.23
