@@ -47,6 +47,7 @@ reference:
       - messages
       - objectCount
       - flattenList
+      - logSafe
 
   - title: Package settings
     contents:
