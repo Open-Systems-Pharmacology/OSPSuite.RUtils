@@ -40,3 +40,15 @@ test_that("Checks if `toMissingOfType()` doesn't convert other objects", {
   expect_equal(toMissingOfType(TRUE, type = "character"), TRUE)
   expect_equal(toMissingOfType(1L, type = "logical"), 1L)
 })
+
+test_that("Correct behavior of logSafe", {
+  defEpsilon <- getOSPSuiteUtilsSetting("LOG_SAFE_EPSILON")
+  inputVector <- c(NA, 1, 5, 0, -1, defEpsilon)
+
+  expectedOutput <- c(NA_real_, log(1), log(5), log(defEpsilon), log(defEpsilon), log(defEpsilon))
+  expect_equal(logSafe(inputVector), expectedOutput)
+
+  # Test for log10
+  expectedOutput <- c(NA_real_, log10(1), log10(5), log10(defEpsilon), log10(defEpsilon), log10(defEpsilon))
+  expect_equal(logSafe(inputVector, base = 10), expectedOutput)
+})

@@ -111,3 +111,34 @@ toMissingOfType <- function(x, type) {
 
   return(x)
 }
+
+#' Computes logarithm of a number or of a vector of numbers and handles zeros while
+#' substituting all values below `epsilon` by `epsilon`.
+#'
+#' @param x A numeric or a vector of numerics.
+#' @param base a positive or complex number: the base with respect to which logarithms are computed. Defaults to e = exp(1).
+#' @param epsilon A very small number which is considered as threshold below which
+#' all values are treated as `epsilon`. Allows computation of `log` close to 0.
+#' Default value is `getOSPSuiteUtilsSetting("LOG_SAFE_EPSILON")`.
+#'
+#' @return `log(x, base = base)` for `x > epsilon`, or `log(epsilon, base = base)`,
+#' or `NA_real_` for `NA` elements.
+#' @export
+#'
+#' @examples
+#' inputVector <- c(NA, 1, 5, 0, -1)
+#' logSafe(inputVector)
+logSafe <- function(x, base = exp(1), epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILON) {
+  x <- sapply(X = x, function(element) {
+    element <- ospsuite.utils::toMissingOfType(element, type = "double")
+    if (is.na(element)) {
+      return(NA_real_)
+    } else if (element < epsilon) {
+      return(log(epsilon, base = base))
+    } else {
+      return(log(element, base = base))
+    }
+  })
+
+  return(x)
+}

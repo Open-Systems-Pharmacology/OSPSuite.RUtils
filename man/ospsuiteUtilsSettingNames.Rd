@@ -6,7 +6,7 @@
 \title{Names of the settings stored in \code{ospsuiteEnv}. Can be used with
 \code{getOSPSuiteUtilsSetting()}}
 \format{
-An object of class \code{list} of length 3.
+An object of class \code{list} of length 4.
 }
 \usage{
 ospsuiteUtilsSettingNames
