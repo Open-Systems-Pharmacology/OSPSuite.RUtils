@@ -48,6 +48,10 @@ reference:
       - objectCount
       - flattenList
 
+  - tite: Math helpers
+    contents:
+      - logSafe
+
   - title: Package settings
     contents:
       - getOSPSuiteUtilsSetting

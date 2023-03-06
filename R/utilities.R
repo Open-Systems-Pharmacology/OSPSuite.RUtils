@@ -112,11 +112,6 @@ toMissingOfType <- function(x, type) {
   return(x)
 }
 
-# TODO:
-#
-# Depending on what is decided in issue
-# https://github.com/Open-Systems-Pharmacology/OSPSuite-R/issues/1091, change
-# defaults for `base` for `.log_safe`.
 #' Computes logarithm of a number or of a vector of numbers and handles zeros while
 #' substituting all values below `epsilon` by `epsilon`.
 #'
