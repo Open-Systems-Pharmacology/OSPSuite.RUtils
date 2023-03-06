@@ -47,4 +47,8 @@ test_that("Correct behavior of logSafe", {
 
   expectedOutput <- c(NA_real_, log(1), log(5), log(defEpsilon), log(defEpsilon), log(defEpsilon))
   expect_equal(logSafe(inputVector), expectedOutput)
+
+  # Test for log10
+  expectedOutput <- c(NA_real_, log10(1), log10(5), log10(defEpsilon), log10(defEpsilon), log10(defEpsilon))
+  expect_equal(logSafe(inputVector, base = 10), expectedOutput)
 })
