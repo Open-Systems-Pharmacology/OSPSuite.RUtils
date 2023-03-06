@@ -1,4 +1,11 @@
-# ospsuite.utils 1.4.0
+# ospsuite.utils 1.5.0
+
+NEW FUNCTIONS
+
+* `log_safe()` to compute logarithm of values that could be close to 0 or slightly 
+negative.
+
+# ospsuite.utils 1.4.23
 
 NEW FUNCTIONS
 
