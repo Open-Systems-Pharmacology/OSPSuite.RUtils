@@ -23,7 +23,7 @@ Calculates \code{x / y} while substituting values below \code{epsilon} (for x an
 \code{x} and \code{y} must be of the same length
 }
 \examples{
-inputX <- c(NA, 1, 5, 0, -1, defEpsilon)
-inputY <- c(1, -1, NA, 0, -1, defEpsilon)
+inputX <- c(NA, 1, 5, 0, -1)
+inputY <- c(1, -1, NA, 0, -1)
 folds <- foldSafe(inputX, inputY)
 }

@@ -160,8 +160,8 @@ logSafe <- function(x, base = exp(1), epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILO
 #' @export
 #'
 #' @examples
-#' inputX <- c(NA, 1, 5, 0, -1, defEpsilon)
-#' inputY <- c(1, -1, NA, 0, -1, defEpsilon)
+#' inputX <- c(NA, 1, 5, 0, -1)
+#' inputY <- c(1, -1, NA, 0, -1)
 #' folds <- foldSafe(inputX, inputY)
 foldSafe <- function(x, y, epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILON) {
   validateIsSameLength(x, y)
