@@ -58,6 +58,6 @@ test_that("Correct behavior of foldSafe", {
   inputX <- c(NA, 1, 5, 0, -1, defEpsilon, 5)
   inputY <- c(1, -1, NA, 0, -1, defEpsilon, 2)
 
-  expectedOutput <- c(NA_real_, 1 / defEpsilon, NA, defEpsilon / defEpsilon, defEpsilon / defEpsilon, defEpsilon / defEpsilon, 5 / 2)
+  expectedOutput <- c(NA_real_, 1 / defEpsilon, NA_real_, defEpsilon / defEpsilon, defEpsilon / defEpsilon, defEpsilon / defEpsilon, 5 / 2)
   expect_equal(foldSafe(inputX, inputY), expectedOutput)
 })
