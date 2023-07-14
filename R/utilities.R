@@ -142,3 +142,31 @@ logSafe <- function(x, base = exp(1), epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILO
 
   return(x)
 }
+
+#' Safe fold calculation
+#'
+#' @description
+#' Calculates `x / y` while substituting values below `epsilon` (for x and y) by `epsilon`.
+#' `x` and `y` must be of the same length
+#'
+#'
+#' @param x A numeric or a vector of numerics.
+#' @param y A numeric or a vector of numerics.
+#' @param epsilon A very small number which is considered as threshold below which
+#' all values are treated as `epsilon`. Allows computation of fold changes for values close to 0.
+#' Default value is `getOSPSuiteUtilsSetting("LOG_SAFE_EPSILON")`.
+#'
+#' @return A vector with `x / y`
+#' @export
+#'
+#' @examples
+#' inputX <- c(NA, 1, 5, 0, -1)
+#' inputY <- c(1, -1, NA, 0, -1)
+#' folds <- foldSafe(inputX, inputY)
+foldSafe <- function(x, y, epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILON) {
+  validateIsSameLength(x, y)
+  x[x <= epsilon] <- epsilon
+  y[y <= epsilon] <- epsilon
+
+  return(x / y)
+}

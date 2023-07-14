@@ -52,3 +52,12 @@ test_that("Correct behavior of logSafe", {
   expectedOutput <- c(NA_real_, log10(1), log10(5), log10(defEpsilon), log10(defEpsilon), log10(defEpsilon))
   expect_equal(logSafe(inputVector, base = 10), expectedOutput)
 })
+
+test_that("Correct behavior of foldSafe", {
+  defEpsilon <- getOSPSuiteUtilsSetting("LOG_SAFE_EPSILON")
+  inputX <- c(NA, 1, 5, 0, -1, defEpsilon, 5)
+  inputY <- c(1, -1, NA, 0, -1, defEpsilon, 2)
+
+  expectedOutput <- c(NA_real_, 1 / defEpsilon, NA_real_, defEpsilon / defEpsilon, defEpsilon / defEpsilon, defEpsilon / defEpsilon, 5 / 2)
+  expect_equal(foldSafe(inputX, inputY), expectedOutput)
+})

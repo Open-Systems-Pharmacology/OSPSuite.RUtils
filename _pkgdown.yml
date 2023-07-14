@@ -48,6 +48,7 @@ reference:
       - objectCount
       - flattenList
       - logSafe
+      - foldSafe
 
   - tite: Math helpers
     contents:
