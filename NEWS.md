@@ -5,6 +5,16 @@ NEW FUNCTIONS
 * `logSafe()` to compute logarithm of values that could be close to 0 or slightly 
 negative.
 
+* `foldSafe()` to compute `x / y` when `y` could be negative. All values below a 
+certain threshold `epsilon` are substituted by `epsilon`. NOTE: not suited for 
+calculating fold differences of negative numbers.
+
+BUG FIXES
+
+* The print function of the `Printable` class now converts values using the `format` 
+function before printing. E.g., numerical value "0.99999999" will be displayed as "1".
+https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/issues/120
+
 # ospsuite.utils 1.4.23
 
 NEW FUNCTIONS

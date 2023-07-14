@@ -37,8 +37,8 @@ Printable <- R6::R6Class(
         entries <- c("  ", entries)
       }
 
-      entries <- c(entries, value)
-      entries <- c(entries, "\n")
+      value <- format(value)
+      entries <- c(entries, value, "\n")
       cat(entries, sep = " ")
       invisible(self)
     },

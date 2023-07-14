@@ -16,7 +16,7 @@ all values are treated as \code{epsilon}. Allows computation of fold changes for
 Default value is \code{getOSPSuiteUtilsSetting("LOG_SAFE_EPSILON")}.}
 }
 \value{
-A vector with \code{x / y}
+A vector with \code{x / y}.
 }
 \description{
 Calculates \code{x / y} while substituting values below \code{epsilon} (for x and y) by \code{epsilon}.
