@@ -156,7 +156,7 @@ logSafe <- function(x, base = exp(1), epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILO
 #' all values are treated as `epsilon`. Allows computation of fold changes for values close to 0.
 #' Default value is `getOSPSuiteUtilsSetting("LOG_SAFE_EPSILON")`.
 #'
-#' @return A vector with `x / y`
+#' @return A vector with `x / y`.
 #' @export
 #'
 #' @examples
