@@ -5,7 +5,7 @@ NEW FUNCTIONS
 * `logSafe()` to compute logarithm of values that could be close to 0 or slightly 
 negative.
 
-* `foldSafe()` to compute `x / y` when `y` could be negative or zero. All values below a 
+* `foldSafe()` to compute `x / y` when `x` or `y` could be negative or zero. All values below a 
 certain threshold `epsilon` are substituted by `epsilon`. NOTE: not suited for 
 calculating fold differences of negative numbers.
 
