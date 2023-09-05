@@ -61,7 +61,7 @@ flattenList <- function(x, type) {
 
   if (is.list(x)) {
     x <- switch(type,
-      "character" = purrr::list_c(x, "c"),
+      "character" = purrr::list_c(x, ptype = "c"),
       "numeric" = ,
       "real" = ,
       "double" = purrr::list_c(x, ptype = 1.0),
