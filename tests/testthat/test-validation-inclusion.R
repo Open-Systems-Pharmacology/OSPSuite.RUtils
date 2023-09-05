@@ -45,7 +45,7 @@ test_that("isIncluded returns `TRUE` when compound type values are included", {
   # [1] FALSE
   # > "1970-02-01" %in% list("1970-02-01")
   # [1] TRUE
-  #expect_true(isIncluded(as.Date("1970-02-01"), list(as.Date("1970-02-01"), as.Date("1980-12-21"))))
+  # expect_true(isIncluded(as.Date("1970-02-01"), list(as.Date("1970-02-01"), as.Date("1980-12-21"))))
 })
 
 test_that("isIncluded returns `FALSE` when base type values are not included", {
