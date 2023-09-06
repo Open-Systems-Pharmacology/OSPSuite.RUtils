@@ -61,13 +61,13 @@ flattenList <- function(x, type) {
 
   if (is.list(x)) {
     x <- switch(type,
-      "character" = purrr::flatten_chr(x),
+      "character" = purrr::list_c(x, ptype = "c"),
       "numeric" = ,
       "real" = ,
-      "double" = purrr::flatten_dbl(x),
-      "integer" = purrr::flatten_int(x),
-      "logical" = purrr::flatten_lgl(x),
-      purrr::flatten(x)
+      "double" = purrr::list_c(x, ptype = 1.0),
+      "integer" = purrr::list_c(x, ptype = 1),
+      "logical" = purrr::list_c(x, ptype = TRUE),
+      purrr::list_flatten(x)
     )
   }
 
