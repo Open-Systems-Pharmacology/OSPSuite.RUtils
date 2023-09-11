@@ -19,6 +19,7 @@ environment:
   R_ARCH: x64
   KEEP_VIGNETTES: true
   NOT_CRAN: true
+  R_PKGTYPE: binary
 
 version: "$(app_version).{build}"
 
@@ -50,13 +51,9 @@ before_build:
 build_script:
   - travis-tool.sh install_deps
   - travis-tool.sh r_binary_install curl
-  - Rscript -e "install.packages('covr', repos = 'http://cran.us.r-project.org', type = 'source')"
 
 test_script:
   - travis-tool.sh run_tests
-
-on_success:
-  - Rscript -e "covr::codecov()"
 
 after_test:
   - ps: copy ospsuite.utils_*.zip ospsuite.utils.zip
