@@ -48,7 +48,7 @@
 <h2 class="pkg-version" data-toc-text="1.5.0" id="ospsuiteutils-150">ospsuite.utils 1.5.0<a class="anchor" aria-label="anchor" href="#ospsuiteutils-150"></a></h2>
 <p>NEW FUNCTIONS</p>
 <ul><li><p><code><a href="../reference/logSafe.html">logSafe()</a></code> to compute logarithm of values that could be close to 0 or slightly negative.</p></li>
-<li><p><code><a href="../reference/foldSafe.html">foldSafe()</a></code> to compute <code>x / y</code> when <code>y</code> could be negative. All values below a certain threshold <code>epsilon</code> are substituted by <code>epsilon</code>. NOTE: not suited for calculating fold differences of negative numbers.</p></li>
+<li><p><code><a href="../reference/foldSafe.html">foldSafe()</a></code> to compute <code>x / y</code> when <code>x</code> or <code>y</code> could be negative or zero. All values below a certain threshold <code>epsilon</code> are substituted by <code>epsilon</code>. NOTE: not suited for calculating fold differences of negative numbers.</p></li>
 </ul><p>BUG FIXES</p>
 <ul><li>The print function of the <code>Printable</code> class now converts values using the <code>format</code> function before printing. E.g., numerical value “0.99999999” will be displayed as “1”. <a href="https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/issues/120" class="external-link uri">https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/issues/120</a>
 </li>
