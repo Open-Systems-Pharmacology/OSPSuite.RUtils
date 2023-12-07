@@ -4,8 +4,8 @@
       x
     Output
       myPrintable: 
-         x: 
-         y: 
+         x: NULL 
+         y: NULL 
 
 # Checks if Printable subclass cloning works as expected
 

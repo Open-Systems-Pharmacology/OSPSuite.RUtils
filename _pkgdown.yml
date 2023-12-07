@@ -47,6 +47,12 @@ reference:
       - messages
       - objectCount
       - flattenList
+      - logSafe
+      - foldSafe
+
+  - tite: Math helpers
+    contents:
+      - logSafe
 
   - title: Package settings
     contents:

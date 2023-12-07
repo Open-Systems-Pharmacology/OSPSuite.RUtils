@@ -11,7 +11,7 @@
 .isBaseType <- function(x) {
   baseTypes <- c("character", "logical", "integer", "double")
 
-  if (typeof(x) %in% baseTypes) {
+  if (any(baseTypes == typeof(x))) {
     return(TRUE)
   }
 
