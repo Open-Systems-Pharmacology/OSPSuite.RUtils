@@ -17,6 +17,16 @@ test_that("It runs without error when options are valid", {
   expect_silent(validateIsOption(inputOptions, validOptions))
 })
 
+test_that("It throws an error when option is not available", {
+  inputOptions <- list(
+    invalid = "lsq",
+    residualWeightingMethod = "std",
+    scaleVar = FALSE,
+    linScaleCV = 0.8
+  )
+  expect_error(validateIsOption(inputOptions, validOptions))
+})
+
 test_that("It throws an error when one option value is invalid", {
   inputOptions <- list(
     objectiveFunctionType = "invalidType",
