@@ -2,6 +2,9 @@
 
 NEW FUNCTIONS
 
+* `validateIsOption()` to validate input options against a list of valid options. It checks if the provided input options are valid based on a list of valid options, ensuring that each option matches the allowed types or values specified in `validOptions`. For options expecting numeric values, it checks if they fall within a specified range. For boolean options, it checks if they are strictly `TRUE` or `FALSE'.
+
+
 * `logSafe()` to compute logarithm of values that could be close to 0 or slightly 
 negative.
 
