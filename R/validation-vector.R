@@ -22,3 +22,26 @@ validateVectorRange <- function(x, type, valueRange) {
 
   return()
 }
+
+#' @rdname validateVector
+#' @export
+validateVectorValues <- function(x, type, allowedValues = NULL, naAllowed = FALSE) {
+  if (is.null(allowedValues)) {
+    return()
+  }
+  if (!naAllowed) {
+    allowedValues <- allowedValues[!is.na(allowedValues)]
+  } else {
+    allowedValues <- unique(c(allowedValues, NA))
+  }
+
+  if (!isOfType(allowedValues, type)) {
+    stop("errorWrongType")
+  }
+
+  if (!all(x %in% allowedValues)) {
+    stop("errorValueNotAllowed")
+  }
+
+  return()
+}
