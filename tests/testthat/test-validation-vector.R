@@ -1,6 +1,6 @@
 # validateVectorRange -----------------------------------------------------
 
-test_that("validateVectorRange() detects invalid 'valueRange' type correctly", {
+test_that("validateVectorRange() errors on 'valueRange' type discrepancies", {
   expect_error(
     validateVectorRange(x = c(1, 2), type = "numeric", valueRange = TRUE),
     "argument 'valueRange' is of type 'logical', but expected 'numeric'"
@@ -23,7 +23,7 @@ test_that("validateVectorRange() detects invalid 'valueRange' type correctly", {
   )
 })
 
-test_that("validateVectorRange() throws an error for unsupported 'valueRange' types", {
+test_that("validateVectorRange() correctly flags incompatible 'valueRange' with type", {
   expect_error(
     validateVectorRange(x = factor(c("low", "high")), type = "factor", valueRange = c("low", "high")),
     "'valueRange' is not applicable for the type: 'factor'"
@@ -34,7 +34,7 @@ test_that("validateVectorRange() throws an error for unsupported 'valueRange' ty
   )
 })
 
-test_that("validateVectorRange() identifies errors in 'valueRange' definitions", {
+test_that("validateVectorRange() enforces correct structure for 'valueRange'", {
   expect_error(
     validateVectorRange(x = c("a", "b"), type = "character", valueRange = c("a", NA)),
     "'valueRange' must not contain NA values"
@@ -53,7 +53,7 @@ test_that("validateVectorRange() identifies errors in 'valueRange' definitions",
   )
 })
 
-test_that("validateVectorRange() identifies values outside 'valueRange'", {
+test_that("validateVectorRange() correctly errors when values fall outside specified range", {
   expect_error(
     validateVectorRange(x = c(-1, 2, 5), type = "numeric", valueRange = c(0, 10)),
     "Value\\(s\\) out of the allowed range: \\[0, 10\\]"
@@ -75,7 +75,7 @@ test_that("validateVectorRange() identifies values outside 'valueRange'", {
   )
 })
 
-test_that("validateVectorRange() successfully validates when values are within 'valueRange'", {
+test_that("validateVectorRange() correctly confirms values within allowed range", {
   expect_null(
     validateVectorRange(NULL, valueRange = NULL)
   )
@@ -105,7 +105,7 @@ test_that("validateVectorRange() successfully validates when values are within '
 
 # validateVectorValues ----------------------------------------------------
 
-test_that("validateVectorValues() detects invalid 'allowedValues' type correctly", {
+test_that("validateVectorValues() correctly errors type mismatches in 'allowedValues'", {
   expect_error(
     validateVectorValues(x = c(1, 2), type = "numeric", allowedValues = TRUE),
     "argument 'allowedValues' is of type 'logical', but expected 'numeric'"
@@ -136,38 +136,38 @@ test_that("validateVectorValues() detects invalid 'allowedValues' type correctly
   )
 })
 
-test_that("validateVectorValues() identifies values which are not allowed correctly", {
+test_that("validateVectorValues() correctly identifies unpermitted values", {
   expect_error(
     validateVectorValues(x = c(1, 2, 3), type = "numeric", allowedValues = c(1, 2)),
-    "Value\\(s\\) '3' not in included in allowed values: '1, 2'"
+    "Value\\(s\\) '3' not included in allowed values: '1, 2'"
   )
   expect_error(
     validateVectorValues(x = c("a", "b", "z"), type = "character", allowedValues = c("a", "b")),
-    "Value\\(s\\) 'z' not in included in allowed values: 'a, b'"
+    "Value\\(s\\) 'z' not included in allowed values: 'a, b'"
   )
   expect_error(
     validateVectorValues(x = LETTERS[1:25], type = "character", allowedValues = LETTERS[1:10]),
-    "Value\\(s\\) 'K, L, M, N, O ...' not in included in allowed values: 'A, B, C, D, E ..."
+    "Value\\(s\\) 'K, L, M, N, O ...' not included in allowed values: 'A, B, C, D, E ..."
   )
   expect_error(
     validateVectorValues(x = TRUE, type = "logical", allowedValues = FALSE),
-    "Value\\(s\\) 'TRUE' not in included in allowed values: 'FALSE'"
+    "Value\\(s\\) 'TRUE' not included in allowed values: 'FALSE'"
   )
   expect_error(
     validateVectorValues(x = as.factor(c(1, 2, 3)), type = "factor", allowedValues = as.factor(c(1, 2))),
-    "Value\\(s\\) '3' not in included in allowed values: '1, 2'"
+    "Value\\(s\\) '3' not included in allowed values: '1, 2'"
   )
   expect_error(
     validateVectorValues(x = c(1, NA), type = "numeric", allowedValues = c(1, 2), naAllowed = FALSE),
-    "Value\\(s\\) 'NA' not in included in allowed values: '1, 2'"
+    "Value\\(s\\) 'NA' not included in allowed values: '1, 2'"
   )
   expect_error(
     validateVectorValues(x = c(1, NA), type = "numeric", allowedValues = c(1, 2, NA), naAllowed = FALSE),
-    "Value\\(s\\) 'NA' not in included in allowed values: '1, 2'"
+    "Value\\(s\\) 'NA' not included in allowed values: '1, 2'"
   )
 })
 
-test_that("validateVectorValues() successfully validates when values are allowed", {
+test_that("validateVectorValues() confirms values are within the allowed set", {
   expect_null(
     validateVectorValues(NULL, allowedValues = NULL)
   )
@@ -234,7 +234,7 @@ test_that("validateVector() throws an error when `type` argument is not valid", 
   )
 })
 
-test_that("validateVector() detects incorrect vector type", {
+test_that("validateVector() precisely flags type mismatches", {
   expect_error(
     validateVector(x = c("a", "b"), type = "numeric"),
     "argument 'x' is of type 'character', but expected 'numeric'"
@@ -273,14 +273,14 @@ test_that("validateVector() detects incorrect vector type", {
   )
 })
 
-test_that("validateVector() throws an error when vector is NULL but nullAllowed is FALSE", {
+test_that("validateVector() enforces non-null vectors when nullAllowed is FALSE", {
   expect_error(
     validateVector(x = NULL, type = "numeric", nullAllowed = FALSE),
     "argument 'x' is of type 'NULL', but expected 'vector'"
   )
 })
 
-test_that("validateVector() throws an error when x has NA but naAllowed is FALSE", {
+test_that("validateVector() correctly flags NA presence when NA is disallowed", {
   expect_error(
     validateVector(x = c(1, NA), type = "numeric", naAllowed = FALSE),
     "NA values are not allowed"
@@ -291,7 +291,7 @@ test_that("validateVector() throws an error when x has NA but naAllowed is FALSE
   )
 })
 
-test_that("validateVector() returns TRUE when numeric vector meets validation criteria", {
+test_that("validateVector() confirms numeric vectors pass all validation checks", {
   expect_null(validateVector(x = c(1.2, 2), type = "numeric"))
   expect_null(validateVector(x = c(1.2, 2), type = "numeric", valueRange = c(1, 3)))
   expect_null(validateVector(x = c(1, 3), type = "numeric", valueRange = c(1, 3)))
@@ -300,7 +300,7 @@ test_that("validateVector() returns TRUE when numeric vector meets validation cr
   expect_null(validateVector(x = c(NA_real_, NA_real_), type = "numeric", naAllowed = TRUE))
 })
 
-test_that("validateVector() returns TRUE when integer vector meets validation criteria", {
+test_that("validateVector() confirms integer vectors pass all validation checks", {
   expect_null(validateVector(x = 1:5, type = "integer"))
   expect_null(validateVector(x = c(1L, NA), type = "integer", naAllowed = TRUE))
   expect_null(validateVector(x = c(1L, 3L), type = "integer", valueRange = c(1L, 5L)))
@@ -308,7 +308,7 @@ test_that("validateVector() returns TRUE when integer vector meets validation cr
   expect_null(validateVector(x = 5L, type = "integer"))
 })
 
-test_that("validateVector() returns TRUE when character vector meets validation criteria", {
+test_that("validateVector() confirms character vectors pass all validation checks", {
   expect_null(validateVector(x = c("a", "b"), type = "character"))
   expect_null(validateVector(x = c("1", NA), type = "character", naAllowed = TRUE))
   expect_null(validateVector(x = c("a", "b"), type = "character", allowedValues = c("a", "b", "c")))
@@ -317,7 +317,7 @@ test_that("validateVector() returns TRUE when character vector meets validation 
   expect_null(validateVector(x = NULL, type = "character", nullAllowed = TRUE))
 })
 
-test_that("validateVector() returns TRUE when logical vector meets validation criteria", {
+test_that("validateVector() confirms logical vectors pass all validation checks", {
   expect_null(validateVector(x = c(TRUE, FALSE, TRUE), type = "logical"))
   expect_null(validateVector(x = c(TRUE), type = "logical"))
   expect_null(validateVector(x = c(FALSE), type = "logical", allowedValues = FALSE))
@@ -325,7 +325,7 @@ test_that("validateVector() returns TRUE when logical vector meets validation cr
   expect_null(validateVector(x = NULL, type = "logical", nullAllowed = TRUE))
 })
 
-test_that("validateVector() returns TRUE when factor vector meets validation criteria", {
+test_that("validateVector() confirms factor vectors pass all validation checks", {
   expect_null(validateVector(x = as.factor(c("high", "low")), type = "factor"))
   expect_null(
     validateVector(
@@ -334,6 +334,16 @@ test_that("validateVector() returns TRUE when factor vector meets validation cri
     )
   )
 })
+
+test_that("validateVector() confirms Date vectors pass all validation checks", {
+  expect_null(
+    validateVector(
+      x = as.Date(c("2020-01-01", "2020-01-02")), type = "Date",
+      valueRange = as.Date(c("2020-01-01", "2020-01-10"))
+    )
+  )
+})
+
 stop("here")
 
 # isValidOption -----------------------------------------------------------
@@ -348,7 +358,7 @@ validOptions <- list(
   ),
   maxIterations = list(
     type = "integer",
-    valueRange = c(1, 1e5),
+    valueRange = c(1L, 1e5L),
     nullAllowed = FALSE
   ),
   convergenceThreshold = list(

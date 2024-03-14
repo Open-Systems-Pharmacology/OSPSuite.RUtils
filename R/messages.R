@@ -319,7 +319,7 @@ messages <- list(
     paste0(
       "Value(s) '",
       notIncludedValuesStr,
-      "' not in included in allowed values: '",
+      "' not included in allowed values: '",
       parentValuesStr,
       "'."
     )
