@@ -18,7 +18,9 @@ test_that("validateVectorRange() errors on 'valueRange' type discrepancies", {
     " argument 'valueRange' is of type 'numeric', but expected 'character'"
   )
   expect_error(
-    validateVectorRange(x = as.Date(c(1, 2)), type = "Date", valueRange = c(1, 2)),
+    validateVectorRange(
+      x = as.Date(c("1970-01-02", "1970-01-03")), type = "Date", valueRange = c(1, 2)
+    ),
     "argument 'valueRange' is of type 'numeric', but expected 'Date'"
   )
 })
@@ -127,7 +129,9 @@ test_that("validateVectorValues() correctly errors type mismatches in 'allowedVa
     "argument 'allowedValues' is of type 'numeric', but expected 'character'"
   )
   expect_error(
-    validateVectorValues(x = as.Date(c(1, 2)), type = "Date", allowedValues = c(1, 2)),
+    validateVectorValues(
+      x = as.Date(c("1970-01-02", "1970-01-03")), type = "Date", allowedValues = c(1, 2)
+    ),
     "argument 'allowedValues' is of type 'numeric', but expected 'Date'"
   )
   expect_error(
@@ -260,7 +264,9 @@ test_that("validateVector() precisely flags type mismatches", {
     "argument 'x' is of type 'factor', but expected 'integer'"
   )
   expect_error(
-    validateVector(x = as.Date(c(1, 2)), type = "factor", allowedValues = c(1, 2)),
+    validateVector(
+      x = as.Date(c("1970-01-02", "1970-01-03")), type = "factor",
+    ),
     "argument 'x' is of type 'Date', but expected 'factor'"
   )
   expect_error(
@@ -268,7 +274,7 @@ test_that("validateVector() precisely flags type mismatches", {
     "argument 'x' is of type 'logical', but expected 'integer'"
   )
   expect_error(
-    validateVector(x = as.Date(c(1, 2)), type = "POSIXct"),
+    validateVector(x = as.Date(c("1970-01-02", "1970-01-03")), type = "POSIXct"),
     "argument 'type' is 'POSIXct', but only .* supported"
   )
 })
