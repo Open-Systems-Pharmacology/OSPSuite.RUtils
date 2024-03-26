@@ -135,3 +135,144 @@ test_that("validateIsOption() correctly handles NULL values per configuration", 
     validateIsOption(invalidOptions, validOptions)
   )
 })
+
+
+# validateColumns ---------------------------------------------------------
+
+df <- data.frame(
+  age = c(32L, NA, 19L, 26L, 47L),
+  bmi = c(22.4, NA, 19.5, 27.8, 32.4),
+  gender = c("M", "F", "F", "M", "M"),
+  bp = factor(c("high", "normal", "low", "normal", "high"),
+    levels = c("low", "normal", "high")
+  ),
+  smoker = c(TRUE, NA, FALSE, FALSE, FALSE)
+)
+
+columnSpecs <- list(
+  age = list(type = "integer", valueRange = c(0L, 120L), naAllowed = TRUE),
+  bmi = list(type = "numeric", valueRange = c(10, 50), naAllowed = TRUE),
+  gender = list(type = "character", allowedValues = c("M", "F")),
+  bp = list(type = "factor", allowedValues = factor(c("low", "normal", "high"))),
+  smoker = list(type = "logical", naAllowed = TRUE)
+)
+
+test_that("validateColumns() accepts valid default options", {
+  expect_null(
+    validateColumns(df, columnSpecs)
+  )
+})
+
+test_that("validateColumns() accepts valid data frame columns when not each column is defined in columnSpecs", {
+  testDf <- df
+  testDf$numCores <- 2L
+  expect_null(
+    validateColumns(testDf, columnSpecs)
+  )
+})
+
+test_that("validateColumns() throws an error when 'object' argument is not a data frame", {
+  expect_error(
+    validateColumns(object = "a", columnSpecs = columnSpecs),
+    "argument 'object' is of type 'character', but expected 'data.frame'"
+  )
+  expect_error(
+    validateColumns(object = NULL, columnSpecs = columnSpecs),
+    "argument 'object' is of type 'NULL', but expected 'data.frame'"
+  )
+})
+
+test_that("validateColumns() throws an error when 'columnSpecs' argument is not a list", {
+  expect_error(
+    validateColumns(object = df, columnSpecs = 1.2),
+    "argument 'columnSpecs' is of type 'numeric', but expected 'list'"
+  )
+  expect_error(
+    validateColumns(object = df, columnSpecs = NULL),
+    "argument 'columnSpecs' is of type 'NULL', but expected 'list'"
+  )
+})
+
+test_that("validateColumns() identifies columns with wrong type", {
+  testDf <- df
+  testDf$age <- 23.2
+  expect_error(
+    validateColumns(testDf, columnSpecs),
+    "age .* is of type 'numeric', but expected 'integer'"
+  )
+  testDf <- df
+  testDf$smoker <- "heavy"
+  expect_error(
+    validateColumns(testDf, columnSpecs),
+    "smoker .* is of type 'character', but expected 'logical'"
+  )
+  testDf <- df
+  testDf$bmi <- 22L
+  expect_error(
+    validateColumns(testDf, columnSpecs),
+    "bmi .* is of type 'integer', but expected 'numeric'"
+  )
+  testDf <- df
+  testDf$bp <- "invalid"
+  expect_error(
+    validateColumns(testDf, columnSpecs),
+    "bp .* is of type 'character', but expected 'factor'"
+  )
+})
+
+test_that("validateColumns() identifies columns outside allowed range or outside allowed values", {
+  testDf <- df
+  testDf$age <- 200L
+  expect_error(
+    validateColumns(testDf, columnSpecs),
+    "age .* Value\\(s\\) out of the allowed range"
+  )
+  testDf <- df
+  testDf$bmi <- 50.1
+  expect_error(
+    validateColumns(testDf, columnSpecs),
+    "bmi .* Value\\(s\\) out of the allowed range"
+  )
+  testDf <- df
+  testDf$gender <- "Other"
+  expect_error(
+    validateColumns(testDf, columnSpecs),
+    "gender .* not included in allowed values: 'M, F'"
+  )
+  testDf <- df
+  testDf$bp <- as.factor("very high")
+  expect_error(
+    validateColumns(testDf, columnSpecs),
+    "bp .* not included in allowed values: 'low, normal, high'"
+  )
+})
+
+test_that("validateColumns() handles NULL values in columns correctly according to columnSpecs", {
+  testDf <- df
+  testDf$age <- NULL
+  expect_error(
+    validateColumns(testDf, columnSpecs),
+    "age .* argument 'x' is of type 'NULL', but expected 'vector'"
+  )
+
+  testDf <- df
+  testDf$convergenceThreshold <- rep(NULL, nrow(testDf))
+  expect_null(
+    validateColumns(testDf, columnSpecs)
+  )
+})
+
+test_that("validateColumns() handles NA values in 'age' and 'smoker' columns according to updated columnSpecs", {
+  testColumnSpecs <- columnSpecs
+  testColumnSpecs$age$naAllowed <- FALSE
+  expect_error(
+    validateColumns(df, testColumnSpecs),
+    "age .* NA values are not allowed"
+  )
+  testColumnSpecs <- columnSpecs
+  testColumnSpecs$smoker$naAllowed <- FALSE
+  expect_error(
+    validateColumns(df, testColumnSpecs),
+    "smoker .* NA values are not allowed"
+  )
+})
