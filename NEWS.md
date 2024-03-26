@@ -2,7 +2,13 @@
 
 ## Major changes
 
-* `validateIsOption()` to validate input options against a list of valid options. It checks if the provided input options are valid based on a list of valid options, ensuring that each option matches the allowed types or values specified in `validOptions`. For options expecting numeric values, it checks if they fall within a specified range. For boolean options, it checks if they are strictly `TRUE` or `FALSE'.
+* `validateIsOption()` to validate a list of options against specified criteria, improving robustness in option handling. This function ensures options match expected types, value ranges, allowed values, and handles `NULL` and `NA` values.
+
+* `validateColumns()` for rigorous validation of data frame columns against predefined specifications. Supports validation of type, value range, allowed values, and manages `NULL` and `NA` values effectively.
+
+* `validateVector()` introduced as a comprehensive vector validation tool, allowing checks against type, value range, and predefined allowed values with considerations for `NULL` and `NA`. Used by other validation functions `validateIsOption()` and `validateColumns()`.
+
+* `validateVectorRange()` and `validateVectorValues()` to provide detailed validation for value ranges and allowed values respectively. These functions complement `validateVector()`.
 
 # ospsuite.utils 1.5.0
 
