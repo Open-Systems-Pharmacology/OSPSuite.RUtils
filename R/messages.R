@@ -247,6 +247,96 @@ messages <- list(
       "' exists. Available global settings are:\n",
       paste0(names(globalEnv), collapse = ", ")
     )
+  },
+  errorMissingType = function() {
+    paste0("The 'type' argument must be specified.")
+  },
+  errorValueRange = function(valueRange) {
+    callingFunction <- .getCallingFunctionName()
+    if (any(is.na(valueRange))) {
+      paste0(
+        callingFunction,
+        ": 'valueRange' must not contain NA values."
+      )
+    } else {
+      paste0(
+        callingFunction,
+        ": 'valueRange' must be a vector of length 2 and in ascending order, but got ",
+        if (is.null(valueRange)) "NULL" else paste0("'", toString(valueRange), "'"),
+        "."
+      )
+    }
+  },
+  errorValueRangeType = function(valueRange, type) {
+    callingFunction <- .getCallingFunctionName()
+    paste0(
+      callingFunction,
+      ": 'valueRange' is not applicable for the type: ",
+      if (is.null(valueRange)) "NULL" else paste0("'", type, "'"),
+      "."
+    )
+  },
+  errorNaNotAllowed = function() {
+    callingFunction <- .getCallingFunctionName()
+    paste0(
+      callingFunction,
+      ": NA values are not allowed."
+    )
+  },
+  errorOutOfRange = function(valueRange) {
+    callingFunction <- .getCallingFunctionName()
+    paste0(
+      callingFunction,
+      ": Value(s) out of the allowed range: ",
+      "[",
+      toString(valueRange[1]),
+      ", ",
+      toString(valueRange[2]),
+      "]."
+    )
+  },
+  errorValueNotAllowed = function(values, parentValues) {
+    callingFunction <- .getCallingFunctionName()
+    notIncludedValues <- values[!values %in% parentValues]
+    notIncludedValuesStr <- paste(
+      head(notIncludedValues, 5),
+      collapse = ", "
+    )
+    notIncludedValuesStr <- ifelse(
+      length(notIncludedValues) > 5,
+      paste(notIncludedValuesStr, "..."),
+      notIncludedValuesStr
+    )
+    parentValuesStr <- paste(
+      head(parentValues, 5),
+      collapse = ", "
+    )
+    parentValuesStr <- ifelse(
+      length(parentValues) > 5,
+      paste(parentValuesStr, "..."),
+      parentValuesStr
+    )
+    paste0(
+      "Value(s) '",
+      notIncludedValuesStr,
+      "' not included in allowed values: '",
+      parentValuesStr,
+      "'."
+    )
+  },
+  errorTypeNotSupported = function(objectName, type, expectedType) {
+    callingFunction <- .getCallingFunctionName()
+    expectedTypeMsg <- paste0(expectedType, collapse = ", or ")
+    paste0(
+      callingFunction,
+      ": argument '",
+      objectName,
+      "' is '",
+      type,
+      "', but only '",
+      expectedTypeMsg,
+      "' supported!"
+    )
   }
 )
 
