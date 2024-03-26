@@ -46,7 +46,9 @@ options <- list(
 )
 
 validOptions <- list(
-  optimizationMethod = list(type = "character", allowedValues = c("gradient_descent", "genetic_algorithm")),
+  optimizationMethod = list(
+    type = "character", allowedValues = c("gradient_descent", "genetic_algorithm")
+  ),
   includeInteractions = list(type = "logical"),
   maxIterations = list(type = "integer", valueRange = c(1L, 10000L)),
   convergenceThreshold = list(type = "numeric", valueRange = c(0, 1))
