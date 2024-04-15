@@ -112,12 +112,21 @@
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/toMissingOfType.html</loc>
   </url>
   <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/validateColumns.html</loc>
+  </url>
+  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/validateEnumValue.html</loc>
   </url>
   <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/validateIsOfType.html</loc>
   </url>
   <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/validateIsOption.html</loc>
+  </url>
+  <url>
     <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/validatePathIsAbsolute.html</loc>
+  </url>
+  <url>
+    <loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/validateVector.html</loc>
   </url>
 </urlset>
