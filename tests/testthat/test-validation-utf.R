@@ -1,8 +1,8 @@
 # Example of non UTF character taken from Reporting Engine issue #1265
 nonUTFText <- c("Hello, world!", "Here is a non-utf encoded unit: \xb5g/L")
 utfText <- c("Hello, world!", "Here is a utf encoded unit: \u03bcg/L")
-writeLines(utfText, "utf.txt")
-writeLines(nonUTFText, "non-utf.txt")
+writeLines(utfText, file("utf.txt", encoding = "UTF-8"))
+writeLines(nonUTFText, file("non-utf.txt"))
 
 
 test_that("isUTF8 and isFileUTF8 return `TRUE` if text is UTF-8 encoded", {
