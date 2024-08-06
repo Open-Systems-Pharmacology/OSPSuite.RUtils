@@ -10,6 +10,8 @@
 
 * `validateVectorRange()` and `validateVectorValues()` to provide detailed validation for value ranges and allowed values respectively. These functions complement `validateVector()`.
 
+* `isFileUTF8()` and `validateIsFileUTF8()` to provide validation assessing whether files are UTF-8 encoded.
+
 # ospsuite.utils 1.5.0
 
 ## Major changes
