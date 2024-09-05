@@ -2,15 +2,13 @@
 nonUTFText <- c("Hello, world!", "Here is a non-utf encoded unit: \xb5g/L")
 utfText <- c("Hello, world!", "Here is a utf encoded unit: \u03bcg/L")
 writeLines(
-  # iconv needed to prevent the following system dependent error
-  # invalid char string in output conversion
-  iconv(nonUTFText, from = "LATIN1", to = "LATIN1"), 
+  # Convert Latin1 to local encoding
+  iconv(nonUTFText, from = "LATIN1"),
   file("non-utf.txt", encoding = "LATIN1")
   )
 writeLines(
-  # iconv needed to prevent the following system dependent error
-  # invalid char string in output conversion
-  iconv(utfText, from = "UTF-8", to = "UTF-8"),
+  # Convert UTF-8 to local encoding
+  iconv(utfText, from = "UTF-8"),
   file("utf.txt", encoding = "UTF-8")
 )
 
@@ -39,5 +37,5 @@ test_that("validateIsFileUTF8 produces error if file is NOT UTF-8 encoded", {
 })
 
 # Clean the created files
-unlink("utf.txt")
-unlink("non-utf.txt")
+#unlink("utf.txt")
+#unlink("non-utf.txt")

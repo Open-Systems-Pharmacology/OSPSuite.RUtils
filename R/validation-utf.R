@@ -11,7 +11,7 @@
 #'
 #' @export
 isUTF8 <- function(text) {
-  stringi::stri_enc_isutf8(stringi::stri_flatten(text))
+  stringi::stri_enc_isutf8(paste(text, collapse = "\n"))
 }
 
 #' Assess if a file is UTF-8 encoded.
