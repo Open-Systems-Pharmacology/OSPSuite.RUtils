@@ -37,5 +37,5 @@ test_that("validateIsFileUTF8 produces error if file is NOT UTF-8 encoded", {
 })
 
 # Clean the created files
-#unlink("utf.txt")
-#unlink("non-utf.txt")
+unlink("utf.txt")
+unlink("non-utf.txt")
