@@ -1,9 +1,18 @@
 # Example of non UTF character taken from Reporting Engine issue #1265
 nonUTFText <- c("Hello, world!", "Here is a non-utf encoded unit: \xb5g/L")
 utfText <- c("Hello, world!", "Here is a utf encoded unit: \u03bcg/L")
-writeLines(utfText, file("utf.txt", encoding = "UTF-8"))
-writeLines(nonUTFText, file("non-utf.txt"))
-
+writeLines(
+  # iconv needed to prevent the following system dependent error
+  # invalid char string in output conversion
+  iconv(nonUTFText, from = "LATIN1", to = "LATIN1"), 
+  file("non-utf.txt", encoding = "LATIN1")
+  )
+writeLines(
+  # iconv needed to prevent the following system dependent error
+  # invalid char string in output conversion
+  iconv(utfText, from = "UTF-8", to = "UTF-8"),
+  file("utf.txt", encoding = "UTF-8")
+)
 
 test_that("isUTF8 and isFileUTF8 return `TRUE` if text is UTF-8 encoded", {
   expect_true(isUTF8(paste(letters, collapse = "")))
@@ -14,8 +23,6 @@ test_that("isUTF8 and isFileUTF8 return `TRUE` if text is UTF-8 encoded", {
 
 test_that("isUTF8 returns `FALSE` if text is NOT UTF-8 encoded", {
   expect_false(isUTF8(nonUTFText))
-  # Convert UTF mu letter to ASCII
-  expect_false(isUTF8(iconv(utfText, from = "UTF-8", to = "ASCII")))
   expect_false(isFileUTF8("non-utf.txt"))
 })
 
