@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ospsuite.utils</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.5.30</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.5.37</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,59 +45,84 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="ospsuiteutils-development-version">ospsuite.utils (development version)<a class="anchor" aria-label="anchor" href="#ospsuiteutils-development-version"></a></h2>
+<div class="section level3">
+<h3 id="major-changes-development-version">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-development-version"></a></h3>
+<ul><li><p><code><a href="../reference/validateIsOption.html">validateIsOption()</a></code> to validate a list of options against specified criteria, improving robustness in option handling. This function ensures options match expected types, value ranges, allowed values, and handles <code>NULL</code> and <code>NA</code> values.</p></li>
+<li><p><code><a href="../reference/validateColumns.html">validateColumns()</a></code> for rigorous validation of data frame columns against predefined specifications. Supports validation of type, value range, allowed values, and manages <code>NULL</code> and <code>NA</code> values effectively.</p></li>
+<li><p><code><a href="../reference/validateVector.html">validateVector()</a></code> introduced as a comprehensive vector validation tool, allowing checks against type, value range, and predefined allowed values with considerations for <code>NULL</code> and <code>NA</code>. Used by other validation functions <code><a href="../reference/validateIsOption.html">validateIsOption()</a></code> and <code><a href="../reference/validateColumns.html">validateColumns()</a></code>.</p></li>
+<li><p><code><a href="../reference/validateVector.html">validateVectorRange()</a></code> and <code><a href="../reference/validateVector.html">validateVectorValues()</a></code> to provide detailed validation for value ranges and allowed values respectively. These functions complement <code><a href="../reference/validateVector.html">validateVector()</a></code>.</p></li>
+<li><p><code><a href="../reference/isFileUTF8.html">isFileUTF8()</a></code> and <code><a href="../reference/validateIsFileUTF8.html">validateIsFileUTF8()</a></code> to provide validation assessing whether files are UTF-8 encoded.</p></li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.5.0" id="ospsuiteutils-150">ospsuite.utils 1.5.0<a class="anchor" aria-label="anchor" href="#ospsuiteutils-150"></a></h2>
-<p>NEW FUNCTIONS</p>
+<div class="section level3">
+<h3 id="major-changes-1-5-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-5-0"></a></h3>
 <ul><li><p><code><a href="../reference/logSafe.html">logSafe()</a></code> to compute logarithm of values that could be close to 0 or slightly negative.</p></li>
 <li><p><code><a href="../reference/foldSafe.html">foldSafe()</a></code> to compute <code>x / y</code> when <code>x</code> or <code>y</code> could be negative or zero. All values below a certain threshold <code>epsilon</code> are substituted by <code>epsilon</code>. NOTE: not suited for calculating fold differences of negative numbers.</p></li>
-</ul><p>BUG FIXES</p>
+</ul></div>
+<div class="section level3">
+<h3 id="minor-improvements-and-bug-fixes-1-5-0">Minor improvements and bug fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-bug-fixes-1-5-0"></a></h3>
 <ul><li>The print function of the <code>Printable</code> class now converts values using the <code>format</code> function before printing. E.g., numerical value “0.99999999” will be displayed as “1”. <a href="https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/issues/120" class="external-link uri">https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/issues/120</a>
 </li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.23" id="ospsuiteutils-1423">ospsuite.utils 1.4.23<a class="anchor" aria-label="anchor" href="#ospsuiteutils-1423"></a></h2>
-<p>NEW FUNCTIONS</p>
+<div class="section level3">
+<h3 id="major-changes-1-4-23">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-4-23"></a></h3>
 <ul><li><p><code><a href="../reference/ifEqual.html">ifEqual()</a></code> and <code><a href="../reference/ifIncluded.html">ifIncluded()</a></code> for conditional values.</p></li>
 <li><p><code><a href="../reference/flattenList.html">flattenList()</a></code> to flatten a list to an atomic vector of desired type.</p></li>
 <li><p><code><a href="../reference/toMissingOfType.html">toMissingOfType()</a></code> to convert special constants (<code>NULL</code>, <code>Inf</code>, <code>NA</code>, etc.) to <code>NA</code> of desired type.</p></li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.0" id="ospsuiteutils-130">ospsuite.utils 1.3.0<a class="anchor" aria-label="anchor" href="#ospsuiteutils-130"></a></h2>
-<p>NEW FUNCTIONS</p>
+<div class="section level3">
+<h3 id="major-changes-1-3-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-3-0"></a></h3>
 <ul><li><p><code><a href="../reference/hasEmptyStrings.html">hasEmptyStrings()</a></code> and <code><a href="../reference/hasEmptyStrings.html">validateHasOnlyNonEmptyStrings()</a></code> to check for empty strings.</p></li>
 <li><p><code>objectCount</code> to count number of objects.</p></li>
 <li><p><code><a href="../reference/hasOnlyDistinctValues.html">validateHasOnlyDistinctValues()</a></code> to validate only unique values are present.</p></li>
 <li><p><code><a href="../reference/isFileExtension.html">validateIsFileExtension()</a></code> to validate file extensions.</p></li>
-</ul><p>MAJOR CHANGES</p>
-<ul><li>Cloning method is now disabled for <code>Printable</code> R6 class. This entails that <code>cloneable</code> property set by <code>Printable</code>’s subclasses will be respected. Previously, this was not the case; the cloning method was available <strong>even if</strong> the subclass had explicitly set <code>cloneable = FALSE</code>.</li>
-</ul><p>MINOR CHANGES</p>
+<li><p>Cloning method is now disabled for <code>Printable</code> R6 class. This entails that <code>cloneable</code> property set by <code>Printable</code>’s subclasses will be respected. Previously, this was not the case; the cloning method was available <strong>even if</strong> the subclass had explicitly set <code>cloneable = FALSE</code>.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="minor-improvements-and-bug-fixes-1-3-0">Minor improvements and bug fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-bug-fixes-1-3-0"></a></h3>
 <ul><li><p>Michael Sevestre is the new maintainer.</p></li>
 <li><p>The package has been archived on CRAN.</p></li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.0" id="ospsuiteutils-120">ospsuite.utils 1.2.0<a class="anchor" aria-label="anchor" href="#ospsuiteutils-120"></a></h2><p class="text-muted">CRAN release: 2022-02-18</p>
-<p>MAJOR CHANGES</p>
+<div class="section level3">
+<h3 id="major-changes-1-2-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-2-0"></a></h3>
 <ul><li><p>Removes alias <code>hasUniqueValues()</code>.</p></li>
 <li><p>All messages used in <code>ospsuite</code> package are now in <code>ospsuit.utils</code> (exported list <code>messages</code>).</p></li>
-</ul><p>BUG FIXES</p>
-<ul><li>Fixes a regression in <code><a href="../reference/isIncluded.html">isIncluded()</a></code> in previous release that inadvertently removed support for compound types (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/63" class="external-link">#63</a>).</li>
-</ul><p>NEW FUNCTIONS</p>
-<ul><li><p>Adds <code><a href="../reference/isEmpty.html">isEmpty()</a></code> and <code><a href="../reference/isEmpty.html">validateIsNotEmpty()</a></code> functions to validate that objects aren’t empty (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/58" class="external-link">#58</a>; thanks to <a href="https://github.com/pchelle" class="external-link">@pchelle</a>).</p></li>
+<li><p>Adds <code><a href="../reference/isEmpty.html">isEmpty()</a></code> and <code><a href="../reference/isEmpty.html">validateIsNotEmpty()</a></code> functions to validate that objects aren’t empty (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/58" class="external-link">#58</a>; thanks to <a href="https://github.com/pchelle" class="external-link">@pchelle</a>).</p></li>
 <li><p>Adds <code><a href="../reference/getOSPSuiteUtilsSetting.html">getOSPSuiteUtilsSetting()</a></code> function to get global settings (see enum <code>ospsuiteUtilsSettingNames</code> for supported settings).</p></li>
 </ul></div>
+<div class="section level3">
+<h3 id="minor-improvements-and-bug-fixes-1-2-0">Minor improvements and bug fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-bug-fixes-1-2-0"></a></h3>
+<ul><li>Fixes a regression in <code><a href="../reference/isIncluded.html">isIncluded()</a></code> in previous release that inadvertently removed support for compound types (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/63" class="external-link">#63</a>).</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="ospsuiteutils-110">ospsuite.utils 1.1.0<a class="anchor" aria-label="anchor" href="#ospsuiteutils-110"></a></h2><p class="text-muted">CRAN release: 2022-02-09</p>
-<p>MAJOR CHANGES</p>
+<div class="section level3">
+<h3 id="major-changes-1-1-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-1-0"></a></h3>
 <ul><li><p><code><a href="../reference/isIncluded.html">isIncluded()</a></code> now only accepts base types as valid inputs.</p></li>
 <li><p><code><a href="../reference/formatNumerics.html">formatNumerics()</a></code> now consistently returns output of type <code>"character"</code>.</p></li>
-</ul><p>MINOR CHANGES</p>
+</ul></div>
+<div class="section level3">
+<h3 id="minor-improvements-and-bug-fixes-1-1-0">Minor improvements and bug fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-bug-fixes-1-1-0"></a></h3>
 <ul><li><p>Improvements to documentation.</p></li>
 <li><p><code><a href="../reference/validateIsOfType.html">validateIsCharacter()</a></code> is added as an alias for <code><a href="../reference/validateIsOfType.html">validateIsString()</a></code> function.</p></li>
 <li><p><code><a href="../reference/enumGetKey.html">getEnumKey()</a></code> is added as an alias for <code><a href="../reference/enumGetKey.html">enumGetKey()</a></code> function.</p></li>
 <li><p><code><a href="../reference/hasOnlyDistinctValues.html">hasOnlyDistinctValues()</a></code> is added as an alias for <code>hasUniqueValues()</code> function.</p></li>
-</ul><p>BUG FIXES</p>
-<ul><li>
-<code><a href="../reference/validateIsOfType.html">validateIsInteger()</a></code> now works with lists (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/21" class="external-link">#21</a>).</li>
+<li><p><code><a href="../reference/validateIsOfType.html">validateIsInteger()</a></code> now works with lists (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/21" class="external-link">#21</a>).</p></li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="ospsuiteutils-100">ospsuite.utils 1.0.0<a class="anchor" aria-label="anchor" href="#ospsuiteutils-100"></a></h2><p class="text-muted">CRAN release: 2021-12-08</p>
 <ul><li>Initial release.</li>
