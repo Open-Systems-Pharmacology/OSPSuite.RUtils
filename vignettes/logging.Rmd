@@ -1,0 +1,153 @@
+---
+title: "logging"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{logging}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ospsuite.utils)
+```
+
+
+## Introduction
+
+### Setting folder for log files
+
+When loading the `{ospsuite.utils}` package, the logging system is initialized.
+Initializing the logging system allows to display messages in the console with indications and time stamps and save them in log files.
+
+__Caution__: When initializing the logging system, the folder where log files will be saved is not defined yet and left as `NULL`.
+
+The function `setLogFolder()` is used to define the folder where log files will be saved. 
+
+Below shows an example using a temporary directory.
+
+```r
+setLogFolder(tempdir())
+```
+
+### Displaying on console
+
+When displaying messages on the console, the messages are displayed with a time stamp and a prefix indicating the type of message.
+It is possible for users to highlight specific text content using the function  [`highlight()`](../references/highlight.html).
+
+## Log Types
+
+The logging system has three types of logs:
+
+- `Info`: Informational messages
+- `Error`: Error and warning messages
+- `Debug`: Masked notes and debugging messages
+
+See also: [`LogTypes`](../references/LogTypes.html)
+
+### Logging an error or a warning
+
+The function `logError()` is used to log an error or a warning message. 
+The message is displayed on the console along with a time stamp and a __Warning__ prefix.
+If `logFolder` is defined in the logging system, the message content and time stamp are saved in a log file named `log-error.txt`.
+
+```{r}
+errorMessage <- c(
+  paste("This is an", highlight("error message")),
+  "More information on the error"
+)
+
+logError(errorMessage)
+```
+
+### Logging an information
+
+The function `logInfo()` is used to log an informational message.
+The message is displayed on the console along with a time stamp and an __Info__ prefix.
+If `logFolder` is defined in the logging system, the message content and time stamp are saved in a log file named `log-info.txt`.
+
+```{r}
+t0 <- tic()
+Sys.sleep(5)
+infoMessage <- c(
+  paste("This is an", highlight("informational message"), "providing elapsed time"),
+  paste("Time elapsed:", highlight(getElapsedTime(t0, unit = "s")))
+)
+
+logInfo(infoMessage)
+```
+
+### Logging debugging information
+
+The function `logDebug()` is used to log debugging information.
+Debugging messages are __not__ displayed on the console by default.
+If `logFolder` is defined in the logging system, the message content and time stamp are saved in a log file named `log-debug.txt`.
+
+```{r}
+logDebug(infoMessage)
+```
+
+It is possible to activate the display of debugging messages on the console.
+Either on specific calls of `logDebug()` or by activating is default display using `setDebugDisplay()`.
+
+```{r}
+logDebug(infoMessage, printConsole = TRUE)
+```
+
+## Accessing content of logs
+
+### Finding logs
+
+### Displaying log messages as a data.frame
+
+```{r, results='asis'}
+knitr::kable(showLogMessages())
+```
+
+### (Re)-saving logs in a different location
+
+The function `saveLogs()` can be used to save the log files in a specific folder.
+
+```r
+saveLogs(getwd())
+```
+
+Sometimes the json format may be more appropriate that txt files to save logs.
+The function `saveLogsToJson()` can be used to save the logs in a json file.
+
+```r
+saveLogsToJson("logs.json")
+```
+
+## Catching and releasing message conditions
+
+The logging system can be used to catch and release message conditions using the function `logCatch()`.
+
+```{r}
+logCatch({
+  warning(messages$errorResultNotFound(
+    highlight("wrong path"),
+    highlight("wrong ID")
+  ))
+})
+```
+
+```r
+logCatch(validateIsFileExtension("a.txt", "pkml"))
+```
+
+### Masking message conditions
+
+The function `logCatch()` can be used to mask specific messages when handling message conditions (i.e. error, warning, message).
+
+For errors, the masking only prevents printing messages in the error trace that may not be relevant for debugging an error (e.g. `tryCatch()` wrapper).
+
+For warnings and messages, the masking prevents printing messages on the console but the messages are still saved in the log-debug files.
+
+It is possible to define specific calls that should be masked using the `setErrorMasking()`, `setWarningMasking()` and `setInfoMasking()` functiona.

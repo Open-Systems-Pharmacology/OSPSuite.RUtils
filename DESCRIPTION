@@ -23,6 +23,7 @@ BugReports:
 Depends: 
     R (>= 3.6)
 Imports:
+    crayon,
     purrr,
     R6,
     stringi
@@ -38,12 +39,14 @@ RoxygenNote: 7.3.2
 Collate: 
     'enum.R'
     'formatNumerics.R'
+    'logging.R'
     'messages.R'
     'objectCount.R'
     'utilities.R'
     'ospsuite.utils-env.R'
     'printable.R'
     'utilities-conditional.R'
+    'utilities-logging.R'
     'utilities-validation.R'
     'validation-emptiness.R'
     'validation-enum.R'
@@ -57,3 +60,4 @@ Collate:
     'validation-uniqueness.R'
     'validation-utf.R'
     'validation-vector.R'
+VignetteBuilder: knitr
