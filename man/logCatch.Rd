@@ -14,5 +14,8 @@ Catch errors, log and display meaningful information
 }
 \examples{
 # Catch and display warning message
-logCatch({warning("This is a warning message")})
+logCatch({
+  warning("This is a warning message")
+})
 }
+\keyword{logging}

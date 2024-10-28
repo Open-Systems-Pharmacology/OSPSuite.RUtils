@@ -340,7 +340,7 @@ messages <- list(
   },
   errorFileNotUTF8 = function(file) {
     callingFunction <- .getCallingFunctionName()
-    paste0(callingFunction, ": File '", file,"' is NOT UTF-8 encoded.")
+    paste0(callingFunction, ": File '", file, "' is NOT UTF-8 encoded.")
   }
 )
 

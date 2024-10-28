@@ -20,3 +20,4 @@ setLogFolder(tempdir())
 setLogFolder()
 
 }
+\keyword{logging}

@@ -15,3 +15,4 @@ Mask error trace messages
 \examples{
 setErrorMasking(c("tryCatch", "withCallingHandlers"))
 }
+\keyword{logging}

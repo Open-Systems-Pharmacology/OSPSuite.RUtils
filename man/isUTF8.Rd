@@ -17,7 +17,7 @@ Assess if a character vector is UTF-8 encoded.
 }
 \examples{
 
-isUTF8("Hello, world!") #TRUE
-isUTF8("\xb5g/L") #FALSE
+isUTF8("Hello, world!") # TRUE
+isUTF8("\xb5g/L") # FALSE
 
 }

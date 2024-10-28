@@ -17,4 +17,4 @@ List of log types for recording workflow information
 LogTypes
 
 }
-\keyword{datasets}
+\keyword{logging}

@@ -17,3 +17,4 @@ Save error messages into a log error file
 \examples{
 logError("This is an error message")
 }
+\keyword{logging}

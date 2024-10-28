@@ -16,3 +16,4 @@ Mask info messages
 # Mask ggplot2 message when line is used with 1 value per group
 setInfoMasking("Each group consists of only one observation")
 }
+\keyword{logging}

@@ -18,3 +18,4 @@ getLogFolder()
 setLogFolder()
 getLogFolder()
 }
+\keyword{logging}

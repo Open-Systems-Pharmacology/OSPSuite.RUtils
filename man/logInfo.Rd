@@ -17,3 +17,4 @@ Save info messages into a log info file
 \examples{
 logInfo("This is an info message")
 }
+\keyword{logging}

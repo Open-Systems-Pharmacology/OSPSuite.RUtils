@@ -1,8 +1,8 @@
 ---
-title: "logging"
+title: "Logging System"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{logging}
+  %\VignetteIndexEntry{Logging System}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -26,7 +26,7 @@ library(ospsuite.utils)
 When loading the `{ospsuite.utils}` package, the logging system is initialized.
 Initializing the logging system allows to display messages in the console with indications and time stamps and save them in log files.
 
-__Caution__: When initializing the logging system, the folder where log files will be saved is not defined yet and left as `NULL`.
+__&#x26a0; Caution__: When initializing the logging system, the folder where log files will be saved is not defined yet and left as `NULL`.
 
 The function `setLogFolder()` is used to define the folder where log files will be saved. 
 
@@ -138,16 +138,19 @@ logCatch({
 })
 ```
 
+__&#x26a0; Caution__: When catching an error, the current logging folder is reset to `NULL` to prevent saving new messages in the same logs.
+This intends at preventing the logs from being polluted by messages that may aim at debugging the error.
+
 ```r
 logCatch(validateIsFileExtension("a.txt", "pkml"))
 ```
 
 ### Masking message conditions
 
-The function `logCatch()` can be used to mask specific messages when handling message conditions (i.e. error, warning, message).
+The function `logCatch()` can be used to mask specific messages when handling message conditions (i.e. error trace, warning, message).
 
 For errors, the masking only prevents printing messages in the error trace that may not be relevant for debugging an error (e.g. `tryCatch()` wrapper).
 
 For warnings and messages, the masking prevents printing messages on the console but the messages are still saved in the log-debug files.
 
-It is possible to define specific calls that should be masked using the `setErrorMasking()`, `setWarningMasking()` and `setInfoMasking()` functiona.
+It is possible to define specific calls that should be masked using the `setErrorMasking()`, `setWarningMasking()` and `setInfoMasking()` function.

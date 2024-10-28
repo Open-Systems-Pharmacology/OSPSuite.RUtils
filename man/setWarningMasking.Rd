@@ -16,3 +16,4 @@ Mask warning messages
 # Mask ggplot2 warning message when missing values are found
 setWarningMasking("rows containing missing values")
 }
+\keyword{logging}

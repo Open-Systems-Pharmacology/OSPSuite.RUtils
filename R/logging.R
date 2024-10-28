@@ -1,6 +1,7 @@
 #' @title LogTypes
 #' @description List of log types for recording workflow information
 #' @export
+#' @keywords logging
 #' @examples
 #' LogTypes
 #'
@@ -22,7 +23,7 @@ Logging <- R6::R6Class(
     #' @field display Named list of logical values
     #' defining whether message should be displayed on console
     display = list(Error = TRUE, Info = TRUE, Debug = FALSE),
-    #' @field callNotDisplayed Named list of keywords for which 
+    #' @field callNotDisplayed Named list of keywords for which
     #' error, warning or message conditions will be masked
     callNotDisplayed = list(error = NULL, warning = NULL, message = NULL),
 

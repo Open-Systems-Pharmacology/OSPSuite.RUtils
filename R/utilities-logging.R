@@ -50,6 +50,7 @@ timeStamp <- function() {
 #' @description Reset/empty messages of global logging system
 #' @param folder Folder where logs are saved
 #' @export
+#' @keywords logging
 #' @examples
 #' resetLogs()
 resetLogs <- function(folder = NULL) {
@@ -61,13 +62,14 @@ resetLogs <- function(folder = NULL) {
 #' @description Set folder where logs are saved
 #' @param folder Folder where logs are saved
 #' @export
+#' @keywords logging
 #' @examples
 #' # Set log folder to a temporary directory
 #' setLogFolder(tempdir())
-#' 
+#'
 #' # Set logFolder to `NULL`, cancel saving of logs
 #' setLogFolder()
-#' 
+#'
 setLogFolder <- function(folder = NULL) {
   ospsuiteUtilsEnv$logging$folder <- folder
   return(invisible())
@@ -76,11 +78,12 @@ setLogFolder <- function(folder = NULL) {
 #' @title getLogFolder
 #' @description Get folder where logs are saved
 #' @export
+#' @keywords logging
 #' @examples
 #' # Set/get log folder to a temporary directory
 #' setLogFolder(tempdir())
 #' getLogFolder()
-#' 
+#'
 #' # Set/get logFolder to `NULL`, cancel saving of logs
 #' setLogFolder()
 #' getLogFolder()
@@ -92,6 +95,7 @@ getLogFolder <- function() {
 #' @description Save workflow logs to a json file
 #' @param jsonFile Path of json file saving log messages
 #' @export
+#' @keywords logging
 #' @examples \dontrun{
 #' saveLogsToJson("logs.json")
 #' }
@@ -105,6 +109,7 @@ saveLogsToJson <- function(jsonFile) {
 #' @description Save workflow logs to their respective files
 #' @param folder Directory into which logs will be saved
 #' @export
+#' @keywords logging
 #' @examples \dontrun{
 #' saveLogsToJson(getwd())
 #' }
@@ -120,6 +125,7 @@ saveLogs <- function(folder = NULL) {
 #' @description Display log messages as a data.frame
 #' @param logTypes Select specific logs in `LogTypes` that will be displayed in the data.frame.
 #' @export
+#' @keywords logging
 #' @examples
 #' # Record some information
 #' logInfo("This is an info message")
@@ -146,6 +152,7 @@ highlight <- function(text) {
 #' @param message message to save in log file
 #' @param printConsole logical to print error on console
 #' @export
+#' @keywords logging
 #' @examples
 #' logError("This is an error message")
 logError <- function(message, printConsole = NULL) {
@@ -162,6 +169,7 @@ logError <- function(message, printConsole = NULL) {
 #' @param message message to save in log file
 #' @param printConsole logical to print error on console
 #' @export
+#' @keywords logging
 #' @examples
 #' logDebug("This is a debug message")
 logDebug <- function(message, printConsole = NULL) {
@@ -178,6 +186,7 @@ logDebug <- function(message, printConsole = NULL) {
 #' @param message message to save in log file
 #' @param printConsole logical to print error on console
 #' @export
+#' @keywords logging
 #' @examples
 #' logInfo("This is an info message")
 logInfo <- function(message, printConsole = NULL) {
@@ -193,9 +202,12 @@ logInfo <- function(message, printConsole = NULL) {
 #' @description Catch errors, log and display meaningful information
 #' @param expr Evaluated code chunks
 #' @export
+#' @keywords logging
 #' @examples
 #' # Catch and display warning message
-#' logCatch({warning("This is a warning message")})
+#' logCatch({
+#'   warning("This is a warning message")
+#' })
 logCatch <- function(expr) {
   tryCatch(
     withCallingHandlers(
@@ -210,7 +222,7 @@ logCatch <- function(expr) {
             ospsuiteUtilsEnv$logging$callNotDisplayed$error,
             FUN = function(pattern) {
               grepl(textCall, pattern = pattern, ignore.case = TRUE)
-              }
+            }
           ))
           if (callNotDisplayed) {
             next
@@ -222,14 +234,14 @@ logCatch <- function(expr) {
         logError(errorMessage)
         stop(errorCondition$message)
       },
-      # For warnings: display warning unless masked. 
+      # For warnings: display warning unless masked.
       # In which case, save them in log-debug.
       warning = function(warningCondition) {
         callNotDisplayed <- any(sapply(
           ospsuiteUtilsEnv$logging$callNotDisplayed$warning,
           FUN = function(pattern) {
             grepl(warningCondition$message, pattern = pattern, ignore.case = TRUE)
-            }
+          }
         ))
         if (callNotDisplayed) {
           logDebug(warningCondition$message)
@@ -240,10 +252,11 @@ logCatch <- function(expr) {
         # as an actual warning written in red on the console
         # However, if the restart is not found, this ends up with an error
         # tryInvokeRestart could have been used instead but appeared only on R.version 4.0.0
-        try({invokeRestart("muffleWarning")})
-        return(invisible())
+        try({
+          invokeRestart("muffleWarning")
+        })
       },
-      # For messages: display message unless masked. 
+      # For messages: display message unless masked.
       # In which case, save them in log-debug.
       message = function(messageCondition) {
         # Remove unwanted messages especially from ggplot
@@ -260,7 +273,9 @@ logCatch <- function(expr) {
           logInfo(messageCondition$message)
         }
         # Allows logCatch to go on after catching a message
-        try({invokeRestart("muffleMessage")})
+        try({
+          invokeRestart("muffleMessage")
+        })
       }
     ),
     error = function(errorCondition) {
@@ -273,9 +288,10 @@ logCatch <- function(expr) {
 
 #' @title setErrorMasking
 #' @description Mask error trace messages
-#' @param patterns 
+#' @param patterns
 #' Character patterns to identify with `grepl()` when masking messages
 #' @export
+#' @keywords logging
 #' @examples
 #' setErrorMasking(c("tryCatch", "withCallingHandlers"))
 setErrorMasking <- function(patterns) {
@@ -285,9 +301,10 @@ setErrorMasking <- function(patterns) {
 
 #' @title setWarningMasking
 #' @description Mask warning messages
-#' @param patterns 
+#' @param patterns
 #' Character patterns to identify with `grepl()` when masking messages
 #' @export
+#' @keywords logging
 #' @examples
 #' # Mask ggplot2 warning message when missing values are found
 #' setWarningMasking("rows containing missing values")
@@ -298,9 +315,10 @@ setWarningMasking <- function(patterns) {
 
 #' @title setInfoMasking
 #' @description Mask info messages
-#' @param patterns 
+#' @param patterns
 #' Character patterns to identify with `grepl()` when masking messages
 #' @export
+#' @keywords logging
 #' @examples
 #' # Mask ggplot2 message when line is used with 1 value per group
 #' setInfoMasking("Each group consists of only one observation")

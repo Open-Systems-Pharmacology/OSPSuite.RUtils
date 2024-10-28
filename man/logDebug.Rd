@@ -17,3 +17,4 @@ Save intermediate messages into a log debug file
 \examples{
 logDebug("This is a debug message")
 }
+\keyword{logging}

@@ -17,3 +17,4 @@ Save workflow logs to their respective files
 saveLogsToJson(getwd())
 }
 }
+\keyword{logging}

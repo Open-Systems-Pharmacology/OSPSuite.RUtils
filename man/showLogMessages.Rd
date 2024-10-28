@@ -19,3 +19,4 @@ logError("This is an error message")
 # Show all log messages
 showLogMessages()
 }
+\keyword{logging}

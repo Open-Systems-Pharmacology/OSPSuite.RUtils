@@ -53,14 +53,18 @@ validations related to the value range and allowed values, \code{validateVectorR
 validateVector(x = 1:5, type = "integer")
 validateVector(x = c(1.2, 2.5), type = "numeric", valueRange = c(1, 3))
 validateVector(x = c("a", "b"), type = "character", allowedValues = c("a", "b", "c"))
-validateVector(x = as.Date("2020-01-01"), type = "Date",
-  valueRange = as.Date(c("2020-01-01", "2020-12-31")))
+validateVector(
+  x = as.Date("2020-01-01"), type = "Date",
+  valueRange = as.Date(c("2020-01-01", "2020-12-31"))
+)
 
 # Range validation examples
 validateVectorRange(x = c(5, 10), type = "numeric", valueRange = c(1, 10))
 validateVectorRange(x = c("a", "b"), type = "character", valueRange = c("a", "c"))
-validateVectorRange(x = as.Date(c("2020-01-01")), type = "Date",
-  valueRange = as.Date(c("2020-01-01", "2020-12-31")))
+validateVectorRange(
+  x = as.Date(c("2020-01-01")), type = "Date",
+  valueRange = as.Date(c("2020-01-01", "2020-12-31"))
+)
 validateVectorRange(x = 1:3, type = "integer", valueRange = c(1L, 5L))
 
 # Allowed values validation examples

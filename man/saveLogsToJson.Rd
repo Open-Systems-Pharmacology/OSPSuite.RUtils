@@ -17,3 +17,4 @@ Save workflow logs to a json file
 saveLogsToJson("logs.json")
 }
 }
+\keyword{logging}

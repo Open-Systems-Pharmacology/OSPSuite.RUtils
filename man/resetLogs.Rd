@@ -15,3 +15,4 @@ Reset/empty messages of global logging system
 \examples{
 resetLogs()
 }
+\keyword{logging}
