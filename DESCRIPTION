@@ -37,12 +37,12 @@ Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Collate: 
+    'utilities.R'
     'enum.R'
     'formatNumerics.R'
     'logging.R'
     'messages.R'
     'objectCount.R'
-    'utilities.R'
     'ospsuite.utils-env.R'
     'printable.R'
     'utilities-conditional.R'

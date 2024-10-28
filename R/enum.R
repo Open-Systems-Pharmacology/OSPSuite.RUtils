@@ -30,6 +30,7 @@
 #' mySymbol <- Symbol$Diamond
 #' mySymbol
 #' @export
+#' @include utilities.R
 
 enum <- function(enumValues) {
   # if a vector, convert it to a list
