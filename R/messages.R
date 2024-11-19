@@ -63,10 +63,6 @@ messages <- list(
       paste0(allPKParameterNames, collapse = ", ")
     )
   },
-  pkSimRPathInvalid = function(pksimPath) {
-    paste0("Path to PKSim.R.dll '", pksimPath, "' is invalid.")
-  },
-  pkSimInstallPathNotFound = "Could not find an installation of PK-Sim on the machine. Please install the OSPSuite or use 'initPKSim()' to specify the installation path",
   errorSimulationBatchNothingToVary = "You need to vary at least one parameter or one molecule in order to use the SimulationBatch",
   errorMultipleMetaDataEntries = function(optionalMessage = NULL) {
     paste("Can only add a single meta data entry at once", optionalMessage)
