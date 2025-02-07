@@ -6,8 +6,8 @@
 #'
 #' @examples
 #'
-#' isUTF8("Hello, world!") #TRUE
-#' isUTF8("\xb5g/L") #FALSE
+#' isUTF8("Hello, world!") # TRUE
+#' isUTF8("\xb5g/L") # FALSE
 #'
 #' @export
 isUTF8 <- function(text) {
@@ -25,10 +25,13 @@ isUTF8 <- function(text) {
 #' writeLines(c("Hello, world!"), "utf.txt")
 #' writeLines(c("Hello, world!", "\xb5g/L"), "non-utf.txt")
 #'
-#' isFileUTF8("utf.txt") #TRUE
-#' isFileUTF8("non-utf.txt") #FALSE
-#' 
-#' \dontshow{unlink("utf.txt"); unlink("non-utf.txt")}
+#' isFileUTF8("utf.txt") # TRUE
+#' isFileUTF8("non-utf.txt") # FALSE
+#'
+#' \dontshow{
+#' unlink("utf.txt")
+#' unlink("non-utf.txt")
+#' }
 #'
 #' @export
 isFileUTF8 <- function(file) {
@@ -45,14 +48,19 @@ isFileUTF8 <- function(file) {
 #' Otherwise, error is signaled.
 #'
 #' @examples
-#' 
+#'
 #' writeLines(c("Hello, world!"), "utf.txt")
 #' writeLines(c("Hello, world!", "\xb5g/L"), "non-utf.txt")
 #'
-#' validateIsFileUTF8("utf.txt") #NULL
-#' \dontrun{validateIsFileUTF8("non-utf.txt")} # Error
-#' 
-#' \dontshow{unlink("utf.txt"); unlink("non-utf.txt")}
+#' validateIsFileUTF8("utf.txt") # NULL
+#' \dontrun{
+#' validateIsFileUTF8("non-utf.txt") # Error
+#' }
+#'
+#' \dontshow{
+#' unlink("utf.txt")
+#' unlink("non-utf.txt")
+#' }
 #'
 #' @export
 validateIsFileUTF8 <- function(file) {

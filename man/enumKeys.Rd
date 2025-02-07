@@ -21,12 +21,12 @@ enumKeys(Symbol)
 }
 \seealso{
 Other enumeration-helpers: 
+\code{\link{enum}()},
 \code{\link{enumGetKey}()},
 \code{\link{enumGetValue}()},
 \code{\link{enumHasKey}()},
 \code{\link{enumPut}()},
 \code{\link{enumRemove}()},
-\code{\link{enumValues}()},
-\code{\link{enum}()}
+\code{\link{enumValues}()}
 }
 \concept{enumeration-helpers}

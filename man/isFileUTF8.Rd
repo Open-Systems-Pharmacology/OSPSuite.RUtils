@@ -20,9 +20,12 @@ Assess if a file is UTF-8 encoded.
 writeLines(c("Hello, world!"), "utf.txt")
 writeLines(c("Hello, world!", "\xb5g/L"), "non-utf.txt")
 
-isFileUTF8("utf.txt") #TRUE
-isFileUTF8("non-utf.txt") #FALSE
+isFileUTF8("utf.txt") # TRUE
+isFileUTF8("non-utf.txt") # FALSE
 
-\dontshow{unlink("utf.txt"); unlink("non-utf.txt")}
+\dontshow{
+unlink("utf.txt")
+unlink("non-utf.txt")
+}
 
 }

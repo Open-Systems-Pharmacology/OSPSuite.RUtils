@@ -5,7 +5,7 @@ writeLines(
   # Convert Latin1 to local encoding
   iconv(nonUTFText, from = "LATIN1"),
   file("non-utf.txt", encoding = "LATIN1")
-  )
+)
 writeLines(
   # Convert UTF-8 to local encoding
   iconv(utfText, from = "UTF-8"),

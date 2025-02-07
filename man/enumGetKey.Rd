@@ -28,12 +28,12 @@ enumGetKey(Symbol, 1)
 }
 \seealso{
 Other enumeration-helpers: 
+\code{\link{enum}()},
 \code{\link{enumGetValue}()},
 \code{\link{enumHasKey}()},
 \code{\link{enumKeys}()},
 \code{\link{enumPut}()},
 \code{\link{enumRemove}()},
-\code{\link{enumValues}()},
-\code{\link{enum}()}
+\code{\link{enumValues}()}
 }
 \concept{enumeration-helpers}
