@@ -21,9 +21,14 @@ Validate if a file is UTF-8 encoded.
 writeLines(c("Hello, world!"), "utf.txt")
 writeLines(c("Hello, world!", "\xb5g/L"), "non-utf.txt")
 
-validateIsFileUTF8("utf.txt") #NULL
-\dontrun{validateIsFileUTF8("non-utf.txt")} # Error
+validateIsFileUTF8("utf.txt") # NULL
+\dontrun{
+validateIsFileUTF8("non-utf.txt") # Error
+}
 
-\dontshow{unlink("utf.txt"); unlink("non-utf.txt")}
+\dontshow{
+unlink("utf.txt")
+unlink("non-utf.txt")
+}
 
 }
