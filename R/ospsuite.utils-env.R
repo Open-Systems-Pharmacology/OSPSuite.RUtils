@@ -21,6 +21,9 @@ ospsuiteUtilsEnv$formatNumericsDigits <- 2L
 # Small value added to zero when calculating log
 ospsuiteUtilsEnv$LOG_SAFE_EPSILON <- 1e-20
 
+# Logging system
+ospsuiteUtilsEnv$logging <- Logging$new()
+
 #' Names of the settings stored in `ospsuiteEnv`. Can be used with
 #' `getOSPSuiteUtilsSetting()`
 #'

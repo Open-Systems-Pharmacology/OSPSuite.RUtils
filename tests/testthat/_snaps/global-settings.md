@@ -9,6 +9,9 @@
       $suiteName
       [1] "suiteName"
       
+      $logging
+      [1] "logging"
+      
       $formatNumericsDigits
       [1] "formatNumericsDigits"
       

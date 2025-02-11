@@ -2,6 +2,8 @@
 
 ## Major changes
 
+* `setLogFolder()` allows user to define a directory for a logging system (see dedicated [article](../articles/logging.html) for more details).<br>Wrapping R code with `logCatch()` allows users to catch and log potential messages, warnings and errors output by their R scripts. 
+
 * `validateIsOption()` to validate a list of options against specified criteria, improving robustness in option handling. This function ensures options match expected types, value ranges, allowed values, and handles `NULL` and `NA` values.
 
 * `validateColumns()` for rigorous validation of data frame columns against predefined specifications. Supports validation of type, value range, allowed values, and manages `NULL` and `NA` values effectively.

@@ -54,6 +54,15 @@ reference:
     contents:
       - logSafe
 
+  - title: Logging helpers
+    desc: Utilities to save message logs
+    contents:
+      - has_keyword("logging")
+      - tic
+      - getElapsedTime
+      - timeStamp
+      - highlight
+      
   - title: Package settings
     contents:
       - getOSPSuiteUtilsSetting
