@@ -11,7 +11,7 @@ template:
   bootstrap: 5
 
 development:
-  mode: devel
+  mode: auto
 
 reference:
 
