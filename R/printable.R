@@ -27,7 +27,7 @@
 #' @export
 Printable <- R6::R6Class(
   "Printable",
-  cloneable = FALSE,
+  cloneable = TRUE,
   private = list(
     printLine = function(entry, value = NULL, addTab = TRUE) {
       entries <- paste0(entry, ":", sep = "")
