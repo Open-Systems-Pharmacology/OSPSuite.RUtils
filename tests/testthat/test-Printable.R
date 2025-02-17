@@ -33,5 +33,5 @@ test_that("Checks if Printable subclass cloning works as expected", {
     cloneable = FALSE
   )
 
-  expect_no_error(newPrintable2$new()$clone())
+  expect_error(newPrintable2$new()$clone())
 })
