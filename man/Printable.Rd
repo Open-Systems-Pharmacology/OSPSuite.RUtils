@@ -26,4 +26,27 @@ myPrintable <- R6::R6Class(
 x <- myPrintable$new()
 x
 }
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-Printable-clone}{\code{Printable$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Printable-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Printable-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Printable$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
