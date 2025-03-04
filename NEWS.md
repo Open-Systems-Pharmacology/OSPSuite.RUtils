@@ -1,4 +1,9 @@
-# ospsuite.utils (development version)
+# ospsuite.utils 1.6.1
+
+## Minor improvements and bug fixes
+
+* Cloning method is now enabled for `Printable` R6 class. It is required to make
+some of child classes cloneable in dependent packages.
 
 # ospsuite.utils 1.6.0
 
