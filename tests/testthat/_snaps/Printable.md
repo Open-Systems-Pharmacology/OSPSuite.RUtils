@@ -18,5 +18,15 @@
           clone: function (deep = FALSE) 
         Private:
           printClass: function () 
-          printLine: function (entry, value = NULL, addTab = TRUE) 
+          printLine: function (entry, value, addTab = TRUE) 
+
+# It prints a line without a value
+
+    Code
+      x
+    Output
+      myPrintable: 
+         x: NULL 
+         y: 1 
+         No value
 

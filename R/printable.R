@@ -29,16 +29,25 @@ Printable <- R6::R6Class(
   "Printable",
   cloneable = TRUE,
   private = list(
-    printLine = function(entry, value = NULL, addTab = TRUE) {
-      entries <- paste0(entry, ":", sep = "")
+    printLine = function(entry, value, addTab = TRUE) {
+      # Only add ":" if values are provided
+      if (!missing(value)) {
+        entries <- paste0(entry, ":", sep = "")
+      } else {
+        entries <- entry
+      }
 
       # helps to visually distinguish class name from its entries
       if (addTab) {
         entries <- c("  ", entries)
       }
 
-      value <- format(value)
-      entries <- c(entries, value, "\n")
+      # This is required to avoid adding "NULL" to all lines where no value is provided
+      if (!missing(value)) {
+        value <- format(value)
+        entries <- c(entries, value, "\n")
+      }
+
       cat(entries, sep = " ")
       invisible(self)
     },

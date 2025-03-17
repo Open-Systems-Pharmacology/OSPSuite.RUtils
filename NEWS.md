@@ -1,5 +1,9 @@
 # ospsuite.utils (development version)
 
+## Minor improvements and bug fixes
+
+- `Printable$printLine()` does not adds `NULL` if no value is provided. (\#172)
+
 # ospsuite.utils 1.6.1
 
 ## Minor improvements and bug fixes

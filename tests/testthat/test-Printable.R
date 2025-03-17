@@ -35,3 +35,24 @@ test_that("Checks if Printable subclass cloning works as expected", {
 
   expect_error(newPrintable2$new()$clone())
 })
+
+test_that("It prints a line without a value", {
+  myPrintable <- R6::R6Class(
+    "myPrintable",
+    inherit = Printable,
+    public = list(
+      x = NULL,
+      y = 1,
+      print = function() {
+        private$printClass()
+        private$printLine("x", self$x)
+        private$printLine("y", self$y)
+        private$printLine("No value")
+        invisible(self)
+      }
+    )
+  )
+
+  x <- myPrintable$new()
+  expect_snapshot(x)
+})
