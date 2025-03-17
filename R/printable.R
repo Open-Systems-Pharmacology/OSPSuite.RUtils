@@ -46,6 +46,8 @@ Printable <- R6::R6Class(
       if (!missing(value)) {
         value <- format(value)
         entries <- c(entries, value, "\n")
+      } else {
+        entries <- c(entries, "\n")
       }
 
       cat(entries, sep = " ")
