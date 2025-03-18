@@ -29,15 +29,19 @@ Printable <- R6::R6Class(
   "Printable",
   cloneable = TRUE,
   public = list(
+    #' @description
+    #' Create a new Printable object.
     initialize = function() {
-    private$deprecated()
+      private$deprecated()
     }
   ),
   private = list(
-    deprecated = function(){
-      lifecycle::deprecate_warn(when = "1.6.2",
-                                what = I("ospsuite.utils::Printable"),
-                                with = I("ospsuite.utils::osp_print_*()"))
+    deprecated = function() {
+      lifecycle::deprecate_warn(
+        when = "1.6.2",
+        what = I("ospsuite.utils::Printable"),
+        with = I("ospsuite.utils::osp_print_*()")
+      )
     },
     printLine = function(entry, value = NULL, addTab = TRUE) {
       private$deprecated()

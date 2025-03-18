@@ -14,11 +14,11 @@
 osp_print_class <- function(x) {
   # Get class name of the object
   class_name <- class(x)[1]
-  
+
   # Use inline markup for class name formatting
   # .cls style is nice for highlighting named entities like class names
   cli::cli_text("{.cls {class_name}}")
-  
+
   # Return the input invisibly
   invisible(x)
 }
@@ -44,17 +44,18 @@ osp_print_header <- function(text, level = 1) {
   if (!is.numeric(level) || level < 1 || level > 3 || length(level) != 1) {
     stop("'level' must be 1, 2, or 3")
   }
-  
+
   # Select header function based on level
   header_func <- switch(level,
-                        cli::cli_h1,
-                        cli::cli_h2,
-                        cli::cli_h3)
-  
+    cli::cli_h1,
+    cli::cli_h2,
+    cli::cli_h3
+  )
+
   # Use .strong markup for header text to make it stand out more
   # Headers already have formatting but additional markup can enhance them
   header_func("{.strong {text}}")
-  
+
   # Return invisibly
   invisible(NULL)
 }
@@ -67,8 +68,6 @@ osp_print_header <- function(text, level = 1) {
 #'
 #' @param x A vector or list
 #' @param title Optional title to display before the list (default: NULL)
-#' @param key_style Style for keys (one of "default", "emph", "strong", "code", "file")
-#' @param value_style Style for values (one of "default", "emph", "strong", "code", "file")
 #' @return Invisibly returns the input object
 #' @importFrom cli cli_text cli_ol cli_li cli_end
 #' @export
@@ -86,56 +85,56 @@ osp_print_items <- function(x, title = NULL) {
   if (!is.null(title)) {
     cli::cli_text("{.strong {title}}:")
   }
-  
-  
+
+
   # Start the list
   cli::cli_div(theme = list(ul = list(
     "margin-left" = 2 # Add indentation
   )))
-  
+
   list_id <- cli::cli_ul()
-  
+
   # If input is a named vector/list
   if (!is.null(names(x)) && any(names(x) != "")) {
     # For each item in the list
     for (i in seq_along(x)) {
       name <- names(x)[i]
       value <- x[[i]]
-      
+
       # Format value properly based on its type
       if (is.vector(value) && length(value) > 1) {
         # Format vectors nicely
         value <- paste(value, collapse = ", ")
       }
-      
+
       # Apply markup to values
       if (!is.na(name) && name != "") {
-          cli::cli_li("{name}: {value}")
+        cli::cli_li("{name}: {value}")
       } else {
         # No name, just value
-          cli::cli_li("{value}")
+        cli::cli_li("{value}")
       }
     }
   } else {
     # For unnamed vectors or lists
     for (i in seq_along(x)) {
       value <- x[[i]]
-      
+
       # Format value properly based on its type
       if (is.vector(value) && length(value) > 1) {
         # Format vectors nicely
         value <- paste(value, collapse = ", ")
       }
-      
+
       # Apply markup to values if specified
-        cli::cli_li("{value}")
+      cli::cli_li("{value}")
     }
   }
-  
+
   # End the list
   cli::cli_end(list_id)
   cli::cli_end()
-  
+
   # Return input invisibly
   invisible(x)
 }
