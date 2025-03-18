@@ -12,7 +12,6 @@ test_that("osp_print_class prints class name correctly", {
   myClass <- R6::R6Class("myClass")
 
   expect_snapshot(osp_print_class(myClass$new()))
-
 })
 
 test_that("osp_print_header prints headers at different levels", {
@@ -57,25 +56,26 @@ test_that("osp_print_items prints items correctly", {
 })
 
 
-test_that("Different osp_print_* functions work well together",{
+test_that("Different osp_print_* functions work well together", {
   myClass <-
     R6::R6Class("myClass",
-                public = list(
-                  named_items = list(
-                    "A" = 1,
-                    "B" = 2,
-                    "C" = 3),
-                  nested_item_list = list(
-                    sub_list_1 = list(
-                      "D" = 4,
-                      "E" = 5
-                    ),
-                    sub_list_2 = list(
-                      "F" = 6,
-                      "G" = 7
-                    )
-                  )
-                )
+      public = list(
+        named_items = list(
+          "A" = 1,
+          "B" = 2,
+          "C" = 3
+        ),
+        nested_item_list = list(
+          sub_list_1 = list(
+            "D" = 4,
+            "E" = 5
+          ),
+          sub_list_2 = list(
+            "F" = 6,
+            "G" = 7
+          )
+        )
+      )
     )
   my_object <- myClass$new()
   expect_snapshot({
@@ -83,8 +83,6 @@ test_that("Different osp_print_* functions work well together",{
     osp_print_items(my_object$named_items, title = "Named Items")
     osp_print_header("Nested Item List", 2)
     purrr::iwalk(my_object$nested_item_list, \(x, idx)
-                 osp_print_items(x, title = idx)
-    )
+    osp_print_items(x, title = idx))
   })
-
 })
