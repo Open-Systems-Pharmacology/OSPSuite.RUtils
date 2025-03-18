@@ -37,7 +37,7 @@ Printable <- R6::R6Class(
     deprecated = function(){
       lifecycle::deprecate_warn(when = "1.6.2",
                                 what = I("ospsuite.utils::Printable"),
-                                sswith = I("ospsuite.utils::osp_print_*()"))
+                                with = I("ospsuite.utils::osp_print_*()"))
     },
     printLine = function(entry, value = NULL, addTab = TRUE) {
       private$deprecated()
