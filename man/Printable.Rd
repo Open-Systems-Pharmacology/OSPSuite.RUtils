@@ -37,6 +37,7 @@ x
 \if{html}{\out{<a id="method-Printable-new"></a>}}
 \if{latex}{\out{\hypertarget{method-Printable-new}{}}}
 \subsection{Method \code{new()}}{
+Create a new Printable object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Printable$new()}\if{html}{\out{</div>}}
 }

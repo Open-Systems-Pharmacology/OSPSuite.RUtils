@@ -10,10 +10,6 @@ osp_print_items(x, title = NULL)
 \item{x}{A vector or list}
 
 \item{title}{Optional title to display before the list (default: NULL)}
-
-\item{key_style}{Style for keys (one of "default", "emph", "strong", "code", "file")}
-
-\item{value_style}{Style for values (one of "default", "emph", "strong", "code", "file")}
 }
 \value{
 Invisibly returns the input object
