@@ -28,8 +28,19 @@
 Printable <- R6::R6Class(
   "Printable",
   cloneable = TRUE,
+  public = list(
+    initialize = function() {
+    private$deprecated()
+    }
+  ),
   private = list(
+    deprecated = function(){
+      lifecycle::deprecate_warn(when = "1.6.2",
+                                what = I("ospsuite.utils::Printable"),
+                                sswith = I("ospsuite.utils::osp_print_*()"))
+    },
     printLine = function(entry, value = NULL, addTab = TRUE) {
+      private$deprecated()
       entries <- paste0(entry, ":", sep = "")
 
       # helps to visually distinguish class name from its entries
@@ -43,6 +54,7 @@ Printable <- R6::R6Class(
       invisible(self)
     },
     printClass = function() {
+      private$deprecated()
       cat(class(self)[1], ": \n", sep = "")
     }
   )

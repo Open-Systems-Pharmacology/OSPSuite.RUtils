@@ -25,7 +25,9 @@ Depends:
 Imports:
     purrr,
     R6,
-    stringi
+    stringi,
+    cli,
+    lifecycle
 Suggests: 
     knitr,
     rmarkdown,
@@ -40,6 +42,7 @@ Collate:
     'formatNumerics.R'
     'messages.R'
     'objectCount.R'
+    'osp_print.R'
     'utilities.R'
     'ospsuite.utils-env.R'
     'printable.R'
