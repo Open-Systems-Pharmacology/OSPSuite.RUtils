@@ -32,7 +32,7 @@ Printable <- R6::R6Class(
     printLine = function(entry, value, addTab = TRUE) {
       # Only add ":" if values are provided
       if (!missing(value)) {
-        entries <- paste0(entry, ":", sep = "")
+        entries <- paste0(entry, ":")
       } else {
         entries <- entry
       }
