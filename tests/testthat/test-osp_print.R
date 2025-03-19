@@ -55,34 +55,57 @@ test_that("osp_print_items prints items correctly", {
   expect_snapshot(osp_print_items(numbered_letters, title = "Letters"))
 })
 
-test_that("osp_print_items handles NULL values based on print_null parameter", {
-  # Create a list with NULL values
+test_that("osp_print_items handles empty values (NULL, NA, empty string)", {
+  # Create test data with different types of empty values
   list_with_nulls <- list(
-    "Min" = NULL,
-    "Max" = 100,
-    "Unit" = NULL
+    "Null" = NULL,
+    "Value" = 100,
+    "Empty" = ""
   )
   
-  # Test with print_null = TRUE (should print NULL values)
-  expect_snapshot(osp_print_items(list_with_nulls, title = "Parameters", print_null = TRUE))
+  list_with_na <- list(
+    "NA" = NA,
+    "Value" = 200,
+    "Null" = NULL
+  )
   
-  # Test with print_null = FALSE (should skip NULL values)
-  expect_snapshot(osp_print_items(list_with_nulls, title = "Parameters", print_null = FALSE))
+  all_empty <- list(
+    "Null" = NULL,
+    "NA" = NA,
+    "Empty" = ""
+  )
   
-  # Test with all NULL values and title, with print_null = TRUE (should show "All items are NULL" message)
-  all_nulls <- list("A" = NULL, "B" = NULL, "C" = NULL)
-  expect_snapshot(osp_print_items(all_nulls, title = "All Nulls", print_null = TRUE))
+  mixed_unnamed <- list(NULL, "value", NA, "")
   
-  # Test with all NULL values and no title, with print_null = TRUE (should list all NULL values)
-  expect_snapshot(osp_print_items(all_nulls, print_null = TRUE))
+  # Test 1: Mixed list with print_empty = TRUE (should print all values)
+  expect_snapshot({
+    osp_print_items(list_with_nulls, title = "Mixed with NULL and empty", print_empty = TRUE)
+    osp_print_items(list_with_na, title = "Mixed with NA and NULL", print_empty = TRUE)
+  })
   
-  # Test with all NULL values, title, and print_null = FALSE (should also show "All items are NULL" message)
-  expect_snapshot(osp_print_items(all_nulls, title = "All Nulls", print_null = FALSE))
+  # Test 2: Mixed list with print_empty = FALSE (should skip empty values)
+  expect_snapshot({
+    osp_print_items(list_with_nulls, title = "Mixed with NULL and empty", print_empty = FALSE)
+    osp_print_items(list_with_na, title = "Mixed with NA and NULL", print_empty = FALSE)
+  })
   
-  # Test with mixed NULL and non-NULL values in unnamed list
-  mixed_list <- list(NULL, "value", NULL)
-  expect_snapshot(osp_print_items(mixed_list, title = "Mixed List", print_null = TRUE))
-  expect_snapshot(osp_print_items(mixed_list, title = "Mixed List", print_null = FALSE))
+  # Test 3: List with all empty values and print_empty = TRUE (should list each empty value)
+  expect_snapshot(osp_print_items(all_empty, title = "All Empty", print_empty = TRUE))
+  
+  # Test 4: List with all empty values and print_empty = FALSE (should show message)
+  expect_snapshot(osp_print_items(all_empty, title = "All Empty", print_empty = FALSE))
+  
+  # Test 5: Unnamed list with mixed values
+  expect_snapshot({
+    osp_print_items(mixed_unnamed, title = "Mixed Unnamed", print_empty = TRUE)
+    osp_print_items(mixed_unnamed, title = "Mixed Unnamed", print_empty = FALSE)
+  })
+  
+  # Test 6: List with all empty values but no title
+  expect_snapshot({
+    osp_print_items(all_empty, print_empty = TRUE)
+    osp_print_items(all_empty, print_empty = FALSE)
+  })
 })
 
 test_that("Different osp_print_* functions work well together", {

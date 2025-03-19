@@ -72,7 +72,7 @@ osp_print_header <- function(text, level = 1) {
 #'
 #' @param x A vector or list
 #' @param title Optional title to display before the list (default: NULL)
-#' @param print_null Whether to print items with NULL values (default: FALSE)
+#' @param print_empty Whether to print empty values (NULL, NA, or empty string) (default: FALSE)
 #' @return Invisibly returns the input object
 #' @importFrom cli cli_text cli_ol cli_li cli_end
 #' @export
@@ -88,45 +88,61 @@ osp_print_header <- function(text, level = 1) {
 #' named_vector <- c(A = 1, B = 2, C = 3)
 #' osp_print_items(named_vector, title = "Letters")
 #'
-#' # Print a list including NULL values
-#' list_with_nulls <- list("Min" = NULL, "Max" = 100, "Unit" = NULL)
-#' osp_print_items(list_with_nulls, title = "Parameters", print_null = TRUE)
-osp_print_items <- function(x, title = NULL, print_null = FALSE) {
+#' # Print a list including empty values
+#' list_with_nulls <- list("Min" = NULL, "Max" = 100, "Unit" = NA)
+#' osp_print_items(list_with_nulls, title = "Parameters", print_empty = TRUE)
+osp_print_items <- function(x, title = NULL, print_empty = FALSE) {
   # Print title if provided
   if (!is.null(title)) {
     cli::cli_text("{.strong {title}}:")
   }
 
-  # Count items that will be printed and check if all are NULL
+  # Helper function to check if a value is considered "empty" (NULL, NA, or "")
+  is_empty_value <- function(val) {
+    if (is.null(val)) {
+      return(TRUE)
+    }
+    if (is.atomic(val) && length(val) == 1) {
+      return(is.na(val) || identical(val, ""))
+    }
+    return(FALSE)
+  }
+  
+  # Count items that will be printed and check if all are "empty"
   items_to_print <- 0
-  all_items_null <- TRUE
+  all_items_empty <- TRUE
   
   # Check all items first
   for (i in seq_along(x)) {
-    if (!is.null(x[[i]])) {
-      all_items_null <- FALSE
+    value <- x[[i]]
+    if (!is_empty_value(value)) {
+      all_items_empty <- FALSE
       items_to_print <- items_to_print + 1
-    } else if (print_null) {
+    } else if (print_empty) {
       items_to_print <- items_to_print + 1
     }
   }
   
-  # Special case: all items are NULL and title is provided - show message regardless of print_null
-  if (all_items_null && !is.null(title) && length(x) > 0) {
-    # Start the list
-    cli::cli_div(theme = list(ul = list(
-      "margin-left" = 2 # Add indentation
-    )))
-    
-    list_id <- cli::cli_ul()
-    cli::cli_li("All items are NULL")
-    cli::cli_end(list_id)
-    cli::cli_end()
-    
-    return(invisible(x))
+  # Special case: all items are empty and title is provided
+  if (all_items_empty && !is.null(title) && length(x) > 0) {
+    # When print_empty is FALSE, show the message
+    if (!print_empty) {
+      # Start the list
+      cli::cli_div(theme = list(ul = list(
+        "margin-left" = 2 # Add indentation
+      )))
+      
+      list_id <- cli::cli_ul()
+      cli::cli_li("All items are NULL, NA, or empty")
+      cli::cli_end(list_id)
+      cli::cli_end()
+      
+      return(invisible(x))
+    }
+    # When print_empty is TRUE, we'll list each empty item individually below
   }
   
-  # If no items to print with print_null=FALSE, just return invisibly
+  # If no items to print with print_empty=FALSE, just return invisibly
   if (items_to_print == 0) {
     return(invisible(x))
   }
@@ -145,8 +161,8 @@ osp_print_items <- function(x, title = NULL, print_null = FALSE) {
       name <- names(x)[i]
       value <- x[[i]]
 
-      # Skip NULL values if print_null is FALSE
-      if (is.null(value) && !print_null) {
+      # Skip empty values if print_empty is FALSE
+      if (is_empty_value(value) && !print_empty) {
         next
       }
 
@@ -154,6 +170,12 @@ osp_print_items <- function(x, title = NULL, print_null = FALSE) {
       if (is.null(value)) {
         # Explicitly print "NULL" for NULL values
         formatted_value <- "NULL"
+      } else if (is.atomic(value) && length(value) == 1 && is.na(value)) {
+        # Explicitly print "NA" for NA values
+        formatted_value <- "NA"
+      } else if (is.atomic(value) && length(value) == 1 && identical(value, "")) {
+        # Explicitly print "<empty string>" for empty strings
+        formatted_value <- "<empty string>"
       } else if (is.vector(value) && length(value) > 1) {
         # Format vectors nicely
         formatted_value <- paste(value, collapse = ", ")
@@ -174,8 +196,8 @@ osp_print_items <- function(x, title = NULL, print_null = FALSE) {
     for (i in seq_along(x)) {
       value <- x[[i]]
 
-      # Skip NULL values if print_null is FALSE
-      if (is.null(value) && !print_null) {
+      # Skip empty values if print_empty is FALSE
+      if (is_empty_value(value) && !print_empty) {
         next
       }
 
@@ -183,6 +205,12 @@ osp_print_items <- function(x, title = NULL, print_null = FALSE) {
       if (is.null(value)) {
         # Explicitly print "NULL" for NULL values
         formatted_value <- "NULL"
+      } else if (is.atomic(value) && length(value) == 1 && is.na(value)) {
+        # Explicitly print "NA" for NA values
+        formatted_value <- "NA"
+      } else if (is.atomic(value) && length(value) == 1 && identical(value, "")) {
+        # Explicitly print "<empty string>" for empty strings
+        formatted_value <- "<empty string>"
       } else if (is.vector(value) && length(value) > 1) {
         # Format vectors nicely
         formatted_value <- paste(value, collapse = ", ")

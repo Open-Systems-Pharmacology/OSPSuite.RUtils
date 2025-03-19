@@ -4,12 +4,14 @@
 \alias{osp_print_items}
 \title{Print a list of items with an optional title}
 \usage{
-osp_print_items(x, title = NULL)
+osp_print_items(x, title = NULL, print_empty = FALSE)
 }
 \arguments{
 \item{x}{A vector or list}
 
 \item{title}{Optional title to display before the list (default: NULL)}
+
+\item{print_empty}{Whether to print empty values (NULL, NA, or empty string) (default: FALSE)}
 }
 \value{
 Invisibly returns the input object
@@ -26,6 +28,10 @@ osp_print_items(vector, title = "Letters")
 # Print a named vector with title
 named_vector <- c(A = 1, B = 2, C = 3)
 osp_print_items(named_vector, title = "Letters")
+
+# Print a list including empty values
+list_with_nulls <- list("Min" = NULL, "Max" = 100, "Unit" = NA)
+osp_print_items(list_with_nulls, title = "Parameters", print_empty = TRUE)
 }
 \seealso{
 Other print functions: 

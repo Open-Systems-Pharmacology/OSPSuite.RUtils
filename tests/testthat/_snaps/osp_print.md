@@ -107,66 +107,82 @@
         * B: 2
         * C: 3
 
-# osp_print_items handles NULL values based on print_null parameter
+# osp_print_items handles empty values (NULL, NA, empty string)
 
     Code
-      osp_print_items(list_with_nulls, title = "Parameters", print_null = TRUE)
+      osp_print_items(list_with_nulls, title = "Mixed with NULL and empty",
+        print_empty = TRUE)
     Message
-      Parameters:
-        * Min: NULL
-        * Max: 100
-        * Unit: NULL
+      Mixed with NULL and empty:
+        * Null: NULL
+        * Value: 100
+        * Empty: <empty string>
+    Code
+      osp_print_items(list_with_na, title = "Mixed with NA and NULL", print_empty = TRUE)
+    Message
+      Mixed with NA and NULL:
+        * NA: NA
+        * Value: 200
+        * Null: NULL
 
 ---
 
     Code
-      osp_print_items(list_with_nulls, title = "Parameters", print_null = FALSE)
+      osp_print_items(list_with_nulls, title = "Mixed with NULL and empty",
+        print_empty = FALSE)
     Message
-      Parameters:
-        * Max: 100
+      Mixed with NULL and empty:
+        * Value: 100
+    Code
+      osp_print_items(list_with_na, title = "Mixed with NA and NULL", print_empty = FALSE)
+    Message
+      Mixed with NA and NULL:
+        * Value: 200
 
 ---
 
     Code
-      osp_print_items(all_nulls, title = "All Nulls", print_null = TRUE)
+      osp_print_items(all_empty, title = "All Empty", print_empty = TRUE)
     Message
-      All Nulls:
-        * All items are NULL
+      All Empty:
+        * Null: NULL
+        * NA: NA
+        * Empty: <empty string>
 
 ---
 
     Code
-      osp_print_items(all_nulls, print_null = TRUE)
+      osp_print_items(all_empty, title = "All Empty", print_empty = FALSE)
     Message
-        * A: NULL
-        * B: NULL
-        * C: NULL
+      All Empty:
+        * All items are NULL, NA, or empty
 
 ---
 
     Code
-      osp_print_items(all_nulls, title = "All Nulls", print_null = FALSE)
+      osp_print_items(mixed_unnamed, title = "Mixed Unnamed", print_empty = TRUE)
     Message
-      All Nulls:
-        * All items are NULL
-
----
-
-    Code
-      osp_print_items(mixed_list, title = "Mixed List", print_null = TRUE)
-    Message
-      Mixed List:
+      Mixed Unnamed:
         * NULL
         * value
-        * NULL
+        * NA
+        * <empty string>
+    Code
+      osp_print_items(mixed_unnamed, title = "Mixed Unnamed", print_empty = FALSE)
+    Message
+      Mixed Unnamed:
+        * value
 
 ---
 
     Code
-      osp_print_items(mixed_list, title = "Mixed List", print_null = FALSE)
+      osp_print_items(all_empty, print_empty = TRUE)
     Message
-      Mixed List:
-        * value
+        * Null: NULL
+        * NA: NA
+        * Empty: <empty string>
+    Code
+      osp_print_items(all_empty, print_empty = FALSE)
 
 # Different osp_print_* functions work well together
 
