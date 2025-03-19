@@ -12,8 +12,8 @@
 #'
 #' @examples
 #' # Print class name of a data frame
-#' OspPrintClass(iris)
-OspPrintClass <- function(x) {
+#' ospPrintClass(iris)
+ospPrintClass <- function(x) {
   # Get class name of the object
   class_name <- class(x)[1]
 
@@ -40,10 +40,10 @@ OspPrintClass <- function(x) {
 #'
 #' @examples
 #' # Print different header levels
-#' OspPrintHeader("Main Title", 1)
-#' OspPrintHeader("Section Title", 2)
-#' OspPrintHeader("Subsection Title", 3)
-OspPrintHeader <- function(text, level = 1) {
+#' ospPrintHeader("Main Title", 1)
+#' ospPrintHeader("Section Title", 2)
+#' ospPrintHeader("Subsection Title", 3)
+ospPrintHeader <- function(text, level = 1) {
   # Input validation
   if (!is.numeric(level) || level < 1 || level > 3 || length(level) != 1) {
     stop("'level' must be 1, 2, or 3")
@@ -71,7 +71,7 @@ OspPrintHeader <- function(text, level = 1) {
 #' @param val The value to check
 #' @return TRUE if the value is considered empty, FALSE otherwise
 #' @keywords internal
-.is_empty_value <- function(val) {
+.isEmpty <- function(val) {
   if (is.null(val)) {
     return(TRUE)
   }
@@ -96,7 +96,7 @@ OspPrintHeader <- function(text, level = 1) {
 #' @param value The value to format
 #' @return A string representation of the value
 #' @keywords internal
-.format_value <- function(value) {
+.formatValue <- function(value) {
   if (is.null(value)) {
     return("NULL")
   }
@@ -136,23 +136,23 @@ OspPrintHeader <- function(text, level = 1) {
 #' @examples
 #' # Print a simple vector with title
 #' vector <- c("A", "B", "C")
-#' OspPrintItems(vector, title = "Letters")
+#' ospPrintItems(vector, title = "Letters")
 #'
 #' # Print a named vector with title
 #' named_vector <- c(A = 1, B = 2, C = 3)
-#' OspPrintItems(named_vector, title = "Letters")
+#' ospPrintItems(named_vector, title = "Letters")
 #'
 #' # Print a list including empty values
 #' list_with_nulls <- list("Min" = NULL, "Max" = 100, "Unit" = NA)
-#' OspPrintItems(list_with_nulls, title = "Parameters", print_empty = TRUE)
-OspPrintItems <- function(x, title = NULL, print_empty = FALSE) {
+#' ospPrintItems(list_with_nulls, title = "Parameters", print_empty = TRUE)
+ospPrintItems <- function(x, title = NULL, print_empty = FALSE) {
   # Print title if provided
   if (!is.null(title)) {
     cli::cli_text("{.strong {title}}:")
   }
 
   # if x is empty, return invisibly
-  if (.is_empty_value(x)) {
+  if (.isEmpty(x)) {
     return(invisible(x))
   }
 
@@ -163,7 +163,7 @@ OspPrintItems <- function(x, title = NULL, print_empty = FALSE) {
   # Check all items first
   for (i in seq_along(x)) {
     value <- x[[i]]
-    if (!.is_empty_value(value)) {
+    if (!.isEmpty(value)) {
       all_items_empty <- FALSE
       items_to_print <- items_to_print + 1
     } else if (print_empty) {
@@ -203,12 +203,12 @@ OspPrintItems <- function(x, title = NULL, print_empty = FALSE) {
       value <- x[[i]]
 
       # Skip empty values if print_empty is FALSE
-      if (.is_empty_value(value) && !print_empty) {
+      if (.isEmpty(value) && !print_empty) {
         next
       }
 
       # Format value using format_value function
-      formatted_value <- .format_value(value)
+      formatted_value <- .formatValue(value)
 
       # Apply markup to values
       if (!is.na(name) && name != "") {
@@ -224,12 +224,12 @@ OspPrintItems <- function(x, title = NULL, print_empty = FALSE) {
       value <- x[[i]]
 
       # Skip empty values if print_empty is FALSE
-      if (.is_empty_value(value) && !print_empty) {
+      if (.isEmpty(value) && !print_empty) {
         next
       }
 
       # Format value using format_value function
-      formatted_value <- .format_value(value)
+      formatted_value <- .formatValue(value)
 
       # Apply markup to values if specified
       cli::cli_li("{formatted_value}")
