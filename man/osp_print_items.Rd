@@ -11,7 +11,7 @@ osp_print_items(x, title = NULL, print_empty = FALSE)
 
 \item{title}{Optional title to display before the list (default: NULL)}
 
-\item{print_empty}{Whether to print empty values (NULL, NA, or empty string) (default: FALSE)}
+\item{print_empty}{Whether to print empty values (NULL, NA, empty string) (default: FALSE)}
 }
 \value{
 Invisibly returns the input object

@@ -15,7 +15,7 @@ test_that("Checks if Printable prints properly", {
   )
 
   expect_warning(x <- myPrintable$new())
-  expect_snapshot(x, cran = TRUE)
+  expect_snapshot(x)
 })
 
 test_that("Checks if Printable subclass cloning works as expected", {
