@@ -27,3 +27,9 @@ osp_print_items(vector, title = "Letters")
 named_vector <- c(A = 1, B = 2, C = 3)
 osp_print_items(named_vector, title = "Letters")
 }
+\seealso{
+Other print functions: 
+\code{\link{osp_print_class}()},
+\code{\link{osp_print_header}()}
+}
+\concept{print functions}

@@ -8,6 +8,8 @@
 #' @importFrom cli cli_text
 #' @export
 #'
+#' @family print functions
+#'
 #' @examples
 #' # Print class name of a data frame
 #' osp_print_class(iris)
@@ -33,6 +35,8 @@ osp_print_class <- function(x) {
 #' @return Invisibly returns NULL
 #' @importFrom cli cli_h1 cli_h2 cli_h3
 #' @export
+#'
+#' @family print functions
 #'
 #' @examples
 #' # Print different header levels
@@ -71,6 +75,8 @@ osp_print_header <- function(text, level = 1) {
 #' @return Invisibly returns the input object
 #' @importFrom cli cli_text cli_ol cli_li cli_end
 #' @export
+#'
+#' @family print functions
 #'
 #' @examples
 #' # Print a simple vector with title

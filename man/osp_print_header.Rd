@@ -23,3 +23,9 @@ osp_print_header("Main Title", 1)
 osp_print_header("Section Title", 2)
 osp_print_header("Subsection Title", 3)
 }
+\seealso{
+Other print functions: 
+\code{\link{osp_print_class}()},
+\code{\link{osp_print_items}()}
+}
+\concept{print functions}

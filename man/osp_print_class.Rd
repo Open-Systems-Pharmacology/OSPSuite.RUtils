@@ -19,3 +19,9 @@ Prints the class name of an object with nice formatting using cli.
 # Print class name of a data frame
 osp_print_class(iris)
 }
+\seealso{
+Other print functions: 
+\code{\link{osp_print_header}()},
+\code{\link{osp_print_items}()}
+}
+\concept{print functions}
