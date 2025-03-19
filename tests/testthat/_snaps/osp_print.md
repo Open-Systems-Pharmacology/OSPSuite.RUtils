@@ -107,82 +107,98 @@
         * B: 2
         * C: 3
 
-# osp_print_items handles empty values (NULL, NA, empty string)
+# osp_print_items handles empty values correctly
 
     Code
-      osp_print_items(list_with_nulls, title = "Mixed with NULL and empty",
-        print_empty = TRUE)
+      osp_print_items(empty_list, title = "Empty List", print_empty = TRUE)
     Message
-      Mixed with NULL and empty:
-        * Null: NULL
-        * Value: 100
-        * Empty: <empty string>
-    Code
-      osp_print_items(list_with_na, title = "Mixed with NA and NULL", print_empty = TRUE)
-    Message
-      Mixed with NA and NULL:
-        * NA: NA
-        * Value: 200
-        * Null: NULL
+      Empty List:
+        * Empty list
 
 ---
 
     Code
-      osp_print_items(list_with_nulls, title = "Mixed with NULL and empty",
-        print_empty = FALSE)
+      osp_print_items(empty_list, title = "Empty List", print_empty = FALSE)
     Message
-      Mixed with NULL and empty:
-        * Value: 100
-    Code
-      osp_print_items(list_with_na, title = "Mixed with NA and NULL", print_empty = FALSE)
-    Message
-      Mixed with NA and NULL:
-        * Value: 200
+      Empty List:
 
 ---
 
     Code
-      osp_print_items(all_empty, title = "All Empty", print_empty = TRUE)
+      osp_print_items(empty_vector, title = "Empty Vector", print_empty = TRUE)
+    Message
+      Empty Vector:
+        * Empty vector
+
+---
+
+    Code
+      osp_print_items(empty_vector, title = "Empty Vector", print_empty = FALSE)
+    Message
+      Empty Vector:
+
+---
+
+    Code
+      osp_print_items(list_with_nulls, title = "Parameters", print_empty = TRUE)
+    Message
+      Parameters:
+        * Min: NULL
+        * Max: 100
+        * Unit: NA
+        * EmptyVec: <empty vector>
+        * EmptyList: <empty list>
+
+---
+
+    Code
+      osp_print_items(list_with_nulls, title = "Parameters", print_empty = FALSE)
+    Message
+      Parameters:
+        * Max: 100
+        * EmptyList: <empty list>
+
+---
+
+    Code
+      osp_print_items(all_empty_list, title = "All Empty", print_empty = TRUE)
     Message
       All Empty:
-        * Null: NULL
-        * NA: NA
-        * Empty: <empty string>
+        * A: NULL
+        * B: NA
+        * C: <empty string>
+        * D: <empty list>
+        * E: <empty vector>
 
 ---
 
     Code
-      osp_print_items(all_empty, title = "All Empty", print_empty = FALSE)
+      osp_print_items(all_empty_list, title = "All Empty", print_empty = FALSE)
     Message
       All Empty:
-        * All items are NULL, NA, or empty
+        * D: <empty list>
 
 ---
 
     Code
-      osp_print_items(mixed_unnamed, title = "Mixed Unnamed", print_empty = TRUE)
+      osp_print_items(unnamed_mixed, title = "Unnamed Mixed", print_empty = TRUE)
     Message
-      Mixed Unnamed:
+      Unnamed Mixed:
         * NULL
-        * value
+        * 1
         * NA
         * <empty string>
-    Code
-      osp_print_items(mixed_unnamed, title = "Mixed Unnamed", print_empty = FALSE)
-    Message
-      Mixed Unnamed:
-        * value
+        * <empty list>
+        * <empty vector>
 
 ---
 
     Code
-      osp_print_items(all_empty, print_empty = TRUE)
+      osp_print_items(unnamed_mixed, title = "Unnamed Mixed", print_empty = FALSE)
     Message
-        * Null: NULL
-        * NA: NA
-        * Empty: <empty string>
-    Code
-      osp_print_items(all_empty, print_empty = FALSE)
+      Unnamed Mixed:
+        * 1
+        * <empty list>
 
 # Different osp_print_* functions work well together
 
