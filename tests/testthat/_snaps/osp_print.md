@@ -107,6 +107,67 @@
         * B: 2
         * C: 3
 
+# osp_print_items handles NULL values based on print_null parameter
+
+    Code
+      osp_print_items(list_with_nulls, title = "Parameters", print_null = TRUE)
+    Message
+      Parameters:
+        * Min: NULL
+        * Max: 100
+        * Unit: NULL
+
+---
+
+    Code
+      osp_print_items(list_with_nulls, title = "Parameters", print_null = FALSE)
+    Message
+      Parameters:
+        * Max: 100
+
+---
+
+    Code
+      osp_print_items(all_nulls, title = "All Nulls", print_null = TRUE)
+    Message
+      All Nulls:
+        * All items are NULL
+
+---
+
+    Code
+      osp_print_items(all_nulls, print_null = TRUE)
+    Message
+        * A: NULL
+        * B: NULL
+        * C: NULL
+
+---
+
+    Code
+      osp_print_items(all_nulls, title = "All Nulls", print_null = FALSE)
+    Message
+      All Nulls:
+        * All items are NULL
+
+---
+
+    Code
+      osp_print_items(mixed_list, title = "Mixed List", print_null = TRUE)
+    Message
+      Mixed List:
+        * NULL
+        * value
+        * NULL
+
+---
+
+    Code
+      osp_print_items(mixed_list, title = "Mixed List", print_null = FALSE)
+    Message
+      Mixed List:
+        * value
+
 # Different osp_print_* functions work well together
 
     Code

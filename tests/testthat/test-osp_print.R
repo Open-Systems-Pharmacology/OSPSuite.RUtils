@@ -55,6 +55,35 @@ test_that("osp_print_items prints items correctly", {
   expect_snapshot(osp_print_items(numbered_letters, title = "Letters"))
 })
 
+test_that("osp_print_items handles NULL values based on print_null parameter", {
+  # Create a list with NULL values
+  list_with_nulls <- list(
+    "Min" = NULL,
+    "Max" = 100,
+    "Unit" = NULL
+  )
+  
+  # Test with print_null = TRUE (should print NULL values)
+  expect_snapshot(osp_print_items(list_with_nulls, title = "Parameters", print_null = TRUE))
+  
+  # Test with print_null = FALSE (should skip NULL values)
+  expect_snapshot(osp_print_items(list_with_nulls, title = "Parameters", print_null = FALSE))
+  
+  # Test with all NULL values and title, with print_null = TRUE (should show "All items are NULL" message)
+  all_nulls <- list("A" = NULL, "B" = NULL, "C" = NULL)
+  expect_snapshot(osp_print_items(all_nulls, title = "All Nulls", print_null = TRUE))
+  
+  # Test with all NULL values and no title, with print_null = TRUE (should list all NULL values)
+  expect_snapshot(osp_print_items(all_nulls, print_null = TRUE))
+  
+  # Test with all NULL values, title, and print_null = FALSE (should also show "All items are NULL" message)
+  expect_snapshot(osp_print_items(all_nulls, title = "All Nulls", print_null = FALSE))
+  
+  # Test with mixed NULL and non-NULL values in unnamed list
+  mixed_list <- list(NULL, "value", NULL)
+  expect_snapshot(osp_print_items(mixed_list, title = "Mixed List", print_null = TRUE))
+  expect_snapshot(osp_print_items(mixed_list, title = "Mixed List", print_null = FALSE))
+})
 
 test_that("Different osp_print_* functions work well together", {
   myClass <-

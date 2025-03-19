@@ -72,6 +72,7 @@ osp_print_header <- function(text, level = 1) {
 #'
 #' @param x A vector or list
 #' @param title Optional title to display before the list (default: NULL)
+#' @param print_null Whether to print items with NULL values (default: FALSE)
 #' @return Invisibly returns the input object
 #' @importFrom cli cli_text cli_ol cli_li cli_end
 #' @export
@@ -86,12 +87,49 @@ osp_print_header <- function(text, level = 1) {
 #' # Print a named vector with title
 #' named_vector <- c(A = 1, B = 2, C = 3)
 #' osp_print_items(named_vector, title = "Letters")
-osp_print_items <- function(x, title = NULL) {
+#'
+#' # Print a list including NULL values
+#' list_with_nulls <- list("Min" = NULL, "Max" = 100, "Unit" = NULL)
+#' osp_print_items(list_with_nulls, title = "Parameters", print_null = TRUE)
+osp_print_items <- function(x, title = NULL, print_null = FALSE) {
   # Print title if provided
   if (!is.null(title)) {
     cli::cli_text("{.strong {title}}:")
   }
 
+  # Count items that will be printed and check if all are NULL
+  items_to_print <- 0
+  all_items_null <- TRUE
+  
+  # Check all items first
+  for (i in seq_along(x)) {
+    if (!is.null(x[[i]])) {
+      all_items_null <- FALSE
+      items_to_print <- items_to_print + 1
+    } else if (print_null) {
+      items_to_print <- items_to_print + 1
+    }
+  }
+  
+  # Special case: all items are NULL and title is provided - show message regardless of print_null
+  if (all_items_null && !is.null(title) && length(x) > 0) {
+    # Start the list
+    cli::cli_div(theme = list(ul = list(
+      "margin-left" = 2 # Add indentation
+    )))
+    
+    list_id <- cli::cli_ul()
+    cli::cli_li("All items are NULL")
+    cli::cli_end(list_id)
+    cli::cli_end()
+    
+    return(invisible(x))
+  }
+  
+  # If no items to print with print_null=FALSE, just return invisibly
+  if (items_to_print == 0) {
+    return(invisible(x))
+  }
 
   # Start the list
   cli::cli_div(theme = list(ul = list(
@@ -107,18 +145,28 @@ osp_print_items <- function(x, title = NULL) {
       name <- names(x)[i]
       value <- x[[i]]
 
+      # Skip NULL values if print_null is FALSE
+      if (is.null(value) && !print_null) {
+        next
+      }
+
       # Format value properly based on its type
-      if (is.vector(value) && length(value) > 1) {
+      if (is.null(value)) {
+        # Explicitly print "NULL" for NULL values
+        formatted_value <- "NULL"
+      } else if (is.vector(value) && length(value) > 1) {
         # Format vectors nicely
-        value <- paste(value, collapse = ", ")
+        formatted_value <- paste(value, collapse = ", ")
+      } else {
+        formatted_value <- value
       }
 
       # Apply markup to values
       if (!is.na(name) && name != "") {
-        cli::cli_li("{name}: {value}")
+        cli::cli_li("{name}: {formatted_value}")
       } else {
         # No name, just value
-        cli::cli_li("{value}")
+        cli::cli_li("{formatted_value}")
       }
     }
   } else {
@@ -126,14 +174,24 @@ osp_print_items <- function(x, title = NULL) {
     for (i in seq_along(x)) {
       value <- x[[i]]
 
+      # Skip NULL values if print_null is FALSE
+      if (is.null(value) && !print_null) {
+        next
+      }
+
       # Format value properly based on its type
-      if (is.vector(value) && length(value) > 1) {
+      if (is.null(value)) {
+        # Explicitly print "NULL" for NULL values
+        formatted_value <- "NULL"
+      } else if (is.vector(value) && length(value) > 1) {
         # Format vectors nicely
-        value <- paste(value, collapse = ", ")
+        formatted_value <- paste(value, collapse = ", ")
+      } else {
+        formatted_value <- value
       }
 
       # Apply markup to values if specified
-      cli::cli_li("{value}")
+      cli::cli_li("{formatted_value}")
     }
   }
 
