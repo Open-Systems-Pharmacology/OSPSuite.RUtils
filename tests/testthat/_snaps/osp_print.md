@@ -1,35 +1,35 @@
-# osp_print_class prints class name correctly
+# OspPrintClass prints class name correctly
 
     Code
-      osp_print_class(data.frame(x = 1:3, y = letters[1:3]))
+      OspPrintClass(data.frame(x = 1:3, y = letters[1:3]))
     Message
       <data.frame>
 
 ---
 
     Code
-      osp_print_class(list(a = 1, b = 2))
+      OspPrintClass(list(a = 1, b = 2))
     Message
       <list>
 
 ---
 
     Code
-      osp_print_class(1:5)
+      OspPrintClass(1:5)
     Message
       <integer>
 
 ---
 
     Code
-      osp_print_class(myClass$new())
+      OspPrintClass(myClass$new())
     Message
       <myClass>
 
-# osp_print_header prints headers at different levels
+# OspPrintHeader prints headers at different levels
 
     Code
-      osp_print_header("Main Title", 1)
+      OspPrintHeader("Main Title", 1)
     Message
       
       -- Main Title ------------------------------------------------------------------
@@ -37,7 +37,7 @@
 ---
 
     Code
-      osp_print_header("Section Title", 2)
+      OspPrintHeader("Section Title", 2)
     Message
       
       -- Section Title --
@@ -46,15 +46,15 @@
 ---
 
     Code
-      osp_print_header("Subsection Title", 3)
+      OspPrintHeader("Subsection Title", 3)
     Message
       
       -- Subsection Title 
 
-# osp_print_items prints items correctly
+# OspPrintItems prints items correctly
 
     Code
-      osp_print_items(person)
+      OspPrintItems(person)
     Message
         * name: John
         * age: 30
@@ -63,7 +63,7 @@
 ---
 
     Code
-      osp_print_items(colors)
+      OspPrintItems(colors)
     Message
         * red
         * green
@@ -72,7 +72,7 @@
 ---
 
     Code
-      osp_print_items(my_list)
+      OspPrintItems(my_list)
     Message
         * id: 123
         * values: 1, 2, 3
@@ -81,7 +81,7 @@
 ---
 
     Code
-      osp_print_items(mixed)
+      OspPrintItems(mixed)
     Message
         * a: A
         * B
@@ -90,7 +90,7 @@
 ---
 
     Code
-      osp_print_items(letters_vec, title = "Letters")
+      OspPrintItems(letters_vec, title = "Letters")
     Message
       Letters:
         * A
@@ -100,45 +100,45 @@
 ---
 
     Code
-      osp_print_items(numbered_letters, title = "Letters")
+      OspPrintItems(numbered_letters, title = "Letters")
     Message
       Letters:
         * A: 1
         * B: 2
         * C: 3
 
-# osp_print_items handles empty values correctly
+# OspPrintItems handles empty values correctly
 
     Code
-      osp_print_items(empty_list, title = "Empty List", print_empty = TRUE)
+      OspPrintItems(empty_list, title = "Empty List", print_empty = TRUE)
     Message
       Empty List:
 
 ---
 
     Code
-      osp_print_items(empty_list, title = "Empty List", print_empty = FALSE)
+      OspPrintItems(empty_list, title = "Empty List", print_empty = FALSE)
     Message
       Empty List:
 
 ---
 
     Code
-      osp_print_items(empty_vector, title = "Empty Vector", print_empty = TRUE)
+      OspPrintItems(empty_vector, title = "Empty Vector", print_empty = TRUE)
     Message
       Empty Vector:
 
 ---
 
     Code
-      osp_print_items(empty_vector, title = "Empty Vector", print_empty = FALSE)
+      OspPrintItems(empty_vector, title = "Empty Vector", print_empty = FALSE)
     Message
       Empty Vector:
 
 ---
 
     Code
-      osp_print_items(list_with_nulls, title = "Parameters", print_empty = TRUE)
+      OspPrintItems(list_with_nulls, title = "Parameters", print_empty = TRUE)
     Message
       Parameters:
         * Min: NULL
@@ -150,7 +150,7 @@
 ---
 
     Code
-      osp_print_items(list_with_nulls, title = "Parameters", print_empty = FALSE)
+      OspPrintItems(list_with_nulls, title = "Parameters", print_empty = FALSE)
     Message
       Parameters:
         * Max: 100
@@ -158,7 +158,7 @@
 ---
 
     Code
-      osp_print_items(all_empty_list, title = "All Empty", print_empty = TRUE)
+      OspPrintItems(all_empty_list, title = "All Empty", print_empty = TRUE)
     Message
       All Empty:
         * A: NULL
@@ -170,7 +170,7 @@
 ---
 
     Code
-      osp_print_items(all_empty_list, title = "All Empty", print_empty = FALSE)
+      OspPrintItems(all_empty_list, title = "All Empty", print_empty = FALSE)
     Message
       All Empty:
         * All items are NULL, NA, or empty
@@ -178,7 +178,7 @@
 ---
 
     Code
-      osp_print_items(unnamed_mixed, title = "Unnamed Mixed", print_empty = TRUE)
+      OspPrintItems(unnamed_mixed, title = "Unnamed Mixed", print_empty = TRUE)
     Message
       Unnamed Mixed:
         * NULL
@@ -191,32 +191,32 @@
 ---
 
     Code
-      osp_print_items(unnamed_mixed, title = "Unnamed Mixed", print_empty = FALSE)
+      OspPrintItems(unnamed_mixed, title = "Unnamed Mixed", print_empty = FALSE)
     Message
       Unnamed Mixed:
         * 1
 
-# Different osp_print_* functions work well together
+# Different OspPrint* functions work well together
 
     Code
-      osp_print_class(my_object)
+      OspPrintClass(my_object)
     Message
       <myClass>
     Code
-      osp_print_items(my_object$named_items, title = "Named Items")
+      OspPrintItems(my_object$named_items, title = "Named Items")
     Message
       Named Items:
         * A: 1
         * B: 2
         * C: 3
     Code
-      osp_print_header("Nested Item List", 2)
+      OspPrintHeader("Nested Item List", 2)
     Message
       
       -- Nested Item List --
       
     Code
-      purrr::iwalk(my_object$nested_item_list, function(x, idx) osp_print_items(x,
+      purrr::iwalk(my_object$nested_item_list, function(x, idx) OspPrintItems(x,
         title = idx))
     Message
       sub_list_1:
