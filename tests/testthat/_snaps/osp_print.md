@@ -113,7 +113,6 @@
       osp_print_items(empty_list, title = "Empty List", print_empty = TRUE)
     Message
       Empty List:
-        * Empty list
 
 ---
 
@@ -128,7 +127,6 @@
       osp_print_items(empty_vector, title = "Empty Vector", print_empty = TRUE)
     Message
       Empty Vector:
-        * Empty vector
 
 ---
 
@@ -156,7 +154,6 @@
     Message
       Parameters:
         * Max: 100
-        * EmptyList: <empty list>
 
 ---
 
@@ -176,7 +173,7 @@
       osp_print_items(all_empty_list, title = "All Empty", print_empty = FALSE)
     Message
       All Empty:
-        * D: <empty list>
+        * All items are NULL, NA, or empty
 
 ---
 
@@ -198,7 +195,6 @@
     Message
       Unnamed Mixed:
         * 1
-        * <empty list>
 
 # Different osp_print_* functions work well together
 
