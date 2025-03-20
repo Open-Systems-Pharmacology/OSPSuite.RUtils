@@ -45,7 +45,7 @@ test_that("objectCount returns correct count for R6 objects", {
     )
   )
 
-  x <- myPrintable$new()
+  expect_warning(x <- myPrintable$new())
 
   expect_equal(objectCount(x), 1L)
   expect_equal(objectCount(list(x, x)), 2L)

@@ -29,8 +29,19 @@ x
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
+\item \href{#method-Printable-new}{\code{Printable$new()}}
 \item \href{#method-Printable-clone}{\code{Printable$clone()}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Printable-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Printable-new}{}}}
+\subsection{Method \code{new()}}{
+Create a new Printable object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Printable$new()}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Printable-clone"></a>}}
