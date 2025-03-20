@@ -5,19 +5,19 @@
     Condition
       Warning:
       ospsuite.utils::Printable was deprecated in ospsuite.utils 1.6.2.
-      i Please use ospsuite.utils::osp_print_*() instead.
+      i Please use ospsuite.utils::ospPrint*() instead.
     Output
       myPrintable: 
     Condition
       Warning:
       ospsuite.utils::Printable was deprecated in ospsuite.utils 1.6.2.
-      i Please use ospsuite.utils::osp_print_*() instead.
+      i Please use ospsuite.utils::ospPrint*() instead.
     Output
          x: NULL 
     Condition
       Warning:
       ospsuite.utils::Printable was deprecated in ospsuite.utils 1.6.2.
-      i Please use ospsuite.utils::osp_print_*() instead.
+      i Please use ospsuite.utils::ospPrint*() instead.
     Output
          y: NULL 
 
@@ -28,7 +28,7 @@
     Condition
       Warning:
       ospsuite.utils::Printable was deprecated in ospsuite.utils 1.6.2.
-      i Please use ospsuite.utils::osp_print_*() instead.
+      i Please use ospsuite.utils::ospPrint*() instead.
     Output
       <newPrintable1>
         Inherits from: <Printable>
