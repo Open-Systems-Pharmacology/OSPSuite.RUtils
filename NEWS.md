@@ -2,6 +2,11 @@
 
 # ospsuite.utils 1.7.0
 
+## Major changes
+
+- Class `Printable` is deprecated,
+- New functions `ospPrintClass()`, `ospPrintItems()`, and `ospPrintHeader()` are introduced to replace the `Printable` class.
+
 # ospsuite.utils 1.6.1
 
 ## Minor improvements and bug fixes
