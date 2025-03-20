@@ -5,6 +5,7 @@
 #' Base class that implements some basic properties for printing to console.
 #'
 #' @importFrom R6 R6Class
+#' @importFrom lifecycle deprecate_warn
 #'
 #' @examples
 #' myPrintable <- R6::R6Class(
@@ -40,7 +41,7 @@ Printable <- R6::R6Class(
       lifecycle::deprecate_warn(
         when = "1.6.2",
         what = I("ospsuite.utils::Printable"),
-        with = I("ospsuite.utils::osp_print_*()")
+        with = I("ospsuite.utils::ospPrint*()")
       )
     },
     printLine = function(entry, value = NULL, addTab = TRUE) {
