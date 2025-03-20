@@ -1,4 +1,4 @@
-# ospsuite.utils (development version)
+# ospsuite.utils 1.7.0
 
 # ospsuite.utils 1.6.1
 
