@@ -7,8 +7,6 @@
 
 [![R build
 status](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/R-CMD-check/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=develop&svg=true)](https://ci.appveyor.com/project/open-systems-pharmacology-ci/ospsuite-rutils)
 [![pkgdown](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/pkgdown/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/actions)
 [![codecov](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=main)
 
