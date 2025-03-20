@@ -5,6 +5,8 @@
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/index.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/news/index.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/Printable.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/dot-formatValue.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/dot-isEmpty.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enum.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enumGetKey.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enumGetValue.html</loc></url>
@@ -35,6 +37,9 @@
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/messages.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/objectCount.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/op-null-default.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/ospPrintClass.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/ospPrintHeader.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/ospPrintItems.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/ospsuiteUtilsSettingNames.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/toList.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/toMissingOfType.html</loc></url>

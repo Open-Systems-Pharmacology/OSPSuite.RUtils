@@ -32,8 +32,14 @@
     </div>
 
     <div class="section level2">
-      <h2 id="enum-helpers">Enum helpers<a class="anchor" aria-label="anchor" href="#enum-helpers"></a></h2>
+      <h2 id="helpers">Helpers<a class="anchor" aria-label="anchor" href="#helpers"></a></h2>
 
+
+
+
+    </div><div class="section level2">
+
+      <h3 id="enum-helpers">Enum helpers<a class="anchor" aria-label="anchor" href="#enum-helpers"></a></h3>
       <div class="section-desc"><p>Utilities to work with enum objects</p></div>
 
 
@@ -91,8 +97,8 @@
         </dt>
         <dd>Get the values stored in an enum</dd>
       </dl></div><div class="section level2">
-      <h2 id="validation-helpers">Validation helpers<a class="anchor" aria-label="anchor" href="#validation-helpers"></a></h2>
 
+      <h3 id="validation-helpers">Validation helpers<a class="anchor" aria-label="anchor" href="#validation-helpers"></a></h3>
       <div class="section-desc"><p>Check or validate a given assertion</p></div>
 
 
@@ -204,8 +210,8 @@
         </dt>
         <dd>Validate Vector Against Specified Criteria</dd>
       </dl></div><div class="section level2">
-      <h2 id="conditional-value-assignment-helpers">Conditional value assignment helpers<a class="anchor" aria-label="anchor" href="#conditional-value-assignment-helpers"></a></h2>
 
+      <h3 id="conditional-value-assignment-helpers">Conditional value assignment helpers<a class="anchor" aria-label="anchor" href="#conditional-value-assignment-helpers"></a></h3>
       <div class="section-desc"><p>Compute and assign value conditionally</p></div>
 
 
@@ -233,8 +239,8 @@
         </dt>
         <dd>Value conditional on <code>NULL</code></dd>
       </dl></div><div class="section level2">
-      <h2 id="formatting-helpers">Formatting helpers<a class="anchor" aria-label="anchor" href="#formatting-helpers"></a></h2>
 
+      <h3 id="formatting-helpers">Formatting helpers<a class="anchor" aria-label="anchor" href="#formatting-helpers"></a></h3>
 
 
 
@@ -250,9 +256,78 @@
         </dt>
         <dd>formatNumerics</dd>
       </dl></div><div class="section level2">
-      <h2 id="r-helpers">R6 helpers<a class="anchor" aria-label="anchor" href="#r-helpers"></a></h2>
 
-      <div class="section-desc"><p>Utilities to work with R6 objects</p></div>
+      <h3 id="printing-helpers">Printing helpers<a class="anchor" aria-label="anchor" href="#printing-helpers"></a></h3>
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="ospPrintClass.html">ospPrintClass()</a></code>
+
+        </dt>
+        <dd>Print an object's class name</dd>
+      </dl><dl><dt>
+
+          <code><a href="ospPrintHeader.html">ospPrintHeader()</a></code>
+
+        </dt>
+        <dd>Print a header with specified level</dd>
+      </dl><dl><dt>
+
+          <code><a href="ospPrintItems.html">ospPrintItems()</a></code>
+
+        </dt>
+        <dd>Print a list of items with an optional title</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="math-helpers">Math helpers<a class="anchor" aria-label="anchor" href="#math-helpers"></a></h3>
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="logSafe.html">logSafe()</a></code>
+
+        </dt>
+        <dd>Computes logarithm of a number or of a vector of numbers and handles zeros while substituting all values below <code>epsilon</code> by <code>epsilon</code>.</dd>
+      </dl></div><div class="section level2">
+      <h2 id="package-settings">Package settings<a class="anchor" aria-label="anchor" href="#package-settings"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="getOSPSuiteUtilsSetting.html">getOSPSuiteUtilsSetting()</a></code>
+
+        </dt>
+        <dd>Get the value of a global <a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils" class="external-link">ospsuite.utils</a> package setting.</dd>
+      </dl><dl><dt>
+
+          <code><a href="ospsuiteUtilsSettingNames.html">ospsuiteUtilsSettingNames</a></code>
+
+        </dt>
+        <dd>Names of the settings stored in <code>ospsuiteEnv</code>. Can be used with <code><a href="../reference/getOSPSuiteUtilsSetting.html">getOSPSuiteUtilsSetting()</a></code></dd>
+      </dl></div><div class="section level2">
+      <h2 id="deprecated-features">Deprecated Features<a class="anchor" aria-label="anchor" href="#deprecated-features"></a></h2>
+
+
 
 
     </div><div class="section level2">
@@ -325,40 +400,6 @@
 
         </dt>
         <dd>Safe fold calculation</dd>
-      </dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="logSafe.html">logSafe()</a></code>
-
-        </dt>
-        <dd>Computes logarithm of a number or of a vector of numbers and handles zeros while substituting all values below <code>epsilon</code> by <code>epsilon</code>.</dd>
-      </dl></div><div class="section level2">
-      <h2 id="package-settings">Package settings<a class="anchor" aria-label="anchor" href="#package-settings"></a></h2>
-
-
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="getOSPSuiteUtilsSetting.html">getOSPSuiteUtilsSetting()</a></code>
-
-        </dt>
-        <dd>Get the value of a global <a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils" class="external-link">ospsuite.utils</a> package setting.</dd>
-      </dl><dl><dt>
-
-          <code><a href="ospsuiteUtilsSettingNames.html">ospsuiteUtilsSettingNames</a></code>
-
-        </dt>
-        <dd>Names of the settings stored in <code>ospsuiteEnv</code>. Can be used with <code><a href="../reference/getOSPSuiteUtilsSetting.html">getOSPSuiteUtilsSetting()</a></code></dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
