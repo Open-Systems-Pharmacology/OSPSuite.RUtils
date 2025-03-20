@@ -60,28 +60,28 @@ test_that("ospPrintItems handles empty values correctly", {
   empty_list <- list()
   expect_snapshot(ospPrintItems(empty_list, title = "Empty List", print_empty = TRUE))
   expect_snapshot(ospPrintItems(empty_list, title = "Empty List", print_empty = FALSE))
-  
+
   # Test empty vector
   empty_vector <- numeric(0)
   expect_snapshot(ospPrintItems(empty_vector, title = "Empty Vector", print_empty = TRUE))
   expect_snapshot(ospPrintItems(empty_vector, title = "Empty Vector", print_empty = FALSE))
-  
+
   # Test list with NULL values and empty vectors/lists
   list_with_nulls <- list(
-    "Min" = NULL, 
-    "Max" = 100, 
-    "Unit" = NA, 
+    "Min" = NULL,
+    "Max" = 100,
+    "Unit" = NA,
     "EmptyVec" = character(0),
     "EmptyList" = list()
   )
   expect_snapshot(ospPrintItems(list_with_nulls, title = "Parameters", print_empty = TRUE))
   expect_snapshot(ospPrintItems(list_with_nulls, title = "Parameters", print_empty = FALSE))
-  
+
   # Test list with all empty values
   all_empty_list <- list("A" = NULL, "B" = NA, "C" = "", "D" = list(), "E" = numeric(0))
   expect_snapshot(ospPrintItems(all_empty_list, title = "All Empty", print_empty = TRUE))
   expect_snapshot(ospPrintItems(all_empty_list, title = "All Empty", print_empty = FALSE))
-  
+
   # Test unnamed list with mixed values
   unnamed_mixed <- list(NULL, 1, NA, "", list(), numeric(0))
   expect_snapshot(ospPrintItems(unnamed_mixed, title = "Unnamed Mixed", print_empty = TRUE))

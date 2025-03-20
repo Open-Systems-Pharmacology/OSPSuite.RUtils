@@ -65,9 +65,9 @@ ospPrintHeader <- function(text, level = 1) {
 }
 
 #' Helper function to check if a value is considered "empty"
-#' 
+#'
 #' Determines if a value is empty (NULL, NA, empty string, empty vector, or empty list)
-#' 
+#'
 #' @param val The value to check
 #' @return TRUE if the value is considered empty, FALSE otherwise
 #' @keywords internal
@@ -92,7 +92,7 @@ ospPrintHeader <- function(text, level = 1) {
 #' Format a value for display
 #'
 #' Converts a value into a string representation that properly shows its type
-#' 
+#'
 #' @param value The value to format
 #' @return A string representation of the value
 #' @keywords internal
@@ -159,7 +159,7 @@ ospPrintItems <- function(x, title = NULL, print_empty = FALSE) {
   # Count items within xthat will be printed and check if all are "empty"
   items_to_print <- 0
   all_items_empty <- TRUE
-  
+
   # Check all items first
   for (i in seq_along(x)) {
     value <- x[[i]]
@@ -172,23 +172,23 @@ ospPrintItems <- function(x, title = NULL, print_empty = FALSE) {
   }
 
   # If no items to print and title is not provided, just return invisibly
-  if (all_items_empty &&  is.null(title) && !print_empty) {
+  if (all_items_empty && is.null(title) && !print_empty) {
     return(invisible(x))
   }
 
   # Special case: all items are empty and title is provided
   if (all_items_empty && !is.null(title) && !print_empty) {
     # When print_empty is FALSE, show the message
-      # Start the list
-      cli::cli_div(theme = list(ul = list(
-        "margin-left" = 2 # Add indentation
-      )))
-      cli::cli_li("All items are NULL, NA, or empty")
-      cli::cli_end()
-      
-      return(invisible(x))
+    # Start the list
+    cli::cli_div(theme = list(ul = list(
+      "margin-left" = 2 # Add indentation
+    )))
+    cli::cli_li("All items are NULL, NA, or empty")
+    cli::cli_end()
+
+    return(invisible(x))
   }
-  
+
 
   # Start the list
   cli::cli_div(theme = list(ul = list(
@@ -242,4 +242,3 @@ ospPrintItems <- function(x, title = NULL, print_empty = FALSE) {
   # Return input invisibly
   invisible(x)
 }
-
