@@ -34,6 +34,6 @@ test_that("validateIsOfLength returns `NULL` when objects have expected length",
 })
 
 test_that("validateIsOfLength produces error when objects do not have expected length", {
-  errorMessageIsOfLength <- "Object should be of length '5', but is of length '3' instead."
+  errorMessageIsOfLength <- "(Object).*(should be of length).*(5).*(but is of length).*(3)"
   expect_error(validateIsOfLength(A, 5), errorMessageIsOfLength)
 })

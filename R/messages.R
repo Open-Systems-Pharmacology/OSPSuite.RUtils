@@ -167,13 +167,13 @@ messages <- list(
     )
   },
   errorNotIncluded = function(values, parentValues) {
-    cliFormat("Values {.val {values}} are not included in parent values: {.field parentValues}}.")
+    cliFormat("{length(values)} value{?s} ({.val {values}}) {?is/are} not included in parent values: {.field {parentValues}}.")
   },
   errorEntityPathNotAbsolute = function(path) {
     callingFunction <- .getCallingFunctionName()
     cliFormat(paste(
       "{.fn {callingFunction}}: Only absolute paths (i.e. without the wildcard(s) {.strong *}) are allowed,",
-      "but the given path is: {.file path}"
+      "but the given path is: {.val {path}}"
       ))
   },
   errorOnlyOneValuesSetAllowed = function(argumentName) {
@@ -241,9 +241,24 @@ messages <- list(
   errorValueNotAllowed = function(values, parentValues) {
     callingFunction <- .getCallingFunctionName()
     notIncludedValues <- values[!values %in% parentValues]
+    notIncludedValuesStr <- paste(head(notIncludedValues, 5), collapse = ", ")
+    notIncludedValuesStr <- ifelse(
+      length(notIncludedValues) > 5,
+      paste(notIncludedValuesStr, "..."),
+      notIncludedValuesStr
+    )
+    parentValuesStr <- paste(
+      head(parentValues, 5),
+      collapse = ", "
+    )
+    parentValuesStr <- ifelse(
+      length(parentValues) > 5,
+      paste(parentValuesStr, "..."),
+      parentValuesStr
+    )
     cliFormat(
-      "{length(notIncludedValues)} value{?s} ({.val {notIncludedValues}}) not included in allowed values.",
-      "Allowed values: {.val {parentValues}}"
+      "{length(notIncludedValues)} value{?s} ({.val {notIncludedValuesStr}}) not included in allowed values.",
+      "Allowed values: {.val {parentValuesStr}}"
       )
   },
   errorTypeNotSupported = function(objectName, type, expectedType) {

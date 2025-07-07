@@ -12,6 +12,6 @@ test_that("validatePathIsAbsolute throws an error for a path with a wildcard", {
   path <- "Organism|*path"
   expect_error(
     validatePathIsAbsolute(path),
-    messages$errorEntityPathNotAbsolute(path)
+    "(Only absolute paths).*(without the wildcard).*(are allowed, but the given path is).*(Organism|*path)"
   )
 })

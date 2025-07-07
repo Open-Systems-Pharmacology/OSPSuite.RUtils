@@ -5,7 +5,7 @@ test_that("Names for settings are as expected", {
 test_that("Check that values for package environment bindings are correct", {
   expect_error(
     getOSPSuiteUtilsSetting("xyz"),
-    "No global setting with the name 'xyz' exists."
+    "(No global setting with the name).*(xyz).*(exists)"
   )
 
   expect_equal(getOSPSuiteUtilsSetting("packageName"), "ospsuite.utils")
