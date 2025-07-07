@@ -14,58 +14,62 @@
 #' # example with function
 #' messages$errorPropertyReadOnly("age")
 #'
+#' # example display with warning
+#' warning(messages$errorPropertyReadOnly("age"))
+#' 
+#' # example display using logs
+#' logInfo(messages$errorPropertyReadOnly("age"))
+#'
 #' @export
 messages <- list(
   errorGetEntityMultipleOutputs = function(path, container, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": the path '",
-      toString(path),
-      "' located under container '",
-      container$path,
-      "' leads to more than one entity! Use 'getAllXXXMatching'",
-      "to get the list of all entities matching the path, where XXX stands for the entity type",
+    cliFormat(
+      paste(
+        "{.fn {callingFunction}}: the path {.val {toString(path)}}",
+        "located under container {.url {container$path}}",
+        "leads to more than {.strong one entity}!"
+        ),
+      paste(
+        "Use {.fn getAllXXXMatching} to get the list of all entities matching the path,",
+        "where {.val XXX} stands for the entity type (e.g. {.emph Containers})"
+      ),
       optionalMessage
     )
   },
   errorEntityNotFound = function(path, container, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": No entity exists for path '",
-      toString(path),
-      "' located under container '",
-      container$path,
-      "'!",
+    cliFormat(
+      paste(
+        "{.fn {callingFunction}}: no entity exists for path {.val {toString(path)}}",
+        "located under container {.url {container$path}}!"
+        ),
       optionalMessage
     )
   },
   errorResultNotFound = function(path, individualId, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": No results exists for path '",
-      toString(path),
-      "' for individual IDs ",
-      "'",
-      individualId,
-      "'!",
+    cliFormat(
+      paste(
+        "{.fn {callingFunction}}: no results exist for path {.val {toString(path)}}",
+        "for individual ID{?s} {.val {individualId}}!"
+      ),
       optionalMessage
     )
   },
   errorCannotSetRHSFormula = "Creating a RHS Formula is not supported at the moment. This should be done in MoBi.",
   errorPKParameterNotFound = function(pkParameterName, allPKParameterNames) {
-    paste0(
-      "PK-Parameter '",
-      pkParameterName,
-      "' not found.\nAvailable PK-Parameters are:\n",
-      paste0(allPKParameterNames, collapse = ", ")
+    cliFormat(
+      "PK-Parameter {.val {pkParameterName}} not found.",
+      "Available PK-Parameters are: {.field {allPKParameterNames}}"
     )
   },
   errorSimulationBatchNothingToVary = "You need to vary at least one parameter or one molecule in order to use the SimulationBatch",
   errorMultipleMetaDataEntries = function(optionalMessage = NULL) {
-    paste("Can only add a single meta data entry at once", optionalMessage)
+    cliFormat(
+      "Can only add a strong single meta data entry at once", 
+      optionalMessage
+      )
   },
   errorMultipleSimulationsCannotBeUsedWithPopulation = "Multiple simulations cannot be run concurrently with a population.",
   errorDataSetNameMissing = "Argument `name` is missing, must be provided when
@@ -75,26 +79,18 @@ messages <- list(
                             expectedType,
                             optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
-    expectedTypeMsg <- paste0(expectedType, collapse = ", or ")
-    paste0(
-      callingFunction,
-      ": argument '",
-      objectName,
-      "' is of type '",
-      type,
-      "', but expected '",
-      expectedTypeMsg,
-      "'!",
+    cliFormat(
+      paste(
+        "{.fn {callingFunction}}: argument {.val {objectName}} is of type {.cls {type}},",
+        "but expected {.cls {expectedType}}!"
+        ),
       optionalMessage
     )
   },
   errorDifferentLength = function(objectNames, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": Arguments '",
-      objectNames,
-      "' must have the same length, but they don't!",
+    cliFormat(
+      "Arguments {.val {objectNames}} must have the {.strong same length}, but they don't!",
       optionalMessage
     )
   },
@@ -102,241 +98,164 @@ messages <- list(
     # Name of the calling function
     callingFunctions <- sys.calls()
     callingFunction <- sys.call(-length(callingFunctions) + 1)[[1]]
-    paste0(
-      callingFunction,
-      ": Object should be of length '",
-      nbElements,
-      "', but is of length '",
-      length(object),
-      "' instead. ",
-      optionalMessage
+    cliFormat(
+      paste(
+        "{.fn {callingFunction}}: {.field Object} should be of length {.val {nbElements}},",
+        "but is of length {.val {length(object)}} instead."
+        ),
+        optionalMessage
     )
   },
   errorWrongFileExtension = function(actualExtension, expectedExtension, optionalMessage = NULL) {
-    paste0(
-      "Provided file has extension '",
-      actualExtension,
-      "', while '",
-      expectedExtension,
-      "' was expected instead. ",
+    cliFormat(
+      paste(
+        "Provided file has extension {.file {actualExtension}},",
+        "while {.file {expectedExtension}} was expected instead."
+        ),
       optionalMessage
     )
   },
   errorEmpty = function(objectName, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": argument '",
-      objectName,
-      "' is empty!",
+    cliFormat(
+      "{.fn {callingFunction}}: argument {.val {objectName}} is {.strong empty}!",
       optionalMessage
     )
   },
   errorEmptyString = function(objectName, optionalMessage = NULL) {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": argument '",
-      objectName,
-      "' has empty strings!",
+    cliFormat(
+      "{.fn {callingFunction}}: argument {.val {objectName}} has {.strong empty} {.field strings}!",
       optionalMessage
     )
   },
   errorPropertyReadOnly = function(propertyName, optionalMessage = NULL) {
-    paste0("Property '$", propertyName, "' is readonly")
+    cliFormat("Property {.field ${propertyName}} is readonly")
   },
   errorCannotSetRHSFormula = "Creating a RHS Formula is not supported at the moment. This should be done in MoBi.",
-  errorEnumNotAllNames = "The enumValues has some but not all names assigned. They must be all assigned or none assigned",
+  errorEnumNotAllNames = "The enumValues has some but not all names assigned.\nThey must be all assigned or none assigned",
   errorValueNotInEnum = function(enum, value) {
-    paste0(
-      "Value '",
-      value,
-      "' is not in defined enumeration values: '",
-      paste0(names(enum), collapse = ", "),
-      "'."
-    )
+    cliFormat("Value {.val {value}} is not in defined enumeration values: {.field {names(enum)}}.")
   },
   errorEnumValueUndefined = function(enum) {
-    paste0(
-      "Provided value is not in defined enumeration values: '",
-      paste0(names(enum), collapse = ", "),
-      "'."
-    )
+    cliFormat("Provided value is not in defined enumeration values: {.field {names(enum)}}.")
   },
   errorKeyInEnumPresent = function(key, optionalMessage = NULL) {
-    paste0(
-      "enum already contains the key '",
-      key,
-      "'! Use 'overwrite = TRUE' to overwrite the value. ",
+    cliFormat(
+      "enum already contains the key {.field {key}}!",
+      "Use {.code overwrite = TRUE} to overwrite the value.",
       optionalMessage
     )
   },
   errorKeyNotInEnum = function(key) {
-    paste0("No value with the key '", key, "' is present in the enum!")
+    cliFormat("No value with the key {.field {key}} is present in the enum!")
   },
   errorUnitNotDefined = function(quantityName, dimension, unit) {
-    paste0(
-      "Unit '",
-      unit,
-      "' is not defined in dimension '",
-      dimension,
-      "' used by '",
-      quantityName,
-      "'."
-    )
+    cliFormat("Unit {.val {unit}} is not defined in dimension {.field {dimension}} used by {.url {quantityName}}.")
   },
   errorDimensionNotSupported = function(dimension, optionalMessage = NULL) {
-    paste0(
-      "Dimension '",
-      dimension,
-      "' is not supported! See enum `ospsuite::Dimensions` for the list of supported dimensions."
+    cliFormat(
+      "Dimension {.val dimension} is {.strong not} supported!",
+      "See enum {.code ospsuite::ospDimensions} for the list of supported dimensions.",
+      optionalMessage
     )
   },
   errorUnitNotSupported = function(unit, dimension, optionalMessage = NULL) {
-    paste0(
-      "Unit '",
-      unit,
-      "' is not supported by the dimension '",
-      dimension,
-      "'!"
+    cliFormat(
+      "Unit {.val {unit}} is not supported by dimension {.field {dimension}}!",
+      optionalMessage
     )
   },
   errorNotIncluded = function(values, parentValues) {
-    paste0(
-      "Values '",
-      paste0(values, collapse = ", "),
-      "' are not in included in parent values: '",
-      paste0(parentValues, collapse = ", "),
-      "'."
-    )
+    cliFormat("Values {.val {values}} are not included in parent values: {.field parentValues}}.")
   },
   errorEntityPathNotAbsolute = function(path) {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": Only absolute paths (i.e. without the wildcard(s) `*`) are allowed, but the given path is: ",
-      path
-    )
+    cliFormat(paste(
+      "{.fn {callingFunction}}: Only absolute paths (i.e. without the wildcard(s) {.strong *}) are allowed,",
+      "but the given path is: {.file path}"
+      ))
   },
   errorOnlyOneValuesSetAllowed = function(argumentName) {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": argument '",
-      argumentName,
-      "' is a list with multiple values sets, but only one value set is allowed!"
-    )
+    cliFormat(paste(
+      "{.fn {callingFunction}}: argument {.val {argumentName}} is a list with multiple value sets,",
+      "but {.strong only one value set} is allowed!"
+    ))
   },
   errorOnlyOneSupported = function(optionalMessage = NULL) {
-    paste("Can only add a single instance of this object", optionalMessage)
+    cliFormat(
+      "Can only add a single instance of this object", 
+      optionalMessage
+      )
   },
   errorDuplicatedValues = function(optionalMessage = NULL) {
-    paste("Object has duplicated values; only unique values are allowed.", optionalMessage)
+    cliFormat(
+      "Object has duplicated values; only unique values are allowed.", 
+      optionalMessage
+      )
   },
   errorOnlyVectorAllowed = function() {
-    paste("Argument to parameter `x` can only be a vector.")
+    cliFormat("Argument to parameter {.val x} can only be a vector.")
   },
   errorPackageSettingNotFound = function(settingName, globalEnv) {
-    paste0(
-      "No global setting with the name '",
-      settingName,
-      "' exists. Available global settings are:\n",
-      paste0(names(globalEnv), collapse = ", ")
+    cliFormat(
+      "No global setting with the name {.val {settingName}} exists.",
+      "Available global settings are: {.field {names(globalEnv)}}"
     )
   },
   errorMissingType = function() {
-    paste0("The 'type' argument must be specified.")
+    cliFormat("The {.val type} argument must be specified.")
   },
   errorValueRange = function(valueRange) {
     callingFunction <- .getCallingFunctionName()
     if (any(is.na(valueRange))) {
-      paste0(
-        callingFunction,
-        ": 'valueRange' must not contain NA values."
-      )
+      cliFormat("{.fn {callingFunction}}: {.val valueRange} must not contain {.strong NA} values.")
     } else {
-      paste0(
-        callingFunction,
-        ": 'valueRange' must be a vector of length 2 and in ascending order, but got ",
-        if (is.null(valueRange)) "NULL" else paste0("'", toString(valueRange), "'"),
-        "."
-      )
+      cliFormat(
+        "{.fn {callingFunction}}: {.val valueRange} must be a vector of {.strong length 2} and in {.strong ascending order}",
+        '{.field valueRange} was {.val {ifelse(is.null(valueRange), "NULL", toString(valueRange))}}.'
+        )
     }
   },
   errorValueRangeType = function(valueRange, type) {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": 'valueRange' is not applicable for the type: ",
-      if (is.null(valueRange)) "NULL" else paste0("'", type, "'"),
-      "."
+    cliFormat(
+      paste(
+        "{.fn {callingFunction}}: {.val valueRange} is not applicable for the type",
+        '{.cls {ifelse(is.null(valueRange), "NULL", type)}}.'
+      )
     )
   },
   errorNaNotAllowed = function() {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": NA values are not allowed."
-    )
+    cliFormat("{.fn {callingFunction}}: {.emph NA} values are not allowed.")
   },
   errorOutOfRange = function(valueRange) {
     callingFunction <- .getCallingFunctionName()
-    paste0(
-      callingFunction,
-      ": Value(s) out of the allowed range: ",
-      "[",
-      toString(valueRange[1]),
-      ", ",
-      toString(valueRange[2]),
-      "]."
-    )
+    cliFormat(paste(
+      "{.fn {callingFunction}}: Value(s) out of the allowed range",
+      "{.strong [{toString(valueRange)}]}."
+    ))
   },
   errorValueNotAllowed = function(values, parentValues) {
     callingFunction <- .getCallingFunctionName()
     notIncludedValues <- values[!values %in% parentValues]
-    notIncludedValuesStr <- paste(
-      head(notIncludedValues, 5),
-      collapse = ", "
-    )
-    notIncludedValuesStr <- ifelse(
-      length(notIncludedValues) > 5,
-      paste(notIncludedValuesStr, "..."),
-      notIncludedValuesStr
-    )
-    parentValuesStr <- paste(
-      head(parentValues, 5),
-      collapse = ", "
-    )
-    parentValuesStr <- ifelse(
-      length(parentValues) > 5,
-      paste(parentValuesStr, "..."),
-      parentValuesStr
-    )
-    paste0(
-      "Value(s) '",
-      notIncludedValuesStr,
-      "' not included in allowed values: '",
-      parentValuesStr,
-      "'."
-    )
+    cliFormat(
+      "{length(notIncludedValues)} value{?s} ({.val {notIncludedValues}}) not included in allowed values.",
+      "Allowed values: {.val {parentValues}}"
+      )
   },
   errorTypeNotSupported = function(objectName, type, expectedType) {
     callingFunction <- .getCallingFunctionName()
-    expectedTypeMsg <- paste0(expectedType, collapse = ", or ")
-    paste0(
-      callingFunction,
-      ": argument '",
-      objectName,
-      "' is '",
-      type,
-      "', but only '",
-      expectedTypeMsg,
-      "' supported!"
+    cliFormat(
+      "{.fn {callingFunction}}: argument {.val {objectName}} is of type {.cls {type}}",
+      "Only {.cls {expectedType}} supported!"
     )
   },
   errorFileNotUTF8 = function(file) {
     callingFunction <- .getCallingFunctionName()
-    paste0(callingFunction, ": File '", file, "' is NOT UTF-8 encoded.")
+    cliFormat("{.fn {callingFunction}}: File {.file {file}} is {.strong not} UTF-8 encoded.")
   }
 )
 

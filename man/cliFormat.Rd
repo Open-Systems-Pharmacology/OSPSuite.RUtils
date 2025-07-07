@@ -16,4 +16,5 @@ A formatted character string
 }
 \description{
 Format text into cli inline format
+Allows evaluation of expressions within the text before submitting to logs
 }
