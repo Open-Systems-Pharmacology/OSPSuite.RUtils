@@ -29,15 +29,15 @@ Message type will point toward the most appropriate \code{cli} function display.
 }
 \examples{
 # Log information
-logInfo("This is an {.strong info} message")
+logInfo(cliFormat("This is an {.strong info} message"))
 
 # Log a title
-logInfo("Task: {.strong tic toc test}", type = "h1")
+logInfo(cliFormat("Task: {.strong tic toc test}"), type = "h1")
 
 # Log success
 t0 <- tic()
 Sys.sleep(3)
-logInfo("Task: {.strong tic toc test} completed [{toc(t0, \"s\")}]", type = "success")
+logInfo(cliFormat("Task: {.strong tic toc test} completed [{toc(t0, \"s\")}]"), type = "success")
 
 }
 \keyword{logging}

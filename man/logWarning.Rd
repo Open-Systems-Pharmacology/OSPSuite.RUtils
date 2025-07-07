@@ -14,7 +14,7 @@ Log warning with time stamp
 }
 \examples{
 # Log warning
-logWarning("This is a {.strong warning} message")
+logWarning(cliFormat("This is a {.strong warning} message"))
 
 }
 \keyword{logging}

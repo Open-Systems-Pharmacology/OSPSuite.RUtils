@@ -23,11 +23,11 @@ ospsuiteUtilsEnv$LOG_SAFE_EPSILON <- 1e-20
 
 # Logging settings, masking corresponds to patterns logged but not displayed on console
 ospsuiteUtilsEnv$logging <- list(
-  folder = NULL, 
-  errorMasking = NULL, 
+  folder = NULL,
+  errorMasking = NULL,
   warningMasking = NULL,
   infoMasking = NULL
-  )
+)
 
 #' Names of the settings stored in `ospsuiteEnv`. Can be used with
 #' `getOSPSuiteUtilsSetting()`

@@ -27,6 +27,19 @@ msgHeader <- function(logLevel) {
   )
 }
 
+#' @title cliFormat
+#' @description
+#' Format text into cli inline format
+#' Allows evaluation of expressions within the text before submitting to logs
+#' @param ... Characters to format
+#' @param .envir Environment in which to evaluate the expressions
+#' @return A formatted character string
+#' @export
+#' @importFrom cli format_inline
+cliFormat <- function(..., .envir = parent.frame()) {
+  cli::format_inline(paste(..., sep = "\n"), .envir = .envir)
+}
+
 #' @title cliFromLevel
 #' @description Get appropriate cli function based on log level
 #' @param logLevel Log level as a character string (DEBUG, INFO, SUCCESS, WARN, ERROR, FATAL)
@@ -61,6 +74,7 @@ consoleLayout <- function(level,
     return()
   }
   # Main message
+  msg <- unlist(strsplit(msg, "\n"))
   cliFunction <- cliFromLevel(logLevel)
   cliFunction(c("{msgHeader(logLevel)} ", head(msg, 1)))
 

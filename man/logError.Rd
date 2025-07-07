@@ -18,10 +18,10 @@ Log error with time stamp
 setLogFolder()
 }
 # Log error
-logError("This is an {.strong error} message")
+logError(cliFormat("This is an {.strong error} message"))
 
 # Log error with indications
-logError(c(
+logError(cliFormat(
   "This is an {.strong error} message",
   "Check these {.val values} or this {.fn function}"
 ))

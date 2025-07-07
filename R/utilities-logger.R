@@ -148,15 +148,15 @@ getLogFolder <- function() {
 #' @keywords logging
 #' @examples
 #' # Log information
-#' logInfo("This is an {.strong info} message")
+#' logInfo(cliFormat("This is an {.strong info} message"))
 #'
 #' # Log a title
-#' logInfo("Task: {.strong tic toc test}", type = "h1")
+#' logInfo(cliFormat("Task: {.strong tic toc test}"), type = "h1")
 #'
 #' # Log success
 #' t0 <- tic()
 #' Sys.sleep(3)
-#' logInfo("Task: {.strong tic toc test} completed [{toc(t0, \"s\")}]", type = "success")
+#' logInfo(cliFormat("Task: {.strong tic toc test} completed [{toc(t0, \"s\")}]"), type = "success")
 #'
 logInfo <- function(msg, type = "info") {
   if (isIncluded(type, c("h1", "h2", "h3", "text", "alert", "li", "ol", "progress_step"))) {
@@ -189,7 +189,7 @@ logInfo <- function(msg, type = "info") {
 #' @keywords logging
 #' @examples
 #' # Log warning
-#' logWarning("This is a {.strong warning} message")
+#' logWarning(cliFormat("This is a {.strong warning} message"))
 #'
 logWarning <- function(msg) {
   logger::log_warn(msg)
@@ -208,10 +208,10 @@ logWarning <- function(msg) {
 #' setLogFolder()
 #' }
 #' # Log error
-#' logError("This is an {.strong error} message")
+#' logError(cliFormat("This is an {.strong error} message"))
 #'
 #' # Log error with indications
-#' logError(c(
+#' logError(cliFormat(
 #'   "This is an {.strong error} message",
 #'   "Check these {.val values} or this {.fn function}"
 #' ))
