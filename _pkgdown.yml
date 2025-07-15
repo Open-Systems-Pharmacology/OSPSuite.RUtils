@@ -54,6 +54,14 @@ reference:
     contents:
       - Printable
 
+  - title: Logger
+    contents:
+      - has_concept("logging")
+      - cliFormat
+      - tic
+      - toc
+      - timeStamp
+
   - title: Miscellaneous
     contents:
       - "`%||%`"
