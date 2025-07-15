@@ -65,3 +65,4 @@ Collate:
     'validation-uniqueness.R'
     'validation-utf.R'
     'validation-vector.R'
+VignetteBuilder: knitr
