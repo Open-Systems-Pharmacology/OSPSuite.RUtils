@@ -55,12 +55,19 @@ reference:
       - Printable
 
   - title: Logger
+    desc: Utilities for recording logs
     contents:
-      - has_concept("logging")
+      - getLogFolder
+      - setLogFolder
+      - logDebug
+      - logInfo
+      - logWarning
+      - logError
       - cliFormat
-      - tic
-      - toc
-      - timeStamp
+      - logCatch
+      - setInfoMasking
+      - setWarningMasking
+      - setErrorMasking
 
   - title: Miscellaneous
     contents:
@@ -71,4 +78,7 @@ reference:
       - flattenList
       - logSafe
       - foldSafe
+      - tic
+      - toc
+      - timeStamp
 
