@@ -196,6 +196,21 @@ logWarning <- function(msg) {
   return(invisible())
 }
 
+#' @title logDebug
+#' @description
+#' Log debug with time stamp
+#' @param msg Character values of message to log that leverages `cli` formatting.
+#' @export
+#' @keywords logging
+#' @examples
+#' # Log debug
+#' logDebug("This is a debugging message")
+#'
+logDebug <- function(msg) {
+  logger::log_debug(msg)
+  return(invisible())
+}
+
 #' @title logError
 #' @description
 #' Log error with time stamp
