@@ -140,7 +140,7 @@ logCatch <- function(expr) {
           if (callNotDisplayed) {
             next
           }
-          errorTrace <- c(errorTrace, textCall)
+          errorTrace <- c(errorTrace, gsub(pattern = "(\\{)|(\\})", replacement = "", textCall))
         }
         logInfo(errorTrace, type = "ol")
         stop(errorCondition$message)
@@ -155,7 +155,7 @@ logCatch <- function(expr) {
           }
         ))
         if (callNotDisplayed) {
-          logger::log_debug(warningCondition$message)
+          logDebug(warningCondition$message)
         } else {
           logWarning(warningCondition$message)
         }
@@ -182,7 +182,7 @@ logCatch <- function(expr) {
           }
         ))
         if (callNotDisplayed) {
-          logger::log_debug(messageCondition$message)
+          logDebug(messageCondition$message)
         } else {
           logInfo(messageCondition$message)
         }
