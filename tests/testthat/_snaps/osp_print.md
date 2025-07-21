@@ -56,36 +56,36 @@
     Code
       ospPrintItems(person)
     Message
-        * name: John
-        * age: 30
-        * job: Developer
+      * name: John
+      * age: 30
+      * job: Developer
 
 ---
 
     Code
       ospPrintItems(colors)
     Message
-        * red
-        * green
-        * blue
+      * red
+      * green
+      * blue
 
 ---
 
     Code
       ospPrintItems(my_list)
     Message
-        * id: 123
-        * values: 1, 2, 3
-        * name: Test
+      * id: 123
+      * values: 1, 2, 3
+      * name: Test
 
 ---
 
     Code
       ospPrintItems(mixed)
     Message
-        * a: A
-        * B
-        * c: C
+      * a: A
+      * B
+      * c: C
 
 ---
 
@@ -93,9 +93,9 @@
       ospPrintItems(letters_vec, title = "Letters")
     Message
       Letters:
-        * A
-        * B
-        * C
+      * A
+      * B
+      * C
 
 ---
 
@@ -103,9 +103,9 @@
       ospPrintItems(numbered_letters, title = "Letters")
     Message
       Letters:
-        * A: 1
-        * B: 2
-        * C: 3
+      * A: 1
+      * B: 2
+      * C: 3
 
 # ospPrintItems handles empty values correctly
 
@@ -141,11 +141,11 @@
       ospPrintItems(list_with_nulls, title = "Parameters", print_empty = TRUE)
     Message
       Parameters:
-        * Min: NULL
-        * Max: 100
-        * Unit: NA
-        * EmptyVec: <empty vector>
-        * EmptyList: <empty list>
+      * Min: NULL
+      * Max: 100
+      * Unit: NA
+      * EmptyVec: <empty vector>
+      * EmptyList: <empty list>
 
 ---
 
@@ -153,7 +153,7 @@
       ospPrintItems(list_with_nulls, title = "Parameters", print_empty = FALSE)
     Message
       Parameters:
-        * Max: 100
+      * Max: 100
 
 ---
 
@@ -161,11 +161,11 @@
       ospPrintItems(all_empty_list, title = "All Empty", print_empty = TRUE)
     Message
       All Empty:
-        * A: NULL
-        * B: NA
-        * C: <empty string>
-        * D: <empty list>
-        * E: <empty vector>
+      * A: NULL
+      * B: NA
+      * C: <empty string>
+      * D: <empty list>
+      * E: <empty vector>
 
 ---
 
@@ -173,7 +173,7 @@
       ospPrintItems(all_empty_list, title = "All Empty", print_empty = FALSE)
     Message
       All Empty:
-        * All items are NULL, NA, or empty
+      * All items are NULL, NA, or empty
 
 ---
 
@@ -181,12 +181,12 @@
       ospPrintItems(unnamed_mixed, title = "Unnamed Mixed", print_empty = TRUE)
     Message
       Unnamed Mixed:
-        * NULL
-        * 1
-        * NA
-        * <empty string>
-        * <empty list>
-        * <empty vector>
+      * NULL
+      * 1
+      * NA
+      * <empty string>
+      * <empty list>
+      * <empty vector>
 
 ---
 
@@ -194,7 +194,7 @@
       ospPrintItems(unnamed_mixed, title = "Unnamed Mixed", print_empty = FALSE)
     Message
       Unnamed Mixed:
-        * 1
+      * 1
 
 # Different OspPrint* functions work well together
 
@@ -206,9 +206,9 @@
       ospPrintItems(my_object$named_items, title = "Named Items")
     Message
       Named Items:
-        * A: 1
-        * B: 2
-        * C: 3
+      * A: 1
+      * B: 2
+      * C: 3
     Code
       ospPrintHeader("Nested Item List", 2)
     Message
@@ -220,9 +220,9 @@
         title = idx))
     Message
       sub_list_1:
-        * D: 4
-        * E: 5
+      * D: 4
+      * E: 5
       sub_list_2:
-        * F: 6
-        * G: 7
+      * F: 6
+      * G: 7
 
