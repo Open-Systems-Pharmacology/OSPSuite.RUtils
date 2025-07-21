@@ -51,8 +51,7 @@ cliFromLevel <- function(logLevel) {
     "INFO" = cli::cli_alert_info,
     "SUCCESS" = cli::cli_alert_success,
     "WARN" = cli::cli_alert_warning,
-    "ERROR" = cli::cli_alert_danger,
-    "FATAL" = cli::cli_alert_danger
+    "ERROR" = cli::cli_alert_danger
   )
 }
 
@@ -70,9 +69,6 @@ consoleLayout <- function(level,
                           .topenv = parent.frame()) {
   logger::fail_on_missing_package("cli")
   logLevel <- attr(level, "level")
-  if (logLevel %in% c("TRACE", "DEBUG")) {
-    return()
-  }
   # Main message
   msg <- unlist(strsplit(msg, "\n"))
   cliFunction <- cliFromLevel(logLevel)

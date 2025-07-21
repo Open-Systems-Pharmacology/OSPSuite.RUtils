@@ -70,18 +70,35 @@ unlink("./log.txt")
 
 test_that("cli formatting displays message content", {
   # Display
-  expect_message(logInfo("This is a title message", type = "h1"), "(Info)*(This is a title message)")
+  expect_message(logInfo("This is a title message", type = "h1"), "This is a title message")
+  expect_message(logInfo("This is a second title message", type = "h2"), "This is a second title message")
+  expect_message(logInfo("This is a third title message", type = "h3"), "This is a third title message")
+  expect_message(logInfo("This is a text message", type = "text"), "This is a text message")
+  expect_message(logInfo("This is an alert message", type = "alert"), "This is an alert message")
+  expect_message(logInfo("This is a list message", type = "li"), "This is a list message")
+  expect_message(logInfo("This is a numbered message", type = "ol"), "This is a numbered message")
+  expect_message(logInfo("This is a progress step message", type = "progress_step"), "This is a progress step message")
   expect_message(logInfo("This is a success message", type = "success"), "(Info)*(This is a success message)")
   x <- "ospsuite"
   cliMsg <- cliFormat("I am a cli message showing {x}")
   expect_match(cliMsg, "I am a cli message showing ospsuite")
   expect_message(logInfo(cliMsg), "(Info)*(I am a cli message showing ospsuite)")
+  expect_message(logInfo(c("Main message", "Helper indications")), "(Info)*(Main message)*(Helper indications)")
   logContent <- readLines("./log.txt")
   logContent <- logContent[logContent != ""]
   # Logs and appends
   expect_match(logContent[1], "(DEBUG)*(This is a title message)")
-  expect_match(logContent[2], "(SUCCESS)*(This is a success message)")
-  expect_match(logContent[3], "(INFO)*(I am a cli message showing ospsuite)")
+  expect_match(logContent[2], "(DEBUG)*(This is a second title message)")
+  expect_match(logContent[3], "(DEBUG)*(This is a third title message)")
+  expect_match(logContent[4], "(DEBUG)*(This is a text message)")
+  expect_match(logContent[5], "(DEBUG)*(This is an alert message)")
+  expect_match(logContent[6], "(DEBUG)*(This is a list message)")
+  expect_match(logContent[7], "(DEBUG)*(This is a numbered message)")
+  expect_match(logContent[8], "(DEBUG)*(This is a progress step message)")
+  expect_match(logContent[9], "(SUCCESS)*(This is a success message)")
+  expect_match(logContent[10], "(INFO)*(I am a cli message showing ospsuite)")
+  expect_match(logContent[11], "(INFO)*(Main message)")
+  expect_match(logContent[12], "Helper indications")
 })
 
 unlink("./log.txt")
