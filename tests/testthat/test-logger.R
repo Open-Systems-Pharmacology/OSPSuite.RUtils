@@ -68,6 +68,24 @@ test_that("logDebug logs and appends debug messages but does not display them", 
 
 unlink("./log.txt")
 
+test_that("cli formatting displays message content", {
+  # Display
+  expect_message(logInfo("This is a title message", type = "h1"), "(Info)*(This is a title message)")
+  expect_message(logInfo("This is a success message", type = "success"), "(Info)*(This is a success message)")
+  x <- "ospsuite"
+  cliMsg <- cliFormat("I am a cli message showing {x}")
+  expect_match(cliMsg, "I am a cli message showing ospsuite")
+  expect_message(logInfo(cliMsg), "(Info)*(I am a cli message showing ospsuite)")
+  logContent <- readLines("./log.txt")
+  logContent <- logContent[logContent != ""]
+  # Logs and appends
+  expect_match(logContent[1], "(DEBUG)*(This is a title message)")
+  expect_match(logContent[2], "(SUCCESS)*(This is a success message)")
+  expect_match(logContent[3], "(INFO)*(I am a cli message showing ospsuite)")
+})
+
+unlink("./log.txt")
+
 test_that("logCatch displays according to masking and appends everything in the logs", {
   setInfoMasking("Info to hide")
   setWarningMasking("Warning to hide")
