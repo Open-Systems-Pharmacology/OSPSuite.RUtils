@@ -101,6 +101,8 @@ test_that("validateIsIncluded returns `NULL` when value is included", {
 })
 
 test_that("validateIsIncluded produces expected error message when value not included", {
-  errorMessageIsIncluded <- "Values 'col4' are not in included in parent values: 'col1, col2, col3'."
-  expect_error(validateIsIncluded("col4", names(A)), errorMessageIsIncluded)
+  expect_error(
+    validateIsIncluded("col4", names(A)), 
+    "(1 value).*(col4).*(is not included in parent values).*(col1).*(col2).*(col3)"
+    )
 })

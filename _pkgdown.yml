@@ -54,6 +54,21 @@ reference:
     contents:
       - Printable
 
+  - title: Logger
+    desc: Utilities for recording logs
+    contents:
+      - getLogFolder
+      - setLogFolder
+      - logDebug
+      - logInfo
+      - logWarning
+      - logError
+      - cliFormat
+      - logCatch
+      - setInfoMasking
+      - setWarningMasking
+      - setErrorMasking
+
   - title: Miscellaneous
     contents:
       - "`%||%`"
@@ -63,4 +78,7 @@ reference:
       - flattenList
       - logSafe
       - foldSafe
+      - tic
+      - toc
+      - timeStamp
 

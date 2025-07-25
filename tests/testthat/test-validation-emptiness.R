@@ -43,7 +43,7 @@ test_that("validateIsNotEmpty returns `NULL` when objects are not empty", {
 })
 
 test_that("validateIsNotEmpty produces error when objects are empty", {
-  errorMessageIsEmpty <- "argument 'NULL' is empty!"
+  errorMessageIsEmpty <- "(argument).*(NULL).*(is).*(empty)"
   expect_error(validateIsNotEmpty(NULL), errorMessageIsEmpty)
 })
 
@@ -88,7 +88,6 @@ test_that("validateHasOnlyNonEmptyStrings produces expected error message", {
   myArgument <- list("", "y")
   expect_error(
     validateHasOnlyNonEmptyStrings(myArgument),
-    "argument 'myArgument' has empty strings!",
-    fixed = TRUE
+    "(argument).*(myArgument).*(has empty).*(strings)"
   )
 })

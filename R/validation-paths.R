@@ -26,5 +26,5 @@ validatePathIsAbsolute <- function(path) {
     return()
   }
 
-  stop(messages$errorEntityPathNotAbsolute(path))
+  stop(messages$errorEntityPathNotAbsolute(paste0(path, collapse = "")))
 }

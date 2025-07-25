@@ -27,7 +27,10 @@ Imports:
     R6,
     stringi,
     cli,
-    lifecycle
+    lifecycle,
+    logger,
+    crayon,
+    glue
 Suggests: 
     knitr,
     rmarkdown,
@@ -40,6 +43,7 @@ RoxygenNote: 7.3.2
 Collate: 
     'enum.R'
     'formatNumerics.R'
+    'logger.R'
     'messages.R'
     'objectCount.R'
     'osp_print.R'
@@ -47,6 +51,7 @@ Collate:
     'ospsuite.utils-env.R'
     'printable.R'
     'utilities-conditional.R'
+    'utilities-logger.R'
     'utilities-validation.R'
     'validation-emptiness.R'
     'validation-enum.R'
@@ -60,3 +65,4 @@ Collate:
     'validation-uniqueness.R'
     'validation-utf.R'
     'validation-vector.R'
+VignetteBuilder: knitr

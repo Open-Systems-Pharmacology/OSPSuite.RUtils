@@ -24,5 +24,11 @@ messages$errorEnumNotAllNames
 # example with function
 messages$errorPropertyReadOnly("age")
 
+# example display with warning
+warning(messages$errorPropertyReadOnly("age"))
+
+# example display using logs
+logInfo(messages$errorPropertyReadOnly("age"))
+
 }
 \keyword{datasets}
