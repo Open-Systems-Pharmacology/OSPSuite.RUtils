@@ -1,7 +1,5 @@
 # ospsuite.utils (development version)
 
-# ospsuite.utils 1.7.1
-
 ## Major changes
 
 - New functions using `{cli}` and `{logger}` packages to record and keep tracks of what the code does in a log file:
