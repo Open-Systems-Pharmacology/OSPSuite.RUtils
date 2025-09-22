@@ -5,7 +5,7 @@
 #'
 #' @param x An R object
 #' @return Invisibly returns the input object
-#' @importFrom cli cli_text
+#' @importFrom cli cli_text cli_format_method
 #' @export
 #'
 #' @family print functions
@@ -17,9 +17,13 @@ ospPrintClass <- function(x) {
   # Get class name of the object
   class_name <- class(x)[1]
 
-  # Use inline markup for class name formatting
-  # .cls style is nice for highlighting named entities like class names
-  cli::cli_text("{.cls {class_name}}")
+  # Use cli_format_method to capture output and print to stdout
+  output <- cli::cli_format_method({
+    # Use inline markup for class name formatting
+    # .cls style is nice for highlighting named entities like class names
+    cli::cli_text("{.cls {class_name}}")
+  })
+  cat(output, sep = "\n")
 
   # Return the input invisibly
   invisible(x)
@@ -49,16 +53,17 @@ ospPrintHeader <- function(text, level = 1) {
     stop("'level' must be 1, 2, or 3")
   }
 
-  # Select header function based on level
-  header_func <- switch(level,
-    cli::cli_h1,
-    cli::cli_h2,
-    cli::cli_h3
-  )
-
-  # Use .strong markup for header text to make it stand out more
-  # Headers already have formatting but additional markup can enhance them
-  header_func("{.strong {text}}")
+  # Use cli_format_method to capture output and print to stdout
+  output <- cli::cli_format_method({
+    # Select header function based on level and call it
+    switch(
+      level,
+      cli::cli_h1("{.strong {text}}"),
+      cli::cli_h2("{.strong {text}}"),
+      cli::cli_h3("{.strong {text}}")
+    )
+  })
+  cat(output, sep = "\n")
 
   # Return invisibly
   invisible(NULL)
@@ -146,98 +151,114 @@ ospPrintHeader <- function(text, level = 1) {
 #' list_with_nulls <- list("Min" = NULL, "Max" = 100, "Unit" = NA)
 #' ospPrintItems(list_with_nulls, title = "Parameters", print_empty = TRUE)
 ospPrintItems <- function(x, title = NULL, print_empty = FALSE) {
-  # Print title if provided
-  if (!is.null(title)) {
-    cli::cli_text("{.strong {title}}:")
-  }
-
-  # if x is empty, return invisibly
-  if (.isEmpty(x)) {
+  # if x is empty and no title provided, return invisibly
+  if (.isEmpty(x) && is.null(title)) {
     return(invisible(x))
   }
 
-  # Count items within xthat will be printed and check if all are "empty"
+  # Count items within x that will be printed and check if all are "empty"
   items_to_print <- 0
   all_items_empty <- TRUE
 
-  # Check all items first
-  for (i in seq_along(x)) {
-    value <- x[[i]]
-    if (!.isEmpty(value)) {
-      all_items_empty <- FALSE
-      items_to_print <- items_to_print + 1
-    } else if (print_empty) {
-      items_to_print <- items_to_print + 1
+  # Check all items first (only if x is not empty)
+  if (!.isEmpty(x)) {
+    for (i in seq_along(x)) {
+      value <- x[[i]]
+      if (!.isEmpty(value)) {
+        all_items_empty <- FALSE
+        items_to_print <- items_to_print + 1
+      } else if (print_empty) {
+        items_to_print <- items_to_print + 1
+      }
+    }
+
+    # If no items to print and title is not provided, just return invisibly
+    if (all_items_empty && is.null(title) && !print_empty) {
+      return(invisible(x))
     }
   }
 
-  # If no items to print and title is not provided, just return invisibly
-  if (all_items_empty && is.null(title) && !print_empty) {
-    return(invisible(x))
-  }
+  # Use cli_format_method to capture output and print to stdout
+  output <- cli::cli_format_method({
+    # Print title if provided
+    if (!is.null(title)) {
+      cli::cli_text("{.strong {title}}:")
+    }
 
-  # Special case: all items are empty and title is provided
-  if (all_items_empty && !is.null(title) && !print_empty) {
-    # When print_empty is FALSE, show the message
-    # Start the list
-    cli::cli_div(theme = list(ul = list(
-      "margin-left" = 2 # Add indentation
-    )))
-    cli::cli_li("All items are NULL, NA, or empty")
-    cli::cli_end()
+    # Handle empty containers
+    if (.isEmpty(x)) {
+      # For empty containers, just print the title (already handled above)
+      # No additional content needed
+    } else if (all_items_empty && !is.null(title) && !print_empty) {
+      # Special case: all items are empty and title is provided
+      # When print_empty is FALSE, show the message
+      # Start the list
+      cli::cli_div(
+        theme = list(
+          ul = list(
+            "margin-left" = 2 # Add indentation
+          )
+        )
+      )
+      cli::cli_li("All items are NULL, NA, or empty")
+      cli::cli_end()
+    } else if (!.isEmpty(x)) {
+      # Process non-empty containers
+      # Start the list
+      cli::cli_div(
+        theme = list(
+          ul = list(
+            "margin-left" = 2 # Add indentation
+          )
+        )
+      )
 
-    return(invisible(x))
-  }
+      # If input is a named vector/list
+      if (!is.null(names(x)) && any(names(x) != "")) {
+        # For each item in the list
+        for (i in seq_along(x)) {
+          name <- names(x)[i]
+          value <- x[[i]]
 
+          # Skip empty values if print_empty is FALSE
+          if (.isEmpty(value) && !print_empty) {
+            next
+          }
 
-  # Start the list
-  cli::cli_div(theme = list(ul = list(
-    "margin-left" = 2 # Add indentation
-  )))
+          # Format value using format_value function
+          formatted_value <- .formatValue(value)
 
-  # If input is a named vector/list
-  if (!is.null(names(x)) && any(names(x) != "")) {
-    # For each item in the list
-    for (i in seq_along(x)) {
-      name <- names(x)[i]
-      value <- x[[i]]
-
-      # Skip empty values if print_empty is FALSE
-      if (.isEmpty(value) && !print_empty) {
-        next
-      }
-
-      # Format value using format_value function
-      formatted_value <- .formatValue(value)
-
-      # Apply markup to values
-      if (!is.na(name) && name != "") {
-        cli::cli_li("{name}: {formatted_value}")
+          # Apply markup to values
+          if (!is.na(name) && name != "") {
+            cli::cli_li("{name}: {formatted_value}")
+          } else {
+            # No name, just value
+            cli::cli_li("{formatted_value}")
+          }
+        }
       } else {
-        # No name, just value
-        cli::cli_li("{formatted_value}")
+        # For unnamed vectors or lists
+        for (i in seq_along(x)) {
+          value <- x[[i]]
+
+          # Skip empty values if print_empty is FALSE
+          if (.isEmpty(value) && !print_empty) {
+            next
+          }
+
+          # Format value using format_value function
+          formatted_value <- .formatValue(value)
+
+          # Apply markup to values if specified
+          cli::cli_li("{formatted_value}")
+        }
       }
+
+      # End the list
+      cli::cli_end()
     }
-  } else {
-    # For unnamed vectors or lists
-    for (i in seq_along(x)) {
-      value <- x[[i]]
-
-      # Skip empty values if print_empty is FALSE
-      if (.isEmpty(value) && !print_empty) {
-        next
-      }
-
-      # Format value using format_value function
-      formatted_value <- .formatValue(value)
-
-      # Apply markup to values if specified
-      cli::cli_li("{formatted_value}")
-    }
-  }
-
-  # End the list
-  cli::cli_end()
+  })
+  cat(output, sep = "\n")
 
   # Return input invisibly
   invisible(x)

@@ -58,13 +58,29 @@ test_that("ospPrintItems prints items correctly", {
 test_that("ospPrintItems handles empty values correctly", {
   # Test empty list
   empty_list <- list()
-  expect_snapshot(ospPrintItems(empty_list, title = "Empty List", print_empty = TRUE))
-  expect_snapshot(ospPrintItems(empty_list, title = "Empty List", print_empty = FALSE))
+  expect_snapshot(ospPrintItems(
+    empty_list,
+    title = "Empty List",
+    print_empty = TRUE
+  ))
+  expect_snapshot(ospPrintItems(
+    empty_list,
+    title = "Empty List",
+    print_empty = FALSE
+  ))
 
   # Test empty vector
   empty_vector <- numeric(0)
-  expect_snapshot(ospPrintItems(empty_vector, title = "Empty Vector", print_empty = TRUE))
-  expect_snapshot(ospPrintItems(empty_vector, title = "Empty Vector", print_empty = FALSE))
+  expect_snapshot(ospPrintItems(
+    empty_vector,
+    title = "Empty Vector",
+    print_empty = TRUE
+  ))
+  expect_snapshot(ospPrintItems(
+    empty_vector,
+    title = "Empty Vector",
+    print_empty = FALSE
+  ))
 
   # Test list with NULL values and empty vectors/lists
   list_with_nulls <- list(
@@ -74,23 +90,54 @@ test_that("ospPrintItems handles empty values correctly", {
     "EmptyVec" = character(0),
     "EmptyList" = list()
   )
-  expect_snapshot(ospPrintItems(list_with_nulls, title = "Parameters", print_empty = TRUE))
-  expect_snapshot(ospPrintItems(list_with_nulls, title = "Parameters", print_empty = FALSE))
+  expect_snapshot(ospPrintItems(
+    list_with_nulls,
+    title = "Parameters",
+    print_empty = TRUE
+  ))
+  expect_snapshot(ospPrintItems(
+    list_with_nulls,
+    title = "Parameters",
+    print_empty = FALSE
+  ))
 
   # Test list with all empty values
-  all_empty_list <- list("A" = NULL, "B" = NA, "C" = "", "D" = list(), "E" = numeric(0))
-  expect_snapshot(ospPrintItems(all_empty_list, title = "All Empty", print_empty = TRUE))
-  expect_snapshot(ospPrintItems(all_empty_list, title = "All Empty", print_empty = FALSE))
+  all_empty_list <- list(
+    "A" = NULL,
+    "B" = NA,
+    "C" = "",
+    "D" = list(),
+    "E" = numeric(0)
+  )
+  expect_snapshot(ospPrintItems(
+    all_empty_list,
+    title = "All Empty",
+    print_empty = TRUE
+  ))
+  expect_snapshot(ospPrintItems(
+    all_empty_list,
+    title = "All Empty",
+    print_empty = FALSE
+  ))
 
   # Test unnamed list with mixed values
   unnamed_mixed <- list(NULL, 1, NA, "", list(), numeric(0))
-  expect_snapshot(ospPrintItems(unnamed_mixed, title = "Unnamed Mixed", print_empty = TRUE))
-  expect_snapshot(ospPrintItems(unnamed_mixed, title = "Unnamed Mixed", print_empty = FALSE))
+  expect_snapshot(ospPrintItems(
+    unnamed_mixed,
+    title = "Unnamed Mixed",
+    print_empty = TRUE
+  ))
+  expect_snapshot(ospPrintItems(
+    unnamed_mixed,
+    title = "Unnamed Mixed",
+    print_empty = FALSE
+  ))
 })
 
 test_that("Different OspPrint* functions work well together", {
   myClass <-
-    R6::R6Class("myClass",
+    R6::R6Class(
+      "myClass",
       public = list(
         named_items = list(
           "A" = 1,
@@ -114,7 +161,9 @@ test_that("Different OspPrint* functions work well together", {
     ospPrintClass(my_object)
     ospPrintItems(my_object$named_items, title = "Named Items")
     ospPrintHeader("Nested Item List", 2)
-    purrr::iwalk(my_object$nested_item_list, \(x, idx)
-    ospPrintItems(x, title = idx))
+    purrr::iwalk(
+      my_object$nested_item_list,
+      \(x, idx) ospPrintItems(x, title = idx)
+    )
   })
 })
