@@ -147,7 +147,7 @@ messages <- list(
   errorValueNotInEnum = function(enum, enum_id, value) {
     similarValues <- enum[adist(value, enum) <= 2]
     cliFormat(
-      "No value with the key {.field {value}} is present in the enum!",
+      "{.field {value}} is not valid in {.code {enum_id}}",
       if (length(similarValues) > 0) {
         "Did you mean one of these: {.field {similarValues}} ?"
       } else {
@@ -171,7 +171,7 @@ messages <- list(
   errorKeyNotInEnum = function(key, enum_id, enum) {
     similarKeys <- names(enum)[adist(key, names(enum)) <= 2]
     cliFormat(
-      "No value with the key {.field {key}} is present in the enum!",
+      "{.field {key}} is not a valid key in {.code {enum_id}}",
       if (length(similarKeys) > 0) {
         "Did you mean one of these: {.field {similarKeys}} ?"
       } else {
