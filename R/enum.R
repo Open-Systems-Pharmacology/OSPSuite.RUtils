@@ -101,7 +101,7 @@ getEnumKey <- enumGetKey
 
 enumGetValue <- function(enum, key) {
   if (!enumHasKey(key, enum)) {
-    stop(messages$errorKeyNotInEnum(key))
+    stop(messages$errorKeyNotInEnum(key, deparse(substitute(enum)), enum))
   }
 
   return(enum[[key]])
