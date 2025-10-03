@@ -24,5 +24,5 @@ validateEnumValue <- function(value, enum, nullAllowed = FALSE) {
     return()
   }
 
-  stop(messages$errorValueNotInEnum(enum, value))
+  stop(messages$errorValueNotInEnum(enum, value, deparse(substitute(enum))))
 }

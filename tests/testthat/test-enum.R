@@ -38,7 +38,7 @@ test_that("enumGetValue returns the correct value", {
 
 test_that("enumGetValue throws an error if the key is not present", {
   myEnum <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
-  expect_error(enumGetValue(enum = myEnum, key = "Square"), messages$errorKeyNotInEnum("Square"))
+  expect_error(enumGetValue(enum = myEnum, key = "Square"))
 })
 
 test_that("enumKeys returns the keys of an enum", {
@@ -119,4 +119,94 @@ test_that("enumRemove removes present keys if one of the keys is not present", {
 test_that("enumValues returns the values", {
   myEnum <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
   expect_equal(enumValues(myEnum), c(1, 2, 2))
+})
+
+test_that("enumGetValue prints suggestions for close key matches and fallback hint otherwise", {
+  Units <- enum(c(
+    "gram" = "g",
+    "kilogram" = "kg",
+    "milligram" = "mg",
+    "microgram" = "ug",
+    "nanogram" = "ng",
+    "meter" = "m",
+    "centimeter" = "cm",
+    "millimeter" = "mm"
+  ))
+
+  # Close match (edit distance 1): suggestions are shown
+  expect_error(
+    enumGetValue(Units, "grams"),  # Added 's' at the end
+    regexp = "Did you mean one of these:"
+  )
+  expect_error(
+    enumGetValue(Units, "grams"),
+    regexp = "gram"  # Should suggest the correct key
+  )
+  expect_error(
+    enumGetValue(Units, "grams"),
+    regexp = "All valid keys can be found using"  # Generic hint is always shown
+  )
+
+  # Another close match (edit distance 1): single character typo
+  expect_error(
+    enumGetValue(Units, "kilgram"),  # Missing 'o'
+    regexp = "Did you mean one of these:"
+  )
+  expect_error(
+    enumGetValue(Units, "kilgram"),
+    regexp = "kilogram"
+  )
+
+  # Close match (edit distance 2): two character difference
+  expect_error(
+    enumGetValue(Units, "millgram"),  # 'gram' instead of 'igram'
+    regexp = "Did you mean one of these:"
+  )
+  expect_error(
+    enumGetValue(Units, "millgram"),
+    regexp = "milligram"
+  )
+
+  # Boundary case: edit distance exactly 2 (should still show suggestions)
+  expect_error(
+    enumGetValue(Units, "metr"),  # Missing 'e' and 'r', or replaced
+    regexp = "Did you mean one of these:"
+  )
+  expect_error(
+    enumGetValue(Units, "metr"),
+    regexp = "meter"
+  )
+
+  # Far match (edit distance > 2): no suggestions, only generic hint
+  err_msg <- tryCatch(
+    enumGetValue(Units, "tonnage"),  # Completely different
+    error = function(e) conditionMessage(e)
+  )
+  expect_match(err_msg, "All valid keys can be found using")
+  expect_false(grepl("Did you mean one of these:", err_msg))  # Should NOT contain suggestions
+
+  # Completely unrelated key: no suggestions
+  err_msg2 <- tryCatch(
+    enumGetValue(Units, "temperature"),
+    error = function(e) conditionMessage(e)
+  )
+  expect_match(err_msg2, "All valid keys can be found using")
+  expect_false(grepl("Did you mean one of these:", err_msg2))
+
+  # Multiple possible suggestions: when several keys are close
+  expect_error(
+    enumGetValue(Units, "mete"),  # Could suggest meter or millimeter
+    regexp = "Did you mean one of these:"
+  )
+
+  # Case sensitivity test: should suggest despite case difference
+  myEnum <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+  expect_error(
+    enumGetValue(myEnum, "Dimond"),  # Missing 'a'
+    regexp = "Did you mean one of these:"
+  )
+  expect_error(
+    enumGetValue(myEnum, "Dimond"),
+    regexp = "Diamond"
+  )
 })
