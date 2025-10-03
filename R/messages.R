@@ -144,16 +144,18 @@ messages <- list(
   },
   errorCannotSetRHSFormula = "Creating a RHS Formula is not supported at the moment. This should be done in MoBi.",
   errorEnumNotAllNames = "The enumValues has some but not all names assigned.\nThey must be all assigned or none assigned",
-  errorValueNotInEnum = function(enum, enum_id, value) {
+  errorValueNotInEnum = function(enum, value, enumId) {
     similarValues <- enum[adist(value, enum) <= 2]
     cliFormat(
-      "{.field {value}} is not valid in {.code {enum_id}}",
+      if (is.null(enumId)) {
+        "{.field {value}} is not a valid value in the enum"
+      } else {
+        "{.field {value}} is not a valid value in {.code {enumId}}"
+      },
       if (length(similarValues) > 0) {
         "Did you mean one of these: {.field {similarValues}} ?"
-      } else {
-        NULL
       },
-      "All valid values can be found using {.code {enum_id}}"
+      "All valid values can be found using {.code {enumId}}"
     )
   },
   errorEnumValueUndefined = function(enum) {
@@ -168,17 +170,19 @@ messages <- list(
       optionalMessage
     )
   },
-  errorKeyNotInEnum = function(key, enum_id, enum) {
+  errorKeyNotInEnum = function(key, enum, enumId = NULL) {
     enumNames <- names(enum)
     similarKeys <- enumNames[adist(key, enumNames) <= 2]
     cliFormat(
-      "{.field {key}} is not a valid key in {.code {enum_id}}",
+      if (is.null(enumId)) {
+        "{.field {key}} is not a valid key in the enum"
+      } else {
+        "{.field {key}} is not a valid key in {.code {enumId}}"
+      },
       if (length(similarKeys) > 0) {
         "Did you mean one of these: {.field {similarKeys}} ?"
-      } else {
-        NULL
       },
-      "All valid keys can be found using {.code {enum_id}}"
+      "All valid keys can be found using {.code {enumId}}"
     )
   },
   errorUnitNotDefined = function(quantityName, dimension, unit) {
