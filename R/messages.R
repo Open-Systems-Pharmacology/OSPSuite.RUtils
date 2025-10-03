@@ -169,7 +169,8 @@ messages <- list(
     )
   },
   errorKeyNotInEnum = function(key, enum_id, enum) {
-    similarKeys <- names(enum)[adist(key, names(enum)) <= 2]
+    enumNames <- names(enum)
+    similarKeys <- enumNames[adist(key, enumNames) <= 2]
     cliFormat(
       "{.field {key}} is not a valid key in {.code {enum_id}}",
       if (length(similarKeys) > 0) {
