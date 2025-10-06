@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ospsuite.utils</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.8.0.9002</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.8.0.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,10 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="ospsuiteutils-development-version">ospsuite.utils (development version)<a class="anchor" aria-label="anchor" href="#ospsuiteutils-development-version"></a></h2>
+<div class="section level3">
+<h3 id="minor-improvements-and-bug-fixes-development-version">Minor improvements and bug fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-bug-fixes-development-version"></a></h3>
+<ul><li>Improved error messages in <code><a href="../reference/validateEnumValue.html">validateEnumValue()</a></code> and <code><a href="../reference/enumGetValue.html">enumGetValue()</a></code> to provide helpful suggestions when a close match is found. Both functions now use edit distance (Levenshtein distance ≤ 2) to suggest similar valid values or keys, making it easier to identify and fix typos in enum values and keys. (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/185" class="external-link">#185</a>)</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.8.0" id="ospsuiteutils-180">ospsuite.utils 1.8.0<a class="anchor" aria-label="anchor" href="#ospsuiteutils-180"></a></h2>
