@@ -144,7 +144,7 @@ messages <- list(
   },
   errorCannotSetRHSFormula = "Creating a RHS Formula is not supported at the moment. This should be done in MoBi.",
   errorEnumNotAllNames = "The enumValues has some but not all names assigned.\nThey must be all assigned or none assigned",
-  errorValueNotInEnum = function(enum, value, enumId) {
+  errorValueNotInEnum = function(enum, value, enumId = NULL) {
     similarValues <- enum[adist(value, enum) <= 2]
     cliFormat(
       if (is.null(enumId)) {
