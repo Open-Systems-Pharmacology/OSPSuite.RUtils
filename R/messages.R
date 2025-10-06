@@ -176,7 +176,7 @@ messages <- list(
       if (is.null(enumId)) {
         "{.field {key}} is not a valid key in the enum"
       } else {
-        "{.field {value}} is not a valid value in {.code {enumId}}.\nAll valid values can be found using {.code {enumId}}"
+        "{.field {key}} is not a valid key in {.code {enumId}}.\nAll valid keys can be found using {.code {enumId}}"
       },
       if (length(similarKeys) > 0) {
         "Did you mean one of these: {.field {similarKeys}} ?"
