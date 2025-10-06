@@ -16,20 +16,24 @@
 #'
 #' # example display with warning
 #' warning(messages$errorPropertyReadOnly("age"))
-#' 
+#'
 #' # example display using logs
 #' logInfo(messages$errorPropertyReadOnly("age"))
 #'
 #' @export
 messages <- list(
-  errorGetEntityMultipleOutputs = function(path, container, optionalMessage = NULL) {
+  errorGetEntityMultipleOutputs = function(
+    path,
+    container,
+    optionalMessage = NULL
+  ) {
     callingFunction <- .getCallingFunctionName()
     cliFormat(
       paste(
         "{.fn {callingFunction}}: the path {.val {toString(path)}}",
         "located under container {.url {container$path}}",
         "leads to more than {.strong one entity}!"
-        ),
+      ),
       paste(
         "Use {.fn getAllXXXMatching} to get the list of all entities matching the path,",
         "where {.val XXX} stands for the entity type (e.g. {.emph Containers})"
@@ -43,7 +47,7 @@ messages <- list(
       paste(
         "{.fn {callingFunction}}: no entity exists for path {.val {toString(path)}}",
         "located under container {.url {container$path}}!"
-        ),
+      ),
       optionalMessage
     )
   },
@@ -67,23 +71,25 @@ messages <- list(
   errorSimulationBatchNothingToVary = "You need to vary at least one parameter or one molecule in order to use the SimulationBatch",
   errorMultipleMetaDataEntries = function(optionalMessage = NULL) {
     cliFormat(
-      "Can only add a strong single meta data entry at once", 
+      "Can only add a strong single meta data entry at once",
       optionalMessage
-      )
+    )
   },
   errorMultipleSimulationsCannotBeUsedWithPopulation = "Multiple simulations cannot be run concurrently with a population.",
   errorDataSetNameMissing = "Argument `name` is missing, must be provided when
   creating an empty `DataSet`!",
-  errorWrongType = function(objectName,
-                            type,
-                            expectedType,
-                            optionalMessage = NULL) {
+  errorWrongType = function(
+    objectName,
+    type,
+    expectedType,
+    optionalMessage = NULL
+  ) {
     callingFunction <- .getCallingFunctionName()
     cliFormat(
       paste(
         "{.fn {callingFunction}}: argument {.val {objectName}} is of type {.cls {type}},",
         "but expected {.cls {expectedType}}!"
-        ),
+      ),
       optionalMessage
     )
   },
@@ -102,16 +108,20 @@ messages <- list(
       paste(
         "{.fn {callingFunction}}: {.field Object} should be of length {.val {nbElements}},",
         "but is of length {.val {length(object)}} instead."
-        ),
-        optionalMessage
+      ),
+      optionalMessage
     )
   },
-  errorWrongFileExtension = function(actualExtension, expectedExtension, optionalMessage = NULL) {
+  errorWrongFileExtension = function(
+    actualExtension,
+    expectedExtension,
+    optionalMessage = NULL
+  ) {
     cliFormat(
       paste(
         "Provided file has extension {.file {actualExtension}},",
         "while {.file {expectedExtension}} was expected instead."
-        ),
+      ),
       optionalMessage
     )
   },
@@ -134,11 +144,24 @@ messages <- list(
   },
   errorCannotSetRHSFormula = "Creating a RHS Formula is not supported at the moment. This should be done in MoBi.",
   errorEnumNotAllNames = "The enumValues has some but not all names assigned.\nThey must be all assigned or none assigned",
-  errorValueNotInEnum = function(enum, value) {
-    cliFormat("Value {.val {value}} is not in defined enumeration values: {.field {names(enum)}}.")
+  errorValueNotInEnum = function(enum, value, enumId) {
+    similarValues <- enum[adist(value, enum) <= 2]
+    cliFormat(
+      if (is.null(enumId)) {
+        "{.field {value}} is not a valid value in the enum"
+      } else {
+        "{.field {value}} is not a valid value in {.code {enumId}}"
+      },
+      if (length(similarValues) > 0) {
+        "Did you mean one of these: {.field {similarValues}} ?"
+      },
+      "All valid values can be found using {.code {enumId}}"
+    )
   },
   errorEnumValueUndefined = function(enum) {
-    cliFormat("Provided value is not in defined enumeration values: {.field {names(enum)}}.")
+    cliFormat(
+      "Provided value is not in defined enumeration values: {.field {names(enum)}}."
+    )
   },
   errorKeyInEnumPresent = function(key, optionalMessage = NULL) {
     cliFormat(
@@ -147,11 +170,25 @@ messages <- list(
       optionalMessage
     )
   },
-  errorKeyNotInEnum = function(key) {
-    cliFormat("No value with the key {.field {key}} is present in the enum!")
+  errorKeyNotInEnum = function(key, enum, enumId = NULL) {
+    enumNames <- names(enum)
+    similarKeys <- enumNames[adist(key, enumNames) <= 2]
+    cliFormat(
+      if (is.null(enumId)) {
+        "{.field {key}} is not a valid key in the enum"
+      } else {
+        "{.field {key}} is not a valid key in {.code {enumId}}"
+      },
+      if (length(similarKeys) > 0) {
+        "Did you mean one of these: {.field {similarKeys}} ?"
+      },
+      "All valid keys can be found using {.code {enumId}}"
+    )
   },
   errorUnitNotDefined = function(quantityName, dimension, unit) {
-    cliFormat("Unit {.val {unit}} is not defined in dimension {.field {dimension}} used by {.url {quantityName}}.")
+    cliFormat(
+      "Unit {.val {unit}} is not defined in dimension {.field {dimension}} used by {.url {quantityName}}."
+    )
   },
   errorDimensionNotSupported = function(dimension, optionalMessage = NULL) {
     cliFormat(
@@ -167,14 +204,16 @@ messages <- list(
     )
   },
   errorNotIncluded = function(values, parentValues) {
-    cliFormat("{length(values)} value{?s} ({.val {values}}) {?is/are} not included in parent values: {.field {parentValues}}.")
+    cliFormat(
+      "{length(values)} value{?s} ({.val {values}}) {?is/are} not included in parent values: {.field {parentValues}}."
+    )
   },
   errorEntityPathNotAbsolute = function(path) {
     callingFunction <- .getCallingFunctionName()
     cliFormat(paste(
       "{.fn {callingFunction}}: Only absolute paths (i.e. without the wildcard(s) {.strong *}) are allowed,",
       "but the given path is: {.val {path}}"
-      ))
+    ))
   },
   errorOnlyOneValuesSetAllowed = function(argumentName) {
     callingFunction <- .getCallingFunctionName()
@@ -185,15 +224,15 @@ messages <- list(
   },
   errorOnlyOneSupported = function(optionalMessage = NULL) {
     cliFormat(
-      "Can only add a single instance of this object", 
+      "Can only add a single instance of this object",
       optionalMessage
-      )
+    )
   },
   errorDuplicatedValues = function(optionalMessage = NULL) {
     cliFormat(
-      "Object has duplicated values; only unique values are allowed.", 
+      "Object has duplicated values; only unique values are allowed.",
       optionalMessage
-      )
+    )
   },
   errorOnlyVectorAllowed = function() {
     cliFormat("Argument to parameter {.val x} can only be a vector.")
@@ -210,12 +249,14 @@ messages <- list(
   errorValueRange = function(valueRange) {
     callingFunction <- .getCallingFunctionName()
     if (any(is.na(valueRange))) {
-      cliFormat("{.fn {callingFunction}}: {.val valueRange} must not contain {.strong NA} values.")
+      cliFormat(
+        "{.fn {callingFunction}}: {.val valueRange} must not contain {.strong NA} values."
+      )
     } else {
       cliFormat(
         "{.fn {callingFunction}}: {.val valueRange} must be a vector of {.strong length 2} and in {.strong ascending order}",
         '{.field valueRange} was {.val {ifelse(is.null(valueRange), "NULL", toString(valueRange))}}.'
-        )
+      )
     }
   },
   errorValueRangeType = function(valueRange, type) {
@@ -259,7 +300,7 @@ messages <- list(
     cliFormat(
       "{length(notIncludedValues)} value{?s} ({.val {notIncludedValuesStr}}) not included in allowed values.",
       "Allowed values: {.val {parentValuesStr}}"
-      )
+    )
   },
   errorTypeNotSupported = function(objectName, type, expectedType) {
     callingFunction <- .getCallingFunctionName()
@@ -270,7 +311,9 @@ messages <- list(
   },
   errorFileNotUTF8 = function(file) {
     callingFunction <- .getCallingFunctionName()
-    cliFormat("{.fn {callingFunction}}: File {.file {file}} is {.strong not} UTF-8 encoded.")
+    cliFormat(
+      "{.fn {callingFunction}}: File {.file {file}} is {.strong not} UTF-8 encoded."
+    )
   }
 )
 

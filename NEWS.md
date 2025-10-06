@@ -1,5 +1,9 @@
 # ospsuite.utils (development version)
 
+## Minor improvements and bug fixes
+
+* Improved error messages in `validateEnumValue()` and `enumGetValue()` to provide helpful suggestions when a close match is found. Both functions now use edit distance (Levenshtein distance ≤ 2) to suggest similar valid values or keys, making it easier to identify and fix typos in enum values and keys. (\#185)
+
 # ospsuite.utils 1.8.0
 
 ## Major changes
