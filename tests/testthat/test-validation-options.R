@@ -521,142 +521,110 @@ test_that("validateIsOption() handles mix of valid and invalid options", {
 })
 
 
-# validateColumns ---------------------------------------------------------
+# Data frame column validation using validateIsOption() -------------------
 
-df <- data.frame(
-  age = c(32L, NA, 19L, 26L, 47L),
-  bmi = c(22.4, NA, 19.5, 27.8, 32.4),
-  gender = c("M", "F", "F", "M", "M"),
-  bp = factor(c("high", "normal", "low", "normal", "high"),
-    levels = c("low", "normal", "high")
-  ),
-  smoker = c(TRUE, NA, FALSE, FALSE, FALSE)
-)
-
-columnSpecs <- list(
-  age = list(type = "integer", valueRange = c(0L, 120L), naAllowed = TRUE),
-  bmi = list(type = "numeric", valueRange = c(10, 50), naAllowed = TRUE),
-  gender = list(type = "character", allowedValues = c("M", "F")),
-  bp = list(type = "factor", allowedValues = factor(c("low", "normal", "high"))),
-  smoker = list(type = "logical", naAllowed = TRUE)
-)
-
-test_that("validateColumns() accepts valid default options", {
-  expect_null(
-    validateColumns(df, columnSpecs)
+test_that("validateIsOption() validates data frame columns", {
+  df <- data.frame(
+    age = c(25L, 30L, 35L),
+    gender = c("M", "F", "M")
   )
+
+  validOptions <- list(
+    age = integerOption(min = 18L, max = 65L, expectedLength = nrow(df)),
+    gender = characterOption(allowedValues = c("M", "F"), expectedLength = nrow(df))
+  )
+
+  expect_silent(validateIsOption(as.list(df), validOptions))
 })
 
-test_that("validateColumns() accepts valid data frame columns when not each column is defined in columnSpecs", {
-  testDf <- df
-  testDf$numCores <- 2L
-  expect_null(
-    validateColumns(testDf, columnSpecs)
+test_that("validateIsOption() validates data frame columns with NA values", {
+  df <- data.frame(
+    age = c(32L, NA, 19L, 26L, 47L),
+    bmi = c(22.4, NA, 19.5, 27.8, 32.4),
+    gender = c("M", "F", "F", "M", "M"),
+    smoker = c(TRUE, NA, FALSE, FALSE, FALSE)
   )
+
+  validOptions <- list(
+    age = integerOption(min = 0L, max = 120L, naAllowed = TRUE, expectedLength = nrow(df)),
+    bmi = numericOption(min = 10, max = 50, naAllowed = TRUE, expectedLength = nrow(df)),
+    gender = characterOption(allowedValues = c("M", "F"), expectedLength = nrow(df)),
+    smoker = logicalOption(naAllowed = TRUE, expectedLength = nrow(df))
+  )
+
+  expect_silent(validateIsOption(as.list(df), validOptions))
 })
 
-test_that("validateColumns() throws an error when 'object' argument is not a data frame", {
-  expect_error(
-    validateColumns(object = "a", columnSpecs = columnSpecs),
-    "(argument).*(object).*(is of type).*(character).*(but expected).*(data\\.frame)"
+test_that("validateIsOption() detects wrong type in data frame columns", {
+  df <- data.frame(
+    age = c(23.2, 30.5, 35.1),
+    gender = c("M", "F", "M")
   )
-  expect_error(
-    validateColumns(object = NULL, columnSpecs = columnSpecs),
-    "(argument).*(object).*(is of type).*(NULL).*(but expected).*(data\\.frame)"
-  )
-})
 
-test_that("validateColumns() throws an error when 'columnSpecs' argument is not a list", {
-  expect_error(
-    validateColumns(object = df, columnSpecs = 1.2),
-    "(argument).*(columnSpecs).*(is of type).*(numeric).*(but expected).*(list)"
+  validOptions <- list(
+    age = integerOption(min = 18L, max = 65L, expectedLength = nrow(df)),
+    gender = characterOption(allowedValues = c("M", "F"), expectedLength = nrow(df))
   )
-  expect_error(
-    validateColumns(object = df, columnSpecs = NULL),
-    "(argument).*(columnSpecs).*(is of type).*(NULL).*(but expected).*(list)"
-  )
-})
 
-test_that("validateColumns() identifies columns with wrong type", {
-  testDf <- df
-  testDf$age <- 23.2
   expect_error(
-    validateColumns(testDf, columnSpecs),
+    validateIsOption(as.list(df), validOptions),
     "(age).*(argument).*(x).*(is of type).*(numeric).*(but expected).*(integer)"
   )
-  testDf <- df
-  testDf$smoker <- "heavy"
-  expect_error(
-    validateColumns(testDf, columnSpecs),
-    "(smoker).*(argument).*(x).*(is of type).*(character).*(but expected).*(logical)"
-  )
-  testDf <- df
-  testDf$bmi <- 22L
-  expect_error(
-    validateColumns(testDf, columnSpecs),
-    "(bmi).*(argument).*(x).*(is of type).*(integer).*(but expected).*(numeric)"
-  )
-  testDf <- df
-  testDf$bp <- "invalid"
-  expect_error(
-    validateColumns(testDf, columnSpecs),
-    "(bp).*(argument).*(x).*(is of type).*(character).*(but expected).*(factor)"
-  )
 })
 
-test_that("validateColumns() identifies columns outside allowed range or outside allowed values", {
-  testDf <- df
-  testDf$age <- 200L
-  expect_error(
-    validateColumns(testDf, columnSpecs),
-    "(age).*(Value\\(s\\) out of the allowed range)"
+test_that("validateIsOption() detects values outside allowed range in data frame columns", {
+  df <- data.frame(
+    age = c(25L, 30L, 200L),
+    bmi = c(22.4, 27.8, 50.1)
   )
-  testDf <- df
-  testDf$bmi <- 50.1
-  expect_error(
-    validateColumns(testDf, columnSpecs),
-    "(bmi).*(Value\\(s\\) out of the allowed range)"
+
+  validOptions <- list(
+    age = integerOption(min = 0L, max = 120L, expectedLength = nrow(df)),
+    bmi = numericOption(min = 10, max = 50, expectedLength = nrow(df))
   )
-  testDf <- df
-  testDf$gender <- "Other"
-  expect_error(
-    validateColumns(testDf, columnSpecs),
-    "(gender).*(not included in allowed values).*(M, F)"
+
+  err <- tryCatch(
+    validateIsOption(as.list(df), validOptions),
+    error = function(e) e$message
   )
-  testDf <- df
-  testDf$bp <- as.factor("very high")
-  expect_error(
-    validateColumns(testDf, columnSpecs),
-    "(bp).*(not included in allowed values).*(low, normal, high)"
-  )
+
+  expect_true(grepl("age", err))
+  expect_true(grepl("Value\\(s\\) out of the allowed range", err))
 })
 
-test_that("validateColumns() handles NULL values in columns correctly according to columnSpecs", {
-  testDf <- df
-  testDf$age <- NULL
-  expect_error(
-    validateColumns(testDf, columnSpecs),
-    "(age).*(argument).*(x).*(is of type).*(NULL).*(but expected).*(vector)"
+test_that("validateIsOption() detects values not in allowed values for data frame columns", {
+  df <- data.frame(
+    gender = c("M", "F", "Other"),
+    status = c("active", "inactive", "pending")
   )
 
-  testDf <- df
-  testDf$convergenceThreshold <- rep(NULL, nrow(testDf))
-  expect_null(
-    validateColumns(testDf, columnSpecs)
+  validOptions <- list(
+    gender = characterOption(allowedValues = c("M", "F"), expectedLength = nrow(df)),
+    status = characterOption(allowedValues = c("active", "inactive"), expectedLength = nrow(df))
   )
+
+  err <- tryCatch(
+    validateIsOption(as.list(df), validOptions),
+    error = function(e) e$message
+  )
+
+  expect_true(grepl("gender", err))
+  expect_true(grepl("not included in allowed values", err))
 })
 
-test_that("validateColumns() handles NA values in 'age' and 'smoker' columns according to updated columnSpecs", {
-  testColumnSpecs <- columnSpecs
-  testColumnSpecs$age$naAllowed <- FALSE
+test_that("validateIsOption() rejects NA when not allowed in data frame columns", {
+  df <- data.frame(
+    age = c(25L, NA, 35L),
+    gender = c("M", "F", "M")
+  )
+
+  validOptions <- list(
+    age = integerOption(min = 18L, max = 65L, naAllowed = FALSE, expectedLength = nrow(df)),
+    gender = characterOption(allowedValues = c("M", "F"), expectedLength = nrow(df))
+  )
+
   expect_error(
-    validateColumns(df, testColumnSpecs),
+    validateIsOption(as.list(df), validOptions),
     "(age).*(NA).*(values are not allowed)"
-  )
-  testColumnSpecs <- columnSpecs
-  testColumnSpecs$smoker$naAllowed <- FALSE
-  expect_error(
-    validateColumns(df, testColumnSpecs),
-    "(smoker).*(NA).*(values are not allowed)"
   )
 })
