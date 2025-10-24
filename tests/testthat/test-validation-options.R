@@ -447,6 +447,79 @@ test_that("validateIsOption() correctly handles NULL values per configuration", 
   )
 })
 
+test_that("validateIsOption() works with spec constructors", {
+  modernValidOptions <- list(
+    maxIterations = integerOption(min = 1L, max = 10000L),
+    method = characterOption(allowedValues = c("gradientDescent", "geneticAlgorithm"))
+  )
+
+  modernOptions <- list(maxIterations = 100L, method = "gradientDescent")
+  expect_null(validateIsOption(modernOptions, modernValidOptions))
+})
+
+test_that("validateIsOption() validates expectedLength", {
+  validOptionsWithLength <- list(
+    methods = characterOption(allowedValues = c("a", "b", "c"), expectedLength = 2)
+  )
+
+  optionsCorrectLength <- list(methods = c("a", "b"))
+  expect_null(validateIsOption(optionsCorrectLength, validOptionsWithLength))
+
+  optionsWrongLength <- list(methods = "a")
+  expect_error(
+    validateIsOption(optionsWrongLength, validOptionsWithLength),
+    regexp = messages$errorWrongLength("a", 2, "methods"),
+    fixed = TRUE
+  )
+})
+
+test_that("validateIsOption() reports all validation failures at once", {
+  validOptionsMultiple <- list(
+    maxIterations = integerOption(min = 1L, max = 100L),
+    method = characterOption(allowedValues = c("a", "b")),
+    threshold = numericOption(min = 0, max = 1)
+  )
+
+  invalidOptionsMultiple <- list(
+    maxIterations = 500L,
+    method = "invalid",
+    threshold = 1.5
+  )
+
+  err <- tryCatch(
+    validateIsOption(invalidOptionsMultiple, validOptionsMultiple),
+    error = function(e) e$message
+  )
+
+  expect_true(grepl("maxIterations", err))
+  expect_true(grepl("method", err))
+  expect_true(grepl("threshold", err))
+  expect_true(grepl("validation failed", err, ignore.case = TRUE))
+})
+
+test_that("validateIsOption() handles mix of valid and invalid options", {
+  validOptionsMixed <- list(
+    maxIterations = integerOption(min = 1L, max = 100L),
+    method = characterOption(allowedValues = c("a", "b")),
+    threshold = numericOption(min = 0, max = 1)
+  )
+
+  optionsMixed <- list(
+    maxIterations = 50L,
+    method = "invalid",
+    threshold = 1.5
+  )
+
+  err <- tryCatch(
+    validateIsOption(optionsMixed, validOptionsMixed),
+    error = function(e) e$message
+  )
+
+  expect_true(grepl("method", err))
+  expect_true(grepl("threshold", err))
+  expect_false(grepl("maxIterations.*:", err))
+})
+
 
 # validateColumns ---------------------------------------------------------
 
