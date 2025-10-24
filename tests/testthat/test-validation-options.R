@@ -259,6 +259,50 @@ test_that(".normalizeSpec() errors on invalid type", {
 })
 
 
+# S3 validation methods ---------------------------------------------------
+
+test_that(".validateValue.optionSpec() checks expectedLength", {
+  spec <- integerOption(min = 1L, max = 10L, expectedLength = 1)
+  expect_error(
+    .validateValue(c(1L, 2L), spec, "test"),
+    regexp = messages$errorWrongLength(c(1L, 2L), 1, "test"),
+    fixed = TRUE
+  )
+  expect_silent(.validateValue(5L, spec, "test"))
+})
+
+test_that(".validateValue.optionSpec() validates with NULL expectedLength", {
+  spec <- integerOption(min = 1L, max = 10L, expectedLength = NULL)
+  expect_silent(.validateValue(c(1L, 2L, 3L), spec, "test"))
+  expect_silent(.validateValue(5L, spec, "test"))
+})
+
+test_that(".validateValue.optionSpec_integer() auto-converts numeric with warning", {
+  spec <- integerOption(min = 1L, max = 10L)
+
+  # Should warn and convert
+  expect_warning(
+    .validateValue(5.0, spec, "myOption"),
+    regexp = messages$warningNumericToIntegerConversion("myOption"),
+    fixed = TRUE
+  )
+
+  # Should not warn for actual integer
+  expect_silent(.validateValue(5L, spec, "myOption"))
+})
+
+test_that(".validateValue.optionSpec_integer() rejects non-convertible numeric", {
+  spec <- integerOption(min = 1L, max = 10L)
+
+  # Should fail if numeric doesn't convert cleanly (5.5 can't be integer)
+  expect_error(
+    .validateValue(5.5, spec, "test"),
+    regexp = messages$errorWrongType("x", class(5.5)[1], "integer"),
+    fixed = TRUE
+  )
+})
+
+
 # validateIsOption --------------------------------------------------------
 
 validOptions <- list(

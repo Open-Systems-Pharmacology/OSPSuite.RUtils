@@ -41,8 +41,7 @@
       validateIsNumeric(max)
     }
   }
-
-  # Compare min and max only if both are non-NULL
+  
   if (!is.null(min) && !is.null(max) && min > max) {
     stop(messages$errorMinMaxInvalid(min, max), call. = FALSE)
   }
@@ -167,7 +166,6 @@ logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
 #' @keywords internal
 #' @noRd
 .normalizeSpec <- function(spec, optionName = NULL) {
-  # If already an optionSpec, return as-is
   if (inherits(spec, "optionSpec")) {
     return(spec)
   }
@@ -200,7 +198,7 @@ logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
     args$allowedValues <- spec$allowedValues
   }
 
-  # Call appropriate constructor
+  # Call constructor
   constructorFn <- switch(spec$type,
     integer = integerOption,
     numeric = numericOption,
@@ -210,6 +208,54 @@ logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
   )
 
   do.call(constructorFn, args)
+}
+
+#' Internal S3 generic for validating values against specs
+#'
+#' @keywords internal
+#' @noRd
+.validateValue <- function(value, spec, name) {
+  UseMethod(".validateValue", spec)
+}
+
+#' Default method: validates common constraints and delegates to validateVector
+#'
+#' @keywords internal
+#' @noRd
+#' @exportS3Method
+.validateValue.optionSpec <- function(value, spec, name) {
+  if (!is.null(spec$expectedLength) && !is.null(value)) {
+    if (length(value) != spec$expectedLength) {
+      stop(messages$errorWrongLength(value, spec$expectedLength, name), call. = FALSE)
+    }
+  }
+  
+  validateVector(
+    x = value,
+    type = spec$type,
+    valueRange = spec$valueRange,
+    allowedValues = spec$allowedValues,
+    nullAllowed = spec$nullAllowed,
+    naAllowed = spec$naAllowed
+  )
+
+  return()
+}
+
+#' Integer-specific method: auto-converts numeric to integer when possible
+#'
+#' @keywords internal
+#' @noRd
+#' @exportS3Method
+.validateValue.optionSpec_integer <- function(value, spec, name) {
+  if (!is.null(value) && isOfType(value, "numeric") && !is.integer(value)) {
+    if (isTRUE(all.equal(value, as.integer(value)))) {
+      warning(messages$warningNumericToIntegerConversion(name), call. = FALSE)
+      value <- as.integer(value)
+    }
+  }
+  
+  NextMethod()
 }
 
 
