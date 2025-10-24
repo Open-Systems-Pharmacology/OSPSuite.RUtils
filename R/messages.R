@@ -312,6 +312,18 @@ messages <- list(
     cliFormat(
       "{.fn {callingFunction}}: File {.file {file}} is {.strong not} UTF-8 encoded."
     )
+  },
+  errorMinMaxInvalid = function(min, max, optionalMessage = NULL) {
+    cliFormat(
+      "Minimum value {.val {min}} must be less than or equal to maximum value {.val {max}}!",
+      optionalMessage
+    )
+  },
+  errorExpectedLengthPositive = function(optionalMessage = NULL) {
+    cliFormat(
+      "{.field expectedLength} must be a positive integer!",
+      optionalMessage
+    )
   }
 )
 

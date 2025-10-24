@@ -1,3 +1,87 @@
+# Helper functions --------------------------------------------------------
+
+test_that(".validateSpecParams() validates nullAllowed", {
+  expect_error(
+    .validateSpecParams("yes", FALSE, 1),
+    regexp = messages$errorWrongType("nullAllowed", typeof("yes"), "logical"),
+    fixed = TRUE
+  )
+  expect_silent(.validateSpecParams(TRUE, FALSE, 1))
+})
+
+test_that(".validateSpecParams() validates naAllowed", {
+  expect_error(
+    .validateSpecParams(FALSE, "no", 1),
+    regexp = messages$errorWrongType("naAllowed", typeof("no"), "logical"),
+    fixed = TRUE
+  )
+  expect_silent(.validateSpecParams(FALSE, TRUE, 1))
+})
+
+test_that(".validateSpecParams() validates expectedLength", {
+  expect_error(
+    .validateSpecParams(FALSE, FALSE, 0),
+    regexp = messages$errorExpectedLengthPositive(),
+    fixed = TRUE
+  )
+  expect_error(
+    .validateSpecParams(FALSE, FALSE, 1.5),
+    regexp = messages$errorWrongType("expectedLength", class(1.5)[1], "integer"),
+    fixed = TRUE
+  )
+  expect_silent(.validateSpecParams(FALSE, FALSE, 1))
+  expect_silent(.validateSpecParams(FALSE, FALSE, NULL))
+})
+
+test_that(".validateMinMax() handles NULL/NULL edge case", {
+  expect_silent(.validateMinMax(NULL, NULL, "integer"))
+  expect_silent(.validateMinMax(NULL, NULL, "numeric"))
+})
+
+test_that(".validateMinMax() rejects NA values", {
+  expect_error(
+    .validateMinMax(NA, NULL, "integer"),
+    regexp = messages$errorWrongType("min", "NA", "integer"),
+    fixed = TRUE
+  )
+  expect_error(
+    .validateMinMax(NULL, NA, "integer"),
+    regexp = messages$errorWrongType("max", "NA", "integer"),
+    fixed = TRUE
+  )
+  expect_error(
+    .validateMinMax(NA_integer_, NULL, "integer"),
+    regexp = messages$errorWrongType("min", "NA", "integer"),
+    fixed = TRUE
+  )
+  expect_error(
+    .validateMinMax(NA_real_, NULL, "numeric"),
+    regexp = messages$errorWrongType("min", "NA", "numeric"),
+    fixed = TRUE
+  )
+  expect_error(
+    .validateMinMax(NA, NA, "integer"),
+    regexp = messages$errorWrongType("min", "NA", "integer"),
+    fixed = TRUE
+  )
+})
+
+test_that(".validateMinMax() validates min greater max", {
+  expect_error(
+    .validateMinMax(10L, 1L, "integer"),
+    regexp = messages$errorMinMaxInvalid(10L, 1L),
+    fixed = TRUE
+  )
+  expect_error(
+    .validateMinMax(10.5, 1.5, "numeric"),
+    regexp = messages$errorMinMaxInvalid(10.5, 1.5),
+    fixed = TRUE
+  )
+  expect_silent(.validateMinMax(1L, 10L, "integer"))
+  expect_silent(.validateMinMax(1L, 1L, "integer")) 
+})
+
+
 # validateIsOption --------------------------------------------------------
 
 validOptions <- list(

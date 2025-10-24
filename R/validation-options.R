@@ -1,3 +1,54 @@
+#' Validate Common Spec Parameters
+#'
+#' @keywords internal
+#' @noRd
+.validateSpecParams <- function(nullAllowed, naAllowed, expectedLength) {
+  validateIsLogical(nullAllowed)
+  validateIsLogical(naAllowed)
+  if (!is.null(expectedLength)) {
+    validateIsInteger(expectedLength)
+    if (expectedLength < 1) {
+      stop(messages$errorExpectedLengthPositive(), call. = FALSE)
+    }
+  }
+}
+
+#' Validate Min/Max Range Parameters
+#'
+#' @keywords internal
+#' @noRd
+.validateMinMax <- function(min, max, type) {
+  # Validate min parameter
+  if (!is.null(min)) {
+    if (anyNA(min)) {
+      stop(messages$errorWrongType("min", "NA", type), call. = FALSE)
+    }
+    if (type == "integer") {
+      validateIsInteger(min)
+    } else if (type == "numeric") {
+      validateIsNumeric(min)
+    }
+  }
+
+  # Validate max parameter
+  if (!is.null(max)) {
+    if (anyNA(max)) {
+      stop(messages$errorWrongType("max", "NA", type), call. = FALSE)
+    }
+    if (type == "integer") {
+      validateIsInteger(max)
+    } else if (type == "numeric") {
+      validateIsNumeric(max)
+    }
+  }
+
+  # Compare min and max only if both are non-NULL
+  if (!is.null(min) && !is.null(max) && min > max) {
+    stop(messages$errorMinMaxInvalid(min, max), call. = FALSE)
+  }
+}
+
+
 #' Validate Options Against Specified Valid Options
 #'
 #' This function checks if the given options adhere to specified valid options.
