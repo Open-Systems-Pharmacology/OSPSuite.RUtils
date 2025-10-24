@@ -181,6 +181,84 @@ test_that("logicalOption() creates valid spec", {
 })
 
 
+# Spec normalization ------------------------------------------------------
+
+test_that(".normalizeSpec() passes through new optionSpec objects unchanged", {
+  newSpec <- integerOption(min = 1L, max = 10L)
+  normalized <- .normalizeSpec(newSpec)
+  expect_identical(newSpec, normalized)
+})
+
+test_that(".normalizeSpec() converts old integer list format correctly", {
+  oldSpec <- list(type = "integer", valueRange = c(1L, 10L))
+  newSpec <- .normalizeSpec(oldSpec, "testOption")
+  expect_s3_class(newSpec, "optionSpec_integer")
+  expect_s3_class(newSpec, "optionSpec")
+  expect_equal(newSpec$valueRange, c(1L, 10L))
+  expect_equal(newSpec$expectedLength, 1)
+})
+
+test_that(".normalizeSpec() converts old numeric list format correctly", {
+  oldSpec <- list(type = "numeric", valueRange = c(0, 1))
+  newSpec <- .normalizeSpec(oldSpec)
+  expect_s3_class(newSpec, "optionSpec_numeric")
+  expect_equal(newSpec$valueRange, c(0, 1))
+})
+
+test_that(".normalizeSpec() converts old character list format correctly", {
+  oldSpec <- list(type = "character", allowedValues = c("a", "b"))
+  newSpec <- .normalizeSpec(oldSpec)
+  expect_s3_class(newSpec, "optionSpec_character")
+  expect_equal(newSpec$allowedValues, c("a", "b"))
+})
+
+test_that(".normalizeSpec() converts old logical list format correctly", {
+  oldSpec <- list(type = "logical", nullAllowed = TRUE)
+  newSpec <- .normalizeSpec(oldSpec)
+  expect_s3_class(newSpec, "optionSpec_logical")
+  expect_true(newSpec$nullAllowed)
+})
+
+test_that(".normalizeSpec() handles missing optional fields with defaults", {
+  oldSpec <- list(type = "integer")
+  newSpec <- .normalizeSpec(oldSpec)
+  expect_equal(newSpec$nullAllowed, FALSE)
+  expect_equal(newSpec$naAllowed, FALSE)
+  expect_equal(newSpec$expectedLength, 1)
+})
+
+test_that(".normalizeSpec() errors when spec is not a list", {
+  expect_error(
+    .normalizeSpec("invalid", "testOption"),
+    regexp = messages$errorSpecNotList("testOption"),
+    fixed = TRUE
+  )
+  expect_error(
+    .normalizeSpec(123),
+    regexp = messages$errorSpecNotList(),
+    fixed = TRUE
+  )
+})
+
+test_that(".normalizeSpec() errors when type field is missing", {
+  oldSpec <- list(valueRange = c(1L, 10L))
+  expect_error(
+    .normalizeSpec(oldSpec, "testOption"),
+    regexp = messages$errorSpecMissingType("testOption"),
+    fixed = TRUE
+  )
+})
+
+test_that(".normalizeSpec() errors on invalid type", {
+  oldSpec <- list(type = "invalid")
+  expect_error(
+    .normalizeSpec(oldSpec, "testOption"),
+    regexp = messages$errorInvalidSpecType("invalid", "testOption"),
+    fixed = TRUE
+  )
+})
+
+
 # validateIsOption --------------------------------------------------------
 
 validOptions <- list(

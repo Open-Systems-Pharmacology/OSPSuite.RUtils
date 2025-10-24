@@ -162,6 +162,56 @@ logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
   spec
 }
 
+#' Normalize Spec to optionSpec Object
+#'
+#' @keywords internal
+#' @noRd
+.normalizeSpec <- function(spec, optionName = NULL) {
+  # If already an optionSpec, return as-is
+  if (inherits(spec, "optionSpec")) {
+    return(spec)
+  }
+
+  # Convert old list format to optionSpec
+  if (!is.list(spec)) {
+    stop(messages$errorSpecNotList(optionName), call. = FALSE)
+  }
+
+  if (is.null(spec$type)) {
+    stop(messages$errorSpecMissingType(optionName), call. = FALSE)
+  }
+
+  # Build constructor args from old spec format
+  args <- list(
+    nullAllowed = spec$nullAllowed %||% FALSE,
+    naAllowed = spec$naAllowed %||% FALSE,
+    expectedLength = spec$expectedLength %||% 1
+  )
+
+  # Type-specific parameters
+  if (spec$type %in% c("integer", "numeric")) {
+    if (!is.null(spec$valueRange)) {
+      args$min <- spec$valueRange[1]
+      args$max <- spec$valueRange[2]
+    }
+  }
+
+  if (spec$type == "character") {
+    args$allowedValues <- spec$allowedValues
+  }
+
+  # Call appropriate constructor
+  constructorFn <- switch(spec$type,
+    integer = integerOption,
+    numeric = numericOption,
+    character = characterOption,
+    logical = logicalOption,
+    stop(messages$errorInvalidSpecType(spec$type, optionName), call. = FALSE)
+  )
+
+  do.call(constructorFn, args)
+}
+
 
 #' Validate Options Against Specified Valid Options
 #'
