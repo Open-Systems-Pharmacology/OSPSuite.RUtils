@@ -78,7 +78,106 @@ test_that(".validateMinMax() validates min greater max", {
     fixed = TRUE
   )
   expect_silent(.validateMinMax(1L, 10L, "integer"))
-  expect_silent(.validateMinMax(1L, 1L, "integer")) 
+  expect_silent(.validateMinMax(1L, 1L, "integer"))
+})
+
+
+# Spec constructors -------------------------------------------------------
+
+test_that("integerOption() creates valid spec", {
+  spec <- integerOption(min = 1L, max = 10L)
+  expect_s3_class(spec, "optionSpec_integer")
+  expect_s3_class(spec, "optionSpec")
+  expect_equal(spec$type, "integer")
+  expect_equal(spec$valueRange, c(1L, 10L))
+  expect_equal(spec$nullAllowed, FALSE)
+  expect_equal(spec$naAllowed, FALSE)
+  expect_equal(spec$expectedLength, 1)
+})
+
+test_that("integerOption() validates inputs", {
+  expect_error(
+    integerOption(nullAllowed = "yes"),
+    regexp = messages$errorWrongType("nullAllowed", typeof("yes"), "logical"),
+    fixed = TRUE
+  )
+  expect_error(
+    integerOption(expectedLength = 0),
+    regexp = messages$errorExpectedLengthPositive(),
+    fixed = TRUE
+  )
+  expect_error(
+    integerOption(expectedLength = 1.5),
+    regexp = messages$errorWrongType("expectedLength", class(1.5)[1], "integer"),
+    fixed = TRUE
+  )
+  expect_error(
+    integerOption(min = 10L, max = 1L),
+    regexp = messages$errorMinMaxInvalid(10L, 1L),
+    fixed = TRUE
+  )
+})
+
+test_that("numericOption() creates valid spec", {
+  spec <- numericOption(min = 0, max = 1)
+  expect_s3_class(spec, "optionSpec_numeric")
+  expect_s3_class(spec, "optionSpec")
+  expect_equal(spec$type, "numeric")
+  expect_equal(spec$valueRange, c(0, 1))
+})
+
+test_that("characterOption() creates valid spec", {
+  spec <- characterOption(allowedValues = c("a", "b"))
+  expect_s3_class(spec, "optionSpec_character")
+  expect_s3_class(spec, "optionSpec")
+  expect_equal(spec$type, "character")
+  expect_equal(spec$allowedValues, c("a", "b"))
+})
+
+test_that("characterOption() validates allowedValues", {
+  expect_error(
+    characterOption(allowedValues = 123),
+    regexp = messages$errorWrongType("allowedValues", class(123)[1], "character"),
+    fixed = TRUE
+  )
+  expect_error(
+    characterOption(allowedValues = character(0)),
+    regexp = messages$errorAllowedValuesEmpty(),
+    fixed = TRUE
+  )
+})
+
+test_that("characterOption() rejects NA in allowedValues", {
+  expect_error(
+    characterOption(allowedValues = c("a", "b", NA)),
+    "allowedValues cannot contain NA"
+  )
+  expect_error(
+    characterOption(allowedValues = c("a", "b", NA)),
+    "naAllowed = TRUE"
+  )
+  expect_error(
+    characterOption(allowedValues = c(NA_character_)),
+    "NA"
+  )
+})
+
+test_that("characterOption() correct usage with NA", {
+  spec <- characterOption(allowedValues = c("a", "b"), naAllowed = TRUE)
+  expect_equal(spec$allowedValues, c("a", "b"))
+  expect_true(spec$naAllowed)
+
+  spec2 <- characterOption(allowedValues = NULL, naAllowed = TRUE)
+  expect_null(spec2$allowedValues)
+  expect_true(spec2$naAllowed)
+})
+
+test_that("logicalOption() creates valid spec", {
+  spec <- logicalOption()
+  expect_s3_class(spec, "optionSpec_logical")
+  expect_s3_class(spec, "optionSpec")
+  expect_equal(spec$type, "logical")
+  expect_equal(spec$nullAllowed, FALSE)
 })
 
 

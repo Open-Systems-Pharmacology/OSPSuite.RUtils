@@ -100,13 +100,15 @@ messages <- list(
       optionalMessage
     )
   },
-  errorWrongLength = function(object, nbElements, optionalMessage = NULL) {
-    # Name of the calling function
-    callingFunctions <- sys.calls()
-    callingFunction <- sys.call(-length(callingFunctions) + 1)[[1]]
+  errorWrongLength = function(object, nbElements, name = NULL, optionalMessage = NULL) {
+    callingFunction <- .getCallingFunctionName()
     cliFormat(
       paste(
-        "{.fn {callingFunction}}: {.field Object} should be of length {.val {nbElements}},",
+        if (!is.null(name)) {
+          "{.fn {callingFunction}}: option {.field {name}} should be of length {.val {nbElements}},"
+        } else {
+          "{.fn {callingFunction}}: {.field Object} should be of length {.val {nbElements}},"
+        },
         "but is of length {.val {length(object)}} instead."
       ),
       optionalMessage
@@ -322,6 +324,57 @@ messages <- list(
   errorExpectedLengthPositive = function(optionalMessage = NULL) {
     cliFormat(
       "{.field expectedLength} must be a positive integer!",
+      optionalMessage
+    )
+  },
+  errorSpecNotList = function(optionName = NULL, optionalMessage = NULL) {
+    cliFormat(
+      if (!is.null(optionName)) {
+        "Option specification for {.field {optionName}} must be a {.cls list} or {.cls optionSpec} object!"
+      } else {
+        "Option specification must be a {.cls list} or {.cls optionSpec} object!"
+      },
+      optionalMessage
+    )
+  },
+  errorSpecMissingType = function(optionName = NULL, optionalMessage = NULL) {
+    cliFormat(
+      if (!is.null(optionName)) {
+        "Option specification for {.field {optionName}} missing required {.field type} field!"
+      } else {
+        "Option specification missing required {.field type} field!"
+      },
+      "Valid types: {.val integer}, {.val numeric}, {.val character}, {.val logical}",
+      optionalMessage
+    )
+  },
+  errorInvalidSpecType = function(type, optionName = NULL, optionalMessage = NULL) {
+    validTypes <- c("integer", "numeric", "character", "logical")
+    cliFormat(
+      if (!is.null(optionName)) {
+        "Invalid specification type {.val {type}} for option {.field {optionName}}!"
+      } else {
+        "Invalid specification type {.val {type}}!"
+      },
+      "Valid types: {.field {validTypes}}",
+      optionalMessage
+    )
+  },
+  errorAllowedValuesEmpty = function(optionalMessage = NULL) {
+    cliFormat(
+      "{.field allowedValues} cannot be an empty vector!",
+      optionalMessage
+    )
+  },
+  warningNumericToIntegerConversion = function(name, optionalMessage = NULL) {
+    cliFormat(
+      "Option {.field {name}} is {.cls numeric} but expected {.cls integer}, auto-converting",
+      optionalMessage
+    )
+  },
+  errorOptionValidationFailed = function(optionalMessage = NULL) {
+    cliFormat(
+      "{.strong Option validation failed:}",
       optionalMessage
     )
   }

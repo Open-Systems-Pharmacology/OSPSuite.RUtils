@@ -48,6 +48,120 @@
   }
 }
 
+#' Create Integer Option Specification
+#'
+#' @param min Minimum allowed value (inclusive). Defaults to `NULL` (no minimum).
+#' @param max Maximum allowed value (inclusive). Defaults to `NULL` (no maximum).
+#' @param nullAllowed Logical flag indicating whether `NULL` is permitted. Defaults to `FALSE`.
+#' @param naAllowed Logical flag indicating whether `NA` values are permitted. Defaults to `FALSE`.
+#' @param expectedLength Expected length of the option value. Use `NULL` for any length,
+#'   `1` for scalar (default), or a positive integer for specific length.
+#'
+#' @return An S3 object of class `optionSpec_integer` and `optionSpec`.
+#'
+#' @export
+integerOption <- function(min = NULL, max = NULL,
+                         nullAllowed = FALSE, naAllowed = FALSE,
+                         expectedLength = 1) {
+  .validateSpecParams(nullAllowed, naAllowed, expectedLength)
+  .validateMinMax(min, max, "integer")
+
+  spec <- list(
+    type = "integer",
+    valueRange = if (!is.null(min) || !is.null(max)) c(min, max) else NULL,
+    nullAllowed = nullAllowed,
+    naAllowed = naAllowed,
+    expectedLength = expectedLength
+  )
+
+  class(spec) <- c("optionSpec_integer", "optionSpec")
+  spec
+}
+
+#' Create Numeric Option Specification
+#'
+#' @inheritParams integerOption
+#'
+#' @return An S3 object of class `optionSpec_numeric` and `optionSpec`.
+#'
+#' @export
+numericOption <- function(min = NULL, max = NULL,
+                         nullAllowed = FALSE, naAllowed = FALSE,
+                         expectedLength = 1) {
+  .validateSpecParams(nullAllowed, naAllowed, expectedLength)
+  .validateMinMax(min, max, "numeric")
+
+  spec <- list(
+    type = "numeric",
+    valueRange = if (!is.null(min) || !is.null(max)) c(min, max) else NULL,
+    nullAllowed = nullAllowed,
+    naAllowed = naAllowed,
+    expectedLength = expectedLength
+  )
+
+  class(spec) <- c("optionSpec_numeric", "optionSpec")
+  spec
+}
+
+#' Create Character Option Specification
+#'
+#' @param allowedValues Vector of permitted values. Defaults to `NULL` (any value allowed).
+#' @inheritParams integerOption
+#'
+#' @return An S3 object of class `optionSpec_character` and `optionSpec`.
+#'
+#' @export
+characterOption <- function(allowedValues = NULL,
+                           nullAllowed = FALSE, naAllowed = FALSE,
+                           expectedLength = 1) {
+  .validateSpecParams(nullAllowed, naAllowed, expectedLength)
+
+  if (!is.null(allowedValues)) {
+    validateIsCharacter(allowedValues)
+    if (length(allowedValues) == 0) {
+      stop(messages$errorAllowedValuesEmpty())
+    }
+    if (anyNA(allowedValues)) {
+      stop(messages$errorAllowedValuesEmpty(
+        "allowedValues cannot contain NA. Use naAllowed = TRUE instead."
+      ))
+    }
+  }
+
+  spec <- list(
+    type = "character",
+    allowedValues = allowedValues,
+    nullAllowed = nullAllowed,
+    naAllowed = naAllowed,
+    expectedLength = expectedLength
+  )
+
+  class(spec) <- c("optionSpec_character", "optionSpec")
+  spec
+}
+
+#' Create Logical Option Specification
+#'
+#' @inheritParams integerOption
+#'
+#' @return An S3 object of class `optionSpec_logical` and `optionSpec`.
+#'
+#' @export
+logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
+                         expectedLength = 1) {
+  .validateSpecParams(nullAllowed, naAllowed, expectedLength)
+
+  spec <- list(
+    type = "logical",
+    nullAllowed = nullAllowed,
+    naAllowed = naAllowed,
+    expectedLength = expectedLength
+  )
+
+  class(spec) <- c("optionSpec_logical", "optionSpec")
+  spec
+}
+
 
 #' Validate Options Against Specified Valid Options
 #'
