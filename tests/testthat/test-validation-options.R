@@ -349,29 +349,34 @@ test_that("validateIsOption() auto-converts numerics to integers with warning", 
   testOptions <- modifyList(defaultOptions, list(maxIterations = 1000))
   expect_warning(
     validateIsOption(testOptions, validOptions),
-    "Numeric value automatically converted to integer for validation"
+    regexp = messages$warningNumericToIntegerConversion("maxIterations"),
+    fixed = TRUE
   )
 })
 
 test_that("validateIsOption() errors on non-list 'options'", {
   expect_error(
     validateIsOption(options = "a", validOptions = validOptions),
-    "(argument).*(options).*(is of type).*(character).*(but expected).*(list)"
+    regexp = messages$errorWrongType("object", "character", "list"),
+    fixed = TRUE
   )
   expect_error(
     validateIsOption(options = NULL, validOptions = validOptions),
-    "(argument).*(options).*(is of type).*(NULL).*(but expected).*(list)"
+    regexp = messages$errorWrongType("object", "NULL", "list"),
+    fixed = TRUE
   )
 })
 
 test_that("isValidOption() errors on non-list `validOptions`", {
   expect_error(
     validateIsOption(defaultOptions, validOptions = 1.2),
-    "(argument).*(validOptions).*(is of type).*(numeric).*(but expected).*(list)"
+    regexp = messages$errorWrongType("object", "numeric", "list"),
+    fixed = TRUE
   )
   expect_error(
     validateIsOption(options = defaultOptions, validOptions = NULL),
-    "(argument).*(validOptions).*(is of type).*(NULL).*(but expected).*(list)"
+    regexp = messages$errorWrongType("object", "NULL", "list"),
+    fixed = TRUE
   )
 })
 
@@ -379,7 +384,8 @@ test_that("validateIsOption() errors when option values exceed expected length",
   testOptions <- modifyList(defaultOptions, list(includeInteractions = c(TRUE, FALSE)))
   expect_error(
     validateIsOption(testOptions, validOptions),
-    "(includeInteractions).*(Object).*(should be of length).*(1).*(but is of length).*(2)"
+    regexp = messages$errorWrongLength(c(TRUE, FALSE), 1, "includeInteractions"),
+    fixed = TRUE
   )
 })
 

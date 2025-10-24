@@ -2,58 +2,51 @@
 % Please edit documentation in R/validation-options.R
 \name{validateIsOption}
 \alias{validateIsOption}
-\title{Validate Options Against Specified Valid Options}
+\title{Validate Options Against Specifications}
 \usage{
 validateIsOption(options, validOptions)
 }
 \arguments{
 \item{options}{A list of options to validate.}
 
-\item{validOptions}{A list specifying the valid configurations for each option in \code{options}.
-Each entry in \code{validOptions} should be a list containing the \code{type}, \code{allowedValues},
-\code{valueRange}, \code{nullAllowed}, and \code{naAllowed} parameters for the option it corresponds to.}
+\item{validOptions}{A list specifying validation rules for each option.
+Each entry should either be:
+\itemize{
+\item A spec object created with \code{integerOption()}, \code{characterOption()}, etc. (recommended)
+\item A list with fields: \code{type}, \code{valueRange}, \code{allowedValues}, \code{nullAllowed}, \code{naAllowed} (legacy)
+}}
 }
 \value{
-Does not return a value explicitly. Completes without error if all options are
-valid according to \code{validOptions}. If any validation fails, it stops and generates
-a descriptive error message, reporting all failures if multiple validations fail.
+Returns \code{NULL} invisibly if all validations pass. Stops with detailed error
+message listing all failures if any validation fails.
 }
 \description{
-This function checks if the given options adhere to specified valid options.
-It validates each option's type, value range, allowed values, and handles \code{NULL} and
-\code{NA} values according to the configuration provided in \code{validOptions}. It
-automatically converts numeric options to integers when possible and specified
-so by \code{validOptions} for validation and issues a warning.
+Validates a list of options against specified validation rules. Supports both
+modern spec constructors (\code{integerOption()}, etc.) and legacy list format for
+backward compatibility.
 }
 \details{
-The function iterates through each option in \code{validOptions}, retrieves the corresponding
-value from \code{options}, and validates it using \code{validateVector}.
-The validation covers:
-\itemize{
-\item Type correctness according to \code{type}, with automatic conversion for numeric to
-integer where appropriate.
-\item Whether the value is within the specified \code{valueRange} (if applicable).
-\item Whether the value is among the \code{allowedValues} (if specified).
-\item Handling of \code{NULL} and \code{NA} based on \code{nullAllowed} and \code{naAllowed} flags.
-}
+The function validates each option in \code{validOptions} using the corresponding
+value from \code{options}. Modern spec objects created with constructor functions like
+\code{integerOption()} are recommended as they provide better IDE support and validation.
+Legacy list format is still supported for backward compatibility and is automatically
+converted internally.
 }
 \examples{
-options <- list(
-  optimizationMethod = "genetic_algorithm",
-  includeInteractions = TRUE,
-  maxIterations = 1000L,
-  convergenceThreshold = 0.02
-)
-
+# Modern API (recommended)
 validOptions <- list(
-  optimizationMethod = list(
-    type = "character", allowedValues = c("gradient_descent", "genetic_algorithm")
-  ),
-  includeInteractions = list(type = "logical"),
-  maxIterations = list(type = "integer", valueRange = c(1L, 10000L)),
-  convergenceThreshold = list(type = "numeric", valueRange = c(0, 1))
+  maxIterations = integerOption(min = 1L, max = 10000L),
+  method = characterOption(allowedValues = c("a", "b")),
+  threshold = numericOption(min = 0, max = 1, nullAllowed = TRUE)
 )
 
+options <- list(maxIterations = 100L, method = "a", threshold = 0.05)
+validateIsOption(options, validOptions)
+
+# Legacy format (still supported)
+validOptions <- list(
+  maxIterations = list(type = "integer", valueRange = c(1L, 10000L))
+)
 validateIsOption(options, validOptions)
 
 }
