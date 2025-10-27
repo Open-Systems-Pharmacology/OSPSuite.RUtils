@@ -12,14 +12,18 @@ characterOption(
 )
 }
 \arguments{
-\item{allowedValues}{Vector of permitted values. Defaults to \code{NULL} (any value allowed).}
+\item{allowedValues}{Vector of permitted values. Defaults to \code{NULL} (any
+value allowed).}
 
-\item{nullAllowed}{Logical flag indicating whether \code{NULL} is permitted. Defaults to \code{FALSE}.}
+\item{nullAllowed}{Logical flag indicating whether \code{NULL} is permitted.
+Defaults to \code{FALSE}.}
 
-\item{naAllowed}{Logical flag indicating whether \code{NA} values are permitted. Defaults to \code{FALSE}.}
+\item{naAllowed}{Logical flag indicating whether \code{NA} values are permitted.
+Defaults to \code{FALSE}.}
 
-\item{expectedLength}{Expected length of the option value. Use \code{NULL} for any length,
-\code{1} for scalar (default), or a positive integer for specific length.}
+\item{expectedLength}{Expected length of the option value. Use \code{NULL} for any
+length, \code{1} for scalar (default), or a positive integer for specific
+length.}
 }
 \value{
 An S3 object of class \code{optionSpec_character} and \code{optionSpec}.

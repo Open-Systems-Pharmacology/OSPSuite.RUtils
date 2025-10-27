@@ -9,16 +9,17 @@ validateIsOption(options, validOptions)
 \arguments{
 \item{options}{A list of options to validate.}
 
-\item{validOptions}{A list specifying validation rules for each option.
-Each entry should either be:
+\item{validOptions}{A list specifying validation rules for each option. Each
+entry should either be:
 \itemize{
-\item A spec object created with \code{integerOption()}, \code{characterOption()}, etc. (recommended)
-\item A list with fields: \code{type}, \code{valueRange}, \code{allowedValues}, \code{nullAllowed}, \code{naAllowed} (legacy)
+\item A spec object created with \code{integerOption()}, \code{characterOption()}, etc.
+\item A list with fields: \code{type}, \code{valueRange}, \code{allowedValues}, \code{nullAllowed},
+\code{naAllowed}
 }}
 }
 \value{
-Returns \code{NULL} invisibly if all validations pass. Stops with detailed error
-message listing all failures if any validation fails.
+Returns \code{NULL} invisibly if all validations pass. Stops with detailed
+error message listing all failures if any validation fails.
 }
 \description{
 Validates a list of options against specified validation rules. Supports both
@@ -26,14 +27,14 @@ modern spec constructors (\code{integerOption()}, etc.) and legacy list format f
 backward compatibility.
 }
 \details{
-The function validates each option in \code{validOptions} using the corresponding
-value from \code{options}. Modern spec objects created with constructor functions like
-\code{integerOption()} are recommended as they provide better IDE support and validation.
-Legacy list format is still supported for backward compatibility and is automatically
-converted internally.
+Each entry in \code{validOptions} is validated against the matching value
+from \code{options}. Spec objects created with constructors (e.g.,
+\code{integerOption()}) are recommended because they express intent clearly and
+work well with IDEs. For backward compatibility, legacy list-based specs
+are still accepted and are automatically normalized to \code{optionSpec} before
+validation.
 }
 \examples{
-# Modern API (recommended)
 validOptions <- list(
   maxIterations = integerOption(min = 1L, max = 10000L),
   method = characterOption(allowedValues = c("a", "b")),
@@ -41,12 +42,6 @@ validOptions <- list(
 )
 
 options <- list(maxIterations = 100L, method = "a", threshold = 0.05)
-validateIsOption(options, validOptions)
-
-# Legacy format (still supported)
-validOptions <- list(
-  maxIterations = list(type = "integer", valueRange = c(1L, 10000L))
-)
 validateIsOption(options, validOptions)
 
 }

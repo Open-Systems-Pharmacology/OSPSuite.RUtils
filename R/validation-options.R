@@ -49,12 +49,15 @@
 
 #' Create Integer Option Specification
 #'
-#' @param min Minimum allowed value (inclusive). Defaults to `NULL` (no minimum).
-#' @param max Maximum allowed value (inclusive). Defaults to `NULL` (no maximum).
-#' @param nullAllowed Logical flag indicating whether `NULL` is permitted. Defaults to `FALSE`.
-#' @param naAllowed Logical flag indicating whether `NA` values are permitted. Defaults to `FALSE`.
-#' @param expectedLength Expected length of the option value. Use `NULL` for any length,
-#'   `1` for scalar (default), or a positive integer for specific length.
+#' @param min Minimum allowed value. Defaults to `NULL` (no minimum).
+#' @param max Maximum allowed value. Defaults to `NULL` (no maximum).
+#' @param nullAllowed Logical flag indicating whether `NULL` is permitted.
+#'   Defaults to `FALSE`.
+#' @param naAllowed Logical flag indicating whether `NA` values are permitted.
+#'   Defaults to `FALSE`.
+#' @param expectedLength Expected length of the option value. Use `NULL` for any
+#'   length, `1` for scalar (default), or a positive integer for specific
+#'   length.
 #'
 #' @return An S3 object of class `optionSpec_integer` and `optionSpec`.
 #'
@@ -104,7 +107,8 @@ numericOption <- function(min = NULL, max = NULL,
 
 #' Create Character Option Specification
 #'
-#' @param allowedValues Vector of permitted values. Defaults to `NULL` (any value allowed).
+#' @param allowedValues Vector of permitted values. Defaults to `NULL` (any
+#'   value allowed).
 #' @inheritParams integerOption
 #'
 #' @return An S3 object of class `optionSpec_character` and `optionSpec`.
@@ -162,6 +166,10 @@ logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
 }
 
 #' Normalize Spec to optionSpec Object
+#'
+#' Converts a legacy list-based spec to an `optionSpec` using the typed
+#' constructors. If `spec` is already an `optionSpec`, it is returned unchanged.
+#' This preserves backward compatibility with the old specification format.
 #'
 #' @keywords internal
 #' @noRd
@@ -266,23 +274,23 @@ logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
 #' backward compatibility.
 #'
 #' @param options A list of options to validate.
-#' @param validOptions A list specifying validation rules for each option.
-#'   Each entry should either be:
-#'   - A spec object created with `integerOption()`, `characterOption()`, etc. (recommended)
-#'   - A list with fields: `type`, `valueRange`, `allowedValues`, `nullAllowed`, `naAllowed` (legacy)
+#' @param validOptions A list specifying validation rules for each option. Each
+#'   entry should either be:
+#'   - A spec object created with `integerOption()`, `characterOption()`, etc.
+#'   - A list with fields: `type`, `valueRange`, `allowedValues`, `nullAllowed`,
+#'   `naAllowed`
 #'
-#' @details
-#' The function validates each option in `validOptions` using the corresponding
-#' value from `options`. Modern spec objects created with constructor functions like
-#' `integerOption()` are recommended as they provide better IDE support and validation.
-#' Legacy list format is still supported for backward compatibility and is automatically
-#' converted internally.
+#' @details Each entry in `validOptions` is validated against the matching value
+#'   from `options`. Spec objects created with constructors (e.g.,
+#'   `integerOption()`) are recommended because they express intent clearly and
+#'   work well with IDEs. For backward compatibility, legacy list-based specs
+#'   are still accepted and are automatically normalized to `optionSpec` before
+#'   validation.
 #'
-#' @return Returns `NULL` invisibly if all validations pass. Stops with detailed error
-#'   message listing all failures if any validation fails.
+#' @return Returns `NULL` invisibly if all validations pass. Stops with detailed
+#'   error message listing all failures if any validation fails.
 #'
 #' @examples
-#' # Modern API (recommended)
 #' validOptions <- list(
 #'   maxIterations = integerOption(min = 1L, max = 10000L),
 #'   method = characterOption(allowedValues = c("a", "b")),
@@ -290,12 +298,6 @@ logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
 #' )
 #'
 #' options <- list(maxIterations = 100L, method = "a", threshold = 0.05)
-#' validateIsOption(options, validOptions)
-#'
-#' # Legacy format (still supported)
-#' validOptions <- list(
-#'   maxIterations = list(type = "integer", valueRange = c(1L, 10000L))
-#' )
 #' validateIsOption(options, validOptions)
 #'
 #' @export
