@@ -49,8 +49,8 @@
 
 #' Create Integer Option Specification
 #'
-#' @param min Minimum allowed value. Defaults to `NULL` (no minimum).
-#' @param max Maximum allowed value. Defaults to `NULL` (no maximum).
+#' @param min Minimum allowed value. Defaults to `-Inf`.
+#' @param max Maximum allowed value. Defaults to `Inf`.
 #' @param nullAllowed Logical flag indicating whether `NULL` is permitted.
 #'   Defaults to `FALSE`.
 #' @param naAllowed Logical flag indicating whether `NA` values are permitted.
@@ -63,18 +63,34 @@
 #'
 #' @export
 integerOption <- function(
-  min = NULL,
-  max = NULL,
+  min = -Inf,
+  max = Inf,
   nullAllowed = FALSE,
   naAllowed = FALSE,
   expectedLength = 1
 ) {
   .validateSpecParams(nullAllowed, naAllowed, expectedLength)
+
+  # Handle explicit NULL or NA by replacing with -Inf/Inf
+  if (is.null(min) || (length(min) == 1 && is.na(min))) min <- -Inf
+  if (is.null(max) || (length(max) == 1 && is.na(max))) max <- Inf
+
   .validateMinMax(min, max, "integer")
+
+  # For integer type, only set valueRange if both are finite (to avoid type coercion)
+  valueRange <- if (is.finite(min) && is.finite(max)) {
+    c(as.integer(min), as.integer(max))
+  } else if (is.finite(min)) {
+    c(as.integer(min), .Machine$integer.max)
+  } else if (is.finite(max)) {
+    c(-.Machine$integer.max, as.integer(max))
+  } else {
+    NULL
+  }
 
   spec <- list(
     type = "integer",
-    valueRange = if (!is.null(min) || !is.null(max)) c(min, max) else NULL,
+    valueRange = valueRange,
     nullAllowed = nullAllowed,
     naAllowed = naAllowed,
     expectedLength = expectedLength
@@ -92,18 +108,23 @@ integerOption <- function(
 #'
 #' @export
 numericOption <- function(
-  min = NULL,
-  max = NULL,
+  min = -Inf,
+  max = Inf,
   nullAllowed = FALSE,
   naAllowed = FALSE,
   expectedLength = 1
 ) {
   .validateSpecParams(nullAllowed, naAllowed, expectedLength)
+
+  # Handle explicit NULL or NA by replacing with -Inf/Inf
+  if (is.null(min) || (length(min) == 1 && is.na(min))) min <- -Inf
+  if (is.null(max) || (length(max) == 1 && is.na(max))) max <- Inf
+
   .validateMinMax(min, max, "numeric")
 
   spec <- list(
     type = "numeric",
-    valueRange = if (!is.null(min) || !is.null(max)) c(min, max) else NULL,
+    valueRange = c(min, max),
     nullAllowed = nullAllowed,
     naAllowed = naAllowed,
     expectedLength = expectedLength

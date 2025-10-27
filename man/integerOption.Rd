@@ -5,17 +5,17 @@
 \title{Create Integer Option Specification}
 \usage{
 integerOption(
-  min = NULL,
-  max = NULL,
+  min = -Inf,
+  max = Inf,
   nullAllowed = FALSE,
   naAllowed = FALSE,
   expectedLength = 1
 )
 }
 \arguments{
-\item{min}{Minimum allowed value. Defaults to \code{NULL} (no minimum).}
+\item{min}{Minimum allowed value. Defaults to \code{-Inf}.}
 
-\item{max}{Maximum allowed value. Defaults to \code{NULL} (no maximum).}
+\item{max}{Maximum allowed value. Defaults to \code{Inf}.}
 
 \item{nullAllowed}{Logical flag indicating whether \code{NULL} is permitted.
 Defaults to \code{FALSE}.}

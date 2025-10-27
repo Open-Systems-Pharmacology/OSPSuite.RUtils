@@ -126,6 +126,53 @@ test_that("integerOption() validates inputs", {
   )
 })
 
+test_that("integerOption() supports one-sided ranges with -Inf/Inf defaults", {
+  specMinOnly <- integerOption(min = 1L)
+  expect_equal(specMinOnly$valueRange, c(1L, .Machine$integer.max))
+
+  specMaxOnly <- integerOption(max = 100L)
+  expect_equal(specMaxOnly$valueRange, c(-.Machine$integer.max, 100L))
+
+  specNoRange <- integerOption()
+  expect_null(specNoRange$valueRange)
+
+  validOptions <- list(
+    age = integerOption(min = 0L, max = 120L),
+    count = integerOption(min = 1L)
+  )
+
+  options <- list(age = 25L, count = 10L)
+  expect_silent(validateIsOption(options, validOptions))
+})
+
+test_that("integerOption() handles explicit NULL and NA for min/max", {
+  specNullMin <- integerOption(min = NULL, max = 100L)
+  expect_equal(specNullMin$valueRange, c(-.Machine$integer.max, 100L))
+
+  specNullMax <- integerOption(min = 1L, max = NULL)
+  expect_equal(specNullMax$valueRange, c(1L, .Machine$integer.max))
+
+  specNaMin <- integerOption(min = NA, max = 100L)
+  expect_equal(specNaMin$valueRange, c(-.Machine$integer.max, 100L))
+
+  specNaMax <- integerOption(min = 1L, max = NA)
+  expect_equal(specNaMax$valueRange, c(1L, .Machine$integer.max))
+})
+
+test_that("numericOption() handles explicit NULL and NA for min/max", {
+  specNullMin <- numericOption(min = NULL, max = 1.0)
+  expect_equal(specNullMin$valueRange, c(-Inf, 1.0))
+
+  specNullMax <- numericOption(min = 0.0, max = NULL)
+  expect_equal(specNullMax$valueRange, c(0.0, Inf))
+
+  specNaMin <- numericOption(min = NA, max = 1.0)
+  expect_equal(specNaMin$valueRange, c(-Inf, 1.0))
+
+  specNaMax <- numericOption(min = 0.0, max = NA)
+  expect_equal(specNaMax$valueRange, c(0.0, Inf))
+})
+
 test_that("numericOption() creates valid spec", {
   spec <- numericOption(min = 0, max = 1)
   expect_s3_class(spec, "optionSpec_numeric")
