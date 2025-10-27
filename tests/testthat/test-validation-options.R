@@ -26,7 +26,11 @@ test_that(".validateSpecParams() validates expectedLength", {
   )
   expect_error(
     .validateSpecParams(FALSE, FALSE, 1.5),
-    regexp = messages$errorWrongType("expectedLength", class(1.5)[1], "integer"),
+    regexp = messages$errorWrongType(
+      "expectedLength",
+      class(1.5)[1],
+      "integer"
+    ),
     fixed = TRUE
   )
   expect_silent(.validateSpecParams(FALSE, FALSE, 1))
@@ -108,7 +112,11 @@ test_that("integerOption() validates inputs", {
   )
   expect_error(
     integerOption(expectedLength = 1.5),
-    regexp = messages$errorWrongType("expectedLength", class(1.5)[1], "integer"),
+    regexp = messages$errorWrongType(
+      "expectedLength",
+      class(1.5)[1],
+      "integer"
+    ),
     fixed = TRUE
   )
   expect_error(
@@ -137,7 +145,11 @@ test_that("characterOption() creates valid spec", {
 test_that("characterOption() validates allowedValues", {
   expect_error(
     characterOption(allowedValues = 123),
-    regexp = messages$errorWrongType("allowedValues", class(123)[1], "character"),
+    regexp = messages$errorWrongType(
+      "allowedValues",
+      class(123)[1],
+      "character"
+    ),
     fixed = TRUE
   )
   expect_error(
@@ -381,10 +393,17 @@ test_that("isValidOption() errors on non-list `validOptions`", {
 })
 
 test_that("validateIsOption() errors when option values exceed expected length", {
-  testOptions <- modifyList(defaultOptions, list(includeInteractions = c(TRUE, FALSE)))
+  testOptions <- modifyList(
+    defaultOptions,
+    list(includeInteractions = c(TRUE, FALSE))
+  )
   expect_error(
     validateIsOption(testOptions, validOptions),
-    regexp = messages$errorWrongLength(c(TRUE, FALSE), 1, "includeInteractions"),
+    regexp = messages$errorWrongLength(
+      c(TRUE, FALSE),
+      1,
+      "includeInteractions"
+    ),
     fixed = TRUE
   )
 })
@@ -397,12 +416,18 @@ test_that("validateIsOption() type mismatches trigger errors", {
       "(maxIterations).*(argument).*(x).*(is of type).*(numeric).*(but expected).*(integer)"
     )
   )
-  invalidOptions <- modifyList(defaultOptions, list(includeInteractions = "notValid"))
+  invalidOptions <- modifyList(
+    defaultOptions,
+    list(includeInteractions = "notValid")
+  )
   expect_error(
     validateIsOption(invalidOptions, validOptions),
     "(includeInteractions).*(argument).*(x).*(is of type).*(character).*(but expected).*(logical)"
   )
-  invalidOptions <- modifyList(defaultOptions, list(convergenceThreshold = "low"))
+  invalidOptions <- modifyList(
+    defaultOptions,
+    list(convergenceThreshold = "low")
+  )
   expect_error(
     validateIsOption(invalidOptions, validOptions),
     "(argument).*(x).*(is of type).*(character).*(but expected).*(numeric)"
@@ -428,7 +453,10 @@ test_that("validateIsOption() flags out-of-range and invalid values", {
     validateIsOption(invalidOptions, validOptions),
     "(convergenceThreshold).*(Value\\(s\\) out of the allowed range)"
   )
-  invalidOptions <- modifyList(defaultOptions, list(optimizationMethod = "none"))
+  invalidOptions <- modifyList(
+    defaultOptions,
+    list(optimizationMethod = "none")
+  )
   expect_error(
     validateIsOption(invalidOptions, validOptions),
     "(optimizationMethod).*(1 value).*(none).*(not included in allowed values)"
@@ -436,12 +464,19 @@ test_that("validateIsOption() flags out-of-range and invalid values", {
 })
 
 test_that("validateIsOption() correctly handles NULL values per configuration", {
-  invalidOptions <- modifyList(defaultOptions, list(maxIterations = NULL), keep.null = TRUE)
+  invalidOptions <- modifyList(
+    defaultOptions,
+    list(maxIterations = NULL),
+    keep.null = TRUE
+  )
   expect_error(
     validateIsOption(invalidOptions, validOptions),
     "(maxIterations).*(argument).*(x).*(is of type).*(NULL).*(but expected).*(vector)"
   )
-  invalidOptions <- modifyList(defaultOptions, list(convergenceThreshold = NULL))
+  invalidOptions <- modifyList(
+    defaultOptions,
+    list(convergenceThreshold = NULL)
+  )
   expect_null(
     validateIsOption(invalidOptions, validOptions)
   )
@@ -450,7 +485,9 @@ test_that("validateIsOption() correctly handles NULL values per configuration", 
 test_that("validateIsOption() works with spec constructors", {
   modernValidOptions <- list(
     maxIterations = integerOption(min = 1L, max = 10000L),
-    method = characterOption(allowedValues = c("gradientDescent", "geneticAlgorithm"))
+    method = characterOption(
+      allowedValues = c("gradientDescent", "geneticAlgorithm")
+    )
   )
 
   modernOptions <- list(maxIterations = 100L, method = "gradientDescent")
@@ -459,7 +496,10 @@ test_that("validateIsOption() works with spec constructors", {
 
 test_that("validateIsOption() validates expectedLength", {
   validOptionsWithLength <- list(
-    methods = characterOption(allowedValues = c("a", "b", "c"), expectedLength = 2)
+    methods = characterOption(
+      allowedValues = c("a", "b", "c"),
+      expectedLength = 2
+    )
   )
 
   optionsCorrectLength <- list(methods = c("a", "b"))
@@ -531,7 +571,10 @@ test_that("validateIsOption() validates data frame columns", {
 
   validOptions <- list(
     age = integerOption(min = 18L, max = 65L, expectedLength = nrow(df)),
-    gender = characterOption(allowedValues = c("M", "F"), expectedLength = nrow(df))
+    gender = characterOption(
+      allowedValues = c("M", "F"),
+      expectedLength = nrow(df)
+    )
   )
 
   expect_silent(validateIsOption(as.list(df), validOptions))
@@ -546,9 +589,22 @@ test_that("validateIsOption() validates data frame columns with NA values", {
   )
 
   validOptions <- list(
-    age = integerOption(min = 0L, max = 120L, naAllowed = TRUE, expectedLength = nrow(df)),
-    bmi = numericOption(min = 10, max = 50, naAllowed = TRUE, expectedLength = nrow(df)),
-    gender = characterOption(allowedValues = c("M", "F"), expectedLength = nrow(df)),
+    age = integerOption(
+      min = 0L,
+      max = 120L,
+      naAllowed = TRUE,
+      expectedLength = nrow(df)
+    ),
+    bmi = numericOption(
+      min = 10,
+      max = 50,
+      naAllowed = TRUE,
+      expectedLength = nrow(df)
+    ),
+    gender = characterOption(
+      allowedValues = c("M", "F"),
+      expectedLength = nrow(df)
+    ),
     smoker = logicalOption(naAllowed = TRUE, expectedLength = nrow(df))
   )
 
@@ -563,7 +619,10 @@ test_that("validateIsOption() detects wrong type in data frame columns", {
 
   validOptions <- list(
     age = integerOption(min = 18L, max = 65L, expectedLength = nrow(df)),
-    gender = characterOption(allowedValues = c("M", "F"), expectedLength = nrow(df))
+    gender = characterOption(
+      allowedValues = c("M", "F"),
+      expectedLength = nrow(df)
+    )
   )
 
   expect_error(
@@ -599,8 +658,14 @@ test_that("validateIsOption() detects values not in allowed values for data fram
   )
 
   validOptions <- list(
-    gender = characterOption(allowedValues = c("M", "F"), expectedLength = nrow(df)),
-    status = characterOption(allowedValues = c("active", "inactive"), expectedLength = nrow(df))
+    gender = characterOption(
+      allowedValues = c("M", "F"),
+      expectedLength = nrow(df)
+    ),
+    status = characterOption(
+      allowedValues = c("active", "inactive"),
+      expectedLength = nrow(df)
+    )
   )
 
   err <- tryCatch(
@@ -619,8 +684,16 @@ test_that("validateIsOption() rejects NA when not allowed in data frame columns"
   )
 
   validOptions <- list(
-    age = integerOption(min = 18L, max = 65L, naAllowed = FALSE, expectedLength = nrow(df)),
-    gender = characterOption(allowedValues = c("M", "F"), expectedLength = nrow(df))
+    age = integerOption(
+      min = 18L,
+      max = 65L,
+      naAllowed = FALSE,
+      expectedLength = nrow(df)
+    ),
+    gender = characterOption(
+      allowedValues = c("M", "F"),
+      expectedLength = nrow(df)
+    )
   )
 
   expect_error(

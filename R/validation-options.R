@@ -41,7 +41,7 @@
       validateIsNumeric(max)
     }
   }
-  
+
   if (!is.null(min) && !is.null(max) && min > max) {
     stop(messages$errorMinMaxInvalid(min, max), call. = FALSE)
   }
@@ -62,9 +62,13 @@
 #' @return An S3 object of class `optionSpec_integer` and `optionSpec`.
 #'
 #' @export
-integerOption <- function(min = NULL, max = NULL,
-                         nullAllowed = FALSE, naAllowed = FALSE,
-                         expectedLength = 1) {
+integerOption <- function(
+  min = NULL,
+  max = NULL,
+  nullAllowed = FALSE,
+  naAllowed = FALSE,
+  expectedLength = 1
+) {
   .validateSpecParams(nullAllowed, naAllowed, expectedLength)
   .validateMinMax(min, max, "integer")
 
@@ -87,9 +91,13 @@ integerOption <- function(min = NULL, max = NULL,
 #' @return An S3 object of class `optionSpec_numeric` and `optionSpec`.
 #'
 #' @export
-numericOption <- function(min = NULL, max = NULL,
-                         nullAllowed = FALSE, naAllowed = FALSE,
-                         expectedLength = 1) {
+numericOption <- function(
+  min = NULL,
+  max = NULL,
+  nullAllowed = FALSE,
+  naAllowed = FALSE,
+  expectedLength = 1
+) {
   .validateSpecParams(nullAllowed, naAllowed, expectedLength)
   .validateMinMax(min, max, "numeric")
 
@@ -114,9 +122,12 @@ numericOption <- function(min = NULL, max = NULL,
 #' @return An S3 object of class `optionSpec_character` and `optionSpec`.
 #'
 #' @export
-characterOption <- function(allowedValues = NULL,
-                           nullAllowed = FALSE, naAllowed = FALSE,
-                           expectedLength = 1) {
+characterOption <- function(
+  allowedValues = NULL,
+  nullAllowed = FALSE,
+  naAllowed = FALSE,
+  expectedLength = 1
+) {
   .validateSpecParams(nullAllowed, naAllowed, expectedLength)
 
   if (!is.null(allowedValues)) {
@@ -150,8 +161,11 @@ characterOption <- function(allowedValues = NULL,
 #' @return An S3 object of class `optionSpec_logical` and `optionSpec`.
 #'
 #' @export
-logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
-                         expectedLength = 1) {
+logicalOption <- function(
+  nullAllowed = FALSE,
+  naAllowed = FALSE,
+  expectedLength = 1
+) {
   .validateSpecParams(nullAllowed, naAllowed, expectedLength)
 
   spec <- list(
@@ -207,7 +221,8 @@ logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
   }
 
   # Call constructor
-  constructorFn <- switch(spec$type,
+  constructorFn <- switch(
+    spec$type,
     integer = integerOption,
     numeric = numericOption,
     character = characterOption,
@@ -234,10 +249,13 @@ logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
 .validateValue.optionSpec <- function(value, spec, name) {
   if (!is.null(spec$expectedLength) && !is.null(value)) {
     if (length(value) != spec$expectedLength) {
-      stop(messages$errorWrongLength(value, spec$expectedLength, name), call. = FALSE)
+      stop(
+        messages$errorWrongLength(value, spec$expectedLength, name),
+        call. = FALSE
+      )
     }
   }
-  
+
   validateVector(
     x = value,
     type = spec$type,
@@ -262,7 +280,7 @@ logicalOption <- function(nullAllowed = FALSE, naAllowed = FALSE,
       value <- as.integer(value)
     }
   }
-  
+
   NextMethod()
 }
 
@@ -334,4 +352,3 @@ validateIsOption <- function(options, validOptions) {
 
   return()
 }
-
