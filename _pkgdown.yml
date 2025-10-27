@@ -27,6 +27,14 @@ reference:
     contents:
       - matches("^is|^has|^validate")
 
+  - subtitle: Validation spec constructors
+    desc: Create specification objects for option validation
+    contents:
+      - integerOption
+      - numericOption
+      - characterOption
+      - logicalOption
+
   - subtitle: Conditional value assignment helpers
     desc: Compute and assign value conditionally
     contents:
