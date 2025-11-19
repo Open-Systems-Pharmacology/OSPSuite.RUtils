@@ -1,0 +1,38 @@
+# Get all keys of an enum
+
+Get all keys of an enum
+
+## Usage
+
+``` r
+enumKeys(enum)
+```
+
+## Arguments
+
+- enum:
+
+  `enum` containing the keys.
+
+## Value
+
+List of `key` names.
+
+## See also
+
+Other enumeration-helpers:
+[`enum()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enum.md),
+[`enumGetKey()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enumGetKey.md),
+[`enumGetValue()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enumGetValue.md),
+[`enumHasKey()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enumHasKey.md),
+[`enumPut()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enumPut.md),
+[`enumRemove()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enumRemove.md),
+[`enumValues()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/enumValues.md)
+
+## Examples
+
+``` r
+Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
+enumKeys(Symbol)
+#> [1] "Diamond"  "Triangle" "Circle"  
+```
