@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ospsuite.utils</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.8.0.9007</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.9.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,12 +39,15 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="ospsuiteutils-development-version">ospsuite.utils (development version)<a class="anchor" aria-label="anchor" href="#ospsuiteutils-development-version"></a></h2>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.9.0" id="ospsuiteutils-190">ospsuite.utils 1.9.0<a class="anchor" aria-label="anchor" href="#ospsuiteutils-190"></a></h2>
 <div class="section level3">
-<h3 id="major-changes-development-version">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-development-version"></a></h3>
+<h3 id="major-changes-1-9-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-9-0"></a></h3>
 <ul><li>New spec constructors <code><a href="../reference/integerOption.html">integerOption()</a></code>, <code><a href="../reference/numericOption.html">numericOption()</a></code>, <code><a href="../reference/characterOption.html">characterOption()</a></code>, <code><a href="../reference/logicalOption.html">logicalOption()</a></code> for type-safe, declarative validation. <code><a href="../reference/validateIsOption.html">validateIsOption()</a></code> now supports <code>expectedLength</code> (<code>1</code> = scalar, <code>NULL</code> = any) and aggregates errors with clear error messages. <code>validateColumns()</code> is deprecated; use <code>validateIsOption(..., expectedLength = NULL)</code> instead (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/189" class="external-link">#189</a>).</li>
 </ul></div>
 <div class="section level3">
-<h3 id="minor-improvements-and-bug-fixes-development-version">Minor improvements and bug fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-bug-fixes-development-version"></a></h3>
+<h3 id="minor-improvements-and-bug-fixes-1-9-0">Minor improvements and bug fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-bug-fixes-1-9-0"></a></h3>
 <ul><li>Improved error messages in <code><a href="../reference/validateEnumValue.html">validateEnumValue()</a></code> and <code><a href="../reference/enumGetValue.html">enumGetValue()</a></code> to provide helpful suggestions when a close match is found. Both functions now use edit distance (Levenshtein distance ≤ 2) to suggest similar valid values or keys, making it easier to identify and fix typos in enum values and keys. (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/185" class="external-link">#185</a>)</li>
 </ul></div>
 </div>
