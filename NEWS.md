@@ -1,4 +1,4 @@
-# ospsuite.utils (development version)
+# ospsuite.utils 1.9.0
 
 ## Major changes
 
