@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ospsuite.utils</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.9.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +19,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/logger.html">Logging utils</a></li>
+    <li><a class="dropdown-item" href="../articles/validation-options.html">Validating Options</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -59,7 +60,7 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Log error</span></span></span>
 <span class="r-in"><span><span class="fu">logError</span><span class="op">(</span><span class="fu"><a href="cliFormat.html">cliFormat</a></span><span class="op">(</span><span class="st">"This is an {.strong error} message"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #BB0000;">Error</span> [25/07/2025 - 09:29:47]:  This is an <span style="font-weight: bold;">error</span> message</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #BB0000;">Error</span> [21/11/2025 - 14:06:15]:  This is an <span style="font-weight: bold;">error</span> message</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Log error with indications</span></span></span>
@@ -67,7 +68,7 @@
 <span class="r-in"><span>  <span class="st">"This is an {.strong error} message"</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"Check these {.val values} or this {.fn function}"</span></span></span>
 <span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #BB0000;">Error</span> [25/07/2025 - 09:29:47]:  This is an <span style="font-weight: bold;">error</span> message</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #BB0000;">Error</span> [21/11/2025 - 14:06:15]:  This is an <span style="font-weight: bold;">error</span> message</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> → Check these <span style="color: #0000BB;">"values"</span> or this `function()`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -82,7 +83,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -4,10 +4,12 @@
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/LICENSE.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/articles/index.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/articles/logger.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/articles/validation-options.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/authors.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/index.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/news/index.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/Printable.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/characterOption.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/cliFormat.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/cliFromLevel.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/consoleLayout.html</loc></url>
@@ -33,6 +35,7 @@
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/ifIncluded.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/ifNotNull.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/index.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/integerOption.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isEmpty.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isFileExtension.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isFileUTF8.html</loc></url>
@@ -47,8 +50,10 @@
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/logInfo.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/logSafe.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/logWarning.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/logicalOption.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/messages.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/msgHeader.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/numericOption.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/objectCount.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/op-null-default.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/ospPrintClass.html</loc></url>
@@ -64,7 +69,6 @@
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/toList.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/toMissingOfType.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/toc.html</loc></url>
-<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateColumns.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateEnumValue.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsFileUTF8.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsOfType.html</loc></url>

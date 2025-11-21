@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ospsuite.utils</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.9.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +34,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/logger.html">Logging utils</a></li>
+    <li><a class="dropdown-item" href="../articles/validation-options.html">Validating Options</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -101,23 +102,23 @@ not displayed on the console</p>
 blue</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/logInfo.html">logInfo</a></span><span class="op">(</span><span class="st">"Message for general information"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> <span style="color: #0000BB;">Info</span> [25/07/2025 - 09:29:59]:  Message for general information</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> <span style="color: #0000BB;">Info</span> [21/11/2025 - 14:06:27]:  Message for general information</span></span></code></pre></div>
 <p>*3 <strong>Warning</strong>: for warnings, displayed in yellow</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/logWarning.html">logWarning</a></span><span class="op">(</span><span class="st">"Warning message"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="color: #BBBB00;">Warning</span> [25/07/2025 - 09:29:59]:  Warning message</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="color: #BBBB00;">Warning</span> [21/11/2025 - 14:06:27]:  Warning message</span></span></code></pre></div>
 <p>*4 <strong>Error</strong>: for errors, displayed in red</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/logError.html">logError</a></span><span class="op">(</span><span class="st">"Error message"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #BB0000;">Error</span> [25/07/2025 - 09:29:59]:  Error message</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #BB0000;">Error</span> [21/11/2025 - 14:06:27]:  Error message</span></span></code></pre></div>
 <p>Check the content of the log file <code>test-logs/log.txt</code> to
 see the logged messages.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"test-logs/log.txt"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "DEBUG [2025-07-25 09:29:59] Message for debugging purposes"</span></span>
-<span><span class="co">#&gt; [2] "INFO [2025-07-25 09:29:59] Message for general information"</span></span>
-<span><span class="co">#&gt; [3] "WARN [2025-07-25 09:29:59] Warning message"                </span></span>
-<span><span class="co">#&gt; [4] "ERROR [2025-07-25 09:29:59] Error message"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "DEBUG [2025-11-21 14:06:27] Message for debugging purposes"</span></span>
+<span><span class="co">#&gt; [2] "INFO [2025-11-21 14:06:27] Message for general information"</span></span>
+<span><span class="co">#&gt; [3] "WARN [2025-11-21 14:06:27] Warning message"                </span></span>
+<span><span class="co">#&gt; [4] "ERROR [2025-11-21 14:06:27] Error message"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="taking-advantage-of-glue-and-cli-formatting">Taking advantage of glue and cli formatting<a class="anchor" aria-label="anchor" href="#taking-advantage-of-glue-and-cli-formatting"></a>
@@ -135,22 +136,22 @@ message you want to log.</p>
 <span><span class="co"># tic() and toc() functions were implemented in ospsuite.utils</span></span>
 <span><span class="va">t0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/logInfo.html">logInfo</a></span><span class="op">(</span><span class="st">"Some {.strong useful} information taking advantage of {.code logger}"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> <span style="color: #0000BB;">Info</span> [25/07/2025 - 09:29:59]:  Some <span style="font-weight: bold;">useful</span> information taking advantage of `logger`</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> <span style="color: #0000BB;">Info</span> [21/11/2025 - 14:06:27]:  Some <span style="font-weight: bold;">useful</span> information taking advantage of `logger`</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/logInfo.html">logInfo</a></span><span class="op">(</span><span class="st">"First logging example done [{.field {toc(t0, 's')}}]"</span>, type <span class="op">=</span> <span class="st">"success"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">Info</span> [25/07/2025 - 09:30:01]:  First logging example done [<span style="color: #00BB00;">2.0 s</span>]</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">Info</span> [21/11/2025 - 14:06:29]:  First logging example done [<span style="color: #00BB00;">2.0 s</span>]</span></span></code></pre></div>
 <p>The content of the log has been appended to
 <code>test-logs/log.txt</code> removing most of the formatting displayed
 on console.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"test-logs/log.txt"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "DEBUG [2025-07-25 09:29:59] Message for debugging purposes"                     </span></span>
-<span><span class="co">#&gt; [2] "INFO [2025-07-25 09:29:59] Message for general information"                     </span></span>
-<span><span class="co">#&gt; [3] "WARN [2025-07-25 09:29:59] Warning message"                                     </span></span>
-<span><span class="co">#&gt; [4] "ERROR [2025-07-25 09:29:59] Error message"                                      </span></span>
-<span><span class="co">#&gt; [5] "DEBUG [2025-07-25 09:29:59] A logging example"                                  </span></span>
-<span><span class="co">#&gt; [6] "INFO [2025-07-25 09:29:59] Some useful information taking advantage of `logger`"</span></span>
-<span><span class="co">#&gt; [7] "SUCCESS [2025-07-25 09:30:01] First logging example done [2.0 s]"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "DEBUG [2025-11-21 14:06:27] Message for debugging purposes"                     </span></span>
+<span><span class="co">#&gt; [2] "INFO [2025-11-21 14:06:27] Message for general information"                     </span></span>
+<span><span class="co">#&gt; [3] "WARN [2025-11-21 14:06:27] Warning message"                                     </span></span>
+<span><span class="co">#&gt; [4] "ERROR [2025-11-21 14:06:27] Error message"                                      </span></span>
+<span><span class="co">#&gt; [5] "DEBUG [2025-11-21 14:06:27] A logging example"                                  </span></span>
+<span><span class="co">#&gt; [6] "INFO [2025-11-21 14:06:27] Some useful information taking advantage of `logger`"</span></span>
+<span><span class="co">#&gt; [7] "SUCCESS [2025-11-21 14:06:29] First logging example done [2.0 s]"</span></span></code></pre></div>
 <p>The package <a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils" class="external-link">ospsuite.utils</a> also provides a wrapper to
 store cli formatted messages: <code><a href="../reference/cliFormat.html">cliFormat()</a></code>.</p>
 <blockquote>
@@ -175,13 +176,13 @@ variable <code>x</code>:</p>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
 <span><span class="fu"><a href="../reference/logWarning.html">logWarning</a></span><span class="op">(</span><span class="fu">myWarning</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="color: #BBBB00;">Warning</span> [25/07/2025 - 09:30:01]:  Warning example about <span style="color: #0000BB;">"x"</span> !</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="color: #BBBB00;">Warning</span> [21/11/2025 - 14:06:29]:  Warning example about <span style="color: #0000BB;">"x"</span> !</span></span>
 <span><span class="co">#&gt; → <span style="color: #0000BB;">"x"</span> is of class `numeric` and length <span style="font-weight: bold;">1</span></span></span>
 <span><span class="co">#&gt; → The 1 value of <span style="color: #0000BB;">"x"</span> is: <span style="color: #0000BB;">10</span></span></span>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span></span>
 <span><span class="fu"><a href="../reference/logWarning.html">logWarning</a></span><span class="op">(</span><span class="fu">myWarning</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="color: #BBBB00;">Warning</span> [25/07/2025 - 09:30:01]:  Warning example about <span style="color: #0000BB;">"x"</span> !</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="color: #BBBB00;">Warning</span> [21/11/2025 - 14:06:29]:  Warning example about <span style="color: #0000BB;">"x"</span> !</span></span>
 <span><span class="co">#&gt; → <span style="color: #0000BB;">"x"</span> is of class `character` and length <span style="font-weight: bold;">4</span></span></span>
 <span><span class="co">#&gt; → The 4 values of <span style="color: #0000BB;">"x"</span> are: <span style="color: #0000BB;">"e"</span>, <span style="color: #0000BB;">"f"</span>, <span style="color: #0000BB;">"g"</span>, and <span style="color: #0000BB;">"h"</span></span></span></code></pre></div>
 <p>The content of the log has also been appended to
@@ -189,17 +190,17 @@ variable <code>x</code>:</p>
 on console.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"test-logs/log.txt"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "DEBUG [2025-07-25 09:29:59] Message for debugging purposes"                     </span></span>
-<span><span class="co">#&gt;  [2] "INFO [2025-07-25 09:29:59] Message for general information"                     </span></span>
-<span><span class="co">#&gt;  [3] "WARN [2025-07-25 09:29:59] Warning message"                                     </span></span>
-<span><span class="co">#&gt;  [4] "ERROR [2025-07-25 09:29:59] Error message"                                      </span></span>
-<span><span class="co">#&gt;  [5] "DEBUG [2025-07-25 09:29:59] A logging example"                                  </span></span>
-<span><span class="co">#&gt;  [6] "INFO [2025-07-25 09:29:59] Some useful information taking advantage of `logger`"</span></span>
-<span><span class="co">#&gt;  [7] "SUCCESS [2025-07-25 09:30:01] First logging example done [2.0 s]"               </span></span>
-<span><span class="co">#&gt;  [8] "WARN [2025-07-25 09:30:01] Warning example about \"x\" !"                       </span></span>
+<span><span class="co">#&gt;  [1] "DEBUG [2025-11-21 14:06:27] Message for debugging purposes"                     </span></span>
+<span><span class="co">#&gt;  [2] "INFO [2025-11-21 14:06:27] Message for general information"                     </span></span>
+<span><span class="co">#&gt;  [3] "WARN [2025-11-21 14:06:27] Warning message"                                     </span></span>
+<span><span class="co">#&gt;  [4] "ERROR [2025-11-21 14:06:27] Error message"                                      </span></span>
+<span><span class="co">#&gt;  [5] "DEBUG [2025-11-21 14:06:27] A logging example"                                  </span></span>
+<span><span class="co">#&gt;  [6] "INFO [2025-11-21 14:06:27] Some useful information taking advantage of `logger`"</span></span>
+<span><span class="co">#&gt;  [7] "SUCCESS [2025-11-21 14:06:29] First logging example done [2.0 s]"               </span></span>
+<span><span class="co">#&gt;  [8] "WARN [2025-11-21 14:06:29] Warning example about \"x\" !"                       </span></span>
 <span><span class="co">#&gt;  [9] "\"x\" is of class `numeric` and length 1"                                       </span></span>
 <span><span class="co">#&gt; [10] "The 1 value of \"x\" is: 10"                                                    </span></span>
-<span><span class="co">#&gt; [11] "WARN [2025-07-25 09:30:01] Warning example about \"x\" !"                       </span></span>
+<span><span class="co">#&gt; [11] "WARN [2025-11-21 14:06:29] Warning example about \"x\" !"                       </span></span>
 <span><span class="co">#&gt; [12] "\"x\" is of class `character` and length 4"                                     </span></span>
 <span><span class="co">#&gt; [13] "The 4 values of \"x\" are: \"e\", \"f\", \"g\", and \"h\""</span></span></code></pre></div>
 </div>
@@ -228,33 +229,33 @@ messages and log them accordingly.</p>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Testing `logCatch()`</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="color: #BBBB00;">Warning</span> [25/07/2025 - 09:30:02]:  Warning about <span style="color: #0000BB;">"x"</span> !</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="color: #BBBB00;">Warning</span> [21/11/2025 - 14:06:29]:  Warning about <span style="color: #0000BB;">"x"</span> !</span></span>
 <span><span class="co">#&gt; → <span style="color: #0000BB;">"x"</span> is of class `character` and length <span style="font-weight: bold;">3</span></span></span>
 <span><span class="co">#&gt; → The 3 values of <span style="color: #0000BB;">"x"</span> are: <span style="color: #0000BB;">"This is a string"</span>, <span style="color: #0000BB;">"This is another string"</span>, and <span style="color: #0000BB;">"This is a third string"</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">Info</span> [25/07/2025 - 09:30:02]:  Warning message was caught</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">Info</span> [21/11/2025 - 14:06:29]:  Warning message was caught</span></span></code></pre></div>
 <p>The content caught by the <code><a href="../reference/logCatch.html">logCatch()</a></code> has also been
 appended to <code>test-logs/log.txt</code> removing most of the
 formatting displayed on console.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"test-logs/log.txt"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "DEBUG [2025-07-25 09:29:59] Message for debugging purposes"                                                 </span></span>
-<span><span class="co">#&gt;  [2] "INFO [2025-07-25 09:29:59] Message for general information"                                                 </span></span>
-<span><span class="co">#&gt;  [3] "WARN [2025-07-25 09:29:59] Warning message"                                                                 </span></span>
-<span><span class="co">#&gt;  [4] "ERROR [2025-07-25 09:29:59] Error message"                                                                  </span></span>
-<span><span class="co">#&gt;  [5] "DEBUG [2025-07-25 09:29:59] A logging example"                                                              </span></span>
-<span><span class="co">#&gt;  [6] "INFO [2025-07-25 09:29:59] Some useful information taking advantage of `logger`"                            </span></span>
-<span><span class="co">#&gt;  [7] "SUCCESS [2025-07-25 09:30:01] First logging example done [2.0 s]"                                           </span></span>
-<span><span class="co">#&gt;  [8] "WARN [2025-07-25 09:30:01] Warning example about \"x\" !"                                                   </span></span>
+<span><span class="co">#&gt;  [1] "DEBUG [2025-11-21 14:06:27] Message for debugging purposes"                                                 </span></span>
+<span><span class="co">#&gt;  [2] "INFO [2025-11-21 14:06:27] Message for general information"                                                 </span></span>
+<span><span class="co">#&gt;  [3] "WARN [2025-11-21 14:06:27] Warning message"                                                                 </span></span>
+<span><span class="co">#&gt;  [4] "ERROR [2025-11-21 14:06:27] Error message"                                                                  </span></span>
+<span><span class="co">#&gt;  [5] "DEBUG [2025-11-21 14:06:27] A logging example"                                                              </span></span>
+<span><span class="co">#&gt;  [6] "INFO [2025-11-21 14:06:27] Some useful information taking advantage of `logger`"                            </span></span>
+<span><span class="co">#&gt;  [7] "SUCCESS [2025-11-21 14:06:29] First logging example done [2.0 s]"                                           </span></span>
+<span><span class="co">#&gt;  [8] "WARN [2025-11-21 14:06:29] Warning example about \"x\" !"                                                   </span></span>
 <span><span class="co">#&gt;  [9] "\"x\" is of class `numeric` and length 1"                                                                   </span></span>
 <span><span class="co">#&gt; [10] "The 1 value of \"x\" is: 10"                                                                                </span></span>
-<span><span class="co">#&gt; [11] "WARN [2025-07-25 09:30:01] Warning example about \"x\" !"                                                   </span></span>
+<span><span class="co">#&gt; [11] "WARN [2025-11-21 14:06:29] Warning example about \"x\" !"                                                   </span></span>
 <span><span class="co">#&gt; [12] "\"x\" is of class `character` and length 4"                                                                 </span></span>
 <span><span class="co">#&gt; [13] "The 4 values of \"x\" are: \"e\", \"f\", \"g\", and \"h\""                                                  </span></span>
-<span><span class="co">#&gt; [14] "DEBUG [2025-07-25 09:30:02] Testing `logCatch()`"                                                           </span></span>
-<span><span class="co">#&gt; [15] "WARN [2025-07-25 09:30:02] Warning about \"x\" !"                                                           </span></span>
+<span><span class="co">#&gt; [14] "DEBUG [2025-11-21 14:06:29] Testing `logCatch()`"                                                           </span></span>
+<span><span class="co">#&gt; [15] "WARN [2025-11-21 14:06:29] Warning about \"x\" !"                                                           </span></span>
 <span><span class="co">#&gt; [16] "\"x\" is of class `character` and length 3"                                                                 </span></span>
 <span><span class="co">#&gt; [17] "The 3 values of \"x\" are: \"This is a string\", \"This is another string\", and \"This is a third string\""</span></span>
-<span><span class="co">#&gt; [18] "SUCCESS [2025-07-25 09:30:02] Warning message was caught"</span></span></code></pre></div>
+<span><span class="co">#&gt; [18] "SUCCESS [2025-11-21 14:06:29] Warning message was caught"</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="masking-messages">Masking messages<a class="anchor" aria-label="anchor" href="#masking-messages"></a>
 </h3>
@@ -274,31 +275,31 @@ following patterns: <code>not useful</code> and
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="st">"This is a not useful message that is warned by another package"</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="st">"This is a useful message that I want displayed"</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="color: #BBBB00;">Warning</span> [25/07/2025 - 09:30:02]:  This is a useful message that I want displayed</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="color: #BBBB00;">Warning</span> [21/11/2025 - 14:06:30]:  This is a useful message that I want displayed</span></span></code></pre></div>
 <p>The content caught by the <code><a href="../reference/logCatch.html">logCatch()</a></code> includes the first
 warning as debug message:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"test-logs/log.txt"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "DEBUG [2025-07-25 09:29:59] Message for debugging purposes"                                                 </span></span>
-<span><span class="co">#&gt;  [2] "INFO [2025-07-25 09:29:59] Message for general information"                                                 </span></span>
-<span><span class="co">#&gt;  [3] "WARN [2025-07-25 09:29:59] Warning message"                                                                 </span></span>
-<span><span class="co">#&gt;  [4] "ERROR [2025-07-25 09:29:59] Error message"                                                                  </span></span>
-<span><span class="co">#&gt;  [5] "DEBUG [2025-07-25 09:29:59] A logging example"                                                              </span></span>
-<span><span class="co">#&gt;  [6] "INFO [2025-07-25 09:29:59] Some useful information taking advantage of `logger`"                            </span></span>
-<span><span class="co">#&gt;  [7] "SUCCESS [2025-07-25 09:30:01] First logging example done [2.0 s]"                                           </span></span>
-<span><span class="co">#&gt;  [8] "WARN [2025-07-25 09:30:01] Warning example about \"x\" !"                                                   </span></span>
+<span><span class="co">#&gt;  [1] "DEBUG [2025-11-21 14:06:27] Message for debugging purposes"                                                 </span></span>
+<span><span class="co">#&gt;  [2] "INFO [2025-11-21 14:06:27] Message for general information"                                                 </span></span>
+<span><span class="co">#&gt;  [3] "WARN [2025-11-21 14:06:27] Warning message"                                                                 </span></span>
+<span><span class="co">#&gt;  [4] "ERROR [2025-11-21 14:06:27] Error message"                                                                  </span></span>
+<span><span class="co">#&gt;  [5] "DEBUG [2025-11-21 14:06:27] A logging example"                                                              </span></span>
+<span><span class="co">#&gt;  [6] "INFO [2025-11-21 14:06:27] Some useful information taking advantage of `logger`"                            </span></span>
+<span><span class="co">#&gt;  [7] "SUCCESS [2025-11-21 14:06:29] First logging example done [2.0 s]"                                           </span></span>
+<span><span class="co">#&gt;  [8] "WARN [2025-11-21 14:06:29] Warning example about \"x\" !"                                                   </span></span>
 <span><span class="co">#&gt;  [9] "\"x\" is of class `numeric` and length 1"                                                                   </span></span>
 <span><span class="co">#&gt; [10] "The 1 value of \"x\" is: 10"                                                                                </span></span>
-<span><span class="co">#&gt; [11] "WARN [2025-07-25 09:30:01] Warning example about \"x\" !"                                                   </span></span>
+<span><span class="co">#&gt; [11] "WARN [2025-11-21 14:06:29] Warning example about \"x\" !"                                                   </span></span>
 <span><span class="co">#&gt; [12] "\"x\" is of class `character` and length 4"                                                                 </span></span>
 <span><span class="co">#&gt; [13] "The 4 values of \"x\" are: \"e\", \"f\", \"g\", and \"h\""                                                  </span></span>
-<span><span class="co">#&gt; [14] "DEBUG [2025-07-25 09:30:02] Testing `logCatch()`"                                                           </span></span>
-<span><span class="co">#&gt; [15] "WARN [2025-07-25 09:30:02] Warning about \"x\" !"                                                           </span></span>
+<span><span class="co">#&gt; [14] "DEBUG [2025-11-21 14:06:29] Testing `logCatch()`"                                                           </span></span>
+<span><span class="co">#&gt; [15] "WARN [2025-11-21 14:06:29] Warning about \"x\" !"                                                           </span></span>
 <span><span class="co">#&gt; [16] "\"x\" is of class `character` and length 3"                                                                 </span></span>
 <span><span class="co">#&gt; [17] "The 3 values of \"x\" are: \"This is a string\", \"This is another string\", and \"This is a third string\""</span></span>
-<span><span class="co">#&gt; [18] "SUCCESS [2025-07-25 09:30:02] Warning message was caught"                                                   </span></span>
-<span><span class="co">#&gt; [19] "DEBUG [2025-07-25 09:30:02] This is a not useful message that is warned by another package"                 </span></span>
-<span><span class="co">#&gt; [20] "WARN [2025-07-25 09:30:02] This is a useful message that I want displayed"</span></span></code></pre></div>
+<span><span class="co">#&gt; [18] "SUCCESS [2025-11-21 14:06:29] Warning message was caught"                                                   </span></span>
+<span><span class="co">#&gt; [19] "DEBUG [2025-11-21 14:06:30] This is a not useful message that is warned by another package"                 </span></span>
+<span><span class="co">#&gt; [20] "WARN [2025-11-21 14:06:30] This is a useful message that I want displayed"</span></span></code></pre></div>
 <p>For <strong>errors</strong>, the masking is set by the function
 <code><a href="../reference/setErrorMasking.html">setErrorMasking()</a></code>. The masking only affects the
 <strong>error trace</strong> simplifying the final output.</p>
@@ -315,7 +316,7 @@ warning as debug message:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
