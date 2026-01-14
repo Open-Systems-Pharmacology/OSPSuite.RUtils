@@ -37,7 +37,10 @@ test_that("isIncluded returns `TRUE` when compound type values are included", {
   expect_true(isIncluded(as.factor("a"), list("a", "b")))
   expect_true(isIncluded(c("a", "b"), as.factor(c("a", "b"))))
   expect_true(isIncluded(list("a", "b"), as.factor(c("a", "b"))))
-  expect_true(isIncluded(as.Date("1970-02-01"), c(as.Date("1970-02-01"), as.Date("1980-12-21"))))
+  expect_true(isIncluded(
+    as.Date("1970-02-01"),
+    c(as.Date("1970-02-01"), as.Date("1980-12-21"))
+  ))
   # Disabling this test as inclusion test does not work with Dat in a list:
   # > as.Date("1970-02-01") == as.Date("1970-02-01")
   # [1] TRUE
@@ -67,15 +70,24 @@ test_that("isIncluded returns `FALSE` when compound type values are not included
   expect_false(isIncluded(as.factor("a"), list("c", "b")))
   expect_false(isIncluded(c("a", "b"), as.factor(c("d", "b"))))
   expect_false(isIncluded(list("a", "b"), as.factor(c("c", "b"))))
-  expect_false(isIncluded(as.Date("1970-02-01"), c(as.Date("1972-02-01"), as.Date("1980-12-21"))))
-  expect_false(isIncluded(as.Date("1970-02-01"), list(as.Date("1980-02-01"), as.Date("1980-12-21"))))
+  expect_false(isIncluded(
+    as.Date("1970-02-01"),
+    c(as.Date("1972-02-01"), as.Date("1980-12-21"))
+  ))
+  expect_false(isIncluded(
+    as.Date("1970-02-01"),
+    list(as.Date("1980-02-01"), as.Date("1980-12-21"))
+  ))
 })
 
 test_that("isIncluded doesn't accept objects as arguments", {
-  Person <- R6::R6Class("Person", list(
-    name = NULL,
-    initialize = function(name) self$name <- name
-  ))
+  Person <- R6::R6Class(
+    "Person",
+    list(
+      name = NULL,
+      initialize = function(name) self$name <- name
+    )
+  )
 
   Jack <- Person$new(name = "Jack")
   Jill <- Person$new(name = "Jill")
@@ -102,7 +114,7 @@ test_that("validateIsIncluded returns `NULL` when value is included", {
 
 test_that("validateIsIncluded produces expected error message when value not included", {
   expect_error(
-    validateIsIncluded("col4", names(A)), 
+    validateIsIncluded("col4", names(A)),
     "(1 value).*(col4).*(is not included in parent values).*(col1).*(col2).*(col3)"
-    )
+  )
 })

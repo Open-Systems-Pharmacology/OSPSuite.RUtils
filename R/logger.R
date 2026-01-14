@@ -15,7 +15,8 @@ timeStamp <- function() {
 #' @importFrom glue glue
 msgHeader <- function(logLevel) {
   glue::glue(
-    switch(logLevel,
+    switch(
+      logLevel,
       "DEBUG" = "Debug",
       "INFO" = cli::col_blue("Info"),
       "SUCCESS" = cli::col_green("Info"),
@@ -47,7 +48,8 @@ cliFormat <- function(..., .envir = parent.frame()) {
 #' @keywords internal
 #' @import cli
 cliFromLevel <- function(logLevel) {
-  switch(logLevel,
+  switch(
+    logLevel,
     "INFO" = cli::cli_alert_info,
     "SUCCESS" = cli::cli_alert_success,
     "WARN" = cli::cli_alert_warning,
@@ -61,12 +63,14 @@ cliFromLevel <- function(logLevel) {
 #' @inheritParams logger::layout_glue
 #' @importFrom utils head tail
 #' @keywords internal
-consoleLayout <- function(level,
-                          msg,
-                          namespace = NA_character_,
-                          .logcall = sys.call(),
-                          .topcall = sys.call(-1),
-                          .topenv = parent.frame()) {
+consoleLayout <- function(
+  level,
+  msg,
+  namespace = NA_character_,
+  .logcall = sys.call(),
+  .topcall = sys.call(-1),
+  .topenv = parent.frame()
+) {
   logger::fail_on_missing_package("cli")
   logLevel <- attr(level, "level")
   # Main message
@@ -87,12 +91,14 @@ consoleLayout <- function(level,
 #' @inheritParams logger::layout_glue
 #' @importFrom crayon strip_style
 #' @keywords internal
-fileLayout <- function(level,
-                       msg,
-                       namespace = NA_character_,
-                       .logcall = sys.call(),
-                       .topcall = sys.call(-1),
-                       .topenv = parent.frame()) {
+fileLayout <- function(
+  level,
+  msg,
+  namespace = NA_character_,
+  .logcall = sys.call(),
+  .topcall = sys.call(-1),
+  .topenv = parent.frame()
+) {
   crayon::strip_style(
     logger::layout_glue(
       level = level,
@@ -136,7 +142,10 @@ logCatch <- function(expr) {
           if (callNotDisplayed) {
             next
           }
-          errorTrace <- c(errorTrace, gsub(pattern = "(\\{)|(\\})", replacement = "", textCall))
+          errorTrace <- c(
+            errorTrace,
+            gsub(pattern = "(\\{)|(\\})", replacement = "", textCall)
+          )
         }
         logInfo(errorTrace, type = "ol")
         stop(errorCondition$message)
@@ -147,7 +156,11 @@ logCatch <- function(expr) {
         callNotDisplayed <- any(sapply(
           ospsuiteUtilsEnv$logging$warningMasking,
           FUN = function(pattern) {
-            grepl(warningCondition$message, pattern = pattern, ignore.case = TRUE)
+            grepl(
+              warningCondition$message,
+              pattern = pattern,
+              ignore.case = TRUE
+            )
           }
         ))
         if (callNotDisplayed) {
@@ -174,7 +187,11 @@ logCatch <- function(expr) {
         callNotDisplayed <- any(sapply(
           ospsuiteUtilsEnv$logging$infoMasking,
           FUN = function(pattern) {
-            grepl(messageCondition$message, pattern = pattern, ignore.case = TRUE)
+            grepl(
+              messageCondition$message,
+              pattern = pattern,
+              ignore.case = TRUE
+            )
           }
         ))
         if (callNotDisplayed) {

@@ -4,11 +4,6 @@ test_that("Checks if `toList()` works properly", {
   expect_type(toList(c("a" = 1, "b" = 2, c("c" = 3))), "list")
 })
 
-test_that("Checks if `%||%` works properly", {
-  expect_equal(NULL %||% 2, 2)
-  expect_equal(3 %||% 2, 3)
-})
-
 test_that("Checks if `flattenList()` works properly", {
   expect_error(
     flattenList(array(1:3, c(2, 4)), type = "character"),
@@ -45,11 +40,25 @@ test_that("Correct behavior of logSafe", {
   defEpsilon <- getOSPSuiteUtilsSetting("LOG_SAFE_EPSILON")
   inputVector <- c(NA, 1, 5, 0, -1, defEpsilon)
 
-  expectedOutput <- c(NA_real_, log(1), log(5), log(defEpsilon), log(defEpsilon), log(defEpsilon))
+  expectedOutput <- c(
+    NA_real_,
+    log(1),
+    log(5),
+    log(defEpsilon),
+    log(defEpsilon),
+    log(defEpsilon)
+  )
   expect_equal(logSafe(inputVector), expectedOutput)
 
   # Test for log10
-  expectedOutput <- c(NA_real_, log10(1), log10(5), log10(defEpsilon), log10(defEpsilon), log10(defEpsilon))
+  expectedOutput <- c(
+    NA_real_,
+    log10(1),
+    log10(5),
+    log10(defEpsilon),
+    log10(defEpsilon),
+    log10(defEpsilon)
+  )
   expect_equal(logSafe(inputVector, base = 10), expectedOutput)
 })
 
@@ -58,6 +67,14 @@ test_that("Correct behavior of foldSafe", {
   inputX <- c(NA, 1, 5, 0, -1, defEpsilon, 5)
   inputY <- c(1, -1, NA, 0, -1, defEpsilon, 2)
 
-  expectedOutput <- c(NA_real_, 1 / defEpsilon, NA_real_, defEpsilon / defEpsilon, defEpsilon / defEpsilon, defEpsilon / defEpsilon, 5 / 2)
+  expectedOutput <- c(
+    NA_real_,
+    1 / defEpsilon,
+    NA_real_,
+    defEpsilon / defEpsilon,
+    defEpsilon / defEpsilon,
+    defEpsilon / defEpsilon,
+    5 / 2
+  )
   expect_equal(foldSafe(inputX, inputY), expectedOutput)
 })

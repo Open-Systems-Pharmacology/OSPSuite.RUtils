@@ -30,9 +30,17 @@ test_that("formatNumerics works as expected", {
   )
   expect_equal(
     formatNumerics(df, digits = 2, scientific = FALSE),
-    structure(list(parameter = c("a", "b", "c"), value = c(
-      "1.00",
-      "110.40", "6.67"
-    )), row.names = c(NA, -3L), class = "data.frame")
+    structure(
+      list(
+        parameter = c("a", "b", "c"),
+        value = c(
+          "1.00",
+          "110.40",
+          "6.67"
+        )
+      ),
+      row.names = c(NA, -3L),
+      class = "data.frame"
+    )
   )
 })

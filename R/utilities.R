@@ -1,21 +1,3 @@
-#' @name op-null-default
-#' @title Default value for `NULL`
-#'
-#' @description
-#' Convenience function to avoid testing for `NULL`.
-#'
-#' @return
-#' The first object if it is not `NULL` otherwise the second object.
-#'
-#' @param x,y If `x` is `NULL`, will return `y`; otherwise returns `x`.
-#'
-#' @examples
-#' 1 %||% 2
-#' NULL %||% 2
-#'
-#' @export
-`%||%` <- purrr::`%||%`
-
 #' Make sure the object is a list
 #'
 #' @param object Object to be converted to a list.
@@ -60,7 +42,8 @@ flattenList <- function(x, type) {
   }
 
   if (is.list(x)) {
-    x <- switch(type,
+    x <- switch(
+      type,
       "character" = purrr::list_c(x, ptype = "c"),
       "numeric" = ,
       "real" = ,
@@ -97,7 +80,8 @@ flattenList <- function(x, type) {
 toMissingOfType <- function(x, type) {
   # all unexpected values will be converted to `NA` of a desired type
   if (is.null(x) || is.na(x) || is.nan(x) || is.infinite(x)) {
-    x <- switch(type,
+    x <- switch(
+      type,
       "character" = NA_character_,
       "numeric" = ,
       "real" = ,
@@ -128,7 +112,11 @@ toMissingOfType <- function(x, type) {
 #' @examples
 #' inputVector <- c(NA, 1, 5, 0, -1)
 #' logSafe(inputVector)
-logSafe <- function(x, base = exp(1), epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILON) {
+logSafe <- function(
+  x,
+  base = exp(1),
+  epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILON
+) {
   x <- sapply(X = x, function(element) {
     element <- ospsuite.utils::toMissingOfType(element, type = "double")
     if (is.na(element)) {

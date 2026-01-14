@@ -38,10 +38,13 @@ test_that("isOfType returns `TRUE` when values are of expected type", {
   expect_true(isOfType(logical(), "logical"))
   expect_true(isOfType(NULL, nullAllowed = TRUE))
 
-  Person <- R6::R6Class("Person", list(
-    name = NULL,
-    initialize = function(name) self$name <- name
-  ))
+  Person <- R6::R6Class(
+    "Person",
+    list(
+      name = NULL,
+      initialize = function(name) self$name <- name
+    )
+  )
 
   Jack <- Person$new(name = "Jack")
   Jill <- Person$new(name = "Jill")

@@ -20,7 +20,11 @@
 #' x <- data.frame(parameter = c("a", "b", "c"), value = c(1, 110.4, 6.666))
 #' formatNumerics(x, digits = 2, scientific = FALSE)
 #' @export
-formatNumerics <- function(object, digits = ospsuiteUtilsEnv$formatNumericsDigits, scientific = FALSE) {
+formatNumerics <- function(
+  object,
+  digits = ospsuiteUtilsEnv$formatNumericsDigits,
+  scientific = FALSE
+) {
   validateIsInteger(digits)
   validateIsLogical(scientific)
 

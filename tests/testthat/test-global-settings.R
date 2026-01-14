@@ -9,6 +9,9 @@ test_that("Check that values for package environment bindings are correct", {
   )
 
   expect_equal(getOSPSuiteUtilsSetting("packageName"), "ospsuite.utils")
-  expect_equal(getOSPSuiteUtilsSetting("suiteName"), "Open Systems Pharmacology")
+  expect_equal(
+    getOSPSuiteUtilsSetting("suiteName"),
+    "Open Systems Pharmacology"
+  )
   expect_equal(getOSPSuiteUtilsSetting("formatNumericsDigits"), 2L)
 })

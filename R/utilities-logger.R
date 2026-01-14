@@ -28,12 +28,7 @@ toc <- function(tic, unit = "min") {
     Sys.time(),
     tic,
     # Use switch to map between difftime and ospsuite units
-    units = switch(unit,
-      "h" = "hours",
-      "min" = "mins",
-      "s" = "secs",
-      unit
-    )
+    units = switch(unit, "h" = "hours", "min" = "mins", "s" = "secs", unit)
   )
   return(sprintf("%.1f %s", elapsedTime, unit))
 }
@@ -159,8 +154,14 @@ getLogFolder <- function() {
 #' logInfo(cliFormat("Task: {.strong tic toc test} completed [{toc(t0, \"s\")}]"), type = "success")
 #'
 logInfo <- function(msg, type = "info") {
-  if (isIncluded(type, c("h1", "h2", "h3", "text", "alert", "li", "ol", "progress_step"))) {
-    switch(type,
+  if (
+    isIncluded(
+      type,
+      c("h1", "h2", "h3", "text", "alert", "li", "ol", "progress_step")
+    )
+  ) {
+    switch(
+      type,
       "h1" = cli::cli_h1(msg),
       "h2" = cli::cli_h2(msg),
       "h3" = cli::cli_h3(msg),
@@ -240,12 +241,14 @@ logError <- function(msg) {
 setLogFolder()
 
 # Initialize default error masking
-setErrorMasking(patterns = c(
-  "logCatch",
-  "qualificationCatch",
-  "stop",
-  "tryCatch",
-  "withCallingHandlers",
-  "simpleError",
-  "eval\\(ei, envir\\)"
-))
+setErrorMasking(
+  patterns = c(
+    "logCatch",
+    "qualificationCatch",
+    "stop",
+    "tryCatch",
+    "withCallingHandlers",
+    "simpleError",
+    "eval\\(ei, envir\\)"
+  )
+)
