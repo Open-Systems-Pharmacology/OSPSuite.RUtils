@@ -233,11 +233,6 @@ Utilities for recording logs
 
 ## Miscellaneous
 
-- [`` `%||%` ``](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/op-null-default.md)
-  :
-
-  Default value for `NULL`
-
 - [`toList()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/toList.md)
   : Make sure the object is a list
 

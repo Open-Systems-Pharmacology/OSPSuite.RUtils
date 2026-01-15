@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ospsuite.utils</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.9.0.9001</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.10.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -110,7 +110,8 @@ inputs.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/validateIsOption.html">validateIsOption</a></span><span class="op">(</span><span class="va">invalidOptions</span>, <span class="va">validOptions</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in validateIsOption(invalidOptions, validOptions): <span style="font-weight: bold;">Option validation failed:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `validateIsOption()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="font-weight: bold;">Option validation failed:</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; method : 1 value (<span style="color: #0000BB;">"invalid"</span>) not included in allowed values.</span></span>
 <span><span class="co">#&gt; Allowed values: <span style="color: #0000BB;">"newton, gradient"</span></span></span></code></pre></div>
@@ -200,7 +201,8 @@ values to integers when possible and issues a warning.</p>
 <span><span class="co"># This fails because 'required' is NULL</span></span>
 <span><span class="va">options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>required <span class="op">=</span> <span class="cn">NULL</span>, optional <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/validateIsOption.html">validateIsOption</a></span><span class="op">(</span><span class="va">options</span>, <span class="va">validOptions</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in validateIsOption(options, validOptions): <span style="font-weight: bold;">Option validation failed:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `validateIsOption()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="font-weight: bold;">Option validation failed:</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; required : `base::tryCatch()`: argument <span style="color: #0000BB;">"x"</span> is of type <span style="color: #0000BB;">&lt;NULL&gt;</span>, but expected <span style="color: #0000BB;">&lt;vector&gt;</span>!</span></span>
 <span></span>
@@ -282,7 +284,8 @@ together:</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/validateIsOption.html">validateIsOption</a></span><span class="op">(</span><span class="va">options</span>, <span class="va">validOptions</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in validateIsOption(options, validOptions): <span style="font-weight: bold;">Option validation failed:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `validateIsOption()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> <span style="font-weight: bold;">Option validation failed:</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; age : `base::tryCatch()`: Value(s) out of the allowed range <span style="font-weight: bold;">[18, 65]</span>.</span></span>
 <span><span class="co">#&gt; method : 1 value (<span style="color: #0000BB;">"invalid"</span>) not included in allowed values.</span></span>
