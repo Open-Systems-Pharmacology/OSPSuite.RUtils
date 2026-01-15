@@ -6,7 +6,7 @@
 
 ## Minor changes
 
-- Using native operator `%||%` instead importing from the `purrr` package.
+- Using native operator `%||%` instead of importing from the `purrr` package.
 
 # ospsuite.utils 1.9.0
 
