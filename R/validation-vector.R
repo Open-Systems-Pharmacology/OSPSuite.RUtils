@@ -47,15 +47,23 @@
 #' validateVectorValues(x = c(TRUE), type = "logical", allowedValues = c(TRUE, FALSE))
 #'
 #' @export
-validateVector <- function(x, type = NULL, valueRange = NULL, allowedValues = NULL,
-                           nullAllowed = FALSE, naAllowed = FALSE) {
+validateVector <- function(
+  x,
+  type = NULL,
+  valueRange = NULL,
+  allowedValues = NULL,
+  nullAllowed = FALSE,
+  naAllowed = FALSE
+) {
   if (!is.logical(nullAllowed)) {
-    stop(messages$errorWrongType("nullAllowed", typeof(nullAllowed), "logical"),
+    stop(
+      messages$errorWrongType("nullAllowed", typeof(nullAllowed), "logical"),
       call. = FALSE
     )
   }
   if (!is.logical(naAllowed)) {
-    stop(messages$errorWrongType("naAllowed", typeof(naAllowed), "logical"),
+    stop(
+      messages$errorWrongType("naAllowed", typeof(naAllowed), "logical"),
       call. = FALSE
     )
   }
@@ -74,10 +82,20 @@ validateVector <- function(x, type = NULL, valueRange = NULL, allowedValues = NU
     stop(messages$errorNaNotAllowed(), call. = FALSE)
   }
 
-  validTypes <- c("numeric", "integer", "character", "factor", "logical", "Date")
+  validTypes <- c(
+    "numeric",
+    "integer",
+    "character",
+    "factor",
+    "logical",
+    "Date"
+  )
   type <- if (type == "double") "numeric" else type
   if (!type %in% validTypes) {
-    stop(messages$errorTypeNotSupported("type", type, validTypes), call. = FALSE)
+    stop(
+      messages$errorTypeNotSupported("type", type, validTypes),
+      call. = FALSE
+    )
   }
 
   if (!isOfType(x, type, nullAllowed = FALSE)) {
@@ -101,14 +119,19 @@ validateVectorRange <- function(x, type, valueRange) {
     if (!isOfType(valueRange, type)) {
       stop(
         messages$errorWrongType(
-          "valueRange", class(valueRange)[1], type,
+          "valueRange",
+          class(valueRange)[1],
+          type,
           "\n'valueRange' should match the specified 'type' parameter."
         ),
         call. = FALSE
       )
     }
-    if (length(valueRange) != 2 || valueRange[1] > valueRange[2] ||
-      any(is.na(valueRange))) {
+    if (
+      length(valueRange) != 2 ||
+        valueRange[1] > valueRange[2] ||
+        any(is.na(valueRange))
+    ) {
       stop(messages$errorValueRange(valueRange), call. = FALSE)
     }
     if (any(x < valueRange[1] | x > valueRange[2], na.rm = TRUE)) {
@@ -123,7 +146,12 @@ validateVectorRange <- function(x, type, valueRange) {
 
 #' @rdname validateVector
 #' @export
-validateVectorValues <- function(x, type, allowedValues = NULL, naAllowed = FALSE) {
+validateVectorValues <- function(
+  x,
+  type,
+  allowedValues = NULL,
+  naAllowed = FALSE
+) {
   if (is.null(allowedValues)) {
     return()
   }
@@ -134,7 +162,8 @@ validateVectorValues <- function(x, type, allowedValues = NULL, naAllowed = FALS
   }
 
   if (!isOfType(allowedValues, type)) {
-    stop(messages$errorWrongType("allowedValues", class(allowedValues)[1], type),
+    stop(
+      messages$errorWrongType("allowedValues", class(allowedValues)[1], type),
       call. = FALSE
     )
   }

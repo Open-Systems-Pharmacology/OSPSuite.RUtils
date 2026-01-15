@@ -72,8 +72,12 @@ integerOption <- function(
   .validateSpecParams(nullAllowed, naAllowed, expectedLength)
 
   # Handle explicit NULL or NA by replacing with -Inf/Inf
-  if (is.null(min) || (length(min) == 1 && is.na(min))) min <- -Inf
-  if (is.null(max) || (length(max) == 1 && is.na(max))) max <- Inf
+  if (is.null(min) || (length(min) == 1 && is.na(min))) {
+    min <- -Inf
+  }
+  if (is.null(max) || (length(max) == 1 && is.na(max))) {
+    max <- Inf
+  }
 
   .validateMinMax(min, max, "integer")
 
@@ -117,8 +121,12 @@ numericOption <- function(
   .validateSpecParams(nullAllowed, naAllowed, expectedLength)
 
   # Handle explicit NULL or NA by replacing with -Inf/Inf
-  if (is.null(min) || (length(min) == 1 && is.na(min))) min <- -Inf
-  if (is.null(max) || (length(max) == 1 && is.na(max))) max <- Inf
+  if (is.null(min) || (length(min) == 1 && is.na(min))) {
+    min <- -Inf
+  }
+  if (is.null(max) || (length(max) == 1 && is.na(max))) {
+    max <- Inf
+  }
 
   .validateMinMax(min, max, "numeric")
 

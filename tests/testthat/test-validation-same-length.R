@@ -35,7 +35,7 @@ test_that("validateIsSameLength returns `NULL` when objects have same lengths", 
 test_that("validateIsSameLength produces errors when objects do not have same lengths", {
   errorMessageIsSameLength <- "Arguments 'A, B' must have the same length, but they don't!"
   expect_error(
-    validateIsSameLength(A, B), 
+    validateIsSameLength(A, B),
     "(Arguments).*(A, B).*(must have the same length, but they don't)"
-    )
+  )
 })

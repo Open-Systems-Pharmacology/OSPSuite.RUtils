@@ -100,7 +100,12 @@ messages <- list(
       optionalMessage
     )
   },
-  errorWrongLength = function(object, nbElements, name = NULL, optionalMessage = NULL) {
+  errorWrongLength = function(
+    object,
+    nbElements,
+    name = NULL,
+    optionalMessage = NULL
+  ) {
     callingFunction <- .getCallingFunctionName()
     cliFormat(
       paste(
@@ -348,7 +353,11 @@ messages <- list(
       optionalMessage
     )
   },
-  errorInvalidSpecType = function(type, optionName = NULL, optionalMessage = NULL) {
+  errorInvalidSpecType = function(
+    type,
+    optionName = NULL,
+    optionalMessage = NULL
+  ) {
     validTypes <- c("integer", "numeric", "character", "logical")
     cliFormat(
       if (!is.null(optionName)) {

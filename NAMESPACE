@@ -2,7 +2,6 @@
 
 S3method(.validateValue,optionSpec)
 S3method(.validateValue,optionSpec_integer)
-export("%||%")
 export(Printable)
 export(characterOption)
 export(cliFormat)
