@@ -51,7 +51,8 @@ invalidOptions <- list(
 )
 
 validateIsOption(invalidOptions, validOptions)
-#> Error in validateIsOption(invalidOptions, validOptions): Option validation failed:
+#> Error in `validateIsOption()`:
+#> ! Option validation failed:
 #> 
 #> method : 1 value ("invalid") not included in allowed values.
 #> Allowed values: "newton, gradient"
@@ -144,7 +145,8 @@ validOptions <- list(
 # This fails because 'required' is NULL
 options <- list(required = NULL, optional = NULL)
 validateIsOption(options, validOptions)
-#> Error in validateIsOption(options, validOptions): Option validation failed:
+#> Error in `validateIsOption()`:
+#> ! Option validation failed:
 #> 
 #> required : `base::tryCatch()`: argument "x" is of type <NULL>, but expected <vector>!
 
@@ -226,7 +228,8 @@ options <- list(
 )
 
 validateIsOption(options, validOptions)
-#> Error in validateIsOption(options, validOptions): Option validation failed:
+#> Error in `validateIsOption()`:
+#> ! Option validation failed:
 #> 
 #> age : `base::tryCatch()`: Value(s) out of the allowed range [18, 65].
 #> method : 1 value ("invalid") not included in allowed values.

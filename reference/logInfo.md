@@ -54,7 +54,7 @@ logInfo(msg, type = "info")
 ``` r
 # Log information
 logInfo(cliFormat("This is an {.strong info} message"))
-#> ℹ Info [21/11/2025 - 14:06:16]:  This is an info message
+#> ℹ Info [15/01/2026 - 11:52:30]:  This is an info message
 #> 
 
 # Log a title
@@ -66,6 +66,6 @@ logInfo(cliFormat("Task: {.strong tic toc test}"), type = "h1")
 t0 <- tic()
 Sys.sleep(3)
 logInfo(cliFormat("Task: {.strong tic toc test} completed [{toc(t0, \"s\")}]"), type = "success")
-#> ✔ Info [21/11/2025 - 14:06:19]:  Task: tic toc test completed [3.0 s]
+#> ✔ Info [15/01/2026 - 11:52:33]:  Task: tic toc test completed [3.0 s]
 #> 
 ```

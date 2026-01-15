@@ -1,5 +1,16 @@
 # Changelog
 
+## ospsuite.utils 1.10.0
+
+### Breaking changes
+
+- R version \>=4.4 is required
+
+### Minor changes
+
+- Using native operator `%||%` instead of importing from the `purrr`
+  package.
+
 ## ospsuite.utils 1.9.0
 
 ### Major changes
