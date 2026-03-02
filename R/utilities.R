@@ -154,9 +154,11 @@ logSafe <- function(
 foldSafe <- function(x, y, epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILON) {
   validateIsSameLength(x, y)
   # Vectorized threshold application with explicit NA handling
-  # Use ifelse to handle NA values properly while applying threshold
-  x <- ifelse(!is.na(x) & x <= epsilon, epsilon, x)
-  y <- ifelse(!is.na(y) & y <= epsilon, epsilon, y)
+  # Use logical indexing which is faster than ifelse
+  x_idx <- !is.na(x) & x <= epsilon
+  y_idx <- !is.na(y) & y <= epsilon
+  x[x_idx] <- epsilon
+  y[y_idx] <- epsilon
 
   return(x / y)
 }
