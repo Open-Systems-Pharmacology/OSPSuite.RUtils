@@ -117,17 +117,17 @@ logSafe <- function(
   base = exp(1),
   epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILON
 ) {
-  x <- sapply(X = x, function(element) {
-    element <- ospsuite.utils::toMissingOfType(element, type = "double")
-    if (is.na(element)) {
-      return(NA_real_)
-    } else if (element < epsilon) {
-      return(log(epsilon, base = base))
-    } else {
-      return(log(element, base = base))
-    }
-  })
-
+  # Vectorized conversion of special constants to NA
+  # Handle NULL, Inf, -Inf, NaN, NA in a vectorized way
+  x[is.infinite(x) | is.nan(x)] <- NA_real_
+  
+  # Apply epsilon threshold: values below epsilon become epsilon
+  # But preserve NA values
+  x[!is.na(x) & x < epsilon] <- epsilon
+  
+  # Vectorized log calculation
+  x <- log(x, base = base)
+  
   return(x)
 }
 
@@ -153,8 +153,10 @@ logSafe <- function(
 #' folds <- foldSafe(inputX, inputY)
 foldSafe <- function(x, y, epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILON) {
   validateIsSameLength(x, y)
-  x[x <= epsilon] <- epsilon
-  y[y <= epsilon] <- epsilon
+  # Vectorized threshold application with explicit NA handling
+  # Use ifelse to handle NA values properly while applying threshold
+  x <- ifelse(!is.na(x) & x <= epsilon, epsilon, x)
+  y <- ifelse(!is.na(y) & y <= epsilon, epsilon, y)
 
   return(x / y)
 }
