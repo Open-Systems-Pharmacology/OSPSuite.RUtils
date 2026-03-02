@@ -46,7 +46,7 @@ logSafe_old <- function(x, base = exp(1), epsilon = ospsuiteUtilsEnv$LOG_SAFE_EP
 # New optimized logSafe function
 logSafe_new <- function(x, base = exp(1), epsilon = ospsuiteUtilsEnv$LOG_SAFE_EPSILON) {
   # Vectorized conversion of special constants to NA
-  # Handle NULL, Inf, -Inf, NaN, NA in a vectorized way
+  # Handle Inf, -Inf, NaN in a vectorized way (NA values are preserved)
   x[is.infinite(x) | is.nan(x)] <- NA_real_
   
   # Apply epsilon threshold: values below epsilon become epsilon
