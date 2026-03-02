@@ -5,10 +5,10 @@
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/R-CMD-check/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils)
-[![pkgdown](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/pkgdown/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/actions)
-[![codecov](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=main)
+[![Build
+Badge](https://img.shields.io/github/actions/workflow/status/Open-Systems-Pharmacology/OSPSuite.RUtils/main-workflow.yml?branch=main&label=Build)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/actions/workflows/main-workflow.yml)
+[![Codecov test coverage
+Badge]([https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite-R/branch/main/graph/badge.svg](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/main/graph/badge.svg))](https://app.codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=main)
 
 <!-- badges: end -->
 
