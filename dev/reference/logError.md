@@ -19,7 +19,7 @@ logError(msg)
 ``` r
 # Log error
 logError(cliFormat("This is an {.strong error} message"))
-#> ✖ Error [02/03/2026 - 15:27:38]:  This is an error message
+#> ✖ Error [02/03/2026 - 15:30:35]:  This is an error message
 #> 
 
 # Log error with indications
@@ -27,7 +27,7 @@ logError(cliFormat(
   "This is an {.strong error} message",
   "Check these {.val values} or this {.fn function}"
 ))
-#> ✖ Error [02/03/2026 - 15:27:38]:  This is an error message
+#> ✖ Error [02/03/2026 - 15:30:35]:  This is an error message
 #> → Check these "values" or this `function()`
 #> 
 ```
