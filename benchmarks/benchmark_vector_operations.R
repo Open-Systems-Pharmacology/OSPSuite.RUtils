@@ -49,8 +49,8 @@ logSafe_new <- function(x, base = exp(1), epsilon = ospsuiteUtilsEnv$LOG_SAFE_EP
   # Handle Inf, -Inf, NaN in a vectorized way (NA values are preserved)
   x[is.infinite(x) | is.nan(x)] <- NA_real_
   
-  # Apply epsilon threshold: values below epsilon become epsilon
-  # But preserve NA values
+  # Apply epsilon threshold: values strictly below epsilon become epsilon
+  # NA values are preserved by the logical indexing
   x[!is.na(x) & x < epsilon] <- epsilon
   
   # Vectorized log calculation
