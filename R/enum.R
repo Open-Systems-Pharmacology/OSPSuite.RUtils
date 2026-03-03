@@ -66,25 +66,22 @@ enum <- function(enumValues) {
 #' @export
 
 enumGetKey <- function(enum, value) {
-  # Optimized approach: iterate and collect matches without creating full logical vector
-  # Pre-allocate for efficiency
+  # Optimized approach: avoid creating full logical vector from enum == value
+  # Check each element individually with isTRUE() for proper comparison
   keys <- names(enum)
-  n <- length(enum)
-  matches <- character(n)
-  match_count <- 0
+  result <- character(0)
   
-  for (i in seq_len(n)) {
+  for (i in seq_along(enum)) {
     if (isTRUE(enum[[i]] == value)) {
-      match_count <- match_count + 1
-      matches[match_count] <- keys[i]
+      result <- c(result, keys[i])
     }
   }
   
-  if (match_count == 0) {
+  if (length(result) == 0) {
     return(NULL)
   }
   
-  return(matches[seq_len(match_count)])
+  return(result)
 }
 
 #' @rdname enumGetKey
@@ -183,7 +180,7 @@ enumPut <- function(keys, values, enum, overwrite = FALSE) {
     existing_keys <- keys %in% names(enum)
     if (any(existing_keys)) {
       # Report the first conflicting key for error message
-      first_conflict <- keys[which(existing_keys)[1]]
+      first_conflict <- keys[match(TRUE, existing_keys)]
       stop(messages$errorKeyInEnumPresent(first_conflict))
     }
   }
