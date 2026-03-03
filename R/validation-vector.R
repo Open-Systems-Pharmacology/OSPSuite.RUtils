@@ -98,8 +98,10 @@ validateVector <- function(
     )
   }
 
+  # Cache class extraction to avoid multiple calls
   if (!isOfType(x, type, nullAllowed = FALSE)) {
-    stop(messages$errorWrongType("x", class(x)[1], type))
+    xClass <- class(x)[1]
+    stop(messages$errorWrongType("x", xClass, type))
   }
 
   validateVectorRange(x, type, valueRange)
@@ -114,24 +116,24 @@ validateVectorRange <- function(x, type, valueRange) {
   if (is.null(valueRange)) {
     return()
   }
-  validRangeTypes <- c("numeric", "integer", "character", "Date")
-  if (type %in% validRangeTypes) {
+  # Use direct comparison instead of %in% for small fixed set
+  if (type == "numeric" || type == "integer" || type == "character" || type == "Date") {
     if (!isOfType(valueRange, type)) {
+      # Cache class extraction
+      valueRangeClass <- class(valueRange)[1]
       stop(
         messages$errorWrongType(
           "valueRange",
-          class(valueRange)[1],
+          valueRangeClass,
           type,
           "\n'valueRange' should match the specified 'type' parameter."
         ),
         call. = FALSE
       )
     }
-    if (
-      length(valueRange) != 2 ||
-        valueRange[1] > valueRange[2] ||
-        any(is.na(valueRange))
-    ) {
+    # Cache length and combine checks to reduce overhead
+    rangeLength <- length(valueRange)
+    if (rangeLength != 2 || valueRange[1] > valueRange[2] || any(is.na(valueRange))) {
       stop(messages$errorValueRange(valueRange), call. = FALSE)
     }
     if (any(x < valueRange[1] | x > valueRange[2], na.rm = TRUE)) {
@@ -162,8 +164,10 @@ validateVectorValues <- function(
   }
 
   if (!isOfType(allowedValues, type)) {
+    # Cache class extraction
+    allowedValuesClass <- class(allowedValues)[1]
     stop(
-      messages$errorWrongType("allowedValues", class(allowedValues)[1], type),
+      messages$errorWrongType("allowedValues", allowedValuesClass, type),
       call. = FALSE
     )
   }
