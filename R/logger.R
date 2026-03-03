@@ -73,6 +73,7 @@ consoleLayout <- function(
   logger::fail_on_missing_package("cli")
   logLevel <- attr(level, "level")
   # Main message - split and use vectorized approach
+  # strsplit always returns a list with at least one element (empty string if msg is empty)
   msg <- strsplit(msg, "\n", fixed = TRUE)[[1]]
   cliFunction <- cliFromLevel(logLevel)
   cliFunction(c("{msgHeader(logLevel)} ", msg[1]))

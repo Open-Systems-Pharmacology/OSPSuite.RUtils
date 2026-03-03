@@ -24,7 +24,7 @@ create_error <- function(depth) {
 
 result1 <- microbenchmark(
   logCatch(tryCatch(create_error(20), error = function(e) NULL)),
-  times = 20L
+  times = 50L
 )
 print(result1)
 cat("\n")
