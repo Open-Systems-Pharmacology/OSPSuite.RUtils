@@ -61,7 +61,6 @@ cliFromLevel <- function(logLevel) {
 #' @description
 #' Function that will display pretty log messages on console
 #' @inheritParams logger::layout_glue
-#' @importFrom utils head tail
 #' @keywords internal
 consoleLayout <- function(
   level,
@@ -73,14 +72,16 @@ consoleLayout <- function(
 ) {
   logger::fail_on_missing_package("cli")
   logLevel <- attr(level, "level")
-  # Main message
-  msg <- unlist(strsplit(msg, "\n"))
+  # Main message - split and use vectorized approach
+  msg <- strsplit(msg, "\n", fixed = TRUE)[[1]]
   cliFunction <- cliFromLevel(logLevel)
-  cliFunction(c("{msgHeader(logLevel)} ", head(msg, 1)))
+  cliFunction(c("{msgHeader(logLevel)} ", msg[1]))
 
-  # Following messages
-  for (msgIndications in tail(msg, -1)) {
-    cli::cli_alert(msgIndications)
+  # Following messages - use vectorized approach if multiple messages
+  if (length(msg) > 1) {
+    for (msgIndications in msg[-1]) {
+      cli::cli_alert(msgIndications)
+    }
   }
   return()
 }
@@ -111,6 +112,27 @@ fileLayout <- function(
   )
 }
 
+#' @title shouldMaskMessage
+#' @description Check if a message should be masked based on patterns
+#' @param message The message text to check
+#' @param patterns Vector of patterns to match against
+#' @return Logical indicating if message should be masked
+#' @keywords internal
+shouldMaskMessage <- function(message, patterns) {
+  if (is.null(patterns) || length(patterns) == 0) {
+    return(FALSE)
+  }
+  
+  # Early exit: check if any pattern matches
+  for (pattern in patterns) {
+    if (grepl(pattern, message, ignore.case = TRUE)) {
+      return(TRUE)
+    }
+  }
+  
+  return(FALSE)
+}
+
 #' @title logCatch
 #' @description Catch errors, log and display meaningful information
 #' @param expr Evaluated code chunks
@@ -130,39 +152,50 @@ logCatch <- function(expr) {
         logError(errorCondition$message)
         logInfo("Error trace", type = "alert")
         calls <- sys.calls()
-        errorTrace <- NULL
+        maskingPatterns <- ospsuiteUtilsEnv$logging$errorMasking
+        
+        # Pre-allocate vector with maximum possible size
+        errorTrace <- character(length(calls))
+        traceIndex <- 0L
+        
         for (call in calls) {
           textCall <- deparse(call, nlines = 1)
-          callNotDisplayed <- any(sapply(
-            ospsuiteUtilsEnv$logging$errorMasking,
-            FUN = function(pattern) {
-              grepl(textCall, pattern = pattern, ignore.case = TRUE)
+          
+          # Early exit: check if any pattern matches
+          callNotDisplayed <- FALSE
+          if (!is.null(maskingPatterns)) {
+            for (pattern in maskingPatterns) {
+              if (grepl(pattern, textCall, ignore.case = TRUE)) {
+                callNotDisplayed <- TRUE
+                break
+              }
             }
-          ))
-          if (callNotDisplayed) {
-            next
           }
-          errorTrace <- c(
-            errorTrace,
-            gsub(pattern = "(\\{)|(\\})", replacement = "", textCall)
-          )
+          
+          if (!callNotDisplayed) {
+            traceIndex <- traceIndex + 1L
+            errorTrace[traceIndex] <- gsub(pattern = "(\\{)|(\\})", replacement = "", textCall)
+          }
         }
+        
+        # Trim to actual size
+        if (traceIndex > 0L) {
+          errorTrace <- errorTrace[1:traceIndex]
+        } else {
+          errorTrace <- character(0)
+        }
+        
         logInfo(errorTrace, type = "ol")
         stop(errorCondition$message)
       },
       # For warnings: display warning unless masked.
       # In which case, save them in log-debug.
       warning = function(warningCondition) {
-        callNotDisplayed <- any(sapply(
-          ospsuiteUtilsEnv$logging$warningMasking,
-          FUN = function(pattern) {
-            grepl(
-              warningCondition$message,
-              pattern = pattern,
-              ignore.case = TRUE
-            )
-          }
-        ))
+        callNotDisplayed <- shouldMaskMessage(
+          warningCondition$message,
+          ospsuiteUtilsEnv$logging$warningMasking
+        )
+        
         if (callNotDisplayed) {
           logDebug(warningCondition$message)
         } else {
@@ -184,16 +217,11 @@ logCatch <- function(expr) {
         }
         # Remove unwanted messages especially from ggplot
         # In case, include them in log debug
-        callNotDisplayed <- any(sapply(
-          ospsuiteUtilsEnv$logging$infoMasking,
-          FUN = function(pattern) {
-            grepl(
-              messageCondition$message,
-              pattern = pattern,
-              ignore.case = TRUE
-            )
-          }
-        ))
+        callNotDisplayed <- shouldMaskMessage(
+          messageCondition$message,
+          ospsuiteUtilsEnv$logging$infoMasking
+        )
+        
         if (callNotDisplayed) {
           logDebug(messageCondition$message)
         } else {
