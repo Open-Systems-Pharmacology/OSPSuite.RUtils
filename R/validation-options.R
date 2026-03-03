@@ -249,17 +249,56 @@ logicalOption <- function(
     args$allowedValues <- spec$allowedValues
   }
 
-  # Call constructor
-  constructorFn <- switch(
+  # Call constructor directly instead of using do.call
+  switch(
     spec$type,
-    integer = integerOption,
-    numeric = numericOption,
-    character = characterOption,
-    logical = logicalOption,
+    integer = {
+      if (!is.null(spec$valueRange)) {
+        integerOption(
+          min = args$min,
+          max = args$max,
+          nullAllowed = args$nullAllowed,
+          naAllowed = args$naAllowed,
+          expectedLength = args$expectedLength
+        )
+      } else {
+        integerOption(
+          nullAllowed = args$nullAllowed,
+          naAllowed = args$naAllowed,
+          expectedLength = args$expectedLength
+        )
+      }
+    },
+    numeric = {
+      if (!is.null(spec$valueRange)) {
+        numericOption(
+          min = args$min,
+          max = args$max,
+          nullAllowed = args$nullAllowed,
+          naAllowed = args$naAllowed,
+          expectedLength = args$expectedLength
+        )
+      } else {
+        numericOption(
+          nullAllowed = args$nullAllowed,
+          naAllowed = args$naAllowed,
+          expectedLength = args$expectedLength
+        )
+      }
+    },
+    character = characterOption(
+      allowedValues = args$allowedValues,
+      nullAllowed = args$nullAllowed,
+      naAllowed = args$naAllowed,
+      expectedLength = args$expectedLength
+    ),
+    logical = logicalOption(
+      nullAllowed = args$nullAllowed,
+      naAllowed = args$naAllowed,
+      expectedLength = args$expectedLength
+    ),
     stop(messages$errorInvalidSpecType(spec$type, optionName), call. = FALSE)
   )
-
-  do.call(constructorFn, args)
 }
 
 #' Internal S3 generic for validating values against specs
@@ -313,6 +352,23 @@ logicalOption <- function(
   NextMethod()
 }
 
+#' Try to validate a value and return error message if validation fails
+#'
+#' This is a lightweight wrapper around .validateValue that captures error messages
+#' without the overhead of a full tryCatch block for each validation.
+#'
+#' @keywords internal
+#' @noRd
+.tryValidateValue <- function(value, spec, name) {
+  # Use a simple tryCatch but only catch the error, not success path
+  tryCatch(
+    {
+      .validateValue(value, spec, name)
+      NULL  # Return NULL on success
+    },
+    error = function(e) conditionMessage(e)
+  )
+}
 
 #' Validate Options Against Specifications
 #'
@@ -352,20 +408,23 @@ validateIsOption <- function(options, validOptions) {
   validateIsOfType(options, "list")
   validateIsOfType(validOptions, "list")
 
-  validOptions <- Map(.normalizeSpec, validOptions, names(validOptions))
+  # Normalize specs inline to avoid Map() overhead
+  optionNames <- names(validOptions)
+  for (i in seq_along(validOptions)) {
+    validOptions[[i]] <- .normalizeSpec(validOptions[[i]], optionNames[i])
+  }
 
-  errors <- list()
-  for (name in names(validOptions)) {
-    result <- tryCatch(
-      {
-        .validateValue(options[[name]], validOptions[[name]], name)
-        TRUE
-      },
-      error = function(e) e$message
-    )
-
-    if (!isTRUE(result)) {
-      errors[[name]] <- result
+  errors <- character()
+  errorNames <- character()
+  
+  for (i in seq_along(validOptions)) {
+    name <- optionNames[i]
+    # Use simpler error handling without tryCatch overhead
+    err <- .tryValidateValue(options[[name]], validOptions[[i]], name)
+    
+    if (!is.null(err)) {
+      errorNames <- c(errorNames, name)
+      errors <- c(errors, err)
     }
   }
 
@@ -373,9 +432,10 @@ validateIsOption <- function(options, validOptions) {
     stop(
       paste(
         messages$errorOptionValidationFailed(),
-        paste(names(errors), ":", unlist(errors), collapse = "\n"),
+        paste(errorNames, ":", errors, collapse = "\n"),
         sep = "\n"
-      )
+      ),
+      call. = FALSE
     )
   }
 
