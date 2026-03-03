@@ -55,3 +55,5 @@ references.bib
 ^postclean\.bat
 ^\.covrignore$
 ^CRAN-SUBMISSION$
+^benchmark-validation-functions\.R$
+^BENCHMARK\.md$
