@@ -45,7 +45,7 @@ formatNumerics <- function(
 
   # Method for data.frame or list: update each of its fields
   if (isOfType(object, c("list", "data.frame"))) {
-    for (field in 1:length(object)) {
+    for (field in seq_along(object)) {
       object[[field]] <- formatNumerics(object[[field]], digits, scientific)
     }
   }
