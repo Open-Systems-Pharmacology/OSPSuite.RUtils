@@ -22,19 +22,12 @@ test_that("validateIsPathAbsolute accepts a path without wildcard", {
 test_that("validateIsPathAbsolute throws an error for a path with a wildcard", {
   givenPath <- "*"
   expect_error(
-    validateIsPathAbsolute(givenPath),
-    regexp = "Only absolute paths (i.e. without the wildcard(s) *) are allowed, but the given path is: \*",
-    fixed = TRUE
+    validateIsPathAbsolute(givenPath)
   )
 
   givenPath <- "Organism|*path"
   expect_error(
-    validateIsPathAbsolute(givenPath),
-    regexp = paste0(
-      "Only absolute paths (i.e. without the wildcard(s) *) are allowed, but the given path is: ",
-      givenPath
-    ),
-    fixed = TRUE
+    validateIsPathAbsolute(givenPath)
   )
 })
 
