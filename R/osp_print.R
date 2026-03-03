@@ -158,6 +158,7 @@ ospPrintItems <- function(x, title = NULL, print_empty = FALSE) {
   # Single-pass approach: collect items to print and track emptiness simultaneously
   items_to_print <- list()
   all_items_empty <- TRUE
+  item_count <- 0  # Track count to avoid repeated length() calls
   
   # Process items only if x is not empty
   if (!.isEmpty(x)) {
@@ -174,14 +175,15 @@ ospPrintItems <- function(x, title = NULL, print_empty = FALSE) {
       
       # Collect items to print
       if (!is_empty || print_empty) {
+        item_count <- item_count + 1
         if (has_names) {
           name <- names(x)[i]
-          items_to_print[[length(items_to_print) + 1]] <- list(
+          items_to_print[[item_count]] <- list(
             name = name,
             value = value
           )
         } else {
-          items_to_print[[length(items_to_print) + 1]] <- list(
+          items_to_print[[item_count]] <- list(
             name = NULL,
             value = value
           )
@@ -219,7 +221,7 @@ ospPrintItems <- function(x, title = NULL, print_empty = FALSE) {
       )
       cli::cli_li("All items are NULL, NA, or empty")
       cli::cli_end()
-    } else if (length(items_to_print) > 0) {
+    } else if (item_count > 0) {
       # Process collected items
       # Start the list
       cli::cli_div(
