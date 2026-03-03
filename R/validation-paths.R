@@ -27,7 +27,7 @@
 isPathAbsolute <- function(path) {
   wildcardChar <- "*"
   pathChars <- unlist(strsplit(path, ""), use.names = FALSE)
-  
+
   !any(pathChars == wildcardChar)
 }
 
