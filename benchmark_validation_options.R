@@ -162,7 +162,7 @@ cat("  Validations per second:", n_iterations / result_large["elapsed"], "\n\n")
 
 # Benchmark 4: Legacy format normalization overhead
 cat("====================================================\n")
-cat("Benchmark 4: Legacy format (.normalizeSpec optimization)\n")
+cat("Benchmark 4: Legacy format (do.call optimization)\n")
 cat("====================================================\n\n")
 
 test_data_legacy <- create_legacy_test_options(50)

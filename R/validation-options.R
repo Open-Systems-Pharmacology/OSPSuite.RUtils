@@ -354,13 +354,12 @@ logicalOption <- function(
 
 #' Try to validate a value and return error message if validation fails
 #'
-#' This is a lightweight wrapper around .validateValue that captures error messages
-#' without the overhead of a full tryCatch block for each validation.
+#' This extracts error handling logic from the main validation loop
+#' for better code organization and clarity.
 #'
 #' @keywords internal
 #' @noRd
 .tryValidateValue <- function(value, spec, name) {
-  # Use a simple tryCatch but only catch the error, not success path
   tryCatch(
     {
       .validateValue(value, spec, name)
