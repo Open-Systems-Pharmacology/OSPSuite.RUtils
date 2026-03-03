@@ -66,13 +66,21 @@ enum <- function(enumValues) {
 #' @export
 
 enumGetKey <- function(enum, value) {
-  output <- names(which(enum == value))
-
-  if (length(output) == 0) {
+  # Optimized approach: iterate and collect matches without creating full logical vector
+  keys <- names(enum)
+  matches <- character(0)
+  
+  for (i in seq_along(enum)) {
+    if (isTRUE(enum[[i]] == value)) {
+      matches <- c(matches, keys[i])
+    }
+  }
+  
+  if (length(matches) == 0) {
     return(NULL)
   }
-
-  return(output)
+  
+  return(matches)
 }
 
 #' @rdname enumGetKey
@@ -140,7 +148,7 @@ enumKeys <- function(enum) {
 #' @export
 
 enumHasKey <- function(key, enum) {
-  return(any(enumKeys(enum) == key))
+  return(key %in% names(enum))
 }
 
 #' Add a new key-value pairs to an `enum`
@@ -166,11 +174,17 @@ enumHasKey <- function(key, enum) {
 enumPut <- function(keys, values, enum, overwrite = FALSE) {
   validateIsSameLength(keys, values)
 
-  for (i in seq_along(keys)) {
-    if (enumHasKey(keys[[i]], enum) && !overwrite) {
-      stop(messages$errorKeyInEnumPresent(keys[[i]]))
+  # Batch key checking: check all keys at once instead of one by one
+  if (!overwrite) {
+    existing_keys <- keys %in% names(enum)
+    if (any(existing_keys)) {
+      # Report the first conflicting key for error message
+      first_conflict <- keys[which(existing_keys)[1]]
+      stop(messages$errorKeyInEnumPresent(first_conflict))
     }
+  }
 
+  for (i in seq_along(keys)) {
     enum[[keys[[i]]]] <- values[[i]]
   }
 
