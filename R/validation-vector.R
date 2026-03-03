@@ -131,9 +131,7 @@ validateVectorRange <- function(x, type, valueRange) {
         call. = FALSE
       )
     }
-    # Cache length and combine checks to reduce overhead
-    rangeLength <- length(valueRange)
-    if (rangeLength != 2 || valueRange[1] > valueRange[2] || any(is.na(valueRange))) {
+    if (length(valueRange) != 2 || valueRange[1] > valueRange[2] || any(is.na(valueRange))) {
       stop(messages$errorValueRange(valueRange), call. = FALSE)
     }
     if (any(x < valueRange[1] | x > valueRange[2], na.rm = TRUE)) {
