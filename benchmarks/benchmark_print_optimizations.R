@@ -15,9 +15,9 @@ library(microbenchmark)
 # Benchmark 1: .isEmpty function optimization
 # ==============================================================================
 
-cat("=" , rep("=", 79), "\n", sep = "")
+cat("=", rep("=", 79), "\n", sep = "")
 cat("Benchmark 1: .isEmpty function optimization\n")
-cat("=" , rep("=", 79), "\n", sep = "")
+cat("=", rep("=", 79), "\n", sep = "")
 
 # Access internal function for benchmarking
 .isEmpty <- ospsuite.utils:::.isEmpty
@@ -93,9 +93,9 @@ print(result8)
 # ==============================================================================
 
 cat("\n\n")
-cat("=" , rep("=", 79), "\n", sep = "")
+cat("=", rep("=", 79), "\n", sep = "")
 cat("Benchmark 2: ospPrintItems function optimization\n")
-cat("=" , rep("=", 79), "\n", sep = "")
+cat("=", rep("=", 79), "\n", sep = "")
 
 # Helper to capture and discard output
 capture_print <- function(expr) {
@@ -194,9 +194,9 @@ print(result16)
 # ==============================================================================
 
 cat("\n\n")
-cat("=" , rep("=", 79), "\n", sep = "")
+cat("=", rep("=", 79), "\n", sep = "")
 cat("Summary\n")
-cat("=" , rep("=", 79), "\n", sep = "")
+cat("=", rep("=", 79), "\n", sep = "")
 
 cat("\n")
 cat("Optimizations implemented:\n")
