@@ -67,21 +67,29 @@ enum <- function(enumValues) {
 
 enumGetKey <- function(enum, value) {
   # Optimized approach: avoid creating full logical vector from enum == value
-  # Check each element individually with isTRUE() for proper comparison
-  keys <- names(enum)
-  result <- character(0)
-  
-  for (i in seq_along(enum)) {
-    if (isTRUE(enum[[i]] == value)) {
-      result <- c(result, keys[i])
-    }
-  }
-  
-  if (length(result) == 0) {
+  # Check each element individually and collect matching indices
+  n <- length(enum)
+  if (n == 0) {
     return(NULL)
   }
   
-  return(result)
+  keys <- names(enum)
+  # Use a list to collect matches efficiently, then convert to character vector
+  matches <- vector("list", n)
+  match_count <- 0
+  
+  for (i in seq_len(n)) {
+    if (isTRUE(enum[[i]] == value)) {
+      match_count <- match_count + 1
+      matches[[match_count]] <- keys[i]
+    }
+  }
+  
+  if (match_count == 0) {
+    return(NULL)
+  }
+  
+  return(unlist(matches[seq_len(match_count)], use.names = FALSE))
 }
 
 #' @rdname enumGetKey
