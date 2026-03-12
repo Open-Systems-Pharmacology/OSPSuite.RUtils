@@ -375,12 +375,6 @@ messages <- list(
       optionalMessage
     )
   },
-  warningNumericToIntegerConversion = function(name, optionalMessage = NULL) {
-    cliFormat(
-      "Option {.field {name}} is {.cls numeric} but expected {.cls integer}, auto-converting",
-      optionalMessage
-    )
-  },
   errorOptionValidationFailed = function(optionalMessage = NULL) {
     cliFormat(
       "{.strong Option validation failed:}",

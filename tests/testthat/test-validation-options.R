@@ -336,17 +336,10 @@ test_that(".validateValue.optionSpec() validates with NULL expectedLength", {
   expect_silent(.validateValue(5L, spec, "test"))
 })
 
-test_that(".validateValue.optionSpec_integer() auto-converts numeric with warning", {
+test_that(".validateValue.optionSpec_integer() auto-converts numeric silently", {
   spec <- integerOption(min = 1L, max = 10L)
 
-  # Should warn and convert
-  expect_warning(
-    .validateValue(5.0, spec, "myOption"),
-    regexp = messages$warningNumericToIntegerConversion("myOption"),
-    fixed = TRUE
-  )
-
-  # Should not warn for actual integer
+  expect_silent(.validateValue(5.0, spec, "myOption"))
   expect_silent(.validateValue(5L, spec, "myOption"))
 })
 
@@ -404,13 +397,9 @@ test_that("validateIsOption() auto-converts numerics to integers with warning", 
   )
 })
 
-test_that("validateIsOption() auto-converts numerics to integers with warning", {
+test_that("validateIsOption() auto-converts numerics to integers silently", {
   testOptions <- modifyList(defaultOptions, list(maxIterations = 1000))
-  expect_warning(
-    validateIsOption(testOptions, validOptions),
-    regexp = messages$warningNumericToIntegerConversion("maxIterations"),
-    fixed = TRUE
-  )
+  expect_silent(validateIsOption(testOptions, validOptions))
 })
 
 test_that("validateIsOption() errors on non-list 'options'", {

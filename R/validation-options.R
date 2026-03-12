@@ -305,7 +305,6 @@ logicalOption <- function(
 .validateValue.optionSpec_integer <- function(value, spec, name) {
   if (!is.null(value) && isOfType(value, "numeric") && !is.integer(value)) {
     if (isTRUE(all.equal(value, as.integer(value)))) {
-      warning(messages$warningNumericToIntegerConversion(name), call. = FALSE)
       value <- as.integer(value)
     }
   }
