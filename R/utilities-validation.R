@@ -25,6 +25,25 @@
 }
 
 #' @keywords internal
+.getCallingFunctionName <- function() {
+  for (call in sys.calls()) {
+    fn <- call[[1]]
+    if (is.name(fn)) {
+      return(as.character(fn))
+    }
+    if (
+      is.call(fn) &&
+        length(fn) == 3L &&
+        (identical(fn[[1L]], as.name("::")) ||
+          identical(fn[[1L]], as.name(":::")))
+    ) {
+      return(as.character(fn[[3L]]))
+    }
+  }
+  deparse(sys.calls()[[1L]][[1L]])[1L]
+}
+
+#' @keywords internal
 .fileExtension <- function(file) {
   # if file has no extension, return empty string
   if (!grepl("\\.", basename(file)) || grepl("\\.$", basename(file))) {

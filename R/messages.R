@@ -375,12 +375,6 @@ messages <- list(
       optionalMessage
     )
   },
-  warningNumericToIntegerConversion = function(name, optionalMessage = NULL) {
-    cliFormat(
-      "Option {.field {name}} is {.cls numeric} but expected {.cls integer}, auto-converting",
-      optionalMessage
-    )
-  },
   errorOptionValidationFailed = function(optionalMessage = NULL) {
     cliFormat(
       "{.strong Option validation failed:}",
@@ -388,12 +382,3 @@ messages <- list(
     )
   }
 )
-
-# utilities ----------------------
-
-#' @keywords internal
-.getCallingFunctionName <- function() {
-  callingFunctions <- sys.calls()
-  callingFunction <- sys.call(-length(callingFunctions) + 1)[[1]]
-  return(deparse(callingFunction))
-}
