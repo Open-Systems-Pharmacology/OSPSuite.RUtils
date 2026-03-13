@@ -11,7 +11,7 @@ messages
 
 ## Format
 
-An object of class `list` of length 48.
+An object of class `list` of length 47.
 
 ## Value
 
@@ -34,6 +34,6 @@ warning(messages$errorPropertyReadOnly("age"))
 
 # example display using logs
 logInfo(messages$errorPropertyReadOnly("age"))
-#> ℹ Info [03/03/2026 - 16:05:51]:  Property $age is readonly
+#> ℹ Info [13/03/2026 - 14:46:49]:  Property $age is readonly
 #> 
 ```

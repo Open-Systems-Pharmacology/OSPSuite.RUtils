@@ -148,7 +148,7 @@ validateIsOption(options, validOptions)
 #> Error in `validateIsOption()`:
 #> ! Option validation failed:
 #> 
-#> required : `base::tryCatch()`: argument "x" is of type <NULL>, but expected <vector>!
+#> required : `tryCatch()`: argument "x" is of type <NULL>, but expected <vector>!
 
 # This succeeds
 options <- list(required = "value", optional = NULL)
@@ -231,10 +231,10 @@ validateIsOption(options, validOptions)
 #> Error in `validateIsOption()`:
 #> ! Option validation failed:
 #> 
-#> age : `base::tryCatch()`: Value(s) out of the allowed range [18, 65].
+#> age : `tryCatch()`: Value(s) out of the allowed range [18, 65].
 #> method : 1 value ("invalid") not included in allowed values.
 #> Allowed values: "a, b"
-#> threshold : `base::tryCatch()`: Value(s) out of the allowed range [0, 1].
+#> threshold : `tryCatch()`: Value(s) out of the allowed range [0, 1].
 ```
 
 ## Practical example

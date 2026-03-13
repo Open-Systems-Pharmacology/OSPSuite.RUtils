@@ -23,13 +23,13 @@ Source:
 
 Sevestre M, Balazki P, Solodenko J, Patil I (2026). *ospsuite.utils:
 Utility Functions for Open Systems Pharmacology R Packages*. R package
-version 1.10.0.9006,
+version 1.10.0.9007,
 <https://github.com/open-systems-pharmacology/OSPSuite.RUtils>.
 
     @Manual{,
       title = {ospsuite.utils: Utility Functions for Open Systems Pharmacology R Packages},
       author = {Michael Sevestre and Pavel Balazki and Juri Solodenko and Indrajeet Patil},
       year = {2026},
-      note = {R package version 1.10.0.9006},
+      note = {R package version 1.10.0.9007},
       url = {https://github.com/open-systems-pharmacology/OSPSuite.RUtils},
     }

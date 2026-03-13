@@ -50,21 +50,21 @@ logDebug("Message for debugging purposes")
 
 ``` r
 logInfo("Message for general information")
-#> ℹ Info [03/03/2026 - 16:05:59]:  Message for general information
+#> ℹ Info [13/03/2026 - 14:46:56]:  Message for general information
 ```
 
 \*3 **Warning**: for warnings, displayed in yellow
 
 ``` r
 logWarning("Warning message")
-#> ! Warning [03/03/2026 - 16:05:59]:  Warning message
+#> ! Warning [13/03/2026 - 14:46:56]:  Warning message
 ```
 
 \*4 **Error**: for errors, displayed in red
 
 ``` r
 logError("Error message")
-#> ✖ Error [03/03/2026 - 16:05:59]:  Error message
+#> ✖ Error [13/03/2026 - 14:46:56]:  Error message
 ```
 
 Check the content of the log file `test-logs/log.txt` to see the logged
@@ -72,10 +72,10 @@ messages.
 
 ``` r
 readLines("test-logs/log.txt")
-#> [1] "DEBUG [2026-03-03 16:05:58] Message for debugging purposes"
-#> [2] "INFO [2026-03-03 16:05:59] Message for general information"
-#> [3] "WARN [2026-03-03 16:05:59] Warning message"                
-#> [4] "ERROR [2026-03-03 16:05:59] Error message"
+#> [1] "DEBUG [2026-03-13 14:46:56] Message for debugging purposes"
+#> [2] "INFO [2026-03-13 14:46:56] Message for general information"
+#> [3] "WARN [2026-03-13 14:46:56] Warning message"                
+#> [4] "ERROR [2026-03-13 14:46:56] Error message"
 ```
 
 ## Taking advantage of glue and cli formatting
@@ -98,10 +98,10 @@ logInfo("A logging example", type = "h1")
 # tic() and toc() functions were implemented in ospsuite.utils
 t0 <- tic()
 logInfo("Some {.strong useful} information taking advantage of {.code logger}")
-#> ℹ Info [03/03/2026 - 16:05:59]:  Some useful information taking advantage of `logger`
+#> ℹ Info [13/03/2026 - 14:46:56]:  Some useful information taking advantage of `logger`
 Sys.sleep(2)
 logInfo("First logging example done [{.field {toc(t0, 's')}}]", type = "success")
-#> ✔ Info [03/03/2026 - 16:06:01]:  First logging example done [2.0 s]
+#> ✔ Info [13/03/2026 - 14:46:58]:  First logging example done [2.0 s]
 ```
 
 The content of the log has been appended to `test-logs/log.txt` removing
@@ -109,13 +109,13 @@ most of the formatting displayed on console.
 
 ``` r
 readLines("test-logs/log.txt")
-#> [1] "DEBUG [2026-03-03 16:05:58] Message for debugging purposes"                     
-#> [2] "INFO [2026-03-03 16:05:59] Message for general information"                     
-#> [3] "WARN [2026-03-03 16:05:59] Warning message"                                     
-#> [4] "ERROR [2026-03-03 16:05:59] Error message"                                      
-#> [5] "DEBUG [2026-03-03 16:05:59] A logging example"                                  
-#> [6] "INFO [2026-03-03 16:05:59] Some useful information taking advantage of `logger`"
-#> [7] "SUCCESS [2026-03-03 16:06:01] First logging example done [2.0 s]"
+#> [1] "DEBUG [2026-03-13 14:46:56] Message for debugging purposes"                     
+#> [2] "INFO [2026-03-13 14:46:56] Message for general information"                     
+#> [3] "WARN [2026-03-13 14:46:56] Warning message"                                     
+#> [4] "ERROR [2026-03-13 14:46:56] Error message"                                      
+#> [5] "DEBUG [2026-03-13 14:46:56] A logging example"                                  
+#> [6] "INFO [2026-03-13 14:46:56] Some useful information taking advantage of `logger`"
+#> [7] "SUCCESS [2026-03-13 14:46:58] First logging example done [2.0 s]"
 ```
 
 The package
@@ -146,13 +146,13 @@ myWarning <- function(x) {
 
 x <- 10
 logWarning(myWarning(x))
-#> ! Warning [03/03/2026 - 16:06:01]:  Warning example about "x" !
+#> ! Warning [13/03/2026 - 14:46:58]:  Warning example about "x" !
 #> → "x" is of class `numeric` and length 1
 #> → The 1 value of "x" is: 10
 
 x <- letters[5:8]
 logWarning(myWarning(x))
-#> ! Warning [03/03/2026 - 16:06:01]:  Warning example about "x" !
+#> ! Warning [13/03/2026 - 14:46:58]:  Warning example about "x" !
 #> → "x" is of class `character` and length 4
 #> → The 4 values of "x" are: "e", "f", "g", and "h"
 ```
@@ -162,17 +162,17 @@ removing most of the formatting displayed on console.
 
 ``` r
 readLines("test-logs/log.txt")
-#>  [1] "DEBUG [2026-03-03 16:05:58] Message for debugging purposes"                     
-#>  [2] "INFO [2026-03-03 16:05:59] Message for general information"                     
-#>  [3] "WARN [2026-03-03 16:05:59] Warning message"                                     
-#>  [4] "ERROR [2026-03-03 16:05:59] Error message"                                      
-#>  [5] "DEBUG [2026-03-03 16:05:59] A logging example"                                  
-#>  [6] "INFO [2026-03-03 16:05:59] Some useful information taking advantage of `logger`"
-#>  [7] "SUCCESS [2026-03-03 16:06:01] First logging example done [2.0 s]"               
-#>  [8] "WARN [2026-03-03 16:06:01] Warning example about \"x\" !"                       
+#>  [1] "DEBUG [2026-03-13 14:46:56] Message for debugging purposes"                     
+#>  [2] "INFO [2026-03-13 14:46:56] Message for general information"                     
+#>  [3] "WARN [2026-03-13 14:46:56] Warning message"                                     
+#>  [4] "ERROR [2026-03-13 14:46:56] Error message"                                      
+#>  [5] "DEBUG [2026-03-13 14:46:56] A logging example"                                  
+#>  [6] "INFO [2026-03-13 14:46:56] Some useful information taking advantage of `logger`"
+#>  [7] "SUCCESS [2026-03-13 14:46:58] First logging example done [2.0 s]"               
+#>  [8] "WARN [2026-03-13 14:46:58] Warning example about \"x\" !"                       
 #>  [9] "\"x\" is of class `numeric` and length 1"                                       
 #> [10] "The 1 value of \"x\" is: 10"                                                    
-#> [11] "WARN [2026-03-03 16:06:01] Warning example about \"x\" !"                       
+#> [11] "WARN [2026-03-13 14:46:59] Warning example about \"x\" !"                       
 #> [12] "\"x\" is of class `character` and length 4"                                     
 #> [13] "The 4 values of \"x\" are: \"e\", \"f\", \"g\", and \"h\""
 ```
@@ -205,10 +205,10 @@ logCatch({
 })
 #> 
 #> ── Testing `logCatch()` ────────────────────────────────────────────────────────
-#> ! Warning [03/03/2026 - 16:06:01]:  Warning about "x" !
+#> ! Warning [13/03/2026 - 14:46:59]:  Warning about "x" !
 #> → "x" is of class `character` and length 3
 #> → The 3 values of "x" are: "This is a string", "This is another string", and "This is a third string"
-#> ✔ Info [03/03/2026 - 16:06:01]:  Warning message was caught
+#> ✔ Info [13/03/2026 - 14:46:59]:  Warning message was caught
 ```
 
 The content caught by the
@@ -218,24 +218,24 @@ formatting displayed on console.
 
 ``` r
 readLines("test-logs/log.txt")
-#>  [1] "DEBUG [2026-03-03 16:05:58] Message for debugging purposes"                                                 
-#>  [2] "INFO [2026-03-03 16:05:59] Message for general information"                                                 
-#>  [3] "WARN [2026-03-03 16:05:59] Warning message"                                                                 
-#>  [4] "ERROR [2026-03-03 16:05:59] Error message"                                                                  
-#>  [5] "DEBUG [2026-03-03 16:05:59] A logging example"                                                              
-#>  [6] "INFO [2026-03-03 16:05:59] Some useful information taking advantage of `logger`"                            
-#>  [7] "SUCCESS [2026-03-03 16:06:01] First logging example done [2.0 s]"                                           
-#>  [8] "WARN [2026-03-03 16:06:01] Warning example about \"x\" !"                                                   
+#>  [1] "DEBUG [2026-03-13 14:46:56] Message for debugging purposes"                                                 
+#>  [2] "INFO [2026-03-13 14:46:56] Message for general information"                                                 
+#>  [3] "WARN [2026-03-13 14:46:56] Warning message"                                                                 
+#>  [4] "ERROR [2026-03-13 14:46:56] Error message"                                                                  
+#>  [5] "DEBUG [2026-03-13 14:46:56] A logging example"                                                              
+#>  [6] "INFO [2026-03-13 14:46:56] Some useful information taking advantage of `logger`"                            
+#>  [7] "SUCCESS [2026-03-13 14:46:58] First logging example done [2.0 s]"                                           
+#>  [8] "WARN [2026-03-13 14:46:58] Warning example about \"x\" !"                                                   
 #>  [9] "\"x\" is of class `numeric` and length 1"                                                                   
 #> [10] "The 1 value of \"x\" is: 10"                                                                                
-#> [11] "WARN [2026-03-03 16:06:01] Warning example about \"x\" !"                                                   
+#> [11] "WARN [2026-03-13 14:46:59] Warning example about \"x\" !"                                                   
 #> [12] "\"x\" is of class `character` and length 4"                                                                 
 #> [13] "The 4 values of \"x\" are: \"e\", \"f\", \"g\", and \"h\""                                                  
-#> [14] "DEBUG [2026-03-03 16:06:01] Testing `logCatch()`"                                                           
-#> [15] "WARN [2026-03-03 16:06:01] Warning about \"x\" !"                                                           
+#> [14] "DEBUG [2026-03-13 14:46:59] Testing `logCatch()`"                                                           
+#> [15] "WARN [2026-03-13 14:46:59] Warning about \"x\" !"                                                           
 #> [16] "\"x\" is of class `character` and length 3"                                                                 
 #> [17] "The 3 values of \"x\" are: \"This is a string\", \"This is another string\", and \"This is a third string\""
-#> [18] "SUCCESS [2026-03-03 16:06:01] Warning message was caught"
+#> [18] "SUCCESS [2026-03-13 14:46:59] Warning message was caught"
 ```
 
 ### Masking messages
@@ -261,7 +261,7 @@ logCatch({
   warning("This is a not useful message that is warned by another package")
   warning("This is a useful message that I want displayed")
 })
-#> ! Warning [03/03/2026 - 16:06:01]:  This is a useful message that I want displayed
+#> ! Warning [13/03/2026 - 14:46:59]:  This is a useful message that I want displayed
 ```
 
 The content caught by the
@@ -270,26 +270,26 @@ includes the first warning as debug message:
 
 ``` r
 readLines("test-logs/log.txt")
-#>  [1] "DEBUG [2026-03-03 16:05:58] Message for debugging purposes"                                                 
-#>  [2] "INFO [2026-03-03 16:05:59] Message for general information"                                                 
-#>  [3] "WARN [2026-03-03 16:05:59] Warning message"                                                                 
-#>  [4] "ERROR [2026-03-03 16:05:59] Error message"                                                                  
-#>  [5] "DEBUG [2026-03-03 16:05:59] A logging example"                                                              
-#>  [6] "INFO [2026-03-03 16:05:59] Some useful information taking advantage of `logger`"                            
-#>  [7] "SUCCESS [2026-03-03 16:06:01] First logging example done [2.0 s]"                                           
-#>  [8] "WARN [2026-03-03 16:06:01] Warning example about \"x\" !"                                                   
+#>  [1] "DEBUG [2026-03-13 14:46:56] Message for debugging purposes"                                                 
+#>  [2] "INFO [2026-03-13 14:46:56] Message for general information"                                                 
+#>  [3] "WARN [2026-03-13 14:46:56] Warning message"                                                                 
+#>  [4] "ERROR [2026-03-13 14:46:56] Error message"                                                                  
+#>  [5] "DEBUG [2026-03-13 14:46:56] A logging example"                                                              
+#>  [6] "INFO [2026-03-13 14:46:56] Some useful information taking advantage of `logger`"                            
+#>  [7] "SUCCESS [2026-03-13 14:46:58] First logging example done [2.0 s]"                                           
+#>  [8] "WARN [2026-03-13 14:46:58] Warning example about \"x\" !"                                                   
 #>  [9] "\"x\" is of class `numeric` and length 1"                                                                   
 #> [10] "The 1 value of \"x\" is: 10"                                                                                
-#> [11] "WARN [2026-03-03 16:06:01] Warning example about \"x\" !"                                                   
+#> [11] "WARN [2026-03-13 14:46:59] Warning example about \"x\" !"                                                   
 #> [12] "\"x\" is of class `character` and length 4"                                                                 
 #> [13] "The 4 values of \"x\" are: \"e\", \"f\", \"g\", and \"h\""                                                  
-#> [14] "DEBUG [2026-03-03 16:06:01] Testing `logCatch()`"                                                           
-#> [15] "WARN [2026-03-03 16:06:01] Warning about \"x\" !"                                                           
+#> [14] "DEBUG [2026-03-13 14:46:59] Testing `logCatch()`"                                                           
+#> [15] "WARN [2026-03-13 14:46:59] Warning about \"x\" !"                                                           
 #> [16] "\"x\" is of class `character` and length 3"                                                                 
 #> [17] "The 3 values of \"x\" are: \"This is a string\", \"This is another string\", and \"This is a third string\""
-#> [18] "SUCCESS [2026-03-03 16:06:01] Warning message was caught"                                                   
-#> [19] "DEBUG [2026-03-03 16:06:01] This is a not useful message that is warned by another package"                 
-#> [20] "WARN [2026-03-03 16:06:01] This is a useful message that I want displayed"
+#> [18] "SUCCESS [2026-03-13 14:46:59] Warning message was caught"                                                   
+#> [19] "DEBUG [2026-03-13 14:46:59] This is a not useful message that is warned by another package"                 
+#> [20] "WARN [2026-03-13 14:46:59] This is a useful message that I want displayed"
 ```
 
 For **errors**, the masking is set by the function

@@ -2,6 +2,16 @@
 
 ## ospsuite.utils (development version)
 
+### Minor improvements and bug fixes
+
+- Validation errors in R6 active bindings now show a readable caller
+  name instead of the anonymous function body
+  ([\#218](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/218)).
+- [`validateIsOption()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/validateIsOption.md)
+  no longer emits a warning when auto-converting whole-number `numeric`
+  to `integer`
+  ([\#218](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/218)).
+
 ## ospsuite.utils 1.10.0
 
 ### Breaking changes
