@@ -1,5 +1,10 @@
 # ospsuite.utils (development version)
 
+## Minor improvements and bug fixes
+
+- Validation errors in R6 active bindings now show a readable caller name instead of the anonymous function body (#218).
+- `validateIsOption()` no longer emits a warning when auto-converting whole-number `numeric` to `integer` (#218).
+
 # ospsuite.utils 1.10.0
 
 ## Breaking changes
