@@ -54,8 +54,8 @@ validateIsOption(invalidOptions, validOptions)
 #> Error in `validateIsOption()`:
 #> ! Option validation failed:
 #> 
-#> method : 1 value ("invalid") not included in allowed values.
-#> Allowed values: "newton, gradient"
+#> method : "invalid" not allowed.
+#> Allowed values: "newton" and "gradient".
 ```
 
 ## Spec constructors
@@ -232,8 +232,8 @@ validateIsOption(options, validOptions)
 #> ! Option validation failed:
 #> 
 #> age : `tryCatch()`: Value(s) out of the allowed range [18, 65].
-#> method : 1 value ("invalid") not included in allowed values.
-#> Allowed values: "a, b"
+#> method : "invalid" not allowed.
+#> Allowed values: "a" and "b".
 #> threshold : `tryCatch()`: Value(s) out of the allowed range [0, 1].
 ```
 

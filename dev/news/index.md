@@ -4,6 +4,10 @@
 
 ### Minor improvements and bug fixes
 
+- [`validateIsOption()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/validateIsOption.md)
+  aggregated error messages no longer include internal function name
+  prefixes
+  ([\#219](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/219)).
 - Validation errors in R6 active bindings now show a readable caller
   name instead of the anonymous function body
   ([\#218](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/218)).
