@@ -360,7 +360,7 @@ validateIsOption <- function(options, validOptions) {
         .validateValue(options[[name]], validOptions[[name]], name)
         TRUE
       },
-      error = function(e) sub("^.*)`\\: ", "", e$message)
+      error = function(e) sub("^[^`]*`\\: ", "", e$message)
     )
 
     if (!isTRUE(result)) {

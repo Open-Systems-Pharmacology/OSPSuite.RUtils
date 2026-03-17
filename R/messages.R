@@ -285,11 +285,11 @@ messages <- list(
     ))
   },
   errorValueNotAllowed = function(values, parentValues) {
-    notIncludedValues <- values[!values %in% parentValues]
+    notIncludedValues <- unique(values[!values %in% parentValues])
     notIncludedVec <- head(notIncludedValues, 5)
-    parentVec <- head(parentValues, 5)
+    parentVec <- head(unique(parentValues), 5)
     notIncludedSuffix <- if (length(notIncludedValues) > 5) " ..." else ""
-    parentSuffix <- if (length(parentValues) > 5) " ..." else ""
+    parentSuffix <- if (length(unique(parentValues)) > 5) " ..." else ""
     cliFormat(
       "{.val {notIncludedVec}}{notIncludedSuffix} not allowed.",
       "Allowed values: {.val {parentVec}}{parentSuffix}."
