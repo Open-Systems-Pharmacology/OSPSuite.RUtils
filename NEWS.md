@@ -2,6 +2,7 @@
 
 ## Minor improvements and bug fixes
 
+- `validateIsOption()` aggregated error messages no longer include internal function name prefixes (#219).
 - Validation errors in R6 active bindings now show a readable caller name instead of the anonymous function body (#218).
 - `validateIsOption()` no longer emits a warning when auto-converting whole-number `numeric` to `integer` (#218).
 

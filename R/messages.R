@@ -285,26 +285,14 @@ messages <- list(
     ))
   },
   errorValueNotAllowed = function(values, parentValues) {
-    callingFunction <- .getCallingFunctionName()
-    notIncludedValues <- values[!values %in% parentValues]
-    notIncludedValuesStr <- paste(head(notIncludedValues, 5), collapse = ", ")
-    notIncludedValuesStr <- ifelse(
-      length(notIncludedValues) > 5,
-      paste(notIncludedValuesStr, "..."),
-      notIncludedValuesStr
-    )
-    parentValuesStr <- paste(
-      head(parentValues, 5),
-      collapse = ", "
-    )
-    parentValuesStr <- ifelse(
-      length(parentValues) > 5,
-      paste(parentValuesStr, "..."),
-      parentValuesStr
-    )
+    notIncludedValues <- unique(values[!values %in% parentValues])
+    notIncludedVec <- head(notIncludedValues, 5)
+    parentVec <- head(unique(parentValues), 5)
+    notIncludedSuffix <- if (length(notIncludedValues) > 5) " ..." else ""
+    parentSuffix <- if (length(unique(parentValues)) > 5) " ..." else ""
     cliFormat(
-      "{length(notIncludedValues)} value{?s} ({.val {notIncludedValuesStr}}) not included in allowed values.",
-      "Allowed values: {.val {parentValuesStr}}"
+      "{.val {notIncludedVec}}{notIncludedSuffix} not allowed.",
+      "Allowed values: {.val {parentVec}}{parentSuffix}."
     )
   },
   errorTypeNotSupported = function(objectName, type, expectedType) {

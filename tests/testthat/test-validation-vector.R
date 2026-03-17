@@ -210,7 +210,8 @@ test_that("validateVectorValues() correctly identifies unpermitted values", {
       type = "numeric",
       allowedValues = c(1, 2)
     ),
-    "(1 value).*(3).*(not included in allowed values).*(Allowed values:).*(1, 2)"
+    regexp = messages$errorValueNotAllowed(3, c(1, 2)),
+    fixed = TRUE
   )
   expect_error(
     validateVectorValues(
@@ -218,7 +219,8 @@ test_that("validateVectorValues() correctly identifies unpermitted values", {
       type = "character",
       allowedValues = c("a", "b")
     ),
-    "(1 value).*(z).*(not included in allowed values).*(Allowed values:).*(a, b)"
+    regexp = messages$errorValueNotAllowed("z", c("a", "b")),
+    fixed = TRUE
   )
   expect_error(
     validateVectorValues(
@@ -226,11 +228,13 @@ test_that("validateVectorValues() correctly identifies unpermitted values", {
       type = "character",
       allowedValues = LETTERS[1:10]
     ),
-    "(15 values).*(K, L, M, N, O \\.\\.\\.).*(not included in allowed values).*(Allowed values:).*(A, B, C, D, E \\.\\.\\.)"
+    regexp = messages$errorValueNotAllowed(LETTERS[1:25], LETTERS[1:10]),
+    fixed = TRUE
   )
   expect_error(
     validateVectorValues(x = TRUE, type = "logical", allowedValues = FALSE),
-    "(1 value).*(TRUE).*(not included in allowed values).*(Allowed values:).*(FALSE)"
+    regexp = messages$errorValueNotAllowed(TRUE, FALSE),
+    fixed = TRUE
   )
   expect_error(
     validateVectorValues(
@@ -238,7 +242,8 @@ test_that("validateVectorValues() correctly identifies unpermitted values", {
       type = "factor",
       allowedValues = as.factor(c(1, 2))
     ),
-    "(1 value).*(3).*(not included in allowed values).*(Allowed values:).*(1, 2)"
+    regexp = messages$errorValueNotAllowed(as.factor(3), as.factor(c(1, 2))),
+    fixed = TRUE
   )
   expect_error(
     validateVectorValues(
@@ -247,7 +252,8 @@ test_that("validateVectorValues() correctly identifies unpermitted values", {
       allowedValues = c(1, 2),
       naAllowed = FALSE
     ),
-    "(1 value).*(NA).*(not included in allowed values).*(Allowed values:).*(1, 2)"
+    regexp = messages$errorValueNotAllowed(NA, c(1, 2)),
+    fixed = TRUE
   )
   expect_error(
     validateVectorValues(
@@ -256,7 +262,8 @@ test_that("validateVectorValues() correctly identifies unpermitted values", {
       allowedValues = c(1, 2, NA),
       naAllowed = FALSE
     ),
-    "(1 value).*(NA).*(not included in allowed values).*(Allowed values:).*(1, 2)"
+    regexp = messages$errorValueNotAllowed(NA, c(1, 2)),
+    fixed = TRUE
   )
 })
 

@@ -435,12 +435,7 @@ test_that("validateIsOption() errors when option values exceed expected length",
   )
   expect_error(
     validateIsOption(testOptions, validOptions),
-    regexp = messages$errorWrongLength(
-      c(TRUE, FALSE),
-      1,
-      "includeInteractions"
-    ),
-    fixed = TRUE
+    "(includeInteractions).*(should be of length).*(1)"
   )
 })
 
@@ -495,7 +490,11 @@ test_that("validateIsOption() flags out-of-range and invalid values", {
   )
   expect_error(
     validateIsOption(invalidOptions, validOptions),
-    "(optimizationMethod).*(1 value).*(none).*(not included in allowed values)"
+    regexp = messages$errorValueNotAllowed(
+      "none",
+      c("gradientDescent", "geneticAlgorithm")
+    ),
+    fixed = TRUE
   )
 })
 
@@ -544,8 +543,7 @@ test_that("validateIsOption() validates expectedLength", {
   optionsWrongLength <- list(methods = "a")
   expect_error(
     validateIsOption(optionsWrongLength, validOptionsWithLength),
-    regexp = messages$errorWrongLength("a", 2, "methods"),
-    fixed = TRUE
+    "(methods).*(should be of length).*(2)"
   )
 })
 
@@ -710,7 +708,11 @@ test_that("validateIsOption() detects values not in allowed values for data fram
   )
 
   expect_true(grepl("gender", err))
-  expect_true(grepl("not included in allowed values", err))
+  expect_true(grepl(
+    messages$errorValueNotAllowed(c("Other"), c("M", "F")),
+    err,
+    fixed = TRUE
+  ))
 })
 
 test_that("validateIsOption() rejects NA when not allowed in data frame columns", {
