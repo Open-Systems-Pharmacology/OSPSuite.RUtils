@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ospsuite.utils</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.10.0.9008</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.11.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,13 +39,20 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="ospsuiteutils-development-version">ospsuite.utils (development version)<a class="anchor" aria-label="anchor" href="#ospsuiteutils-development-version"></a></h2>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.11.0" id="ospsuiteutils-1110">ospsuite.utils 1.11.0<a class="anchor" aria-label="anchor" href="#ospsuiteutils-1110"></a></h2>
 <div class="section level3">
-<h3 id="minor-improvements-and-bug-fixes-development-version">Minor improvements and bug fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-bug-fixes-development-version"></a></h3>
+<h3 id="minor-improvements-and-bug-fixes-1-11-0">Minor improvements and bug fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-bug-fixes-1-11-0"></a></h3>
 <ul><li>
 <code><a href="../reference/validateIsOption.html">validateIsOption()</a></code> aggregated error messages no longer include internal function name prefixes (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/219" class="external-link">#219</a>).</li>
 <li>Validation errors in R6 active bindings now show a readable caller name instead of the anonymous function body (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/218" class="external-link">#218</a>).</li>
 <li>
 <code><a href="../reference/validateIsOption.html">validateIsOption()</a></code> no longer emits a warning when auto-converting whole-number <code>numeric</code> to <code>integer</code> (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/218" class="external-link">#218</a>).</li>
+<li>Fixed iteration bug in <code><a href="../reference/formatNumerics.html">formatNumerics()</a></code> for empty collections (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/212" class="external-link">#212</a>).</li>
+<li>
+<code><a href="../reference/logSafe.html">logSafe()</a></code> and <code><a href="../reference/foldSafe.html">foldSafe()</a></code> are now vectorized, yielding performance improvement (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/210" class="external-link">#210</a>).</li>
+<li>Added <code><a href="../reference/isPathAbsolute.html">isPathAbsolute()</a></code> and fixed naming inconsistency in related path utilities (<a href="https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/209" class="external-link">#209</a>).</li>
 </ul></div>
 </div>
     <div class="section level2">

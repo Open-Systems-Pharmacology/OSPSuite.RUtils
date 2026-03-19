@@ -2,6 +2,8 @@
 
 ## ospsuite.utils (development version)
 
+## ospsuite.utils 1.11.0
+
 ### Minor improvements and bug fixes
 
 - [`validateIsOption()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/validateIsOption.md)
@@ -15,6 +17,19 @@
   no longer emits a warning when auto-converting whole-number `numeric`
   to `integer`
   ([\#218](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/218)).
+- Fixed iteration bug in
+  [`formatNumerics()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/formatNumerics.md)
+  for empty collections
+  ([\#212](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/212)).
+- [`logSafe()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/logSafe.md)
+  and
+  [`foldSafe()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/foldSafe.md)
+  are now vectorized, yielding performance improvement
+  ([\#210](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/210)).
+- Added
+  [`isPathAbsolute()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/dev/reference/isPathAbsolute.md)
+  and fixed naming inconsistency in related path utilities
+  ([\#209](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/209)).
 
 ## ospsuite.utils 1.10.0
 
