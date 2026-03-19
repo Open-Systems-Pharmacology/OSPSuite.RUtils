@@ -1,10 +1,13 @@
-# ospsuite.utils (development version)
+# ospsuite.utils 1.11.0
 
 ## Minor improvements and bug fixes
 
 - `validateIsOption()` aggregated error messages no longer include internal function name prefixes (#219).
 - Validation errors in R6 active bindings now show a readable caller name instead of the anonymous function body (#218).
 - `validateIsOption()` no longer emits a warning when auto-converting whole-number `numeric` to `integer` (#218).
+- Fixed iteration bug in `formatNumerics()` for empty collections (#212).
+- `logSafe()` and `foldSafe()` are now vectorized, yielding performance improvement (#210).
+- Added `isPathAbsolute()` and fixed naming inconsistency in related path utilities (#209).
 
 # ospsuite.utils 1.10.0
 
