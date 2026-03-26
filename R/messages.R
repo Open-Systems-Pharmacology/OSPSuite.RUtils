@@ -197,7 +197,7 @@ messages <- list(
   },
   errorDimensionNotSupported = function(dimension, optionalMessage = NULL) {
     cliFormat(
-      "Dimension {.val dimension} is {.strong not} supported!",
+      "Dimension {.val {dimension}} is {.strong not} supported!",
       "See enum {.code ospsuite::ospDimensions} for the list of supported dimensions.",
       optionalMessage
     )
