@@ -1,5 +1,9 @@
 # ospsuite.utils (development version)
 
+## Minor improvements and bug fixes
+
+- Fixed `errorDimensionNotSupported` message not interpolating the dimension value (#222).
+
 # ospsuite.utils 1.11.0
 
 ## Minor improvements and bug fixes
