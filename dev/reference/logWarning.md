@@ -19,6 +19,6 @@ logWarning(msg)
 ``` r
 # Log warning
 logWarning(cliFormat("This is a {.strong warning} message"))
-#> ! Warning [19/03/2026 - 22:48:43]:  This is a warning message
+#> ! Warning [27/03/2026 - 09:47:57]:  This is a warning message
 #> 
 ```
