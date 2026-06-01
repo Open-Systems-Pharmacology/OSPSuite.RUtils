@@ -31,6 +31,7 @@ If validations are successful, `validateIsFileExtension()` returns
 ## Examples
 
 ``` r
+
 isFileExtension("enum.R", "R") # TRUE
 #> [1] TRUE
 isFileExtension("enum.R", "pkml") # FALSE

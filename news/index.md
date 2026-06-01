@@ -1,5 +1,42 @@
 # Changelog
 
+## ospsuite.utils 1.11.1
+
+### Minor improvements and bug fixes
+
+- Fixed `errorDimensionNotSupported` message not interpolating the
+  dimension value
+  ([\#222](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/222)).
+
+## ospsuite.utils 1.11.0
+
+### Minor improvements and bug fixes
+
+- [`validateIsOption()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsOption.md)
+  aggregated error messages no longer include internal function name
+  prefixes
+  ([\#219](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/219)).
+- Validation errors in R6 active bindings now show a readable caller
+  name instead of the anonymous function body
+  ([\#218](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/218)).
+- [`validateIsOption()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsOption.md)
+  no longer emits a warning when auto-converting whole-number `numeric`
+  to `integer`
+  ([\#218](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/218)).
+- Fixed iteration bug in
+  [`formatNumerics()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/formatNumerics.md)
+  for empty collections
+  ([\#212](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/212)).
+- [`logSafe()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/logSafe.md)
+  and
+  [`foldSafe()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/foldSafe.md)
+  are now vectorized, yielding performance improvement
+  ([\#210](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/210)).
+- Added
+  [`isPathAbsolute()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isPathAbsolute.md)
+  and fixed naming inconsistency in related path utilities
+  ([\#209](https://github.com/open-systems-pharmacology/OSPSuite.RUtils/issues/209)).
+
 ## ospsuite.utils 1.10.0
 
 ### Breaking changes

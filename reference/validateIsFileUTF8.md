@@ -22,6 +22,7 @@ Otherwise, error is signaled.
 ## Examples
 
 ``` r
+
 writeLines(c("Hello, world!"), "utf.txt")
 writeLines(c("Hello, world!", "\xb5g/L"), "non-utf.txt")
 

@@ -30,6 +30,7 @@ ifIncluded(x, y, outputIfIncluded, outputIfNotIncluded = NULL)
 ## Examples
 
 ``` r
+
 ifIncluded("a", c("a", "b"), 1, 2) # 1
 #> [1] 1
 ifIncluded("x", c("a", "b"), 1, 2) # 2

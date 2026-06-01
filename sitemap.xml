@@ -42,6 +42,7 @@
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isIncluded.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isOfLength.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isOfType.html</loc></url>
+<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isPathAbsolute.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isSameLength.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isUTF8.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/logCatch.html</loc></url>
@@ -72,7 +73,6 @@
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsFileUTF8.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsOfType.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsOption.html</loc></url>
-<url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validatePathIsAbsolute.html</loc></url>
 <url><loc>https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateVector.html</loc></url>
 </urlset>
 

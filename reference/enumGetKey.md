@@ -39,6 +39,7 @@ Other enumeration-helpers:
 ## Examples
 
 ``` r
+
 Symbol <- enum(c(Diamond = 1, Triangle = 2, Circle = 2))
 enumGetKey(Symbol, 1)
 #> [1] "Diamond"

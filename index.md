@@ -5,6 +5,7 @@
 You can install the latest version of the package from GitHub:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("Open-Systems-Pharmacology/OSPSuite.RUtils")
 ```

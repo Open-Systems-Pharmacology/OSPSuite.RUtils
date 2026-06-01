@@ -32,6 +32,7 @@ validateHasOnlyDistinctValues(values, na.rm = TRUE)
 ## Examples
 
 ``` r
+
 hasOnlyDistinctValues(c("x", "y"))
 #> [1] TRUE
 hasOnlyDistinctValues(c("x", "y", "x"))

@@ -21,5 +21,5 @@ logCatch(expr)
 logCatch({
   warning("This is a warning message")
 })
-#> WARN [2026-01-15 11:55:18] This is a warning message
+#> WARN [2026-06-01 10:19:45] This is a warning message
 ```

@@ -5,6 +5,7 @@
 You can install the latest version of the package from GitHub:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("Open-Systems-Pharmacology/OSPSuite.RUtils")
 ```
@@ -99,6 +100,11 @@ Check or validate a given assertion
 - [`isOfType()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isOfType.md)
   : Check if the provided object is of certain type
 
+- [`isPathAbsolute()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isPathAbsolute.md)
+  [`validateIsPathAbsolute()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isPathAbsolute.md)
+  [`validatePathIsAbsolute()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isPathAbsolute.md)
+  : Check if path is absolute
+
 - [`isSameLength()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isSameLength.md)
   [`validateIsSameLength()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/isSameLength.md)
   : Validate if objects are of same length
@@ -125,9 +131,6 @@ Check or validate a given assertion
 
 - [`validateIsOption()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateIsOption.md)
   : Validate Options Against Specifications
-
-- [`validatePathIsAbsolute()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validatePathIsAbsolute.md)
-  : Check if path is absolute
 
 - [`validateVector()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateVector.md)
   [`validateVectorRange()`](https://www.open-systems-pharmacology.org/OSPSuite.RUtils/reference/validateVector.md)

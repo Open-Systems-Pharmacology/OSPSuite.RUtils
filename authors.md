@@ -11,9 +11,8 @@
 
 - **Juri Solodenko**. Author.
 
-- **[Indrajeet
-  Patil](https://sites.google.com/site/indrajeetspatilmorality/)**.
-  Author. [](https://orcid.org/0000-0003-1995-6531)  
+- **[Indrajeet Patil](https://indrajeetpatil.github.io/)**. Author.
+  [](https://orcid.org/0000-0003-1995-6531)  
   @patilindrajeets
 
 ## Citation
@@ -23,13 +22,13 @@ Source:
 
 Sevestre M, Balazki P, Solodenko J, Patil I (2026). *ospsuite.utils:
 Utility Functions for Open Systems Pharmacology R Packages*. R package
-version 1.10.0,
+version 1.11.1,
 <https://github.com/open-systems-pharmacology/OSPSuite.RUtils>.
 
     @Manual{,
       title = {ospsuite.utils: Utility Functions for Open Systems Pharmacology R Packages},
       author = {Michael Sevestre and Pavel Balazki and Juri Solodenko and Indrajeet Patil},
       year = {2026},
-      note = {R package version 1.10.0},
+      note = {R package version 1.11.1},
       url = {https://github.com/open-systems-pharmacology/OSPSuite.RUtils},
     }

@@ -30,6 +30,7 @@ family is used to flatten the list.
 ## Examples
 
 ``` r
+
 flattenList(list(1, 2, 3, NA), type = "numeric")
 #> [1]  1  2  3 NA
 flattenList(list(TRUE, FALSE, NA), type = "integer")
