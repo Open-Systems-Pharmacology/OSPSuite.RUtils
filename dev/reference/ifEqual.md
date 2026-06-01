@@ -30,6 +30,7 @@ ifEqual(x, y, outputIfEqual, outputIfNotEqual = NULL)
 ## Examples
 
 ``` r
+
 ifEqual(1, 1, "x", "y") # "x"
 #> [1] "x"
 ifEqual(1, 2, "x", "y") # "y"

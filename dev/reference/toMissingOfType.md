@@ -29,6 +29,7 @@ should be entered.
 ## Examples
 
 ``` r
+
 toMissingOfType(NA, type = "real")
 #> [1] NA
 toMissingOfType(NULL, type = "integer")

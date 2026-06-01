@@ -22,6 +22,7 @@ A logical assessing whether there is non UTF-8 encoded characters in
 ## Examples
 
 ``` r
+
 isUTF8("Hello, world!") # TRUE
 #> [1] TRUE
 isUTF8("\xb5g/L") # FALSE

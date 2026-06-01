@@ -1,6 +1,7 @@
 # Validating Options
 
 ``` r
+
 library(ospsuite.utils)
 ```
 
@@ -22,6 +23,7 @@ configuration parameters, or user inputs.
 ### Basic usage
 
 ``` r
+
 # Define validation specifications
 validOptions <- list(
   maxIterations = integerOption(min = 1L, max = 10000L),
@@ -43,6 +45,7 @@ validateIsOption(options, validOptions)
 Invalid options produce clear error messages:
 
 ``` r
+
 # Invalid method value
 invalidOptions <- list(
   maxIterations = 100L,
@@ -68,6 +71,7 @@ validation specifications:
 Validates integer values with optional range constraints:
 
 ``` r
+
 validOptions <- list(
   age = integerOption(min = 0L, max = 120L),
   count = integerOption(min = 1L)
@@ -88,6 +92,7 @@ validateIsOption(options, validOptions)
 Validates numeric values with optional range constraints:
 
 ``` r
+
 validOptions <- list(
   weight = numericOption(min = 0, max = 500),
   bmi = numericOption(min = 10, max = 50)
@@ -103,6 +108,7 @@ validateIsOption(options, validOptions)
 Validates character values with optional allowed values:
 
 ``` r
+
 validOptions <- list(
   gender = characterOption(allowedValues = c("M", "F", "Other")),
   name = characterOption()
@@ -118,6 +124,7 @@ validateIsOption(options, validOptions)
 Validates logical values:
 
 ``` r
+
 validOptions <- list(
   verbose = logicalOption(),
   debug = logicalOption()
@@ -137,6 +144,7 @@ All spec constructors share these optional parameters:
 Controls whether `NULL` is permitted (default: `FALSE`):
 
 ``` r
+
 validOptions <- list(
   required = characterOption(),
   optional = characterOption(nullAllowed = TRUE)
@@ -161,6 +169,7 @@ validateIsOption(options, validOptions)
 Controls whether `NA` values are permitted (default: `FALSE`):
 
 ``` r
+
 validOptions <- list(
   age = integerOption(min = 0L, max = 120L, naAllowed = TRUE)
 )
@@ -175,6 +184,7 @@ validateIsOption(options, validOptions)
 Validates the length of vector values (default: `1` for scalars):
 
 ``` r
+
 validOptions <- list(
   id = integerOption(expectedLength = 1),
   scores = numericOption(min = 0, max = 100, expectedLength = 3)
@@ -188,6 +198,7 @@ validateIsOption(options, validOptions)
 This is especially useful for validating data frame columns:
 
 ``` r
+
 df <- data.frame(
   age = c(25L, 30L, 35L),
   gender = c("M", "F", "M"),
@@ -214,6 +225,7 @@ validateIsOption(as.list(df), validOptions)
 The function validates all options and reports all failures together:
 
 ``` r
+
 validOptions <- list(
   age = integerOption(min = 18L, max = 65L),
   method = characterOption(allowedValues = c("a", "b")),
@@ -243,6 +255,7 @@ Here’s a complete example validating parameters for a simulation
 function:
 
 ``` r
+
 # Define validation specs
 validParams <- list(
   timePoints = numericOption(min = 0, expectedLength = NULL),

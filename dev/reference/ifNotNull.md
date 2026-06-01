@@ -33,6 +33,7 @@ ifNotNull(condition, outputIfNotNull, outputIfNull = NULL)
 ## Examples
 
 ``` r
+
 ifNotNull(NULL, "x")
 #> NULL
 ifNotNull(NULL, "x", "y")

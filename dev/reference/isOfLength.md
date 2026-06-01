@@ -35,6 +35,7 @@ Only the first level of the given list is considered.
 ## Examples
 
 ``` r
+
 df <- data.frame(x = c(1, 2, 3))
 
 isOfLength(df, 1) # TRUE

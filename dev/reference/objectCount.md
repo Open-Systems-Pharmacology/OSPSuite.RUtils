@@ -47,6 +47,7 @@ For example,
 ## Examples
 
 ``` r
+
 # vectors or vector-style classes
 objectCount(c(1, 2, 3)) # 3
 #> [1] 3

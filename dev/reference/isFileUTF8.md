@@ -22,6 +22,7 @@ A logical assessing whether there is non UTF-8 encoded characters in
 ## Examples
 
 ``` r
+
 writeLines(c("Hello, world!"), "utf.txt")
 writeLines(c("Hello, world!", "\xb5g/L"), "non-utf.txt")
 

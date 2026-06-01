@@ -38,6 +38,7 @@ considered empty:
 ## Examples
 
 ``` r
+
 hasEmptyStrings(c("x", "y")) # FALSE
 #> [1] FALSE
 hasEmptyStrings(list("x", "y")) # FALSE
