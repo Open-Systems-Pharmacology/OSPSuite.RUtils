@@ -34,6 +34,6 @@ warning(messages$errorPropertyReadOnly("age"))
 
 # example display using logs
 logInfo(messages$errorPropertyReadOnly("age"))
-#> ℹ Info [01/06/2026 - 10:36:22]:  Property $age is readonly
+#> ℹ Info [03/08/2026 - 11:28:55]:  Property $age is readonly
 #> 
 ```
