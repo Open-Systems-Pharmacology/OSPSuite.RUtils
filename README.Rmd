@@ -17,22 +17,32 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 
-[![R build status](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/R-CMD-check/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils)
-[![pkgdown](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/workflows/pkgdown/badge.svg)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/actions)
-[![codecov](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=main)
+[![Build Badge](https://img.shields.io/github/actions/workflow/status/Open-Systems-Pharmacology/OSPSuite.RUtils/main-workflow.yml?branch=main&label=Build)](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/actions/workflows/main-workflow.yml)
+[![Codecov test coverage Badge](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils?branch=main)
 
 <!-- badges: end -->
 
 ## Installation
 
-You can install the latest version of the package from GitHub:
+`{ospsuite.utils}` requires R 4.4 or later. Install it from the
+[OSP R-universe](https://open-systems-pharmacology.r-universe.dev):
 
 ```{r, eval=FALSE}
-# install.packages("remotes")
-remotes::install_github("Open-Systems-Pharmacology/OSPSuite.RUtils")
+install.packages(
+  "ospsuite.utils",
+  repos = c(
+    OSP = "https://open-systems-pharmacology.r-universe.dev",
+    getOption("repos")
+  )
+)
 ```
 
-Alternatively, you can download built binaries from [here](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/releases).
+Get the latest development version from GitHub with:
+
+```{r, eval=FALSE}
+# install.packages("pak")
+pak::pak("Open-Systems-Pharmacology/OSPSuite.RUtils")
+```
 
 ## Introduction
 
