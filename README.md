@@ -14,15 +14,25 @@ Badge](https://codecov.io/gh/Open-Systems-Pharmacology/OSPSuite.RUtils/branch/ma
 
 ## Installation
 
-You can install the latest version of the package from GitHub:
+`{ospsuite.utils}` requires R 4.4 or later. Install it from the [OSP
+R-universe](https://open-systems-pharmacology.r-universe.dev):
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("Open-Systems-Pharmacology/OSPSuite.RUtils")
+install.packages(
+  "ospsuite.utils",
+  repos = c(
+    OSP = "https://open-systems-pharmacology.r-universe.dev",
+    getOption("repos")
+  )
+)
 ```
 
-Alternatively, you can download built binaries from
-[here](https://github.com/Open-Systems-Pharmacology/OSPSuite.RUtils/releases).
+Get the latest development version from GitHub with:
+
+``` r
+# install.packages("pak")
+pak::pak("Open-Systems-Pharmacology/OSPSuite.RUtils")
+```
 
 ## Introduction
 
