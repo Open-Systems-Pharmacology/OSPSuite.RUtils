@@ -1,11 +1,10 @@
 name: Pull Request Workflow
 
-# Runs on every pull request. sync-remotes pins/unpins `Remotes:` in DESCRIPTION
-# to match the package Version (plain Remotes for a development version,
-# `@*release` for a release version) and commits the fix to the PR branch; the
-# checks then run on that synced tree. This package has no OSP dependencies and
-# no `Remotes:` field, so the sync is a no-op today; it is wired in so a future
-# OSP dependency follows the same rule as the other OSP packages.
+# Runs on every pull request. This package has no OSP dependencies and no
+# `Remotes:` field. If one is added, a development version installs it from
+# GitHub through `Remotes`, and release-pr moves it to the OSP R-universe.
+# setup-r-env (used by test coverage and pkgdown) fails when the dependency
+# fields do not match the Version and explains the fix.
 
 on:
   pull_request:
@@ -13,15 +12,7 @@ on:
 permissions: read-all
 
 jobs:
-  sync-remotes:
-    permissions:
-      contents: write # commits the synced Remotes back to the PR branch
-    uses: Open-Systems-Pharmacology/Workflows/.github/workflows/sync-remotes.yaml@main
-    secrets: inherit
-
   R-CMD-Check:
-    needs: [sync-remotes]
-    if: ${{ !cancelled() && needs.sync-remotes.result != 'failure' }} # a skipped fork-PR sync must not block the check, but a failure should
     uses: ./.github/workflows/R-CMD-check.yaml
 
   test-coverage:
